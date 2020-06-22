@@ -810,18 +810,18 @@ parser TofinoIngressParser(packet_in pkt,
     state parse_cname {
         counter.set((bit<8>)(p.dns_answer.rd_length));
 
-        transition select(counter.get()) {
-            0: parse_dns_answer;
-            default: parse_cname_byte;
+        transition select(counter.is_zero()) {
+            true: parse_dns_answer;
+            false: parse_cname_byte;
         }
     }
 
     state parse_cname_byte{
         pkt.advance(8);
         counter.decrement(8w1);
-        transition select(counter.get()) {
-            0: parse_dns_answer;
-            default: parse_cname_byte;
+        transition select(counter.is_zero()) {
+            true: parse_dns_answer;
+            false: parse_cname_byte;
         }
     }
 
