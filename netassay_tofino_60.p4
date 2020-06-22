@@ -197,7 +197,7 @@ struct eg_metadata_t {
 // parsers
 parser TopIngressParser(packet_in pkt,
            out Parsed_packet p,
-           inout user_metadata_t user_metadata,
+           out user_metadata_t user_metadata,
            out ingress_intrinsic_metadata_t ig_intr_md) {
 
     ParserCounter() counter;
