@@ -1381,3 +1381,10 @@ control TopDeparser(packet_out b,
 
 // Instantiate the switch
 //V1Switch(TopParser(), TopVerifyChecksum(), TopIngress(), TopEgress(), TopComputeChecksum(), TopDeparser()) main;
+
+Pipeline(TopIngressParser(),
+         TopIngress(),
+         TopEgress()
+         ) pipe;
+
+Switch(pipe) main;
