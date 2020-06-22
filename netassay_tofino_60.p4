@@ -191,6 +191,16 @@ struct ig_metadata_t {
     bit<1> parsed_answer;
 }
 
+struct sip_cip_t { 
+    bit<32> sip;
+    bit<32> cip;
+}
+
+struct domainid_timestamp_t { 
+    bit<32> domain_id;
+    bit<32> timestamp;
+}
+
 struct eg_metadata_t {
 }
 
