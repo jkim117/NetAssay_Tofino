@@ -1075,9 +1075,6 @@ control TopIngress(inout Parsed_packet headers,
             if (value.sip == headers.ipv4.src && value.cip == headers.ipv4.dst) {
                 is_match = 1;
             }
-            else if (value.sip == headers.ipv4.dst && value.cip == headers.ipv4.src) {
-                is_match = 1;
-            }
             else {
                 is_match = 0;
             }
