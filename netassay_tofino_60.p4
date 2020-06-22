@@ -1382,7 +1382,7 @@ control TopDeparser(packet_out b,
 // Instantiate the switch
 //V1Switch(TopParser(), TopVerifyChecksum(), TopIngress(), TopEgress(), TopComputeChecksum(), TopDeparser()) main;
 
-Pipeline(TopIngressParser(),
+Pipeline(TofinoIngressParser(),
          TopIngress(),
          TopEgress()
          ) pipe;
