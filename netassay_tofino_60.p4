@@ -866,12 +866,12 @@ control TopIngress(inout Parsed_packet headers,
     Register<bit<32>,_>(TABLE_SIZE,0) ipv4_dst_rdata_table;
     RegisterAction<bit<32>,_,void> (ipv4_dst_rdata_table) ipv4_dst_rdata_table_reg_write_action = {
         void apply(inout bit<32> ipv4_dst) {
-            ipv4_dst = hdr.ipv4.dst;
+            ipv4_dst = headers.ipv4.dst;
         }
     };
     RegisterAction<bit<32>,_,bit<1>> (ipv4_dst_rdata_table) ipv4_dst_rdata_table_reg_compare_action = {
         void apply(inout bit<32> ipv4_dst, out bit<1> rdata_bigger) {
-            if (hdr.dns_ip.rdata > ipv4_dst) {
+            if (headers.dns_ip.rdata > ipv4_dst) {
                 rdata_bigger = 1;
             }
             else {
@@ -883,12 +883,12 @@ control TopIngress(inout Parsed_packet headers,
     Register<bit<32>,_>(TABLE_SIZE,0) ipv4_dst_ipv4src_table;
     RegisterAction<bit<32>,_,void> (ipv4_dst_ipv4src_table) ipv4_dst_ipv4src_table_reg_write_action = {
         void apply(inout bit<32> ipv4_dst) {
-            ipv4_dst = hdr.ipv4.dst;
+            ipv4_dst = headers.ipv4.dst;
         }
     };
     RegisterAction<bit<32>,_,bit<1>> (ipv4_dst_ipv4src_table) ipv4_dst_ipv4src_table_reg_compare_action = {
         void apply(inout bit<32> ipv4_dst, out bit<1> ipv4src_bigger) {
-            if (hdr.ipv4.src > ipv4_dst) {
+            if (headers.ipv4.src > ipv4_dst) {
                 ipv4src_bigger = 1;
             }
             else {
@@ -900,7 +900,7 @@ control TopIngress(inout Parsed_packet headers,
     Register<bit<32>,_>(TABLE_SIZE,0) ipv4_dst_cip_table_1;
     RegisterAction<bit<32>,_,void> (ipv4_dst_cip_table_1) ipv4_dst_cip_table_1_reg_write_action = {
         void apply(inout bit<32> ipv4_dst) {
-            ipv4_dst = hdr.ipv4.dst;
+            ipv4_dst = headers.ipv4.dst;
         }
     };
     RegisterAction<bit<32>,_,bit<1>> (ipv4_dst_cip_table_1) ipv4_dst_cip_table_1_reg_compare_action = {
@@ -917,7 +917,7 @@ control TopIngress(inout Parsed_packet headers,
     Register<bit<32>,_>(TABLE_SIZE,0) ipv4_dst_cip_table_2;
     RegisterAction<bit<32>,_,void> (ipv4_dst_cip_table_2) ipv4_dst_cip_table_2_reg_write_action = {
         void apply(inout bit<32> ipv4_dst) {
-            ipv4_dst = hdr.ipv4.dst;
+            ipv4_dst = headers.ipv4.dst;
         }
     };
     RegisterAction<bit<32>,_,bit<1>> (ipv4_dst_cip_table_2) ipv4_dst_cip_table_2_reg_compare_action = {
@@ -934,7 +934,7 @@ control TopIngress(inout Parsed_packet headers,
     Register<bit<32>,_>(TABLE_SIZE,0) ipv4_dst_cip_table_3;
     RegisterAction<bit<32>,_,void> (ipv4_dst_cip_table_3) ipv4_dst_cip_table_3_reg_write_action = {
         void apply(inout bit<32> ipv4_dst) {
-            ipv4_dst = hdr.ipv4.dst;
+            ipv4_dst = headers.ipv4.dst;
         }
     };
     RegisterAction<bit<32>,_,bit<1>> (ipv4_dst_cip_table_3) ipv4_dst_cip_table_3_reg_compare_action = {
@@ -1002,7 +1002,7 @@ control TopIngress(inout Parsed_packet headers,
     Register<bit<32>,_>(TABLE_SIZE,0) dns_ip_rdata_table_1;
     RegisterAction<bit<32>,_,void> (dns_ip_rdata_table_1) dns_ip_rdata_table_1_reg_write_action = {
         void apply(inout bit<32> dns_ip_rdata) {
-            dns_ip_rdata = hdr.dns_ip.rdata;
+            dns_ip_rdata = headers.dns_ip.rdata;
         }
     };
     RegisterAction<bit<32>,_,bit<1>> (dns_ip_rdata_table_1) dns_ip_rdata_table_1_reg_compare_sip_action = {
@@ -1019,7 +1019,7 @@ control TopIngress(inout Parsed_packet headers,
     Register<bit<32>,_>(TABLE_SIZE,0) dns_ip_rdata_table_2;
     RegisterAction<bit<32>,_,void> (dns_ip_rdata_table_2) dns_ip_rdata_table_2_reg_write_action = {
         void apply(inout bit<32> dns_ip_rdata) {
-            dns_ip_rdata = hdr.dns_ip.rdata;
+            dns_ip_rdata = headers.dns_ip.rdata;
         }
     };
     RegisterAction<bit<32>,_,bit<1>> (dns_ip_rdata_table_2) dns_ip_rdata_table_2_reg_compare_sip_action = {
@@ -1036,7 +1036,7 @@ control TopIngress(inout Parsed_packet headers,
     Register<bit<32>,_>(TABLE_SIZE,0) dns_ip_rdata_table_3;
     RegisterAction<bit<32>,_,void> (dns_ip_rdata_table_3) dns_ip_rdata_table_3_reg_write_action = {
         void apply(inout bit<32> dns_ip_rdata) {
-            dns_ip_rdata = hdr.dns_ip.rdata;
+            dns_ip_rdata = headers.dns_ip.rdata;
         }
     };
     RegisterAction<bit<32>,_,bit<1>> (dns_ip_rdata_table_3) dns_ip_rdata_table_3_reg_compare_sip_action = {
@@ -1061,7 +1061,7 @@ control TopIngress(inout Parsed_packet headers,
     Register<sip_cip_t,_>(TABLE_SIZE) sip_cip_reg_1; 
     RegisterAction<sip_cip_t,_,bit<1>> (sip_cip_reg_1) sip_cip_reg_1_check_action = {
         void apply(inout sip_cip_t value, out bit<1> is_match) {
-            if (value.sip == hdr.dns_ip.rdata && value.cip == hdr.ipv4.dst) {
+            if (value.sip == headers.dns_ip.rdata && value.cip == headers.ipv4.dst) {
                 is_match = 1;
             }
             else {
@@ -1071,8 +1071,8 @@ control TopIngress(inout Parsed_packet headers,
     };
     RegisterAction<sip_cip_t,_,bit<1>> (sip_cip_reg_1) sip_cip_reg_1_check_dir1_action = {
         void apply(inout sip_cip_t value, out bit<1> is_match) {
-            //if ( (value.sip == hdr.dns_ip.rdata && value.cip == hdr.ipv4.dst) || (value.sip == hdr.ipv4.dst && value.cip == hdr.dns_ip.rdata) ) {
-            if (value.sip == hdr.ipv4.src && value.cip == hdr.ipv4.dst) {
+            //if ( (value.sip == headers.dns_ip.rdata && value.cip == headers.ipv4.dst) || (value.sip == headers.ipv4.dst && value.cip == headers.dns_ip.rdata) ) {
+            if (value.sip == headers.ipv4.src && value.cip == headers.ipv4.dst) {
                 is_match = 1;
             }
             else {
@@ -1082,8 +1082,8 @@ control TopIngress(inout Parsed_packet headers,
     };
     RegisterAction<sip_cip_t,_,bit<1>> (sip_cip_reg_1) sip_cip_reg_1_check_dir2_action = {
         void apply(inout sip_cip_t value, out bit<1> is_match) {
-            //if ( (value.sip == hdr.dns_ip.rdata && value.cip == hdr.ipv4.dst) || (value.sip == hdr.ipv4.dst && value.cip == hdr.dns_ip.rdata) ) {
-            if (value.sip == hdr.ipv4.src && value.cip == hdr.ipv4.dst) {
+            //if ( (value.sip == headers.dns_ip.rdata && value.cip == headers.ipv4.dst) || (value.sip == headers.ipv4.dst && value.cip == headers.dns_ip.rdata) ) {
+            if (value.sip == headers.ipv4.src && value.cip == headers.ipv4.dst) {
                 is_match = 1;
             }
             else {
@@ -1093,8 +1093,8 @@ control TopIngress(inout Parsed_packet headers,
     };
     RegisterAction<sip_cip_t,_,void> (sip_cip_reg_1) sip_cip_reg_1_update_action = {
         void apply(inout sip_cip_t value) {
-            value.sip = hdr.dns_ip.rdata;
-            value.cip = hdr.ipv4.dst;
+            value.sip = headers.dns_ip.rdata;
+            value.cip = headers.ipv4.dst;
         }
     };
 
@@ -1131,7 +1131,7 @@ control TopIngress(inout Parsed_packet headers,
     Register<sip_cip_t,_>(TABLE_SIZE) sip_cip_reg_2;
     RegisterAction<sip_cip_t,_,bit<1>> (sip_cip_reg_2) sip_cip_reg_2_check_action = {
         void apply(inout sip_cip_t value, out bit<1> is_match) {
-            if (value.sip == hdr.dns_ip.rdata && value.cip == hdr.ipv4.dst) {
+            if (value.sip == headers.dns_ip.rdata && value.cip == headers.ipv4.dst) {
                 is_match = 1;
             }
             else {
@@ -1141,8 +1141,8 @@ control TopIngress(inout Parsed_packet headers,
     };
     RegisterAction<sip_cip_t,_,bit<1>> (sip_cip_reg_2) sip_cip_reg_2_check_dir1_action = {
         void apply(inout sip_cip_t value, out bit<1> is_match) {
-            //if ( (value.sip == hdr.dns_ip.rdata && value.cip == hdr.ipv4.dst) || (value.sip == hdr.ipv4.dst && value.cip == hdr.dns_ip.rdata) ) {
-            if (value.sip == hdr.ipv4.src && value.cip == hdr.ipv4.dst) {
+            //if ( (value.sip == headers.dns_ip.rdata && value.cip == headers.ipv4.dst) || (value.sip == headers.ipv4.dst && value.cip == headers.dns_ip.rdata) ) {
+            if (value.sip == headers.ipv4.src && value.cip == headers.ipv4.dst) {
                 is_match = 1;
             }
             else {
@@ -1152,8 +1152,8 @@ control TopIngress(inout Parsed_packet headers,
     };
     RegisterAction<sip_cip_t,_,bit<1>> (sip_cip_reg_2) sip_cip_reg_2_check_dir2_action = {
         void apply(inout sip_cip_t value, out bit<1> is_match) {
-            //if ( (value.sip == hdr.dns_ip.rdata && value.cip == hdr.ipv4.dst) || (value.sip == hdr.ipv4.dst && value.cip == hdr.dns_ip.rdata) ) {
-            if (value.sip == hdr.ipv4.src && value.cip == hdr.ipv4.dst) {
+            //if ( (value.sip == headers.dns_ip.rdata && value.cip == headers.ipv4.dst) || (value.sip == headers.ipv4.dst && value.cip == headers.dns_ip.rdata) ) {
+            if (value.sip == headers.ipv4.src && value.cip == headers.ipv4.dst) {
                 is_match = 1;
             }
             else {
@@ -1163,8 +1163,8 @@ control TopIngress(inout Parsed_packet headers,
     };
     RegisterAction<sip_cip_t,_,void> (sip_cip_reg_2) sip_cip_reg_2_update_action = {
         void apply(inout sip_cip_t value) {
-            value.sip = hdr.dns_ip.rdata;
-            value.cip = hdr.ipv4.dst;
+            value.sip = headers.dns_ip.rdata;
+            value.cip = headers.ipv4.dst;
         }
     };
 
@@ -1200,7 +1200,7 @@ control TopIngress(inout Parsed_packet headers,
     Register<sip_cip_t,_>(TABLE_SIZE) sip_cip_reg_3;
     RegisterAction<sip_cip_t,_,bit<1>> (sip_cip_reg_3) sip_cip_reg_3_check_action = {
         void apply(inout sip_cip_t value, out bit<1> is_match) {
-            if (value.sip == hdr.dns_ip.rdata && value.cip == hdr.ipv4.dst) {
+            if (value.sip == headers.dns_ip.rdata && value.cip == headers.ipv4.dst) {
                 is_match = 1;
             }
             else {
@@ -1210,8 +1210,8 @@ control TopIngress(inout Parsed_packet headers,
     };
     RegisterAction<sip_cip_t,_,bit<1>> (sip_cip_reg_3) sip_cip_reg_3_check_dir1_action = {
         void apply(inout sip_cip_t value, out bit<1> is_match) {
-            //if ( (value.sip == hdr.dns_ip.rdata && value.cip == hdr.ipv4.dst) || (value.sip == hdr.ipv4.dst && value.cip == hdr.dns_ip.rdata) ) {
-            if (value.sip == hdr.ipv4.src && value.cip == hdr.ipv4.dst) {
+            //if ( (value.sip == headers.dns_ip.rdata && value.cip == headers.ipv4.dst) || (value.sip == headers.ipv4.dst && value.cip == headers.dns_ip.rdata) ) {
+            if (value.sip == headers.ipv4.src && value.cip == headers.ipv4.dst) {
                 is_match = 1;
             }
             else {
@@ -1221,8 +1221,8 @@ control TopIngress(inout Parsed_packet headers,
     };
     RegisterAction<sip_cip_t,_,bit<1>> (sip_cip_reg_3) sip_cip_reg_3_check_dir2_action = {
         void apply(inout sip_cip_t value, out bit<1> is_match) {
-            //if ( (value.sip == hdr.dns_ip.rdata && value.cip == hdr.ipv4.dst) || (value.sip == hdr.ipv4.dst && value.cip == hdr.dns_ip.rdata) ) {
-            if (value.sip == hdr.ipv4.src && value.cip == hdr.ipv4.dst) {
+            //if ( (value.sip == headers.dns_ip.rdata && value.cip == headers.ipv4.dst) || (value.sip == headers.ipv4.dst && value.cip == headers.dns_ip.rdata) ) {
+            if (value.sip == headers.ipv4.src && value.cip == headers.ipv4.dst) {
                 is_match = 1;
             }
             else {
@@ -1232,8 +1232,8 @@ control TopIngress(inout Parsed_packet headers,
     };
     RegisterAction<sip_cip_t,_,void> (sip_cip_reg_3) sip_cip_reg_3_update_action = {
         void apply(inout sip_cip_t value) {
-            value.sip = hdr.dns_ip.rdata;
-            value.cip = hdr.ipv4.dst;
+            value.sip = headers.dns_ip.rdata;
+            value.cip = headers.ipv4.dst;
         }
     };
 
@@ -1274,12 +1274,12 @@ control TopIngress(inout Parsed_packet headers,
     };
     RegisterAction<bit<32>,_,void> (dns_cip_table_1) dns_cip_table_1_reg_write_ipv4dst_action = {
         void apply(inout bit<32> value) {
-            value = hdr.ipv4.dst;
+            value = headers.ipv4.dst;
         }
     };
     RegisterAction<bit<32>,_,void> (dns_cip_table_1) dns_cip_table_1_reg_write_dnsiprdata_action = {
         void apply(inout bit<32> value) {
-            value = hdr.dns_ip.rdata;
+            value = headers.dns_ip.rdata;
         }
     };
 
@@ -1291,12 +1291,12 @@ control TopIngress(inout Parsed_packet headers,
     };
     RegisterAction<bit<32>,_,void> (dns_sip_table_1) dns_sip_table_1_reg_write_ipv4dst_action = {
         void apply(inout bit<32> value) {
-            value = hdr.ipv4.dst;
+            value = headers.ipv4.dst;
         }
     };
     RegisterAction<bit<32>,_,void> (dns_sip_table_1) dns_sip_table_1_reg_write_dnsiprdata_action = {
         void apply(inout bit<32> value) {
-            value = hdr.dns_ip.rdata;
+            value = headers.dns_ip.rdata;
         }
     };
 
@@ -1332,12 +1332,12 @@ control TopIngress(inout Parsed_packet headers,
     };
     RegisterAction<bit<32>,_,void> (dns_cip_table_2) dns_cip_table_2_reg_write_ipv4dst_action = {
         void apply(inout bit<32> value) {
-            value = hdr.ipv4.dst;
+            value = headers.ipv4.dst;
         }
     };
     RegisterAction<bit<32>,_,void> (dns_cip_table_2) dns_cip_table_2_reg_write_dnsiprdata_action = {
         void apply(inout bit<32> value) {
-            value = hdr.dns_ip.rdata;
+            value = headers.dns_ip.rdata;
         }
     };
  
@@ -1349,12 +1349,12 @@ control TopIngress(inout Parsed_packet headers,
     };
     RegisterAction<bit<32>,_,void> (dns_sip_table_2) dns_sip_table_2_reg_write_ipv4dst_action = {
         void apply(inout bit<32> value) {
-            value = hdr.ipv4.dst;
+            value = headers.ipv4.dst;
         }
     };
     RegisterAction<bit<32>,_,void> (dns_sip_table_2) dns_sip_table_2_reg_write_dnsiprdata_action = {
         void apply(inout bit<32> value) {
-            value = hdr.dns_ip.rdata;
+            value = headers.dns_ip.rdata;
         }
     };
 
@@ -1390,12 +1390,12 @@ control TopIngress(inout Parsed_packet headers,
     };
     RegisterAction<bit<32>,_,void> (dns_cip_table_3) dns_cip_table_3_reg_write_ipv4dst_action = {
         void apply(inout bit<32> value) {
-            value = hdr.ipv4.dst;
+            value = headers.ipv4.dst;
         }
     };
     RegisterAction<bit<32>,_,void> (dns_cip_table_3) dns_cip_table_3_reg_write_dnsiprdata_action = {
         void apply(inout bit<32> value) {
-            value = hdr.dns_ip.rdata;
+            value = headers.dns_ip.rdata;
         }
     };
 
@@ -1407,12 +1407,12 @@ control TopIngress(inout Parsed_packet headers,
     };
     RegisterAction<bit<32>,_,void> (dns_sip_table_3) dns_sip_table_3_reg_write_ipv4dst_action = {
         void apply(inout bit<32> value) {
-            value = hdr.ipv4.dst;
+            value = headers.ipv4.dst;
         }
     };
     RegisterAction<bit<32>,_,void> (dns_sip_table_3) dns_sip_table_3_reg_write_dnsiprdata_action = {
         void apply(inout bit<32> value) {
-            value = hdr.dns_ip.rdata;
+            value = headers.dns_ip.rdata;
         }
     };
 
@@ -1458,7 +1458,7 @@ control TopIngress(inout Parsed_packet headers,
     };
     RegisterAction<bit<32>,_,void> (byte_counts_table) byte_counts_table_reg_inc_action = {
         void apply(inout bit<32> value) {
-            value = value + (bit<32>)hdr.ipv4.len;
+            value = value + (bit<32>)headers.ipv4.len;
         }
     };
 
@@ -1772,32 +1772,32 @@ control TopIngress(inout Parsed_packet headers,
 }
 
 control TopIngressDeparser(packet_out pkt,
-                          inout Parsed_packet hdr,
+                          inout Parsed_packet headers,
                           in ig_metadata_t ig_md,
                           in ingress_intrinsic_metadata_for_deparser_t ig_intr_dprsr_md) {
 
     Checksum() ipv4_csum;
 
     apply {
-        if(hdr.ipv4.isValid()) {
-            hdr.ipv4.chksum = ipv4_csum.update({
-                   hdr.ipv4.version,
-                   hdr.ipv4.ihl,
-                   hdr.ipv4.tos,
-                   hdr.ipv4.len,
-                   hdr.ipv4.id,
-                   hdr.ipv4.flags,
-                   hdr.ipv4.frag,
-                   hdr.ipv4.ttl,
-                   hdr.ipv4.proto,
-                   hdr.ipv4.src,
-                   hdr.ipv4.dst});
+        if(headers.ipv4.isValid()) {
+            headers.ipv4.chksum = ipv4_csum.update({
+                   headers.ipv4.version,
+                   headers.ipv4.ihl,
+                   headers.ipv4.tos,
+                   headers.ipv4.len,
+                   headers.ipv4.id,
+                   headers.ipv4.flags,
+                   headers.ipv4.frag,
+                   headers.ipv4.ttl,
+                   headers.ipv4.proto,
+                   headers.ipv4.src,
+                   headers.ipv4.dst});
         }
     }
 }
 
 parser TopEgressParser(packet_in packet,
-                       out Parsed_packet hdr,
+                       out Parsed_packet headers,
                        out eg_metadata_t eg_md,
                        out egress_intrinsic_metadata_t eg_intr_md) {
     state start {
@@ -1845,7 +1845,7 @@ control TopDeparser(packet_out b,
 }
 
 control TopEgressDeparser(packet_out packet, 
-                         inout Parsed_packet hdr, 
+                         inout Parsed_packet headers, 
                          in eg_metadata_t eg_md,
                          in egress_intrinsic_metadata_for_deparser_t eg_intr_md_for_dprsr) {
 
