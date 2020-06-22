@@ -1083,7 +1083,7 @@ control TopIngress(inout Parsed_packet headers,
     RegisterAction<sip_cip_t,_,bit<1>> (sip_cip_reg_1) sip_cip_reg_1_check_dir2_action = {
         void apply(inout sip_cip_t value, out bit<1> is_match) {
             //if ( (value.sip == headers.dns_ip.rdata && value.cip == headers.ipv4.dst) || (value.sip == headers.ipv4.dst && value.cip == headers.dns_ip.rdata) ) {
-            if (value.sip == headers.ipv4.src && value.cip == headers.ipv4.dst) {
+            if (value.cip == headers.ipv4.src && value.sip == headers.ipv4.dst) {
                 is_match = 1;
             }
             else {
@@ -1153,7 +1153,7 @@ control TopIngress(inout Parsed_packet headers,
     RegisterAction<sip_cip_t,_,bit<1>> (sip_cip_reg_2) sip_cip_reg_2_check_dir2_action = {
         void apply(inout sip_cip_t value, out bit<1> is_match) {
             //if ( (value.sip == headers.dns_ip.rdata && value.cip == headers.ipv4.dst) || (value.sip == headers.ipv4.dst && value.cip == headers.dns_ip.rdata) ) {
-            if (value.sip == headers.ipv4.src && value.cip == headers.ipv4.dst) {
+            if (value.cip == headers.ipv4.src && value.sip == headers.ipv4.dst) {
                 is_match = 1;
             }
             else {
@@ -1222,7 +1222,7 @@ control TopIngress(inout Parsed_packet headers,
     RegisterAction<sip_cip_t,_,bit<1>> (sip_cip_reg_3) sip_cip_reg_3_check_dir2_action = {
         void apply(inout sip_cip_t value, out bit<1> is_match) {
             //if ( (value.sip == headers.dns_ip.rdata && value.cip == headers.ipv4.dst) || (value.sip == headers.ipv4.dst && value.cip == headers.dns_ip.rdata) ) {
-            if (value.sip == headers.ipv4.src && value.cip == headers.ipv4.dst) {
+            if (value.cip == headers.ipv4.src && value.sip == headers.ipv4.dst) {
                 is_match = 1;
             }
             else {
