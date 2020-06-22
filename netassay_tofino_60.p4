@@ -200,7 +200,7 @@ parser TofinoIngressParser(packet_in pkt,
            inout user_metadata_t user_metadata,
            out ingress_intrinsic_metadata_t ig_intr_md) {
 
-    ParserCounter<bit<8>>() counter;
+    ParserCounter() counter;
 
     state start {
         pkt.extract(p.ethernet);
