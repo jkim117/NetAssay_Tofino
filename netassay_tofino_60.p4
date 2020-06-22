@@ -195,7 +195,7 @@ struct eg_metadata_t {
 }
 
 // parsers
-parser TofinoIngressParser(packet_in pkt,
+parser TopIngressParser(packet_in pkt,
            out Parsed_packet p,
            inout user_metadata_t user_metadata,
            out ingress_intrinsic_metadata_t ig_intr_md) {
@@ -1341,6 +1341,41 @@ control TopIngress(inout Parsed_packet headers,
 	}
 }
 
+control TopIngressDeparser(packet_out pkt,
+                          inout Parsed_packet hdr,
+                          in user_metadata_t user_metadata,
+                          in ingress_intrinsic_metadata_for_deparser_t ig_intr_dprsr_md) {
+
+    Checksum() ipv4_csum;
+
+    apply {
+        if(hdr.ipv4.isValid()) {
+            hdr.ipv4.chksum = ipv4_csum.update({
+                   hdr.ipv4.version,
+                   hdr.ipv4.ihl,
+                   hdr.ipv4.tos,
+                   hdr.ipv4.len,
+                   hdr.ipv4.id,
+                   hdr.ipv4.flags,
+                   hdr.ipv4.frag,
+                   hdr.ipv4.ttl,
+                   hdr.ipv4.proto,
+                   hdr.ipv4.src,
+                   hdr.ipv4.dst});
+        }
+    }
+}
+
+parser TopEgressParser(packet_in packet,
+                       out Parsed_packet hdr,
+                       out eg_metadata_t eg_md,
+                       out egress_intrinsic_metadata_t eg_intr_md) {
+    state start {
+        packet.extract(eg_intr_md);
+        transition accept;
+    }
+}
+
 control TopEgress(inout Parsed_packet headers,
                  inout eg_metadata_t eg_md,
                  in egress_intrinsic_metadata_t eg_intr_md,
@@ -1379,12 +1414,23 @@ control TopDeparser(packet_out b,
     }
 }
 
+control TopEgressDeparser(packet_out packet, 
+                         inout Parsed_packet hdr, 
+                         in eg_metadata_t eg_md,
+                         in egress_intrinsic_metadata_for_deparser_t eg_intr_md_for_dprsr) {
+
+    apply {  }
+}
+
 // Instantiate the switch
 //V1Switch(TopParser(), TopVerifyChecksum(), TopIngress(), TopEgress(), TopComputeChecksum(), TopDeparser()) main;
 
-Pipeline(TofinoIngressParser(),
+Pipeline(TopIngressParser(),
          TopIngress(),
-         TopEgress()
+         TopIngressDeparser(),
+         TopEgressParser(),
+         TopEgress(),
+         TopEgressDeparser()
          ) pipe;
 
 Switch(pipe) main;
