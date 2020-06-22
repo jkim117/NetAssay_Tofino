@@ -200,6 +200,7 @@ parser TopIngressParser(packet_in pkt,
            out user_metadata_t user_metadata,
            out ingress_intrinsic_metadata_t ig_intr_md) {
 
+    user_metadata_t user_metadata;
     ParserCounter() counter;
 
     state start {
@@ -228,14 +229,23 @@ parser TopIngressParser(packet_in pkt,
 		}
 	}
 
-	state parse_udp {
-        pkt.extract(p.udp);
+    state parse_udp {
+        pkt.extract(hdr.udp);
 
-		transition select(p.udp.dport == 53 || p.udp.sport == 53) {
-			true: parse_dns_header;
-			false: accept;
+		transition select(hdr.udp.dport) {
+			53: parse_dns_header;
+			default: parse_udp_2;
 		}
 	}
+
+	state parse_udp_2 {
+        //pkt.extract(hdr.udp);
+
+		transition select(hdr.udp.sport) {
+			53: parse_dns_header;
+			default: accept;
+        }
+    }
 
 	state parse_dns_header {
         pkt.extract(p.dns_header);
