@@ -853,7 +853,409 @@ control TopIngress(inout Parsed_packet headers,
                 inout ingress_intrinsic_metadata_for_deparser_t ig_intr_dprsr_md,
                 inout ingress_intrinsic_metadata_for_tm_t ig_intr_tm_md) {
 
+    Register<bit<32>,_>(TABLE_SIZE,0) ipv4_dst_rdata_table;
+    RegisterAction<bit<32>,_,void> (ipv4_dst_rdata_table) ipv4_dst_rdata_table_reg_write_action = {
+        void apply(inout bit<32> ipv4_dst) {
+            ipv4_dst = hdr.ipv4.dst;
+        }
+    };
+    RegisterAction<bit<32>,_,bit<1>> (ipv4_dst_rdata_table) ipv4_dst_rdata_table_reg_compare_action = {
+        void apply(inout bit<32> ipv4_dst, out bit<1> rdata_bigger) {
+            if (hdr.dns_ip.rdata > ipv4_dst) {
+                rdata_bigger = 1;
+            }
+            else {
+                rdata_bigger = 0;
+            }
+        }
+    };
+
+    Register<bit<32>,_>(TABLE_SIZE,0) ipv4_dst_ipv4src_table;
+    RegisterAction<bit<32>,_,void> (ipv4_dst_ipv4src_table) ipv4_dst_ipv4src_table_reg_write_action = {
+        void apply(inout bit<32> ipv4_dst) {
+            ipv4_dst = hdr.ipv4.dst;
+        }
+    };
+    RegisterAction<bit<32>,_,bit<1>> (ipv4_dst_ipv4src_table) ipv4_dst_ipv4src_table_reg_compare_action = {
+        void apply(inout bit<32> ipv4_dst, out bit<1> ipv4src_bigger) {
+            if (hdr.ipv4.src > ipv4_dst) {
+                ipv4src_bigger = 1;
+            }
+            else {
+                ipv4src_bigger = 0;
+            }
+        }
+    };
+
+    Register<bit<32>,_>(TABLE_SIZE,0) ipv4_dst_cip_table_1;
+    RegisterAction<bit<32>,_,void> (ipv4_dst_cip_table_1) ipv4_dst_cip_table_1_reg_write_action = {
+        void apply(inout bit<32> ipv4_dst) {
+            ipv4_dst = hdr.ipv4.dst;
+        }
+    };
+    RegisterAction<bit<32>,_,bit<1>> (ipv4_dst_cip_table_1) ipv4_dst_cip_table_1_reg_compare_action = {
+        void apply(inout bit<32> ipv4_dst, out bit<1> match_cip) {
+            if (ig_md.temp_cip == ipv4_dst) {
+                match_cip = 1;
+            }
+            else {
+                match_cip = 0;
+            }
+        }
+    };
+
+    Register<bit<32>,_>(TABLE_SIZE,0) ipv4_dst_cip_table_2;
+    RegisterAction<bit<32>,_,void> (ipv4_dst_cip_table_2) ipv4_dst_cip_table_2_reg_write_action = {
+        void apply(inout bit<32> ipv4_dst) {
+            ipv4_dst = hdr.ipv4.dst;
+        }
+    };
+    RegisterAction<bit<32>,_,bit<1>> (ipv4_dst_cip_table_2) ipv4_dst_cip_table_2_reg_compare_action = {
+        void apply(inout bit<32> ipv4_dst, out bit<1> match_cip) {
+            if (ig_md.temp_cip == ipv4_dst) {
+                match_cip = 1;
+            }
+            else {
+                match_cip = 0;
+            }
+        }
+    };
+
+    Register<bit<32>,_>(TABLE_SIZE,0) ipv4_dst_cip_table_3;
+    RegisterAction<bit<32>,_,void> (ipv4_dst_cip_table_3) ipv4_dst_cip_table_3_reg_write_action = {
+        void apply(inout bit<32> ipv4_dst) {
+            ipv4_dst = hdr.ipv4.dst;
+        }
+    };
+    RegisterAction<bit<32>,_,bit<1>> (ipv4_dst_cip_table_3) ipv4_dst_cip_table_3_reg_compare_action = {
+        void apply(inout bit<32> ipv4_dst, out bit<1> match_cip) {
+            if (ig_md.temp_cip == ipv4_dst) {
+                match_cip = 1;
+            }
+            else {
+                match_cip = 0;
+            }
+        }
+    };
+ 
+//    Register<bit<32>,_>(TABLE_SIZE,0) global_tstamp_table_1;
+//    RegisterAction<bit<32>,_,void> (global_tstamp_table_1) globaltstamp_table_1_reg_write_action = {
+//        void apply(inout bit<32> global_tstamp) {
+//            global_tstamp = (bit<32>)ig_intr_prsr_md.global_tstamp;
+//        }
+//    };
+//    RegisterAction<bit<32>,_,bit<1>> (global_tstamp_table_1) globaltstamp_table_1_reg_compare_temptstamp_action = {
+//        void apply(inout bit<32> global_tstamp, out bit<1> timedout) {
+//            if (ig_md.temp_timestamp + TIMEOUT < global_tstamp) {
+//                timedout = 1;
+//            }
+//            else {
+//                timedout = 0;
+//            }
+//        }
+//    };
+//
+//    Register<bit<32>,_>(TABLE_SIZE,0) global_tstamp_table_2;
+//    RegisterAction<bit<32>,_,void> (global_tstamp_table_2) globaltstamp_table_2_reg_write_action = {
+//        void apply(inout bit<32> global_tstamp) {
+//            global_tstamp = (bit<32>)ig_intr_prsr_md.global_tstamp;
+//        }
+//    };
+//    RegisterAction<bit<32>,_,bit<1>> (global_tstamp_table_2) globaltstamp_table_2_reg_compare_temptstamp_action = {
+//        void apply(inout bit<32> global_tstamp, out bit<1> timedout) {
+//            if (ig_md.temp_timestamp + TIMEOUT < global_tstamp) {
+//                timedout = 1;
+//            }
+//            else {
+//                timedout = 0;
+//            }
+//        }
+//    };
+//
+//    Register<bit<32>,_>(TABLE_SIZE,0) global_tstamp_table_3;
+//    RegisterAction<bit<32>,_,void> (global_tstamp_table_3) globaltstamp_table_3_reg_write_action = {
+//        void apply(inout bit<32> global_tstamp) {
+//            global_tstamp = (bit<32>)ig_intr_prsr_md.global_tstamp;
+//        }
+//    };
+//    RegisterAction<bit<32>,_,bit<1>> (global_tstamp_table_3) globaltstamp_table_3_reg_compare_temptstamp_action = {
+//        void apply(inout bit<32> global_tstamp, out bit<1> timedout) {
+//            if (ig_md.temp_timestamp + TIMEOUT < global_tstamp) {
+//                timedout = 1;
+//            }
+//            else {
+//                timedout = 0;
+//            }
+//        }
+//    };
+
+    Register<bit<32>,_>(TABLE_SIZE,0) dns_ip_rdata_table_1;
+    RegisterAction<bit<32>,_,void> (dns_ip_rdata_table_1) dns_ip_rdata_table_1_reg_write_action = {
+        void apply(inout bit<32> dns_ip_rdata) {
+            dns_ip_rdata = hdr.dns_ip.rdata;
+        }
+    };
+    RegisterAction<bit<32>,_,bit<1>> (dns_ip_rdata_table_1) dns_ip_rdata_table_1_reg_compare_sip_action = {
+        void apply(inout bit<32> dns_ip_rdata, out bit<1> match_sip) {
+            if (ig_md.temp_sip == dns_ip_rdata) {
+                match_sip = 1;
+            }
+            else {
+                match_sip = 0;
+            }
+        }
+    };
+
+    Register<bit<32>,_>(TABLE_SIZE,0) dns_ip_rdata_table_2;
+    RegisterAction<bit<32>,_,void> (dns_ip_rdata_table_2) dns_ip_rdata_table_2_reg_write_action = {
+        void apply(inout bit<32> dns_ip_rdata) {
+            dns_ip_rdata = hdr.dns_ip.rdata;
+        }
+    };
+    RegisterAction<bit<32>,_,bit<1>> (dns_ip_rdata_table_2) dns_ip_rdata_table_2_reg_compare_sip_action = {
+        void apply(inout bit<32> dns_ip_rdata, out bit<1> match_sip) {
+            if (ig_md.temp_sip == dns_ip_rdata) {
+                match_sip = 1;
+            }
+            else {
+                match_sip = 0;
+            }
+        }
+    };
+
+    Register<bit<32>,_>(TABLE_SIZE,0) dns_ip_rdata_table_3;
+    RegisterAction<bit<32>,_,void> (dns_ip_rdata_table_3) dns_ip_rdata_table_3_reg_write_action = {
+        void apply(inout bit<32> dns_ip_rdata) {
+            dns_ip_rdata = hdr.dns_ip.rdata;
+        }
+    };
+    RegisterAction<bit<32>,_,bit<1>> (dns_ip_rdata_table_3) dns_ip_rdata_table_3_reg_compare_sip_action = {
+        void apply(inout bit<32> dns_ip_rdata, out bit<1> match_sip) {
+            if (ig_md.temp_sip == dns_ip_rdata) {
+                match_sip = 1;
+            }
+            else {
+                match_sip = 0;
+            }
+        }
+    };
+
+
     // PRECISION STYLE TABLES
+    //register<bit<32>>(TABLE_SIZE) dns_cip_table_1;
+    //register<bit<32>>(TABLE_SIZE) dns_sip_table_1;
+    //register<bit<32>>(TABLE_SIZE) dns_name_table_1;
+    //register<bit<32>>(TABLE_SIZE) dns_timestamp_table_1;
+
+    //NOTE: not sure how to set initial value for paired elements. Same for reg_2 and reg_3.
+    Register<sip_cip_t,_>(TABLE_SIZE) sip_cip_reg_1; 
+    RegisterAction<sip_cip_t,_,bit<1>> (sip_cip_reg_1) sip_cip_reg_1_check_action = {
+        void apply(inout sip_cip_t value, out bit<1> is_match) {
+            if (value.sip == hdr.dns_ip.rdata && value.cip == hdr.ipv4.dst) {
+                is_match = 1;
+            }
+            else {
+                is_match = 0;
+            }
+        }
+    };
+    RegisterAction<sip_cip_t,_,bit<1>> (sip_cip_reg_1) sip_cip_reg_1_check_dir1_action = {
+        void apply(inout sip_cip_t value, out bit<1> is_match) {
+            //if ( (value.sip == hdr.dns_ip.rdata && value.cip == hdr.ipv4.dst) || (value.sip == hdr.ipv4.dst && value.cip == hdr.dns_ip.rdata) ) {
+            if (value.sip == hdr.ipv4.src && value.cip == hdr.ipv4.dst) {
+                is_match = 1;
+            }
+            else {
+                is_match = 0;
+            }
+        }
+    };
+    RegisterAction<sip_cip_t,_,bit<1>> (sip_cip_reg_1) sip_cip_reg_1_check_dir2_action = {
+        void apply(inout sip_cip_t value, out bit<1> is_match) {
+            //if ( (value.sip == hdr.dns_ip.rdata && value.cip == hdr.ipv4.dst) || (value.sip == hdr.ipv4.dst && value.cip == hdr.dns_ip.rdata) ) {
+            if (value.sip == hdr.ipv4.src && value.cip == hdr.ipv4.dst) {
+                is_match = 1;
+            }
+            else {
+                is_match = 0;
+            }
+        }
+    };
+    RegisterAction<sip_cip_t,_,void> (sip_cip_reg_1) sip_cip_reg_1_update_action = {
+        void apply(inout sip_cip_t value) {
+            value.sip = hdr.dns_ip.rdata;
+            value.cip = hdr.ipv4.dst;
+        }
+    };
+
+    //NOTE: not sure how to set initial value for paired elements. Same for reg_2 and reg_3.
+    Register<domainid_timestamp_t,_>(TABLE_SIZE) domain_tstamp_reg_1;
+    RegisterAction<domainid_timestamp_t,_,bit<1>> (domain_tstamp_reg_1) domain_tstamp_reg_1_check_tstamp_action = {
+        void apply(inout domainid_timestamp_t value, out bit<1> timed_out) {
+            if (value.timestamp + TIMEOUT < (bit<32>)ig_intr_prsr_md.global_tstamp) {
+                timed_out = 1;
+            }
+            else {
+                timed_out = 0;
+            }
+        }
+    };
+    RegisterAction<domainid_timestamp_t,_,bit<32>> (domain_tstamp_reg_1) domain_tstamp_reg_1_get_domain_and_update_ts_action = {
+        void apply(inout domainid_timestamp_t value, out bit<32> domain_id) {
+            value.timestamp = (bit<32>)ig_intr_prsr_md.global_tstamp;
+            domain_id = value.domain_id;
+        }
+    };
+    RegisterAction<domainid_timestamp_t,_,void> (domain_tstamp_reg_1) domain_tstamp_reg_1_update_tstamp_action = {
+        void apply(inout domainid_timestamp_t value) {
+            value.timestamp = (bit<32>)ig_intr_prsr_md.global_tstamp;
+        }
+    };
+    RegisterAction<domainid_timestamp_t,_,void> (domain_tstamp_reg_1) domain_tstamp_reg_1_update_tstamp_domain_action = {
+        void apply(inout domainid_timestamp_t value) {
+            value.timestamp = (bit<32>)ig_intr_prsr_md.global_tstamp;
+            value.domain_id = ig_md.domain_id;
+        }
+    };
+
+    Register<sip_cip_t,_>(TABLE_SIZE) sip_cip_reg_2;
+    RegisterAction<sip_cip_t,_,bit<1>> (sip_cip_reg_2) sip_cip_reg_2_check_action = {
+        void apply(inout sip_cip_t value, out bit<1> is_match) {
+            if (value.sip == hdr.dns_ip.rdata && value.cip == hdr.ipv4.dst) {
+                is_match = 1;
+            }
+            else {
+                is_match = 0;
+            }
+        }
+    };
+    RegisterAction<sip_cip_t,_,bit<1>> (sip_cip_reg_2) sip_cip_reg_2_check_dir1_action = {
+        void apply(inout sip_cip_t value, out bit<1> is_match) {
+            //if ( (value.sip == hdr.dns_ip.rdata && value.cip == hdr.ipv4.dst) || (value.sip == hdr.ipv4.dst && value.cip == hdr.dns_ip.rdata) ) {
+            if (value.sip == hdr.ipv4.src && value.cip == hdr.ipv4.dst) {
+                is_match = 1;
+            }
+            else {
+                is_match = 0;
+            }
+        }
+    };
+    RegisterAction<sip_cip_t,_,bit<1>> (sip_cip_reg_2) sip_cip_reg_2_check_dir2_action = {
+        void apply(inout sip_cip_t value, out bit<1> is_match) {
+            //if ( (value.sip == hdr.dns_ip.rdata && value.cip == hdr.ipv4.dst) || (value.sip == hdr.ipv4.dst && value.cip == hdr.dns_ip.rdata) ) {
+            if (value.sip == hdr.ipv4.src && value.cip == hdr.ipv4.dst) {
+                is_match = 1;
+            }
+            else {
+                is_match = 0;
+            }
+        }
+    };
+    RegisterAction<sip_cip_t,_,void> (sip_cip_reg_2) sip_cip_reg_2_update_action = {
+        void apply(inout sip_cip_t value) {
+            value.sip = hdr.dns_ip.rdata;
+            value.cip = hdr.ipv4.dst;
+        }
+    };
+
+    Register<domainid_timestamp_t,_>(TABLE_SIZE) domain_tstamp_reg_2;
+    RegisterAction<domainid_timestamp_t,_,bit<1>> (domain_tstamp_reg_2) domain_tstamp_reg_2_check_tstamp_action = {
+        void apply(inout domainid_timestamp_t value, out bit<1> timed_out) {
+            if (value.timestamp + TIMEOUT < (bit<32>)ig_intr_prsr_md.global_tstamp) {
+                timed_out = 1;
+            }
+            else {
+                timed_out = 0;
+            }
+        }
+    };
+    RegisterAction<domainid_timestamp_t,_,bit<32>> (domain_tstamp_reg_2) domain_tstamp_reg_2_get_domain_and_update_ts_action = {
+        void apply(inout domainid_timestamp_t value, out bit<32> domain_id) {
+            value.timestamp = (bit<32>)ig_intr_prsr_md.global_tstamp;
+            domain_id = value.domain_id;
+        }
+    };
+    RegisterAction<domainid_timestamp_t,_,void> (domain_tstamp_reg_2) domain_tstamp_reg_2_update_tstamp_action = {
+        void apply(inout domainid_timestamp_t value) {
+            value.timestamp = (bit<32>)ig_intr_prsr_md.global_tstamp;
+        }
+    };
+    RegisterAction<domainid_timestamp_t,_,void> (domain_tstamp_reg_2) domain_tstamp_reg_2_update_tstamp_domain_action = {
+        void apply(inout domainid_timestamp_t value) {
+            value.timestamp = (bit<32>)ig_intr_prsr_md.global_tstamp;
+            value.domain_id = ig_md.domain_id;
+        }
+    };
+
+    Register<sip_cip_t,_>(TABLE_SIZE) sip_cip_reg_3;
+    RegisterAction<sip_cip_t,_,bit<1>> (sip_cip_reg_3) sip_cip_reg_3_check_action = {
+        void apply(inout sip_cip_t value, out bit<1> is_match) {
+            if (value.sip == hdr.dns_ip.rdata && value.cip == hdr.ipv4.dst) {
+                is_match = 1;
+            }
+            else {
+                is_match = 0;
+            }
+        }
+    };
+    RegisterAction<sip_cip_t,_,bit<1>> (sip_cip_reg_3) sip_cip_reg_3_check_dir1_action = {
+        void apply(inout sip_cip_t value, out bit<1> is_match) {
+            //if ( (value.sip == hdr.dns_ip.rdata && value.cip == hdr.ipv4.dst) || (value.sip == hdr.ipv4.dst && value.cip == hdr.dns_ip.rdata) ) {
+            if (value.sip == hdr.ipv4.src && value.cip == hdr.ipv4.dst) {
+                is_match = 1;
+            }
+            else {
+                is_match = 0;
+            }
+        }
+    };
+    RegisterAction<sip_cip_t,_,bit<1>> (sip_cip_reg_3) sip_cip_reg_3_check_dir2_action = {
+        void apply(inout sip_cip_t value, out bit<1> is_match) {
+            //if ( (value.sip == hdr.dns_ip.rdata && value.cip == hdr.ipv4.dst) || (value.sip == hdr.ipv4.dst && value.cip == hdr.dns_ip.rdata) ) {
+            if (value.sip == hdr.ipv4.src && value.cip == hdr.ipv4.dst) {
+                is_match = 1;
+            }
+            else {
+                is_match = 0;
+            }
+        }
+    };
+    RegisterAction<sip_cip_t,_,void> (sip_cip_reg_3) sip_cip_reg_3_update_action = {
+        void apply(inout sip_cip_t value) {
+            value.sip = hdr.dns_ip.rdata;
+            value.cip = hdr.ipv4.dst;
+        }
+    };
+
+    Register<domainid_timestamp_t,_>(TABLE_SIZE) domain_tstamp_reg_3;
+    RegisterAction<domainid_timestamp_t,_,bit<1>> (domain_tstamp_reg_3) domain_tstamp_reg_3_check_tstamp_action = {
+        void apply(inout domainid_timestamp_t value, out bit<1> timed_out) {
+            if (value.timestamp + TIMEOUT < (bit<32>)ig_intr_prsr_md.global_tstamp) {
+                timed_out = 1;
+            }
+            else {
+                timed_out = 0;
+            }
+        }
+    };
+    RegisterAction<domainid_timestamp_t,_,bit<32>> (domain_tstamp_reg_3) domain_tstamp_reg_3_get_domain_and_update_ts_action = {
+        void apply(inout domainid_timestamp_t value, out bit<32> domain_id) {
+            value.timestamp = (bit<32>)ig_intr_prsr_md.global_tstamp;
+            domain_id = value.domain_id;
+        }
+    };
+    RegisterAction<domainid_timestamp_t,_,void> (domain_tstamp_reg_3) domain_tstamp_reg_3_update_tstamp_action = {
+        void apply(inout domainid_timestamp_t value) {
+            value.timestamp = (bit<32>)ig_intr_prsr_md.global_tstamp;
+        }
+    };
+    RegisterAction<domainid_timestamp_t,_,void> (domain_tstamp_reg_3) domain_tstamp_reg_3_update_tstamp_domain_action = {
+        void apply(inout domainid_timestamp_t value) {
+            value.timestamp = (bit<32>)ig_intr_prsr_md.global_tstamp;
+            value.domain_id = ig_md.domain_id;
+        }
+    };
+
     Register<bit<32>,_>(TABLE_SIZE,0) dns_cip_table_1;
     RegisterAction<bit<32>,_,bit<32>> (dns_cip_table_1) dns_cip_table_1_reg_read_action = {
         void apply(inout bit<32> value, out bit<32> read_value) {
@@ -862,7 +1264,12 @@ control TopIngress(inout Parsed_packet headers,
     };
     RegisterAction<bit<32>,_,void> (dns_cip_table_1) dns_cip_table_1_reg_write_ipv4dst_action = {
         void apply(inout bit<32> value) {
-            value = headers.ipv4.dst;
+            value = hdr.ipv4.dst;
+        }
+    };
+    RegisterAction<bit<32>,_,void> (dns_cip_table_1) dns_cip_table_1_reg_write_dnsiprdata_action = {
+        void apply(inout bit<32> value) {
+            value = hdr.dns_ip.rdata;
         }
     };
 
@@ -872,9 +1279,14 @@ control TopIngress(inout Parsed_packet headers,
             read_value = value;
         }
     };
+    RegisterAction<bit<32>,_,void> (dns_sip_table_1) dns_sip_table_1_reg_write_ipv4dst_action = {
+        void apply(inout bit<32> value) {
+            value = hdr.ipv4.dst;
+        }
+    };
     RegisterAction<bit<32>,_,void> (dns_sip_table_1) dns_sip_table_1_reg_write_dnsiprdata_action = {
         void apply(inout bit<32> value) {
-            value = headers.dns_ip.rdata;
+            value = hdr.dns_ip.rdata;
         }
     };
 
@@ -910,7 +1322,12 @@ control TopIngress(inout Parsed_packet headers,
     };
     RegisterAction<bit<32>,_,void> (dns_cip_table_2) dns_cip_table_2_reg_write_ipv4dst_action = {
         void apply(inout bit<32> value) {
-            value = headers.ipv4.dst;
+            value = hdr.ipv4.dst;
+        }
+    };
+    RegisterAction<bit<32>,_,void> (dns_cip_table_2) dns_cip_table_2_reg_write_dnsiprdata_action = {
+        void apply(inout bit<32> value) {
+            value = hdr.dns_ip.rdata;
         }
     };
  
@@ -920,9 +1337,14 @@ control TopIngress(inout Parsed_packet headers,
             read_value = value;
         }
     };
+    RegisterAction<bit<32>,_,void> (dns_sip_table_2) dns_sip_table_2_reg_write_ipv4dst_action = {
+        void apply(inout bit<32> value) {
+            value = hdr.ipv4.dst;
+        }
+    };
     RegisterAction<bit<32>,_,void> (dns_sip_table_2) dns_sip_table_2_reg_write_dnsiprdata_action = {
         void apply(inout bit<32> value) {
-            value = headers.dns_ip.rdata;
+            value = hdr.dns_ip.rdata;
         }
     };
 
@@ -958,7 +1380,12 @@ control TopIngress(inout Parsed_packet headers,
     };
     RegisterAction<bit<32>,_,void> (dns_cip_table_3) dns_cip_table_3_reg_write_ipv4dst_action = {
         void apply(inout bit<32> value) {
-            value = headers.ipv4.dst;
+            value = hdr.ipv4.dst;
+        }
+    };
+    RegisterAction<bit<32>,_,void> (dns_cip_table_3) dns_cip_table_3_reg_write_dnsiprdata_action = {
+        void apply(inout bit<32> value) {
+            value = hdr.dns_ip.rdata;
         }
     };
 
@@ -968,9 +1395,14 @@ control TopIngress(inout Parsed_packet headers,
             read_value = value;
         }
     };
+    RegisterAction<bit<32>,_,void> (dns_sip_table_3) dns_sip_table_3_reg_write_ipv4dst_action = {
+        void apply(inout bit<32> value) {
+            value = hdr.ipv4.dst;
+        }
+    };
     RegisterAction<bit<32>,_,void> (dns_sip_table_3) dns_sip_table_3_reg_write_dnsiprdata_action = {
         void apply(inout bit<32> value) {
-            value = headers.dns_ip.rdata;
+            value = hdr.dns_ip.rdata;
         }
     };
 
@@ -999,31 +1431,40 @@ control TopIngress(inout Parsed_packet headers,
     };
  
     // REGISTER ARRAY FOR COLLECTING COUNTS ON TRAFFIC WITH KNOWN DOMAINS
-    Register<bit<64>,_>(NUM_KNOWN_DOMAINS) packet_counts_table;
-    RegisterAction<bit<64>,_,void> (packet_counts_table) packet_counts_table_reg_inc_action = {
-        void apply(inout bit<64> value) {
+    //register<bit<32>>(NUM_KNOWN_DOMAINS) packet_counts_table;
+    //register<bit<32>>(NUM_KNOWN_DOMAINS) byte_counts_table;
+    Register<bit<32>,_>(NUM_KNOWN_DOMAINS) packet_counts_table;
+    RegisterAction<bit<32>,_,void> (packet_counts_table) packet_counts_table_reg_inc_action = {
+        void apply(inout bit<32> value) {
             value = value + 1;
         }
     };
 
     Register<bit<64>,_>(NUM_KNOWN_DOMAINS) byte_counts_table;
-    RegisterAction<bit<64>,_,void> (byte_counts_table) byte_counts_table_reg_inc_action = {
-        void apply(inout bit<64> value) {
-            value = value + (bit<64>)headers.ipv4.len;
+    RegisterAction<bit<32>,_,bit<32>> (byte_counts_table) byte_counts_table_reg_read_action = {
+        void apply(inout bit<32> value, out bit<32> read_value) {
+            read_value = value;
+        }
+    };
+    RegisterAction<bit<32>,_,void> (byte_counts_table) byte_counts_table_reg_inc_action = {
+        void apply(inout bit<32> value) {
+            value = value + (bit<32>)hdr.ipv4.len;
         }
     };
 
     // REGISTER ARRAY FOR KEEPING TRACK OF OVERFLOW DNS RESPONSES
-    Register<bit<64>,_>(NUM_KNOWN_DOMAINS) dns_total_queried;
-    RegisterAction<bit<64>,_, void> (dns_total_queried) dns_total_queried_reg_inc_action = {
-        void apply(inout bit<64> value) {
+    //register<bit<32>>(NUM_KNOWN_DOMAINS) dns_total_queried;
+    //register<bit<32>>(NUM_KNOWN_DOMAINS) dns_total_missed;
+    Register<bit<32>,_>(NUM_KNOWN_DOMAINS) dns_total_queried;
+    RegisterAction<bit<32>,_, void> (dns_total_queried) dns_total_queried_reg_inc_action = {
+        void apply(inout bit<32> value) {
             value = value + 1;
         }
     };
  
-    Register<bit<64>,_>(NUM_KNOWN_DOMAINS) dns_total_missed;
-    RegisterAction<bit<64>,_, void> (dns_total_missed) dns_total_missed_reg_inc_action = {
-        void apply(inout bit<64> value) {
+    Register<bit<32>,_>(NUM_KNOWN_DOMAINS) dns_total_missed;
+    RegisterAction<bit<32>,_, void> (dns_total_missed) dns_total_missed_reg_inc_action = {
+        void apply(inout bit<32> value) {
             value = value + 1;
         }
     };
@@ -1122,53 +1563,79 @@ control TopIngress(inout Parsed_packet headers,
                 ig_md.already_matched = 0;
 
                 // access table 1
-                ig_md.temp_cip = dns_cip_table_1_reg_read_action.execute(ig_md.index_1);
-                ig_md.temp_sip = dns_sip_table_1_reg_read_action.execute(ig_md.index_1);
-                ig_md.temp_timestamp = (bit<48>) dns_timestamp_table_1_reg_read_action.execute(ig_md.index_1); 
-
-                if (ig_md.temp_timestamp == 0 || ig_md.temp_timestamp + TIMEOUT < ig_intr_prsr_md.global_tstamp || (ig_md.temp_cip == headers.ipv4.dst && ig_md.temp_sip == headers.dns_ip.rdata)) {
-
-                    dns_cip_table_1_reg_write_ipv4dst_action.execute(ig_md.index_1);
-                    dns_sip_table_1_reg_write_dnsiprdata_action.execute(ig_md.index_1);
-                    dns_timestamp_table_1_reg_write_tstamp_action.execute(ig_md.index_1);
-                    dns_name_table_1_reg_write_domainid_action.execute(ig_md.index_1);
-
+                // Read sip_cip table
+                bit<1> is_match =  sip_cip_reg_1_check_action.execute(ig_md.index_1);
+                
+                // If sip and cip matches, just update timestamp
+                if (is_match == 1) {
+                    domain_tstamp_reg_1_update_tstamp_action.execute(ig_md.index_1);
                     ig_md.already_matched = 1;
+                }
+                else { 
+                    // Check timestamp
+                    bit<1> timed_out = domain_tstamp_reg_1_check_tstamp_action.execute(ig_md.index_1);
+
+                    // If entry timed out, replace entry. For this, resubmit packet.
+                    if (timed_out == 1) {
+                        sip_cip_reg_1_update_action.execute(ig_md.index_1);
+                        domain_tstamp_reg_1_update_tstamp_domain_action.execute(ig_md.index_1);
+                        ig_md.already_matched = 1;
+                    }
+
+                    // Else, we have a collision that we cannot replace reg_1. 
+                    // Continue to reg_2.
                 }
 
                 // access table 2
                 if (ig_md.already_matched == 0) {
                     
-                    ig_md.temp_cip = dns_cip_table_2_reg_read_action.execute(ig_md.index_2);
-                    ig_md.temp_sip = dns_sip_table_2_reg_read_action.execute(ig_md.index_2);
-                    ig_md.temp_timestamp = (bit<48>) dns_timestamp_table_2_reg_read_action.execute(ig_md.index_2);
-
-                    if (ig_md.temp_timestamp == 0 || ig_md.temp_timestamp + TIMEOUT < ig_intr_prsr_md.global_tstamp || (ig_md.temp_cip == headers.ipv4.dst && ig_md.temp_sip == headers.dns_ip.rdata)) {
-
-                        dns_cip_table_2_reg_write_ipv4dst_action.execute(ig_md.index_2);
-                        dns_sip_table_2_reg_write_dnsiprdata_action.execute(ig_md.index_2);
-                        dns_timestamp_table_2_reg_write_tstamp_action.execute(ig_md.index_2);
-                        dns_name_table_2_reg_write_domainid_action.execute(ig_md.index_2);
-
+                    // Read sip_cip table
+                    bit<1> is_match =  sip_cip_reg_2_check_action.execute(ig_md.index_2);
+                    
+                    // If sip and cip matches, just update timestamp
+                    if (is_match == 1) {
+                        domain_tstamp_reg_2_update_tstamp_action.execute(ig_md.index_2);
                         ig_md.already_matched = 1;
+                    }
+                    else { 
+                        // Check timestamp
+                        bit<1> timed_out = domain_tstamp_reg_2_check_tstamp_action.execute(ig_md.index_2);
+
+                        // If entry timed out, replace entry. For this, resubmit packet.
+                        if (timed_out == 1) {
+                            
+                            sip_cip_reg_2_update_action.execute(ig_md.index_2);
+                            domain_tstamp_reg_2_update_tstamp_domain_action.execute(ig_md.index_2);
+                            ig_md.already_matched = 1;
+                        }
+
+                        // Else, we have a collision that we cannot replace reg_2.
+                        // Continue to reg_3.
                     }
                 }
 
                 // access table 3
                 if (ig_md.already_matched == 0) {
 
-                    ig_md.temp_cip = dns_cip_table_3_reg_read_action.execute(ig_md.index_3);
-                    ig_md.temp_sip = dns_sip_table_3_reg_read_action.execute(ig_md.index_3);
-                    ig_md.temp_timestamp = (bit<48>) dns_timestamp_table_3_reg_read_action.execute(ig_md.index_3);
-
-                    if (ig_md.temp_timestamp == 0 || ig_md.temp_timestamp + TIMEOUT < ig_intr_prsr_md.global_tstamp || (ig_md.temp_cip == headers.ipv4.dst && ig_md.temp_sip == headers.dns_ip.rdata)) {
-
-                        dns_cip_table_3_reg_write_ipv4dst_action.execute(ig_md.index_3);
-                        dns_sip_table_3_reg_write_dnsiprdata_action.execute(ig_md.index_3);
-                        dns_timestamp_table_3_reg_write_tstamp_action.execute(ig_md.index_3);
-                        dns_name_table_3_reg_write_domainid_action.execute(ig_md.index_3);
-
+                    bit<1> is_match =  sip_cip_reg_3_check_action.execute(ig_md.index_3);
+                        
+                    // If sip and cip matches, just update timestamp
+                    if (is_match == 1) {
+                        domain_tstamp_reg_3_update_tstamp_action.execute(ig_md.index_3);
                         ig_md.already_matched = 1;
+                    }
+                    else { 
+                        // Check timestamp
+                        bit<1> timed_out = domain_tstamp_reg_3_check_tstamp_action.execute(ig_md.index_3);
+
+                        // If entry timed out, replace entry. For this, resubmit packet.
+                        if (timed_out == 1) {
+                            sip_cip_reg_3_update_action.execute(ig_md.index_3);
+                            domain_tstamp_reg_3_update_tstamp_domain_action.execute(ig_md.index_3);
+                            ig_md.already_matched = 1;
+                        }
+
+                        // Else, we have a collision that we cannot replace reg_3.
                     }
                 }
 
@@ -1189,127 +1656,107 @@ control TopIngress(inout Parsed_packet headers,
             ig_md.index_2 = (bit<32>) hash_1.get({3w5, headers.ipv4.src, 5w3, headers.ipv4.dst});
             ig_md.index_3 = (bit<32>) hash_1.get({2w0, headers.ipv4.src, 1w1, headers.ipv4.dst});
 
-            //dns_cip_table_1.read(ig_md.temp_cip, ig_md.index_1);
-            //dns_sip_table_1.read(ig_md.temp_sip, ig_md.index_1);
-            
-            ig_md.temp_cip = dns_cip_table_1_reg_read_action.execute(ig_md.index_1);
-            ig_md.temp_sip = dns_sip_table_1_reg_read_action.execute(ig_md.index_1);
+            bit<1> sip_cip_matched = 0;
+            bit<32> index_for_update = 0;
+            ig_md.already_matched = 0;
 
-            if (headers.ipv4.dst == ig_md.temp_cip && headers.ipv4.src == ig_md.temp_sip) {
-                //dns_name_table_1.read(ig_md.domain_id, ig_md.index_1);
-                //packet_counts_table.read(ig_md.temp_packet_counter, ig_md.domain_id);
-                //packet_counts_table.write(ig_md.domain_id, ig_md.temp_packet_counter + 1);
-                //byte_counts_table.read(ig_md.temp_byte_counter, ig_md.domain_id);
-                //byte_counts_table.write(ig_md.domain_id, ig_md.temp_byte_counter + (bit<64>)headers.ipv4.len);
-                //dns_timestamp_table_1.write(ig_md.index_1, (bit<32>) ig_intr_prsr_md.global_tstamp);
+            // register_1
+            sip_cip_matched = sip_cip_reg_1_check_dir1_action.execute(ig_md.index_1);
+            if (sip_cip_matched == 1) {
+                // Get domain_id and udpate timestamp
+                ig_md.domain_id = domain_tstamp_reg_1_get_domain_and_update_ts_action.execute(ig_md.index_1);
 
-                ig_md.domain_id = dns_name_table_1_reg_read_action.execute(ig_md.index_1);
-                packet_counts_table_reg_inc_action.execute(ig_md.domain_id);
-                byte_counts_table_reg_inc_action.execute(ig_md.domain_id);
-                dns_timestamp_table_1_reg_write_tstamp_action.execute(ig_md.index_1);
-           }
-
-            //dns_cip_table_2.read(ig_md.temp_cip, ig_md.index_2);
-            //dns_sip_table_2.read(ig_md.temp_sip, ig_md.index_2);
-
-            ig_md.temp_cip = dns_cip_table_2_reg_read_action.execute(ig_md.index_2);
-            ig_md.temp_sip = dns_sip_table_2_reg_read_action.execute(ig_md.index_2);
-            if (headers.ipv4.dst == ig_md.temp_cip && headers.ipv4.src == ig_md.temp_sip) {
-                //dns_name_table_2.read(ig_md.domain_id, ig_md.index_2);
-                //packet_counts_table.read(ig_md.temp_packet_counter, ig_md.domain_id);
-                //packet_counts_table.write(ig_md.domain_id, ig_md.temp_packet_counter + 1);
-                //byte_counts_table.read(ig_md.temp_byte_counter, ig_md.domain_id);
-                //byte_counts_table.write(ig_md.domain_id, ig_md.temp_byte_counter + (bit<64>)headers.ipv4.len);
-                //dns_timestamp_table_2.write(ig_md.index_2, (bit<32>) ig_intr_prsr_md.global_tstamp);
-
-                ig_md.domain_id = dns_name_table_2_reg_read_action.execute(ig_md.index_2);
-                packet_counts_table_reg_inc_action.execute(ig_md.domain_id);
-                byte_counts_table_reg_inc_action.execute(ig_md.domain_id);
-                dns_timestamp_table_2_reg_write_tstamp_action.execute(ig_md.index_2);
+                // Update packet_count, update byte_count
+                //packet_counts_table_reg_inc_action.execute(ig_md.index_1);
+                //byte_counts_table_reg_inc_action.execute(ig_md.index_1);
+                index_for_update = ig_md.index_1;
+                ig_md.already_matched = 1;
             }
 
-            //dns_cip_table_3.read(ig_md.temp_cip, ig_md.index_3);
-            //dns_sip_table_3.read(ig_md.temp_sip, ig_md.index_3);
-            ig_md.temp_cip = dns_cip_table_3_reg_read_action.execute(ig_md.index_3);
-            ig_md.temp_sip = dns_sip_table_3_reg_read_action.execute(ig_md.index_3);
-            if (headers.ipv4.dst == ig_md.temp_cip && headers.ipv4.src == ig_md.temp_sip) {
-                //dns_name_table_3.read(ig_md.domain_id, ig_md.index_3);
-                //packet_counts_table.read(ig_md.temp_packet_counter, ig_md.domain_id);
-                //packet_counts_table.write(ig_md.domain_id, ig_md.temp_packet_counter + 1);
-                //byte_counts_table.read(ig_md.temp_byte_counter, ig_md.domain_id);
-                //byte_counts_table.write(ig_md.domain_id, ig_md.temp_byte_counter + (bit<64>)headers.ipv4.len);
-                //dns_timestamp_table_3.write(ig_md.index_3, (bit<32>) ig_intr_prsr_md.global_tstamp);
-            
-                ig_md.domain_id = dns_name_table_3_reg_read_action.execute(ig_md.index_3);
-                packet_counts_table_reg_inc_action.execute(ig_md.domain_id);
-                byte_counts_table_reg_inc_action.execute(ig_md.domain_id);
-                dns_timestamp_table_3_reg_write_tstamp_action.execute(ig_md.index_3);
+            // register_2
+            if (ig_md.already_matched == 0) {
+                sip_cip_matched = sip_cip_reg_2_check_dir1_action.execute(ig_md.index_2);
+                if (sip_cip_matched == 1) {
+                    // Get domain_id and udpate timestamp
+                    ig_md.domain_id = domain_tstamp_reg_2_get_domain_and_update_ts_action.execute(ig_md.index_2);
+
+                    // Update packet_count, update byte_count
+                    //packet_counts_table_reg_inc_action.execute(ig_md.index_2);
+                    //byte_counts_table_reg_inc_action.execute(ig_md.index_2);
+                    index_for_update = ig_md.index_2;
+                    ig_md.already_matched = 1;
+                }
             }
 
-            //hash(ig_md.index_1, HashAlgorithm.crc16, HASH_TABLE_BASE, {headers.ipv4.dst, 7w11, headers.ipv4.src}, HASH_TABLE_MAX);
-            //hash(ig_md.index_2, HashAlgorithm.crc16, HASH_TABLE_BASE, {3w5, headers.ipv4.dst, 5w3, headers.ipv4.src}, HASH_TABLE_MAX);
-            //hash(ig_md.index_3, HashAlgorithm.crc16, HASH_TABLE_BASE, {2w0, headers.ipv4.dst, 1w1, headers.ipv4.src}, HASH_TABLE_MAX);
+            // register_3
+            if (ig_md.already_matched == 0) {
+                sip_cip_matched = sip_cip_reg_3_check_dir1_action.execute(ig_md.index_3);
+                if (sip_cip_matched == 1) {
+                    // Get domain_id and udpate timestamp
+                    ig_md.domain_id = domain_tstamp_reg_3_get_domain_and_update_ts_action.execute(ig_md.index_3);
 
-            ig_md.index_1 = (bit<32>) hash_1.get({headers.ipv4.dst, 7w11, headers.ipv4.src});
-            ig_md.index_2 = (bit<32>) hash_1.get({3w5, headers.ipv4.dst, 5w3, headers.ipv4.src});
-            ig_md.index_3 = (bit<32>) hash_1.get({2w0, headers.ipv4.dst, 1w1, headers.ipv4.src});
-
-            //dns_cip_table_1.read(ig_md.temp_cip, ig_md.index_1);
-            //dns_sip_table_1.read(ig_md.temp_sip, ig_md.index_1);
-            ig_md.temp_cip = dns_cip_table_1_reg_read_action.execute(ig_md.index_1);
-            ig_md.temp_sip = dns_sip_table_1_reg_read_action.execute(ig_md.index_1);
- 
-            if (headers.ipv4.dst == ig_md.temp_sip && headers.ipv4.src == ig_md.temp_cip) {
-                //dns_name_table_1.read(ig_md.domain_id, ig_md.index_1);
-                //packet_counts_table.read(ig_md.temp_packet_counter, ig_md.domain_id);
-                //packet_counts_table.write(ig_md.domain_id, ig_md.temp_packet_counter + 1);
-                //byte_counts_table.read(ig_md.temp_byte_counter, ig_md.domain_id);
-                //byte_counts_table.write(ig_md.domain_id, ig_md.temp_byte_counter + (bit<64>)headers.ipv4.len);
-                //dns_timestamp_table_1.write(ig_md.index_1, (bit<32>) ig_intr_prsr_md.global_tstamp);
-
-                ig_md.domain_id = dns_name_table_1_reg_read_action.execute(ig_md.index_1);
-                packet_counts_table_reg_inc_action.execute(ig_md.domain_id);
-                byte_counts_table_reg_inc_action.execute(ig_md.domain_id);
-                dns_timestamp_table_1_reg_write_tstamp_action.execute(ig_md.index_1);
+                    // Update packet_count, update byte_count
+                    //packet_counts_table_reg_inc_action.execute(ig_md.index_3);
+                    //byte_counts_table_reg_inc_action.execute(ig_md.index_3);
+                    index_for_update = ig_md.index_3;
+                    ig_md.already_matched = 1;
+                }
             }
 
-            //dns_cip_table_2.read(ig_md.temp_cip, ig_md.index_2);
-            //dns_sip_table_2.read(ig_md.temp_sip, ig_md.index_2);
-            ig_md.temp_cip = dns_cip_table_2_reg_read_action.execute(ig_md.index_2);
-            ig_md.temp_sip = dns_sip_table_2_reg_read_action.execute(ig_md.index_2);
- 
-            if (headers.ipv4.dst == ig_md.temp_sip && headers.ipv4.src == ig_md.temp_cip) {
-                //dns_name_table_2.read(ig_md.domain_id, ig_md.index_2);
-                //packet_counts_table.read(ig_md.temp_packet_counter, ig_md.domain_id);
-                //packet_counts_table.write(ig_md.domain_id, ig_md.temp_packet_counter + 1);
-                //byte_counts_table.read(ig_md.temp_byte_counter, ig_md.domain_id);
-                //byte_counts_table.write(ig_md.domain_id, ig_md.temp_byte_counter + (bit<64>)headers.ipv4.len);
-                //dns_timestamp_table_2.write(ig_md.index_2, (bit<32>) ig_intr_prsr_md.global_tstamp);
-            
-                ig_md.domain_id = dns_name_table_2_reg_read_action.execute(ig_md.index_2);
-                packet_counts_table_reg_inc_action.execute(ig_md.domain_id);
-                byte_counts_table_reg_inc_action.execute(ig_md.domain_id);
-                dns_timestamp_table_2_reg_write_tstamp_action.execute(ig_md.index_2);
+            // Check other direction (source is client, destination is server)
+            if (ig_md.already_matched == 0) {
+                ig_md.index_1 = (bit<32>) hash_1.get({headers.ipv4.dst, 7w11, headers.ipv4.src});
+                ig_md.index_2 = (bit<32>) hash_1.get({3w5, headers.ipv4.dst, 5w3, headers.ipv4.src});
+                ig_md.index_3 = (bit<32>) hash_1.get({2w0, headers.ipv4.dst, 1w1, headers.ipv4.src});
+
+                // register_1
+                sip_cip_matched = sip_cip_reg_1_check_dir2_action.execute(ig_md.index_1);
+                if (sip_cip_matched == 1) {
+                    // Get domain_id and udpate timestamp
+                    ig_md.domain_id = domain_tstamp_reg_1_get_domain_and_update_ts_action.execute(ig_md.index_1);
+
+                    // Update packet_count, update byte_count
+                    //packet_counts_table_reg_inc_action.execute(ig_md.index_1);
+                    //byte_counts_table_reg_inc_action.execute(ig_md.index_1);
+                    index_for_update = ig_md.index_1;
+                    ig_md.already_matched = 1;
+                }
+
+                // register_2
+                if (ig_md.already_matched == 0) {
+                    sip_cip_matched = sip_cip_reg_2_check_dir2_action.execute(ig_md.index_2);
+                    if (sip_cip_matched == 1) {
+                        // Get domain_id and udpate timestamp
+                        ig_md.domain_id = domain_tstamp_reg_2_get_domain_and_update_ts_action.execute(ig_md.index_2);
+
+                        // Update packet_count, update byte_count
+                        //packet_counts_table_reg_inc_action.execute(ig_md.index_2);
+                        //byte_counts_table_reg_inc_action.execute(ig_md.index_2);
+                        index_for_update = ig_md.index_2;
+                        ig_md.already_matched = 1;
+                    }
+                }
+
+                // register_3
+                if (ig_md.already_matched == 0) {
+                    sip_cip_matched = sip_cip_reg_3_check_dir2_action.execute(ig_md.index_3);
+                    if (sip_cip_matched == 1) {
+                        // Get domain_id and udpate timestamp
+                        ig_md.domain_id = domain_tstamp_reg_3_get_domain_and_update_ts_action.execute(ig_md.index_3);
+
+                        // Update packet_count, update byte_count
+                        //packet_counts_table_reg_inc_action.execute(ig_md.index_3);
+                        //byte_counts_table_reg_inc_action.execute(ig_md.index_3);
+                        index_for_update = ig_md.index_3;
+                        ig_md.already_matched = 1;
+                    }
+                }
             }
 
-            //dns_cip_table_3.read(ig_md.temp_cip, ig_md.index_3);
-            //dns_sip_table_3.read(ig_md.temp_sip, ig_md.index_3);
-            ig_md.temp_cip = dns_cip_table_3_reg_read_action.execute(ig_md.index_3);
-            ig_md.temp_sip = dns_sip_table_3_reg_read_action.execute(ig_md.index_3);
- 
-            if (headers.ipv4.dst == ig_md.temp_sip && headers.ipv4.src == ig_md.temp_cip) {
-                //dns_name_table_3.read(ig_md.domain_id, ig_md.index_3);
-                //packet_counts_table.read(ig_md.temp_packet_counter, ig_md.domain_id);
-                //packet_counts_table.write(ig_md.domain_id, ig_md.temp_packet_counter + 1);
-                //byte_counts_table.read(ig_md.temp_byte_counter, ig_md.domain_id);
-                //byte_counts_table.write(ig_md.domain_id, ig_md.temp_byte_counter + (bit<64>)headers.ipv4.len);
-                //dns_timestamp_table_3.write(ig_md.index_3, (bit<32>) ig_intr_prsr_md.global_tstamp);
- 
-                ig_md.domain_id = dns_name_table_3_reg_read_action.execute(ig_md.index_3);
-                packet_counts_table_reg_inc_action.execute(ig_md.domain_id);
-                byte_counts_table_reg_inc_action.execute(ig_md.domain_id);
-                dns_timestamp_table_3_reg_write_tstamp_action.execute(ig_md.index_3);
-           }
+            if (ig_md.already_matched == 1) {
+                packet_counts_table_reg_inc_action.execute(index_for_update);
+                byte_counts_table_reg_inc_action.execute(index_for_update);
+            }
         }
 	}
 }
