@@ -191,6 +191,9 @@ struct user_metadata_t {
     bit<1> parsed_answer;
 }
 
+struct eg_metadata_t {
+}
+
 // parsers
 parser TofinoIngressParser(packet_in pkt,
            out Parsed_packet p,
