@@ -1339,8 +1339,11 @@ control TopIngress(inout Parsed_packet headers,
 }
 
 control TopEgress(inout Parsed_packet headers,
-                 inout user_metadata_t user_metadata,
-                 inout standard_metadata_t standard_metadata) {
+                 inout eg_metadata_t eg_md,
+                 in egress_intrinsic_metadata_t eg_intr_md,
+                 in egress_intrinsic_metadata_from_parser_t eg_intr_md_from_prsr,
+                 inout egress_intrinsic_metadata_for_deparser_t eg_intr_dprs_md,
+                 inout egress_intrinsic_metadata_for_output_port_t eg_intr_oport_md) {
     apply {  }
 }
 
@@ -1374,4 +1377,4 @@ control TopDeparser(packet_out b,
 }
 
 // Instantiate the switch
-V1Switch(TopParser(), TopVerifyChecksum(), TopIngress(), TopEgress(), TopComputeChecksum(), TopDeparser()) main;
+//V1Switch(TopParser(), TopVerifyChecksum(), TopIngress(), TopEgress(), TopComputeChecksum(), TopDeparser()) main;
