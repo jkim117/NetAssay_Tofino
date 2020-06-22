@@ -177,17 +177,17 @@ struct user_metadata_t {
     bit<32> index_2;
     bit<32> index_3;
     bit<32> index_4;
-    bit<32> temp_timestamp;
+    bit<48> temp_timestamp;
     bit<32> temp_cip;
     bit<32> temp_sip;
     bit<1> already_matched;
     bit<64> min_counter;
     bit<2> min_table;
-    bit<32> temp_packet_counter;
-    bit<32> temp_byte_counter;
+    bit<64> temp_packet_counter;
+    bit<64> temp_byte_counter;
 
-    bit<32> temp_total_dns;
-    bit<32> temp_total_missed;
+    bit<64> temp_total_dns;
+    bit<64> temp_total_missed;
     bit<1> parsed_answer;
 }
 
