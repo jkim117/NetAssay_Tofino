@@ -192,10 +192,10 @@ struct user_metadata_t {
 }
 
 // parsers
-parser TopParser(packet_in pkt,
+parser TofinoIngressParser(packet_in pkt,
            out Parsed_packet p,
            inout user_metadata_t user_metadata,
-           inout standard_metadata_t standard_metadata) {
+           out ingress_intrinsic_metadata_t ig_intr_md) {
 
     ParserCounter<bit<8>>() counter;
 
@@ -837,7 +837,10 @@ control TopVerifyChecksum(inout Parsed_packet headers, inout user_metadata_t use
 
 control TopIngress(inout Parsed_packet headers,
                 inout user_metadata_t user_metadata,
-                inout standard_metadata_t standard_metadata) {
+                in ingress_intrinsic_metadata_t ig_intr_md,
+                in ingress_intrinsic_metadata_from_parser_t ig_intr_prsr_md,
+                inout ingress_intrinsic_metadata_for_deparser_t ig_intr_dprsr_md,
+                inout ingress_intrinsic_metadata_for_tm_t ig_intr_tm_md) {
 
     // PRECISION STYLE TABLES
     Register<bit<32>,_>(TABLE_SIZE,0) dns_cip_table_1;
