@@ -1075,12 +1075,15 @@ control TopIngress(inout Parsed_packet headers,
             if (value.sip == headers.ipv4.src && value.cip == headers.ipv4.dst) {
                 is_match = 1;
             }
+            else if (value.sip == headers.ipv4.dst && value.cip == headers.ipv4.src) {
+                is_match = 1;
+            }
             else {
                 is_match = 0;
             }
         }
     };
-    RegisterAction<sip_cip_t,_,bit<1>> (sip_cip_reg_1) sip_cip_reg_1_check_dir2_action = {
+    /*RegisterAction<sip_cip_t,_,bit<1>> (sip_cip_reg_1) sip_cip_reg_1_check_dir2_action = {
         void apply(inout sip_cip_t value, out bit<1> is_match) {
             //if ( (value.sip == headers.dns_ip.rdata && value.cip == headers.ipv4.dst) || (value.sip == headers.ipv4.dst && value.cip == headers.dns_ip.rdata) ) {
             if (value.cip == headers.ipv4.src && value.sip == headers.ipv4.dst) {
@@ -1090,7 +1093,7 @@ control TopIngress(inout Parsed_packet headers,
                 is_match = 0;
             }
         }
-    };
+    };*/
     RegisterAction<sip_cip_t,_,void> (sip_cip_reg_1) sip_cip_reg_1_update_action = {
         void apply(inout sip_cip_t value) {
             value.sip = headers.dns_ip.rdata;
@@ -1720,7 +1723,7 @@ control TopIngress(inout Parsed_packet headers,
                 ig_md.index_3 = (bit<32>) hash_1.get({2w0, headers.ipv4.dst, 1w1, headers.ipv4.src});
 
                 // register_1
-                sip_cip_matched = sip_cip_reg_1_check_dir2_action.execute(ig_md.index_1);
+                sip_cip_matched = sip_cip_reg_1_check_dir1_action.execute(ig_md.index_1);
                 if (sip_cip_matched == 1) {
                     // Get domain_id and udpate timestamp
                     ig_md.domain_id = domain_tstamp_reg_1_get_domain_and_update_ts_action.execute(ig_md.index_1);
