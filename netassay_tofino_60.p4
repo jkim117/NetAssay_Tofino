@@ -1570,7 +1570,7 @@ control SwitchIngress(inout Parsed_packet headers,
     };
 
     // Define Hash
-    Hash<bit<16>>(HashAlgorithm_t.CRC16) hash_1;
+    Hash<bit<14>>(HashAlgorithm_t.CRC16) hash_1;
 
     action match_domain(known_domain_id id) {
         ig_md.domain_id = id;
@@ -1656,9 +1656,9 @@ control SwitchIngress(inout Parsed_packet headers,
                 // Increment total DNS queries for this domain name
                 dns_total_queried_reg_inc_action.execute(ig_md.domain_id);
                 
-                ig_md.index_1 = (bit<32>) hash_1.get(headers.dns_ip.rdata + headers.ipv4.dst + 32w134140211, HASH_TABLE_BASE, HASH_TABLE_MAX);
-                ig_md.index_2 = (bit<32>) hash_1.get(headers.dns_ip.rdata + headers.ipv4.dst + 32w187182238, HASH_TABLE_BASE, HASH_TABLE_MAX);
-                ig_md.index_3 = (bit<32>) hash_1.get(headers.dns_ip.rdata + headers.ipv4.dst + 32w232108253, HASH_TABLE_BASE, HASH_TABLE_MAX);
+                ig_md.index_1 = (bit<32>) hash_1.get(headers.dns_ip.rdata + headers.ipv4.dst + 32w134140211);
+                ig_md.index_2 = (bit<32>) hash_1.get(headers.dns_ip.rdata + headers.ipv4.dst + 32w187182238);
+                ig_md.index_3 = (bit<32>) hash_1.get(headers.dns_ip.rdata + headers.ipv4.dst + 32w232108253);
 
                 ig_md.already_matched = 0;
                 bool is_resubmitted=(bool) ig_intr_md.resubmit_flag;
@@ -1774,9 +1774,9 @@ control SwitchIngress(inout Parsed_packet headers,
             //hash(ig_md.index_2, HashAlgorithm.crc16, HASH_TABLE_BASE, {3w5, headers.ipv4.src, 5w3, headers.ipv4.dst}, HASH_TABLE_MAX);
             //hash(ig_md.index_3, HashAlgorithm.crc16, HASH_TABLE_BASE, {2w0, headers.ipv4.src, 1w1, headers.ipv4.dst}, HASH_TABLE_MAX);
             
-            ig_md.index_1 = (bit<32>) hash_1.get(headers.ipv4.src + headers.ipv4.dst + 32w134140211, HASH_TABLE_BASE, HASH_TABLE_MAX);
-            ig_md.index_2 = (bit<32>) hash_1.get(headers.ipv4.src + headers.ipv4.dst + 32w187182238, HASH_TABLE_BASE, HASH_TABLE_MAX);
-            ig_md.index_3 = (bit<32>) hash_1.get(headers.ipv4.src + headers.ipv4.dst + 32w232108253, HASH_TABLE_BASE, HASH_TABLE_MAX);
+            ig_md.index_1 = (bit<32>) hash_1.get(headers.ipv4.src + headers.ipv4.dst + 32w134140211);
+            ig_md.index_2 = (bit<32>) hash_1.get(headers.ipv4.src + headers.ipv4.dst + 32w187182238);
+            ig_md.index_3 = (bit<32>) hash_1.get(headers.ipv4.src + headers.ipv4.dst + 32w232108253);
 
             bit<1> sip_cip_matched = 0;
             bit<32> index_for_update = 0;
