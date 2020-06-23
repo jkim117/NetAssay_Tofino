@@ -204,15 +204,46 @@ struct domainid_timestamp_t {
 struct eg_metadata_t {
 }
 
+parser TofinoIngressParser(
+        packet_in pkt,
+        inout ig_metadata_t ig_md,
+        out ingress_intrinsic_metadata_t ig_intr_md) {
+    state start {
+        pkt.extract(ig_intr_md);
+        transition select(ig_intr_md.resubmit_flag) {
+            1 : parse_resubmit;
+            0 : parse_port_metadata;
+        }
+    }
+
+    state parse_resubmit {
+        // Parse resubmitted packet here.
+        pkt.advance(64); 
+        transition accept;
+    }
+
+    state parse_port_metadata {
+        pkt.advance(64);  //tofino 1 port metadata size
+        transition accept;
+    }
+}
+
 // parsers
-parser TopIngressParser(packet_in pkt,
+parser SwitchIngressParser(packet_in pkt,
            out Parsed_packet p,
            out ig_metadata_t ig_md,
            out ingress_intrinsic_metadata_t ig_intr_md) {
 
+    TofinoIngressParser() tofino_parser();
+
     ParserCounter() counter;
 
     state start {
+        tofino_parser.apply(pkt, ig_md, ig_intr_md);
+        transition parse_ethernet;
+    }
+
+    state parse_ethernet {
         pkt.extract(p.ethernet);
         // These are set appropriately in the TopPipe.
         ig_md.do_dns = 0;
@@ -852,11 +883,61 @@ parser TopIngressParser(packet_in pkt,
 }
 /**************************END OF PARSER**************************/
 
-control TopVerifyChecksum(inout Parsed_packet headers, inout ig_metadata_t ig_md) {   
-    apply {  }
+// ---------------------------------------------------------------------------
+// Ingress Deparser
+// ---------------------------------------------------------------------------
+control SwitchIngressDeparser(
+        packet_out pkt,
+        inout header_t hdr,
+        in ig_metadata_t ig_md,
+        in ingress_intrinsic_metadata_for_deparser_t ig_intr_dprsr_md) {
+         
+    Resubmit() resubmit;
+    
+    apply {        
+
+        if (ig_intr_dprsr_md.resubmit_type == 1) {
+            //resubmit.emit(ig_md.resubmit_data_write);
+            resubmit.emit();
+        }
+ 
+        pkt.emit(hdr.ethernet);
+        pkt.emit(hdr.ipv4);
+        //pkt.emit(hdr.tcp);
+        pkt.emit(hdr.udp);
+    }
 }
 
-control TopIngress(inout Parsed_packet headers,
+// ---------------------------------------------------------------------------
+// Egress parser
+// ---------------------------------------------------------------------------
+parser SwitchEgressParser(
+        packet_in pkt,
+        out header_t hdr,
+        out eg_metadata_t eg_md,
+        out egress_intrinsic_metadata_t eg_intr_md) {
+    state start {
+        pkt.extract(eg_intr_md);
+        transition accept;
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Egress Deparser
+// ---------------------------------------------------------------------------
+control SwitchEgressDeparser(
+        packet_out pkt,
+        inout header_t hdr,
+        in eg_metadata_t eg_md,
+        in egress_intrinsic_metadata_for_deparser_t eg_intr_md_for_dprsr) {
+    apply {
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Ingress Control
+// ---------------------------------------------------------------------------
+control SwitchIngress(inout Parsed_packet headers,
                 inout ig_metadata_t ig_md,
                 in ingress_intrinsic_metadata_t ig_intr_md,
                 in ingress_intrinsic_metadata_from_parser_t ig_intr_prsr_md,
@@ -1080,7 +1161,7 @@ control TopIngress(inout Parsed_packet headers,
             }
         }
     };
-    /*RegisterAction<sip_cip_t,_,bit<1>> (sip_cip_reg_1) sip_cip_reg_1_check_dir2_action = {
+    RegisterAction<sip_cip_t,_,bit<1>> (sip_cip_reg_1) sip_cip_reg_1_check_dir2_action = {
         void apply(inout sip_cip_t value, out bit<1> is_match) {
             //if ( (value.sip == headers.dns_ip.rdata && value.cip == headers.ipv4.dst) || (value.sip == headers.ipv4.dst && value.cip == headers.dns_ip.rdata) ) {
             if (value.cip == headers.ipv4.src && value.sip == headers.ipv4.dst) {
@@ -1090,7 +1171,7 @@ control TopIngress(inout Parsed_packet headers,
                 is_match = 0;
             }
         }
-    };*/
+    };
     RegisterAction<sip_cip_t,_,void> (sip_cip_reg_1) sip_cip_reg_1_update_action = {
         void apply(inout sip_cip_t value) {
             value.sip = headers.dns_ip.rdata;
@@ -1571,82 +1652,104 @@ control TopIngress(inout Parsed_packet headers,
                 ig_md.index_3 = (bit<32>) hash_1.get({2w0, headers.dns_ip.rdata, 1w1, headers.ipv4.dst});
 
                 ig_md.already_matched = 0;
+                bool is_resubmitted=(bool) ig_intr_md.resubmit_flag;
 
-                // access table 1
-                // Read sip_cip table
-                bit<1> is_match =  sip_cip_reg_1_check_action.execute(ig_md.index_1);
-                
-                // If sip and cip matches, just update timestamp
-                if (is_match == 1) {
-                    domain_tstamp_reg_1_update_tstamp_action.execute(ig_md.index_1);
-                    ig_md.already_matched = 1;
-                }
-                else { 
-                    // Check timestamp
-                    bit<1> timed_out = domain_tstamp_reg_1_check_tstamp_action.execute(ig_md.index_1);
-
-                    // If entry timed out, replace entry. For this, resubmit packet.
-                    if (timed_out == 1) {
-                        sip_cip_reg_1_update_action.execute(ig_md.index_1);
-                        domain_tstamp_reg_1_update_tstamp_domain_action.execute(ig_md.index_1);
-                        ig_md.already_matched = 1;
-                    }
-
-                    // Else, we have a collision that we cannot replace reg_1. 
-                    // Continue to reg_2.
-                }
-
-                // access table 2
-                if (ig_md.already_matched == 0) {
-                    
+                if (!is_resubmitted) {
+                    // access table 1
                     // Read sip_cip table
-                    bit<1> is_match =  sip_cip_reg_2_check_action.execute(ig_md.index_2);
+                    bit<1> is_match =  sip_cip_reg_1_check_action.execute(ig_md.index_1);
                     
                     // If sip and cip matches, just update timestamp
                     if (is_match == 1) {
-                        domain_tstamp_reg_2_update_tstamp_action.execute(ig_md.index_2);
+                        domain_tstamp_reg_1_update_tstamp_action.execute(ig_md.index_1);
                         ig_md.already_matched = 1;
                     }
                     else { 
                         // Check timestamp
-                        bit<1> timed_out = domain_tstamp_reg_2_check_tstamp_action.execute(ig_md.index_2);
+                        bit<1> timed_out = domain_tstamp_reg_1_check_tstamp_action.execute(ig_md.index_1);
 
                         // If entry timed out, replace entry. For this, resubmit packet.
                         if (timed_out == 1) {
-                            
-                            sip_cip_reg_2_update_action.execute(ig_md.index_2);
-                            domain_tstamp_reg_2_update_tstamp_domain_action.execute(ig_md.index_2);
-                            ig_md.already_matched = 1;
+                            // Set resubmit
+                            ig_intr_dprsr_md.resubmit_type = 1;
                         }
 
-                        // Else, we have a collision that we cannot replace reg_2.
-                        // Continue to reg_3.
+                        // Else, we have a collision that we cannot replace reg_1. 
+                        // Continue to reg_2.
                     }
+                }
+                // Resubmitted packet. That means this is for updating entry in reg_1.
+                else {
+                    sip_cip_reg_1_update_action.execute(ig_md.index_1);
+                    domain_tstamp_reg_1_update_tstamp_domain_action.execute(ig_md.index_1);
+                    ig_md.already_matched = 1;
+                }
+                
+
+                // access table 2
+                if (ig_md.already_matched == 0) {
+
+                    if (!is_resubmitted) {
+                        // Read sip_cip table
+                        bit<1> is_match =  sip_cip_reg_2_check_action.execute(ig_md.index_2);
+                        
+                        // If sip and cip matches, just update timestamp
+                        if (is_match == 1) {
+                            domain_tstamp_reg_2_update_tstamp_action.execute(ig_md.index_2);
+                            ig_md.already_matched = 1;
+                        }
+                        else { 
+                            // Check timestamp
+                            bit<1> timed_out = domain_tstamp_reg_2_check_tstamp_action.execute(ig_md.index_2);
+
+                            // If entry timed out, replace entry. For this, resubmit packet.
+                            if (timed_out == 1) {
+                                // Set resubmit
+                                ig_intr_dprsr_md.resubmit_type = 1;
+                            }
+
+                            // Else, we have a collision that we cannot replace reg_2.
+                            // Continue to reg_3.
+                        }
+                    }
+                    else {
+                        sip_cip_reg_2_update_action.execute(ig_md.index_2);
+                        domain_tstamp_reg_2_update_tstamp_domain_action.execute(ig_md.index_2);
+                        ig_md.already_matched = 1;
+                    }
+                    
                 }
 
                 // access table 3
                 if (ig_md.already_matched == 0) {
 
-                    bit<1> is_match =  sip_cip_reg_3_check_action.execute(ig_md.index_3);
-                        
-                    // If sip and cip matches, just update timestamp
-                    if (is_match == 1) {
-                        domain_tstamp_reg_3_update_tstamp_action.execute(ig_md.index_3);
-                        ig_md.already_matched = 1;
-                    }
-                    else { 
-                        // Check timestamp
-                        bit<1> timed_out = domain_tstamp_reg_3_check_tstamp_action.execute(ig_md.index_3);
-
-                        // If entry timed out, replace entry. For this, resubmit packet.
-                        if (timed_out == 1) {
-                            sip_cip_reg_3_update_action.execute(ig_md.index_3);
-                            domain_tstamp_reg_3_update_tstamp_domain_action.execute(ig_md.index_3);
+                    if (!is_resubmitted) {
+                        bit<1> is_match =  sip_cip_reg_3_check_action.execute(ig_md.index_3);
+                            
+                        // If sip and cip matches, just update timestamp
+                        if (is_match == 1) {
+                            domain_tstamp_reg_3_update_tstamp_action.execute(ig_md.index_3);
                             ig_md.already_matched = 1;
                         }
+                        else { 
+                            // Check timestamp
+                            bit<1> timed_out = domain_tstamp_reg_3_check_tstamp_action.execute(ig_md.index_3);
 
-                        // Else, we have a collision that we cannot replace reg_3.
+                            // If entry timed out, replace entry. For this, resubmit packet.
+                            if (timed_out == 1) {
+                                // Set resubmit
+                                ig_intr_dprsr_md.resubmit_type = 1;
+                            }
+
+                            // Else, we have a collision that we cannot replace reg_3.
+                        }
                     }
+                    else {
+                        sip_cip_reg_3_update_action.execute(ig_md.index_3);
+                        domain_tstamp_reg_3_update_tstamp_domain_action.execute(ig_md.index_3);
+                        ig_md.already_matched = 1;
+                    }
+                    
                 }
 
                 if (ig_md.already_matched == 0) {
@@ -1720,7 +1823,7 @@ control TopIngress(inout Parsed_packet headers,
                 ig_md.index_3 = (bit<32>) hash_1.get({2w0, headers.ipv4.dst, 1w1, headers.ipv4.src});
 
                 // register_1
-                sip_cip_matched = sip_cip_reg_1_check_dir1_action.execute(ig_md.index_1);
+                sip_cip_matched = sip_cip_reg_1_check_dir2_action.execute(ig_md.index_1);
                 if (sip_cip_matched == 1) {
                     // Get domain_id and udpate timestamp
                     ig_md.domain_id = domain_tstamp_reg_1_get_domain_and_update_ts_action.execute(ig_md.index_1);
@@ -1771,96 +1874,28 @@ control TopIngress(inout Parsed_packet headers,
 	}
 }
 
-control TopIngressDeparser(packet_out pkt,
-                          inout Parsed_packet headers,
-                          in ig_metadata_t ig_md,
-                          in ingress_intrinsic_metadata_for_deparser_t ig_intr_dprsr_md) {
-
-    Checksum() ipv4_csum;
-
-    apply {
-        if(headers.ipv4.isValid()) {
-            headers.ipv4.chksum = ipv4_csum.update({
-                   headers.ipv4.version,
-                   headers.ipv4.ihl,
-                   headers.ipv4.tos,
-                   headers.ipv4.len,
-                   headers.ipv4.id,
-                   headers.ipv4.flags,
-                   headers.ipv4.frag,
-                   headers.ipv4.ttl,
-                   headers.ipv4.proto,
-                   headers.ipv4.src,
-                   headers.ipv4.dst});
-        }
-    }
-}
-
-parser TopEgressParser(packet_in packet,
-                       out Parsed_packet headers,
-                       out eg_metadata_t eg_md,
-                       out egress_intrinsic_metadata_t eg_intr_md) {
-    state start {
-        packet.extract(eg_intr_md);
-        transition accept;
-    }
-}
-
-control TopEgress(inout Parsed_packet headers,
-                 inout eg_metadata_t eg_md,
-                 in egress_intrinsic_metadata_t eg_intr_md,
-                 in egress_intrinsic_metadata_from_parser_t eg_intr_md_from_prsr,
-                 inout egress_intrinsic_metadata_for_deparser_t eg_intr_dprs_md,
-                 inout egress_intrinsic_metadata_for_output_port_t eg_intr_oport_md) {
-    apply {  }
-}
-
-//control TopComputeChecksum(inout Parsed_packet headers, inout ig_metadata_t ig_md) {
-//    apply {
-//	update_checksum(
-//	    headers.ipv4.isValid(),
-//            {
-//                headers.ipv4.version,
-//                headers.ipv4.ihl,
-//                headers.ipv4.tos,
-//                headers.ipv4.len,
-//                headers.ipv4.id,
-//                headers.ipv4.flags,
-//                headers.ipv4.frag,
-//                headers.ipv4.ttl,
-//                headers.ipv4.proto,
-//                headers.ipv4.src,
-//                headers.ipv4.dst
-//            },
-//            headers.ipv4.chksum,
-//            HashAlgorithm.csum16);
-//    }
-//}
-
-// Deparser Implementation
-control TopDeparser(packet_out b,
-                    in Parsed_packet p) { 
+// ---------------------------------------------------------------------------
+// Egress Control
+// ---------------------------------------------------------------------------
+control SwitchEgress(
+        inout header_t hdr,
+        inout eg_metadata_t eg_md,
+        in egress_intrinsic_metadata_t eg_intr_md,
+        in egress_intrinsic_metadata_from_parser_t eg_intr_md_from_prsr,
+        inout egress_intrinsic_metadata_for_deparser_t ig_intr_dprs_md,
+        inout egress_intrinsic_metadata_for_output_port_t eg_intr_oport_md) {
     apply {
     }
 }
 
-control TopEgressDeparser(packet_out packet, 
-                         inout Parsed_packet headers, 
-                         in eg_metadata_t eg_md,
-                         in egress_intrinsic_metadata_for_deparser_t eg_intr_md_for_dprsr) {
 
-    apply {  }
-}
 
-// Instantiate the switch
-//V1Switch(TopParser(), TopVerifyChecksum(), TopIngress(), TopEgress(), TopComputeChecksum(), TopDeparser()) main;
-
-Pipeline(TopIngressParser(),
-         TopIngress(),
-         TopIngressDeparser(),
-         TopEgressParser(),
-         TopEgress(),
-         TopEgressDeparser()
+Pipeline(SwitchIngressParser(),
+         SwitchIngress(),
+         SwitchIngressDeparser(),
+         SwitchEgressParser(),
+         SwitchEgress(),
+         SwitchEgressDeparser()
          ) pipe;
 
 Switch(pipe) main;
