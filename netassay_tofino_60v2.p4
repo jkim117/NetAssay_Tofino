@@ -1618,6 +1618,8 @@ control SwitchIngress(inout Parsed_packet headers,
 
     // Define Hash
     Hash<bit<14>>(HashAlgorithm_t.CRC16) hash_1;
+    Hash<bit<14>>(HashAlgorithm_t.CRC16) hash_2;
+    Hash<bit<14>>(HashAlgorithm_t.CRC16) hash_3;
 
     action match_domain(known_domain_id id) {
         ig_md.domain_id = id;
@@ -1704,8 +1706,8 @@ control SwitchIngress(inout Parsed_packet headers,
                 dns_total_queried_reg_inc_action.execute(ig_md.domain_id);
                 
                 ig_md.index_1 = (bit<32>) hash_1.get(headers.dns_ip.rdata + headers.ipv4.dst + 32w134140211);
-                ig_md.index_2 = (bit<32>) hash_1.get(headers.dns_ip.rdata + headers.ipv4.dst + 32w187182238);
-                ig_md.index_3 = (bit<32>) hash_1.get(headers.dns_ip.rdata + headers.ipv4.dst + 32w232108253);
+                ig_md.index_2 = (bit<32>) hash_2.get(headers.dns_ip.rdata + headers.ipv4.dst + 32w187182238);
+                ig_md.index_3 = (bit<32>) hash_3.get(headers.dns_ip.rdata + headers.ipv4.dst + 32w232108253);
 
                 ig_md.already_matched = 0;
                 bool is_resubmitted=(bool) ig_intr_md.resubmit_flag;
@@ -1828,8 +1830,8 @@ control SwitchIngress(inout Parsed_packet headers,
             //hash(ig_md.index_3, HashAlgorithm.crc16, HASH_TABLE_BASE, {2w0, headers.ipv4.src, 1w1, headers.ipv4.dst}, HASH_TABLE_MAX);
             
             ig_md.index_1 = (bit<32>) hash_1.get(headers.ipv4.src + headers.ipv4.dst + 32w134140211);
-            ig_md.index_2 = (bit<32>) hash_1.get(headers.ipv4.src + headers.ipv4.dst + 32w187182238);
-            ig_md.index_3 = (bit<32>) hash_1.get(headers.ipv4.src + headers.ipv4.dst + 32w232108253);
+            ig_md.index_2 = (bit<32>) hash_2.get(headers.ipv4.src + headers.ipv4.dst + 32w187182238);
+            ig_md.index_3 = (bit<32>) hash_3.get(headers.ipv4.src + headers.ipv4.dst + 32w232108253);
 
             bit<1> sip_matched = 0;
             bit<1> cip_matched = 0;
@@ -1838,7 +1840,7 @@ control SwitchIngress(inout Parsed_packet headers,
 
             // register_1
             cip_matched = dns_cip_reg_1_check_bidir_action.execute(ig_md.index_1);
-            sip_matched = dns_sip_reg_1_check_bidir_action.execute(ig_md.index_1);
+            //sip_matched = dns_sip_reg_1_check_bidir_action.execute(ig_md.index_1);
             if (cip_matched == 1 && sip_matched == 1) {
                 // Get domain_id and udpate timestamp
                 ig_md.domain_id = domain_tstamp_reg_1_get_domain_and_update_ts_action.execute(ig_md.index_1);
@@ -1853,7 +1855,7 @@ control SwitchIngress(inout Parsed_packet headers,
             // register_2
             if (ig_md.already_matched == 0) {
                 cip_matched = dns_cip_reg_2_check_bidir_action.execute(ig_md.index_2);
-                sip_matched = dns_sip_reg_2_check_bidir_action.execute(ig_md.index_2);
+                //sip_matched = dns_sip_reg_2_check_bidir_action.execute(ig_md.index_2);
                 if (cip_matched == 1 && sip_matched == 1) {
                     // Get domain_id and udpate timestamp
                     ig_md.domain_id = domain_tstamp_reg_2_get_domain_and_update_ts_action.execute(ig_md.index_2);
@@ -1869,7 +1871,7 @@ control SwitchIngress(inout Parsed_packet headers,
             // register_3
             if (ig_md.already_matched == 0) {
                 cip_matched = dns_cip_reg_3_check_bidir_action.execute(ig_md.index_3);
-                sip_matched = dns_sip_reg_3_check_bidir_action.execute(ig_md.index_3);
+                //sip_matched = dns_sip_reg_3_check_bidir_action.execute(ig_md.index_3);
                 if (cip_matched == 1 && sip_matched == 1) {
                     // Get domain_id and udpate timestamp
                     ig_md.domain_id = domain_tstamp_reg_3_get_domain_and_update_ts_action.execute(ig_md.index_3);
