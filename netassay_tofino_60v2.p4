@@ -1618,6 +1618,10 @@ control SwitchIngress(inout Parsed_packet headers,
     };
 
     // Define Hash
+    Hash<bit<14>>(HashAlgorithm_t.CRC16) hash_1_dns;
+    Hash<bit<14>>(HashAlgorithm_t.CRC16) hash_2_dns;
+    Hash<bit<14>>(HashAlgorithm_t.CRC16) hash_3_dns;
+
     Hash<bit<14>>(HashAlgorithm_t.CRC16) hash_1;
     Hash<bit<14>>(HashAlgorithm_t.CRC16) hash_2;
     Hash<bit<14>>(HashAlgorithm_t.CRC16) hash_3;
@@ -1706,9 +1710,9 @@ control SwitchIngress(inout Parsed_packet headers,
                 // Increment total DNS queries for this domain name
                 dns_total_queried_reg_inc_action.execute(ig_md.domain_id);
                 
-                ig_md.index_1 = (bit<32>) hash_1.get(headers.dns_ip.rdata + headers.ipv4.dst + 32w134140211);
-                ig_md.index_2 = (bit<32>) hash_2.get(headers.dns_ip.rdata + headers.ipv4.dst + 32w187182238);
-                ig_md.index_3 = (bit<32>) hash_3.get(headers.dns_ip.rdata + headers.ipv4.dst + 32w232108253);
+                ig_md.index_1 = (bit<32>) hash_1_dns.get(headers.dns_ip.rdata + headers.ipv4.dst + 32w134140211);
+                ig_md.index_2 = (bit<32>) hash_2_dns.get(headers.dns_ip.rdata + headers.ipv4.dst + 32w187182238);
+                ig_md.index_3 = (bit<32>) hash_3_dns.get(headers.dns_ip.rdata + headers.ipv4.dst + 32w232108253);
 
                 ig_md.already_matched = 0;
                 bool is_resubmitted=(bool) ig_intr_md.resubmit_flag;
