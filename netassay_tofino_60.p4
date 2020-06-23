@@ -173,10 +173,12 @@ struct ig_metadata_t {
     bit<3> last_label; // Value is 1,2,3,4,5 or 0 corresponding to which dns_q_label is the last label (of value 0). If this value is 0, there is an error.
     bit<1> matched_domain;
     bit<32> domain_id;
+    bit<32> index_1_dns;
+    bit<32> index_2_dns;
+    bit<32> index_3_dns;
     bit<32> index_1;
     bit<32> index_2;
     bit<32> index_3;
-    bit<32> index_4;
     bit<48> temp_timestamp;
     bit<32> temp_cip;
     bit<32> temp_sip;
@@ -1153,13 +1155,12 @@ control SwitchIngress(inout Parsed_packet headers,
     RegisterAction<sip_cip_t,_,bit<1>> (sip_cip_reg_1) sip_cip_reg_1_check_dir1_action = {
         void apply(inout sip_cip_t value, out bit<1> is_match) {
             //if ( (value.sip == headers.dns_ip.rdata && value.cip == headers.ipv4.dst) || (value.sip == headers.ipv4.dst && value.cip == headers.dns_ip.rdata) ) {
-            bit<64> sip_cip = ((bit<64>)value.sip << 32) + (bit<64>)value.cip;
-            bit<64> src_dst = ((bit<64>)headers.ipv4.src << 32) + (bit<64>)headers.ipv4.dst;
-            bit<64> dst_src = ((bit<64>)headers.ipv4.dst << 32) + (bit<64>)headers.ipv4.src;
-
-            if (sip_cip == src_dst || sip_cip == dst_src) {
+            if (value.sip == headers.ipv4.src && value.cip == headers.ipv4.dst) {
                 is_match = 1;
             }
+            /*else if (value.sip == headers.ipv4.dst && value.cip == headers.ipv4.src) {
+                is_match = 1;
+            }*/
             else {
                 is_match = 0;
             }
@@ -1571,7 +1572,13 @@ control SwitchIngress(inout Parsed_packet headers,
     };
 
     // Define Hash
+    Hash<bit<14>>(HashAlgorithm_t.CRC16) hash_1_dns;
+    Hash<bit<14>>(HashAlgorithm_t.CRC16) hash_2_dns;
+    Hash<bit<14>>(HashAlgorithm_t.CRC16) hash_3_dns;
+
     Hash<bit<14>>(HashAlgorithm_t.CRC16) hash_1;
+    Hash<bit<14>>(HashAlgorithm_t.CRC16) hash_2;
+    Hash<bit<14>>(HashAlgorithm_t.CRC16) hash_3;
 
     action match_domain(known_domain_id id) {
         ig_md.domain_id = id;
@@ -1657,9 +1664,9 @@ control SwitchIngress(inout Parsed_packet headers,
                 // Increment total DNS queries for this domain name
                 dns_total_queried_reg_inc_action.execute(ig_md.domain_id);
                 
-                ig_md.index_1 = (bit<32>) hash_1.get(headers.dns_ip.rdata + headers.ipv4.dst + 32w134140211);
-                ig_md.index_2 = (bit<32>) hash_1.get(headers.dns_ip.rdata + headers.ipv4.dst + 32w187182238);
-                ig_md.index_3 = (bit<32>) hash_1.get(headers.dns_ip.rdata + headers.ipv4.dst + 32w232108253);
+                ig_md.index_1_dns = (bit<32>) hash_1.get(headers.dns_ip.rdata + headers.ipv4.dst + 32w134140211);
+                ig_md.index_2_dns = (bit<32>) hash_1.get(headers.dns_ip.rdata + headers.ipv4.dst + 32w187182238);
+                ig_md.index_3_dns = (bit<32>) hash_1.get(headers.dns_ip.rdata + headers.ipv4.dst + 32w232108253);
 
                 ig_md.already_matched = 0;
                 bool is_resubmitted=(bool) ig_intr_md.resubmit_flag;
@@ -1667,16 +1674,16 @@ control SwitchIngress(inout Parsed_packet headers,
                 if (!is_resubmitted) {
                     // access table 1
                     // Read sip_cip table
-                    bit<1> is_match =  sip_cip_reg_1_check_action.execute(ig_md.index_1);
+                    bit<1> is_match =  sip_cip_reg_1_check_action.execute(ig_md.index_1_dns);
                     
                     // If sip and cip matches, just update timestamp
                     if (is_match == 1) {
-                        domain_tstamp_reg_1_update_tstamp_action.execute(ig_md.index_1);
+                        domain_tstamp_reg_1_update_tstamp_action.execute(ig_md.index_1_dns);
                         ig_md.already_matched = 1;
                     }
                     else { 
                         // Check timestamp
-                        bit<1> timed_out = domain_tstamp_reg_1_check_tstamp_action.execute(ig_md.index_1);
+                        bit<1> timed_out = domain_tstamp_reg_1_check_tstamp_action.execute(ig_md.index_1_dns);
 
                         // If entry timed out, replace entry. For this, resubmit packet.
                         if (timed_out == 1) {
@@ -1690,8 +1697,8 @@ control SwitchIngress(inout Parsed_packet headers,
                 }
                 // Resubmitted packet. That means this is for updating entry in reg_1.
                 else {
-                    sip_cip_reg_1_update_action.execute(ig_md.index_1);
-                    domain_tstamp_reg_1_update_tstamp_domain_action.execute(ig_md.index_1);
+                    sip_cip_reg_1_update_action.execute(ig_md.index_1_dns);
+                    domain_tstamp_reg_1_update_tstamp_domain_action.execute(ig_md.index_1_dns);
                     ig_md.already_matched = 1;
                 }
                 
@@ -1701,16 +1708,16 @@ control SwitchIngress(inout Parsed_packet headers,
 
                     if (!is_resubmitted) {
                         // Read sip_cip table
-                        bit<1> is_match =  sip_cip_reg_2_check_action.execute(ig_md.index_2);
+                        bit<1> is_match =  sip_cip_reg_2_check_action.execute(ig_md.index_2_dns);
                         
                         // If sip and cip matches, just update timestamp
                         if (is_match == 1) {
-                            domain_tstamp_reg_2_update_tstamp_action.execute(ig_md.index_2);
+                            domain_tstamp_reg_2_update_tstamp_action.execute(ig_md.index_2_dns);
                             ig_md.already_matched = 1;
                         }
                         else { 
                             // Check timestamp
-                            bit<1> timed_out = domain_tstamp_reg_2_check_tstamp_action.execute(ig_md.index_2);
+                            bit<1> timed_out = domain_tstamp_reg_2_check_tstamp_action.execute(ig_md.index_2_dns);
 
                             // If entry timed out, replace entry. For this, resubmit packet.
                             if (timed_out == 1) {
@@ -1723,8 +1730,8 @@ control SwitchIngress(inout Parsed_packet headers,
                         }
                     }
                     else {
-                        sip_cip_reg_2_update_action.execute(ig_md.index_2);
-                        domain_tstamp_reg_2_update_tstamp_domain_action.execute(ig_md.index_2);
+                        sip_cip_reg_2_update_action.execute(ig_md.index_2_dns);
+                        domain_tstamp_reg_2_update_tstamp_domain_action.execute(ig_md.index_2_dns);
                         ig_md.already_matched = 1;
                     }
                     
@@ -1734,16 +1741,16 @@ control SwitchIngress(inout Parsed_packet headers,
                 if (ig_md.already_matched == 0) {
 
                     if (!is_resubmitted) {
-                        bit<1> is_match =  sip_cip_reg_3_check_action.execute(ig_md.index_3);
+                        bit<1> is_match =  sip_cip_reg_3_check_action.execute(ig_md.index_3_dns);
                             
                         // If sip and cip matches, just update timestamp
                         if (is_match == 1) {
-                            domain_tstamp_reg_3_update_tstamp_action.execute(ig_md.index_3);
+                            domain_tstamp_reg_3_update_tstamp_action.execute(ig_md.index_3_dns);
                             ig_md.already_matched = 1;
                         }
                         else { 
                             // Check timestamp
-                            bit<1> timed_out = domain_tstamp_reg_3_check_tstamp_action.execute(ig_md.index_3);
+                            bit<1> timed_out = domain_tstamp_reg_3_check_tstamp_action.execute(ig_md.index_3_dns);
 
                             // If entry timed out, replace entry. For this, resubmit packet.
                             if (timed_out == 1) {
@@ -1755,8 +1762,8 @@ control SwitchIngress(inout Parsed_packet headers,
                         }
                     }
                     else {
-                        sip_cip_reg_3_update_action.execute(ig_md.index_3);
-                        domain_tstamp_reg_3_update_tstamp_domain_action.execute(ig_md.index_3);
+                        sip_cip_reg_3_update_action.execute(ig_md.index_3_dns);
+                        domain_tstamp_reg_3_update_tstamp_domain_action.execute(ig_md.index_3_dns);
                         ig_md.already_matched = 1;
                     }
                     
@@ -1771,9 +1778,9 @@ control SwitchIngress(inout Parsed_packet headers,
         }
         // HANDLE NORMAL, NON-DNS PACKETS
         else if (ig_md.is_ip == 1 && ig_md.is_dns == 0) {
-            //hash(ig_md.index_1, HashAlgorithm.crc16, HASH_TABLE_BASE, {headers.ipv4.src, 7w11, headers.ipv4.dst}, HASH_TABLE_MAX);
-            //hash(ig_md.index_2, HashAlgorithm.crc16, HASH_TABLE_BASE, {3w5, headers.ipv4.src, 5w3, headers.ipv4.dst}, HASH_TABLE_MAX);
-            //hash(ig_md.index_3, HashAlgorithm.crc16, HASH_TABLE_BASE, {2w0, headers.ipv4.src, 1w1, headers.ipv4.dst}, HASH_TABLE_MAX);
+            //hash(ig_md.index_1_dns, HashAlgorithm.crc16, HASH_TABLE_BASE, {headers.ipv4.src, 7w11, headers.ipv4.dst}, HASH_TABLE_MAX);
+            //hash(ig_md.index_2_dns, HashAlgorithm.crc16, HASH_TABLE_BASE, {3w5, headers.ipv4.src, 5w3, headers.ipv4.dst}, HASH_TABLE_MAX);
+            //hash(ig_md.index_3_dns, HashAlgorithm.crc16, HASH_TABLE_BASE, {2w0, headers.ipv4.src, 1w1, headers.ipv4.dst}, HASH_TABLE_MAX);
             
             ig_md.index_1 = (bit<32>) hash_1.get(headers.ipv4.src + headers.ipv4.dst + 32w134140211);
             ig_md.index_2 = (bit<32>) hash_1.get(headers.ipv4.src + headers.ipv4.dst + 32w187182238);
@@ -1790,8 +1797,8 @@ control SwitchIngress(inout Parsed_packet headers,
                 ig_md.domain_id = domain_tstamp_reg_1_get_domain_and_update_ts_action.execute(ig_md.index_1);
 
                 // Update packet_count, update byte_count
-                //packet_counts_table_reg_inc_action.execute(ig_md.index_1);
-                //byte_counts_table_reg_inc_action.execute(ig_md.index_1);
+                //packet_counts_table_reg_inc_action.execute(ig_md.index_1_dns);
+                //byte_counts_table_reg_inc_action.execute(ig_md.index_1_dns);
                 index_for_update = ig_md.index_1;
                 ig_md.already_matched = 1;
             }
@@ -1804,8 +1811,8 @@ control SwitchIngress(inout Parsed_packet headers,
                     ig_md.domain_id = domain_tstamp_reg_2_get_domain_and_update_ts_action.execute(ig_md.index_2);
 
                     // Update packet_count, update byte_count
-                    //packet_counts_table_reg_inc_action.execute(ig_md.index_2);
-                    //byte_counts_table_reg_inc_action.execute(ig_md.index_2);
+                    //packet_counts_table_reg_inc_action.execute(ig_md.index_2_dns);
+                    //byte_counts_table_reg_inc_action.execute(ig_md.index_2_dns);
                     index_for_update = ig_md.index_2;
                     ig_md.already_matched = 1;
                 }
@@ -1819,8 +1826,8 @@ control SwitchIngress(inout Parsed_packet headers,
                     ig_md.domain_id = domain_tstamp_reg_3_get_domain_and_update_ts_action.execute(ig_md.index_3);
 
                     // Update packet_count, update byte_count
-                    //packet_counts_table_reg_inc_action.execute(ig_md.index_3);
-                    //byte_counts_table_reg_inc_action.execute(ig_md.index_3);
+                    //packet_counts_table_reg_inc_action.execute(ig_md.index_3_dns);
+                    //byte_counts_table_reg_inc_action.execute(ig_md.index_3_dns);
                     index_for_update = ig_md.index_3;
                     ig_md.already_matched = 1;
                 }
@@ -1828,49 +1835,49 @@ control SwitchIngress(inout Parsed_packet headers,
 
             // Check other direction (source is client, destination is server)
             /*if (ig_md.already_matched == 0) {
-                ig_md.index_1 = (bit<32>) hash_1.get({headers.ipv4.dst, 7w11, headers.ipv4.src});
-                ig_md.index_2 = (bit<32>) hash_1.get({3w5, headers.ipv4.dst, 5w3, headers.ipv4.src});
-                ig_md.index_3 = (bit<32>) hash_1.get({2w0, headers.ipv4.dst, 1w1, headers.ipv4.src});
+                ig_md.index_1_dns = (bit<32>) hash_1.get({headers.ipv4.dst, 7w11, headers.ipv4.src});
+                ig_md.index_2_dns = (bit<32>) hash_1.get({3w5, headers.ipv4.dst, 5w3, headers.ipv4.src});
+                ig_md.index_3_dns = (bit<32>) hash_1.get({2w0, headers.ipv4.dst, 1w1, headers.ipv4.src});
 
                 // register_1
-                sip_cip_matched = sip_cip_reg_1_check_dir2_action.execute(ig_md.index_1);
+                sip_cip_matched = sip_cip_reg_1_check_dir2_action.execute(ig_md.index_1_dns);
                 if (sip_cip_matched == 1) {
                     // Get domain_id and udpate timestamp
-                    ig_md.domain_id = domain_tstamp_reg_1_get_domain_and_update_ts_action.execute(ig_md.index_1);
+                    ig_md.domain_id = domain_tstamp_reg_1_get_domain_and_update_ts_action.execute(ig_md.index_1_dns);
 
                     // Update packet_count, update byte_count
-                    //packet_counts_table_reg_inc_action.execute(ig_md.index_1);
-                    //byte_counts_table_reg_inc_action.execute(ig_md.index_1);
-                    index_for_update = ig_md.index_1;
+                    //packet_counts_table_reg_inc_action.execute(ig_md.index_1_dns);
+                    //byte_counts_table_reg_inc_action.execute(ig_md.index_1_dns);
+                    index_for_update = ig_md.index_1_dns;
                     ig_md.already_matched = 1;
                 }
 
                 // register_2
                 if (ig_md.already_matched == 0) {
-                    sip_cip_matched = sip_cip_reg_2_check_dir2_action.execute(ig_md.index_2);
+                    sip_cip_matched = sip_cip_reg_2_check_dir2_action.execute(ig_md.index_2_dns);
                     if (sip_cip_matched == 1) {
                         // Get domain_id and udpate timestamp
-                        ig_md.domain_id = domain_tstamp_reg_2_get_domain_and_update_ts_action.execute(ig_md.index_2);
+                        ig_md.domain_id = domain_tstamp_reg_2_get_domain_and_update_ts_action.execute(ig_md.index_2_dns);
 
                         // Update packet_count, update byte_count
-                        //packet_counts_table_reg_inc_action.execute(ig_md.index_2);
-                        //byte_counts_table_reg_inc_action.execute(ig_md.index_2);
-                        index_for_update = ig_md.index_2;
+                        //packet_counts_table_reg_inc_action.execute(ig_md.index_2_dns);
+                        //byte_counts_table_reg_inc_action.execute(ig_md.index_2_dns);
+                        index_for_update = ig_md.index_2_dns;
                         ig_md.already_matched = 1;
                     }
                 }
 
                 // register_3
                 if (ig_md.already_matched == 0) {
-                    sip_cip_matched = sip_cip_reg_3_check_dir2_action.execute(ig_md.index_3);
+                    sip_cip_matched = sip_cip_reg_3_check_dir2_action.execute(ig_md.index_3_dns);
                     if (sip_cip_matched == 1) {
                         // Get domain_id and udpate timestamp
-                        ig_md.domain_id = domain_tstamp_reg_3_get_domain_and_update_ts_action.execute(ig_md.index_3);
+                        ig_md.domain_id = domain_tstamp_reg_3_get_domain_and_update_ts_action.execute(ig_md.index_3_dns);
 
                         // Update packet_count, update byte_count
-                        //packet_counts_table_reg_inc_action.execute(ig_md.index_3);
-                        //byte_counts_table_reg_inc_action.execute(ig_md.index_3);
-                        index_for_update = ig_md.index_3;
+                        //packet_counts_table_reg_inc_action.execute(ig_md.index_3_dns);
+                        //byte_counts_table_reg_inc_action.execute(ig_md.index_3_dns);
+                        index_for_update = ig_md.index_3_dns;
                         ig_md.already_matched = 1;
                     }
                 }
