@@ -110,7 +110,8 @@ header dns_a {
     bit<16> qname_pointer;
     dns_qtype_class tc_ans;
     bit<32> ttl;
-    bit<16> rd_length;
+    bit<8> rd_length_1
+    bit<8> rd_length_2;
 }
 
 header dns_a_ip {
@@ -857,7 +858,7 @@ parser SwitchIngressParser(packet_in pkt,
     }
 
     state parse_cname {
-        counter.set((bit<8>)p.dns_answer.rd_length);
+        counter.set(p.dns_answer.rd_length_2);
 
         transition select(counter.is_zero()) {
             true: parse_dns_answer;
