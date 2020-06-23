@@ -888,7 +888,7 @@ parser SwitchIngressParser(packet_in pkt,
 // ---------------------------------------------------------------------------
 control SwitchIngressDeparser(
         packet_out pkt,
-        inout header_t hdr,
+        inout Parsed_packet hdr,
         in ig_metadata_t ig_md,
         in ingress_intrinsic_metadata_for_deparser_t ig_intr_dprsr_md) {
          
@@ -913,7 +913,7 @@ control SwitchIngressDeparser(
 // ---------------------------------------------------------------------------
 parser SwitchEgressParser(
         packet_in pkt,
-        out header_t hdr,
+        out Parsed_packet hdr,
         out eg_metadata_t eg_md,
         out egress_intrinsic_metadata_t eg_intr_md) {
     state start {
@@ -927,7 +927,7 @@ parser SwitchEgressParser(
 // ---------------------------------------------------------------------------
 control SwitchEgressDeparser(
         packet_out pkt,
-        inout header_t hdr,
+        inout Parsed_packet hdr,
         in eg_metadata_t eg_md,
         in egress_intrinsic_metadata_for_deparser_t eg_intr_md_for_dprsr) {
     apply {
@@ -1878,7 +1878,7 @@ control SwitchIngress(inout Parsed_packet headers,
 // Egress Control
 // ---------------------------------------------------------------------------
 control SwitchEgress(
-        inout header_t hdr,
+        inout Parsed_packet hdr,
         inout eg_metadata_t eg_md,
         in egress_intrinsic_metadata_t eg_intr_md,
         in egress_intrinsic_metadata_from_parser_t eg_intr_md_from_prsr,
