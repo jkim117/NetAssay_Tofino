@@ -1844,9 +1844,9 @@ control SwitchIngress(inout Parsed_packet headers,
             ig_md.already_matched = 0;
 
             // register_1
-            /*cip_matched = dns_cip_reg_1_check_bidir_action.execute(ig_md.index_1);
+            cip_matched = dns_cip_reg_1_check_bidir_action.execute(ig_md.index_1);
             //sip_matched = dns_sip_reg_1_check_bidir_action.execute(ig_md.index_1);
-            if (cip_matched == 1 && sip_matched == 1) {
+            /*if (cip_matched == 1 && sip_matched == 1) {
                 // Get domain_id and udpate timestamp
                 ig_md.domain_id = domain_tstamp_reg_1_get_domain_and_update_ts_action.execute(ig_md.index_1);
 
@@ -1887,12 +1887,12 @@ control SwitchIngress(inout Parsed_packet headers,
                     index_for_update = ig_md.index_3;
                     ig_md.already_matched = 1;
                 }
-            }*/
+            }
 
             if (ig_md.already_matched == 1) {
                 packet_counts_table_reg_inc_action.execute(index_for_update);
                 byte_counts_table_reg_inc_action.execute(index_for_update);
-            }
+            }*/
         }
 	}
 }
