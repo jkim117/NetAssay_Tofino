@@ -1713,10 +1713,11 @@ control SwitchIngress(inout Parsed_packet headers,
                 if (!is_resubmitted) {
                     // access table 1
                     // Read sip_cip table
-                    bit<1> is_match =  dns_cip_reg_1_check_action.execute(ig_md.index_1) & dns_sip_reg_1_check_action.execute(ig_md.index_1);
+                    bit<1> is_match_cip =  dns_cip_reg_1_check_action.execute(ig_md.index_1);
+                    bit<1> is_match_sip = dns_sip_reg_1_check_action.execute(ig_md.index_1);
                     
                     // If sip and cip matches, just update timestamp
-                    if (is_match == 1) {
+                    if (is_match_cip == 1 && is_match_sip == 1) {
                         domain_tstamp_reg_1_update_tstamp_action.execute(ig_md.index_1);
                         ig_md.already_matched = 1;
                     }
@@ -1748,10 +1749,11 @@ control SwitchIngress(inout Parsed_packet headers,
 
                     if (!is_resubmitted) {
                         // Read sip_cip table
-                        bit<1> is_match =  dns_cip_reg_2_check_action.execute(ig_md.index_2) & dns_sip_reg_2_check_action.execute(ig_md.index_2);
+                        bit<1> is_match_cip =  dns_cip_reg_2_check_action.execute(ig_md.index_2);
+                        bit<1> is_match_sip = dns_sip_reg_2_check_action.execute(ig_md.index_2);
                         
                         // If sip and cip matches, just update timestamp
-                        if (is_match == 1) {
+                        if (is_match_cip == 1 && is_match_sip == 1) {
                             domain_tstamp_reg_2_update_tstamp_action.execute(ig_md.index_2);
                             ig_md.already_matched = 1;
                         }
@@ -1782,10 +1784,11 @@ control SwitchIngress(inout Parsed_packet headers,
                 if (ig_md.already_matched == 0) {
 
                     if (!is_resubmitted) {
-                        bit<1> is_match =  dns_cip_reg_3_check_action.execute(ig_md.index_3) & dns_sip_reg_3_check_action.execute(ig_md.index_3);
+                        bit<1> is_match_cip =  dns_cip_reg_3_check_action.execute(ig_md.index_3);
+                        bit<1> is_match_sip = dns_sip_reg_3_check_action.execute(ig_md.index_3);
                             
                         // If sip and cip matches, just update timestamp
-                        if (is_match == 1) {
+                        if (is_match_cip == 1 && is_match_sip == 1) {
                             domain_tstamp_reg_3_update_tstamp_action.execute(ig_md.index_3);
                             ig_md.already_matched = 1;
                         }
@@ -1828,13 +1831,15 @@ control SwitchIngress(inout Parsed_packet headers,
             ig_md.index_2 = (bit<32>) hash_1.get(headers.ipv4.src + headers.ipv4.dst + 32w187182238);
             ig_md.index_3 = (bit<32>) hash_1.get(headers.ipv4.src + headers.ipv4.dst + 32w232108253);
 
-            bit<1> sip_cip_matched = 0;
+            bit<1> sip_matched = 0;
+            bit<1> cip_matched = 0;
             bit<32> index_for_update = 0;
             ig_md.already_matched = 0;
 
             // register_1
-            sip_cip_matched = dns_cip_reg_1_check_bidir_action.execute(ig_md.index_1) & dns_sip_reg_1_check_bidir_action.execute(ig_md.index_1);
-            if (sip_cip_matched == 1) {
+            cip_matched = dns_cip_reg_1_check_bidir_action.execute(ig_md.index_1);
+            sip_matched = dns_sip_reg_1_check_bidir_action.execute(ig_md.index_1);
+            if (cip_matched == 1 && sip_matched == 1) {
                 // Get domain_id and udpate timestamp
                 ig_md.domain_id = domain_tstamp_reg_1_get_domain_and_update_ts_action.execute(ig_md.index_1);
 
@@ -1847,8 +1852,9 @@ control SwitchIngress(inout Parsed_packet headers,
 
             // register_2
             if (ig_md.already_matched == 0) {
-                sip_cip_matched = dns_cip_reg_2_check_bidir_action.execute(ig_md.index_2) & dns_sip_reg_2_check_bidir_action.execute(ig_md.index_2);
-                if (sip_cip_matched == 1) {
+                cip_matched = dns_cip_reg_2_check_bidir_action.execute(ig_md.index_2);
+                sip_matched = dns_sip_reg_2_check_bidir_action.execute(ig_md.index_2);
+                if (cip_matched == 1 && sip_matched == 1) {
                     // Get domain_id and udpate timestamp
                     ig_md.domain_id = domain_tstamp_reg_2_get_domain_and_update_ts_action.execute(ig_md.index_2);
 
@@ -1862,8 +1868,9 @@ control SwitchIngress(inout Parsed_packet headers,
 
             // register_3
             if (ig_md.already_matched == 0) {
-                sip_cip_matched = dns_cip_reg_3_check_bidir_action.execute(ig_md.index_3) & dns_sip_reg_3_check_bidir_action.execute(ig_md.index_3);
-                if (sip_cip_matched == 1) {
+                cip_matched = dns_cip_reg_3_check_bidir_action.execute(ig_md.index_3);
+                sip_matched = dns_sip_reg_3_check_bidir_action.execute(ig_md.index_3);
+                if (cip_matched == 1 && sip_matched == 1) {
                     // Get domain_id and udpate timestamp
                     ig_md.domain_id = domain_tstamp_reg_3_get_domain_and_update_ts_action.execute(ig_md.index_3);
 
