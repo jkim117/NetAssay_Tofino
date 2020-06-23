@@ -110,7 +110,7 @@ header dns_a {
     bit<16> qname_pointer;
     dns_qtype_class tc_ans;
     bit<32> ttl;
-    bit<8> rd_length_1
+    bit<8> rd_length_1;
     bit<8> rd_length_2;
 }
 
