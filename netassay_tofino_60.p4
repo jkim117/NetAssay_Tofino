@@ -1775,7 +1775,7 @@ control SwitchIngress(inout Parsed_packet headers,
             //hash(ig_md.index_3, HashAlgorithm.crc16, HASH_TABLE_BASE, {2w0, headers.ipv4.src, 1w1, headers.ipv4.dst}, HASH_TABLE_MAX);
             
             ig_md.index_1 = (bit<32>) hash_1.get(headers.ipv4.src + 7w11 + headers.ipv4.dst, HASH_TABLE_BASE, HASH_TABLE_MAX);
-            ig_md.index_2 = (bit<32>) hash_1.get(3w5 + headers.ipv4.src + 5w3 headers.ipv4.dst, HASH_TABLE_BASE, HASH_TABLE_MAX);
+            ig_md.index_2 = (bit<32>) hash_1.get(3w5 + headers.ipv4.src + 5w3 + headers.ipv4.dst, HASH_TABLE_BASE, HASH_TABLE_MAX);
             ig_md.index_3 = (bit<32>) hash_1.get(2w0 + headers.ipv4.src + 1w1 + headers.ipv4.dst, HASH_TABLE_BASE, HASH_TABLE_MAX);
 
             bit<1> sip_cip_matched = 0;
