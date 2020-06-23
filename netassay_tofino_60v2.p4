@@ -1891,7 +1891,7 @@ control SwitchIngress(inout Parsed_packet headers,
 
             if (ig_md.already_matched == 1) {
                 packet_counts_table_reg_inc_action.execute(index_for_update);
-                byte_counts_table_reg_inc_action.execute(index_for_update);
+                //byte_counts_table_reg_inc_action.execute(index_for_update);
             }
         }
 	}
