@@ -857,7 +857,7 @@ parser SwitchIngressParser(packet_in pkt,
     }
 
     state parse_cname {
-        counter.set(p.dns_answer.rd_length);
+        counter.set((bit<8>)p.dns_answer.rd_length);
 
         transition select(counter.is_zero()) {
             true: parse_dns_answer;
