@@ -234,7 +234,7 @@ parser SwitchIngressParser(packet_in pkt,
            out ig_metadata_t ig_md,
            out ingress_intrinsic_metadata_t ig_intr_md) {
 
-    TofinoIngressParser() tofino_parser();
+    TofinoIngressParser() tofino_parser;
 
     ParserCounter() counter;
 
