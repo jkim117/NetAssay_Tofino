@@ -1153,10 +1153,11 @@ control SwitchIngress(inout Parsed_packet headers,
     RegisterAction<sip_cip_t,_,bit<1>> (sip_cip_reg_1) sip_cip_reg_1_check_dir1_action = {
         void apply(inout sip_cip_t value, out bit<1> is_match) {
             //if ( (value.sip == headers.dns_ip.rdata && value.cip == headers.ipv4.dst) || (value.sip == headers.ipv4.dst && value.cip == headers.dns_ip.rdata) ) {
-            if (value.sip == headers.ipv4.src && value.cip == headers.ipv4.dst) {
-                is_match = 1;
-            }
-            else if (value.sip == headers.ipv4.dst && value.cip == headers.ipv4.src) {
+            bit<64> sip_cip = ((bit<64>)value.sip << 32) + (bit<64>)value.cip;
+            bit<64> src_dst = ((bit<64>)headers.ipv4.src << 32) + (bit<64>)headers.ipv4.dst;
+            bit<64> dst_src = ((bit<64>)headers.ipv4.dst << 32) + (bit<64>)headers.ipv4.src;
+
+            if (sip_cip == src_dst || sip_cip == dst_src) {
                 is_match = 1;
             }
             else {
@@ -1229,9 +1230,9 @@ control SwitchIngress(inout Parsed_packet headers,
             if (value.sip == headers.ipv4.src && value.cip == headers.ipv4.dst) {
                 is_match = 1;
             }
-            else if (value.sip == headers.ipv4.dst && value.cip == headers.ipv4.src) {
+            /*else if (value.sip == headers.ipv4.dst && value.cip == headers.ipv4.src) {
                 is_match = 1;
-            }
+            }*/
             else {
                 is_match = 0;
             }
@@ -1301,9 +1302,9 @@ control SwitchIngress(inout Parsed_packet headers,
             if (value.sip == headers.ipv4.src && value.cip == headers.ipv4.dst) {
                 is_match = 1;
             }
-            else if (value.sip == headers.ipv4.dst && value.cip == headers.ipv4.src) {
+            /*else if (value.sip == headers.ipv4.dst && value.cip == headers.ipv4.src) {
                 is_match = 1;
-            }
+            }*/
             else {
                 is_match = 0;
             }
