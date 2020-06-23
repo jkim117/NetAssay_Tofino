@@ -1817,7 +1817,7 @@ control SwitchIngress(inout Parsed_packet headers,
             }
 
             // Check other direction (source is client, destination is server)
-            if (ig_md.already_matched == 0) {
+            /*if (ig_md.already_matched == 0) {
                 ig_md.index_1 = (bit<32>) hash_1.get({headers.ipv4.dst, 7w11, headers.ipv4.src});
                 ig_md.index_2 = (bit<32>) hash_1.get({3w5, headers.ipv4.dst, 5w3, headers.ipv4.src});
                 ig_md.index_3 = (bit<32>) hash_1.get({2w0, headers.ipv4.dst, 1w1, headers.ipv4.src});
@@ -1864,7 +1864,7 @@ control SwitchIngress(inout Parsed_packet headers,
                         ig_md.already_matched = 1;
                     }
                 }
-            }
+            }*/
 
             if (ig_md.already_matched == 1) {
                 packet_counts_table_reg_inc_action.execute(index_for_update);
