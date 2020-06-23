@@ -1887,12 +1887,12 @@ control SwitchIngress(inout Parsed_packet headers,
                     index_for_update = ig_md.index_3;
                     ig_md.already_matched = 1;
                 }
-            }
+            }*/
 
             if (ig_md.already_matched == 1) {
                 packet_counts_table_reg_inc_action.execute(index_for_update);
                 byte_counts_table_reg_inc_action.execute(index_for_update);
-            }*/
+            }
         }
 	}
 }
