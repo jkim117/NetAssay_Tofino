@@ -2868,9 +2868,9 @@ control SwitchIngress(
                 */
 
                 // hdr.dns_ip.rdata is sip and hdr.ipv4.dst is cip. So sip followed by cip when hashing
-                ig_md.index_1 = (bit<32>) hash_1.get(headers.dns_ip.rdata + headers.ipv4.dst + 32w134140211);
-                ig_md.index_2 = (bit<32>) hash_1.get(headers.dns_ip.rdata + headers.ipv4.dst + 32w187182238);
-                ig_md.index_3 = (bit<32>) hash_1.get(headers.dns_ip.rdata + headers.ipv4.dst + 32w232108253);
+                ig_md.index_1 = (bit<32>) hash_1.get(hdr.dns_ip.rdata + hdr.ipv4.dst + 32w134140211);
+                ig_md.index_2 = (bit<32>) hash_1.get(hdr.dns_ip.rdata + hdr.ipv4.dst + 32w187182238);
+                ig_md.index_3 = (bit<32>) hash_1.get(hdr.dns_ip.rdata + hdr.ipv4.dst + 32w232108253);
 
                 // access table 1
                 if (!is_resubmitted) {
@@ -3112,9 +3112,9 @@ control SwitchIngress(
             //ig_md.temp_sip = dns_sip_table_1_reg_read_action.execute(ig_md.index_1);
 
             // Assume hdr.ipv4.dst is sip and hdr.ipv4.src is cip. So sip followed by cip when hashing
-            ig_md.index_1 = (bit<32>) hash_1.get(headers.ipv4.src + headers.ipv4.dst + 32w134140211);
-            ig_md.index_2 = (bit<32>) hash_1.get(headers.ipv4.src + headers.ipv4.dst + 32w187182238);
-            ig_md.index_3 = (bit<32>) hash_1.get(headers.ipv4.src + headers.ipv4.dst + 32w232108253);
+            ig_md.index_1 = (bit<32>) hash_1.get(hdr.ipv4.src + hdr.ipv4.dst + 32w134140211);
+            ig_md.index_2 = (bit<32>) hash_1.get(hdr.ipv4.src + hdr.ipv4.dst + 32w187182238);
+            ig_md.index_3 = (bit<32>) hash_1.get(hdr.ipv4.src + hdr.ipv4.dst + 32w232108253);
 
             bit<1> sip_cip_matched = 0;
             bit<32> index_for_update = 0;
