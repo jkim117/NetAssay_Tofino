@@ -1861,8 +1861,9 @@ control SwitchIngress(inout Parsed_packet headers,
 
             // register_2
             if (ig_md.already_matched == 0) {
-                cip_matched = dns_cip_reg_2_check_bidir_action.execute(ig_md.index_2);
+                
                 sip_matched = dns_sip_reg_2_check_bidir_action.execute(ig_md.index_2);
+                cip_matched = dns_cip_reg_2_check_bidir_action.execute(ig_md.index_2);
                 if (cip_matched == 1 && sip_matched == 1) {
                     // Get domain_id and udpate timestamp
                     ig_md.domain_id = domain_tstamp_reg_2_get_domain_and_update_ts_action.execute(ig_md.index_2);
