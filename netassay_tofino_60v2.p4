@@ -1193,7 +1193,7 @@ control SwitchIngress(inout Parsed_packet headers,
     };
     RegisterAction<bit<32>,_,void> (dns_sip_reg_1) dns_sip_reg_1_update_action = {
         void apply(inout bit<32> value) {
-            value = headers.dns_ip.rdata
+            value = headers.dns_ip.rdata;
         }
     };
 
@@ -1282,7 +1282,7 @@ control SwitchIngress(inout Parsed_packet headers,
     };
     RegisterAction<bit<32>,_,void> (dns_sip_reg_2) dns_sip_reg_2_update_action = {
         void apply(inout bit<32> value) {
-            value = headers.dns_ip.rdata
+            value = headers.dns_ip.rdata;
         }
     };
 
@@ -1370,7 +1370,7 @@ control SwitchIngress(inout Parsed_packet headers,
     };
     RegisterAction<bit<32>,_,void> (dns_sip_reg_3) dns_sip_reg_3_update_action = {
         void apply(inout bit<32> value) {
-            value = headers.dns_ip.rdata
+            value = headers.dns_ip.rdata;
         }
     };
 
