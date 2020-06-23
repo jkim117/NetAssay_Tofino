@@ -1831,7 +1831,7 @@ control SwitchIngress(inout Parsed_packet headers,
             }
         }
         // HANDLE NORMAL, NON-DNS PACKETS
-        if (ig_md.is_ip == 1 && ig_md.is_dns == 0) {
+        else if (ig_md.is_ip == 1 && ig_md.is_dns == 0) {
             //hash(ig_md.index_1, HashAlgorithm.crc16, HASH_TABLE_BASE, {headers.ipv4.src, 7w11, headers.ipv4.dst}, HASH_TABLE_MAX);
             //hash(ig_md.index_2, HashAlgorithm.crc16, HASH_TABLE_BASE, {3w5, headers.ipv4.src, 5w3, headers.ipv4.dst}, HASH_TABLE_MAX);
             //hash(ig_md.index_3, HashAlgorithm.crc16, HASH_TABLE_BASE, {2w0, headers.ipv4.src, 1w1, headers.ipv4.dst}, HASH_TABLE_MAX);
@@ -1846,7 +1846,7 @@ control SwitchIngress(inout Parsed_packet headers,
             ig_md.already_matched = 0;
 
             // register_1
-            //cip_matched = dns_cip_reg_1_check_bidir_action.execute(ig_md.index_1);
+            cip_matched = dns_cip_reg_1_check_bidir_action.execute(ig_md.index_1);
             sip_matched = dns_sip_reg_1_check_bidir_action.execute(ig_md.index_1);
             if (cip_matched == 1 && sip_matched == 1) {
                 // Get domain_id and udpate timestamp
