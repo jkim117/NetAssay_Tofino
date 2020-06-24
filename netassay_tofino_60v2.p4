@@ -1668,7 +1668,7 @@ control SwitchIngress(inout Parsed_packet headers,
         default_action = NoAction();
     }
 
-    action match_banned_dns_dst() {
+    /*action match_banned_dns_dst() {
         ig_md.matched_domain = 0;
     }
 
@@ -1696,7 +1696,7 @@ control SwitchIngress(inout Parsed_packet headers,
         }
         size = NUM_BANNED_DST_IP;
         default_action = NoAction();
-    }
+    }*/
 
     apply {
         if(ig_md.parsed_answer == 1) {
@@ -1704,8 +1704,8 @@ control SwitchIngress(inout Parsed_packet headers,
             ig_md.matched_domain = 0;
 
             known_domain_list.apply();
-            allowable_dns_dst.apply();
-            banned_dns_dst.apply();
+            //allowable_dns_dst.apply();
+            //banned_dns_dst.apply();
 
             if (ig_md.matched_domain == 1) {
 
@@ -1831,7 +1831,7 @@ control SwitchIngress(inout Parsed_packet headers,
             }
         }
         // HANDLE NORMAL, NON-DNS PACKETS
-        else if (ig_md.is_ip == 1 && ig_md.is_dns == 0) {
+        /*else if (ig_md.is_ip == 1 && ig_md.is_dns == 0) {
             //hash(ig_md.index_1, HashAlgorithm.crc16, HASH_TABLE_BASE, {headers.ipv4.src, 7w11, headers.ipv4.dst}, HASH_TABLE_MAX);
             //hash(ig_md.index_2, HashAlgorithm.crc16, HASH_TABLE_BASE, {3w5, headers.ipv4.src, 5w3, headers.ipv4.dst}, HASH_TABLE_MAX);
             //hash(ig_md.index_3, HashAlgorithm.crc16, HASH_TABLE_BASE, {2w0, headers.ipv4.src, 1w1, headers.ipv4.dst}, HASH_TABLE_MAX);
@@ -1897,7 +1897,7 @@ control SwitchIngress(inout Parsed_packet headers,
                 packet_counts_table_reg_inc_action.execute(index_for_update);
                 byte_counts_table_reg_inc_action.execute(index_for_update);
             }
-        }
+        }*/
 	}
 }
 
