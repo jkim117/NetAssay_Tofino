@@ -1790,7 +1790,7 @@ control SwitchIngress(inout Parsed_packet headers,
                 }
 
                 // access table 3
-                if (ig_md.already_matched == 0) {
+                /*if (ig_md.already_matched == 0) {
 
                     if (!is_resubmitted) {
                         bit<1> is_match_cip =  dns_cip_reg_3_check_action.execute(ig_md.index_3_dns);
@@ -1821,7 +1821,7 @@ control SwitchIngress(inout Parsed_packet headers,
                         ig_md.already_matched = 1;
                     }
                     
-                }
+                }*/
 
                 if (ig_md.already_matched == 0) {
                     // Increment total DNS queries missed for this domain name
