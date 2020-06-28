@@ -1404,7 +1404,7 @@ control SwitchIngress(inout Parsed_packet headers,
             value.timestamp = (bit<32>)ig_intr_prsr_md.global_tstamp;
             value.domain_id = ig_md.domain_id;
         }
-    };*/
+    };
 
     Register<bit<32>,_>(TABLE_SIZE,0) dns_cip_table_1;
     RegisterAction<bit<32>,_,bit<32>> (dns_cip_table_1) dns_cip_table_1_reg_read_action = {
@@ -1440,7 +1440,7 @@ control SwitchIngress(inout Parsed_packet headers,
         }
     };
 
-    /*Register<bit<32>,_>(TABLE_SIZE,0) dns_name_table_1;
+    Register<bit<32>,_>(TABLE_SIZE,0) dns_name_table_1;
     RegisterAction<bit<32>,_,bit<32>> (dns_name_table_1) dns_name_table_1_reg_read_action = {
         void apply(inout bit<32> value, out bit<32> read_value) {
             read_value = value;
@@ -1462,7 +1462,7 @@ control SwitchIngress(inout Parsed_packet headers,
         void apply(inout bit<32> value) {
             value = (bit<32>) ig_intr_prsr_md.global_tstamp;
         }
-    };*/
+    };
 
     Register<bit<32>,_>(TABLE_SIZE,0) dns_cip_table_2;
     RegisterAction<bit<32>,_,bit<32>> (dns_cip_table_2) dns_cip_table_2_reg_read_action = {
@@ -1498,7 +1498,7 @@ control SwitchIngress(inout Parsed_packet headers,
         }
     };
 
-    /*Register<bit<32>,_>(TABLE_SIZE,0) dns_name_table_2;
+    Register<bit<32>,_>(TABLE_SIZE,0) dns_name_table_2;
     RegisterAction<bit<32>,_,bit<32>> (dns_name_table_2) dns_name_table_2_reg_read_action = {
         void apply(inout bit<32> value, out bit<32> read_value) {
             read_value = value;
