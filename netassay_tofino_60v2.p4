@@ -1696,13 +1696,13 @@ control SwitchIngress(inout Parsed_packet headers,
             banned_dns_dst.apply();
 
             if (ig_md.matched_domain == 1) {
-
-                // Increment total DNS queries for this domain name
-                dns_total_queried_reg_inc_action.execute(ig_md.domain_id);
                 
                 ig_md.index_1_dns = (bit<32>) hash_1_dns.get(headers.dns_ip.rdata + headers.ipv4.dst + 32w134140211);
                 ig_md.index_2_dns = (bit<32>) hash_2_dns.get(headers.dns_ip.rdata + headers.ipv4.dst + 32w187182238);
                 ig_md.index_3_dns = (bit<32>) hash_3_dns.get(headers.dns_ip.rdata + headers.ipv4.dst + 32w232108253);
+
+                // Increment total DNS queries for this domain name
+                dns_total_queried_reg_inc_action.execute(ig_md.domain_id);
 
                 ig_md.already_matched = 0;
                 bool is_resubmitted=(bool) ig_intr_md.resubmit_flag;
