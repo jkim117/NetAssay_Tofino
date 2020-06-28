@@ -1735,7 +1735,7 @@ control SwitchIngress(inout Parsed_packet headers,
             //hash(ig_md.index_3_dns, HashAlgorithm.crc16, HASH_TABLE_BASE, {2w0, headers.ipv4.src, 1w1, headers.ipv4.dst}, HASH_TABLE_MAX);
             
             ig_md.index_1 = (bit<32>) hash_1.get(headers.ipv4.src + headers.ipv4.dst + 32w134140211);
-            ig_md.index_2 = (bit<32>) hash_2.get(headers.ipv4.src + headers.ipv4.dst + 32w187182238);
+            
             //ig_md.index_3 = (bit<32>) hash_3.get(headers.ipv4.src + headers.ipv4.dst + 32w232108253);
 
             bit<1> sip_cip_matched = 0;
@@ -1755,6 +1755,7 @@ control SwitchIngress(inout Parsed_packet headers,
                 ig_md.already_matched = 1;
             }
 
+            ig_md.index_2 = (bit<32>) hash_2.get(headers.ipv4.src + headers.ipv4.dst + 32w187182238);
             // register_2
             if (ig_md.already_matched == 0) {
                 sip_cip_matched = sip_cip_reg_2_check_dir1_action.execute(ig_md.index_2);
