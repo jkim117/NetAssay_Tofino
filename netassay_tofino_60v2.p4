@@ -1157,12 +1157,18 @@ control SwitchIngress(inout Parsed_packet headers,
         void apply(inout bit<32> value, out bit<1> is_match) {
             //if ( (value.sip == headers.dns_ip.rdata && value.cip == headers.ipv4.dst) || (value.sip == headers.ipv4.dst && value.cip == headers.dns_ip.rdata) ) {
 
-            if (value == headers.ipv4.src || value == headers.ipv4.dst) {
+            if (value == headers.ipv4.dst) {
                 is_match = 1;
             }
             else {
                 is_match = 0;
             }
+            /*if (value == headers.ipv4.src || value == headers.ipv4.dst) {
+                is_match = 1;
+            }
+            else {
+                is_match = 0;
+            }*/
         }
     };
     RegisterAction<bit<32>,_,void> (dns_cip_reg_1) dns_cip_reg_1_update_action = {
@@ -1186,12 +1192,18 @@ control SwitchIngress(inout Parsed_packet headers,
         void apply(inout bit<32> value, out bit<1> is_match) {
             //if ( (value.sip == headers.dns_ip.rdata && value.cip == headers.ipv4.dst) || (value.sip == headers.ipv4.dst && value.cip == headers.dns_ip.rdata) ) {
 
-            if (value == headers.ipv4.src || value == headers.ipv4.dst) {
+            if (value == headers.ipv4.src) {
                 is_match = 1;
             }
             else {
                 is_match = 0;
             }
+            /*if (value == headers.ipv4.src || value == headers.ipv4.dst) {
+                is_match = 1;
+            }
+            else {
+                is_match = 0;
+            }*/
         }
     };
     RegisterAction<bit<32>,_,void> (dns_sip_reg_1) dns_sip_reg_1_update_action = {
@@ -1245,13 +1257,18 @@ control SwitchIngress(inout Parsed_packet headers,
     RegisterAction<bit<32>,_,bit<1>> (dns_cip_reg_2) dns_cip_reg_2_check_bidir_action = {
         void apply(inout bit<32> value, out bit<1> is_match) {
             //if ( (value.sip == headers.dns_ip.rdata && value.cip == headers.ipv4.dst) || (value.sip == headers.ipv4.dst && value.cip == headers.dns_ip.rdata) ) {
-
-            if (value == headers.ipv4.src || value == headers.ipv4.dst) {
+            if (value == headers.ipv4.dst) {
                 is_match = 1;
             }
             else {
                 is_match = 0;
             }
+            /*if (value == headers.ipv4.src || value == headers.ipv4.dst) {
+                is_match = 1;
+            }
+            else {
+                is_match = 0;
+            }*/
         }
     };
     RegisterAction<bit<32>,_,void> (dns_cip_reg_2) dns_cip_reg_2_update_action = {
@@ -1274,13 +1291,18 @@ control SwitchIngress(inout Parsed_packet headers,
     RegisterAction<bit<32>,_,bit<1>> (dns_sip_reg_2) dns_sip_reg_2_check_bidir_action = {
         void apply(inout bit<32> value, out bit<1> is_match) {
             //if ( (value.sip == headers.dns_ip.rdata && value.cip == headers.ipv4.dst) || (value.sip == headers.ipv4.dst && value.cip == headers.dns_ip.rdata) ) {
-
-            if (value == headers.ipv4.src || value == headers.ipv4.dst) {
+            if (value == headers.ipv4.src) {
                 is_match = 1;
             }
             else {
                 is_match = 0;
             }
+            /*if (value == headers.ipv4.src || value == headers.ipv4.dst) {
+                is_match = 1;
+            }
+            else {
+                is_match = 0;
+            }*/
         }
     };
     RegisterAction<bit<32>,_,void> (dns_sip_reg_2) dns_sip_reg_2_update_action = {
