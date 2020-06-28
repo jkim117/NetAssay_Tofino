@@ -1083,7 +1083,7 @@ control SwitchIngress(inout Parsed_packet headers,
 //        }
 //    };
 
-    Register<bit<32>,_>(TABLE_SIZE,0) dns_ip_rdata_table_1;
+    /*Register<bit<32>,_>(TABLE_SIZE,0) dns_ip_rdata_table_1;
     RegisterAction<bit<32>,_,void> (dns_ip_rdata_table_1) dns_ip_rdata_table_1_reg_write_action = {
         void apply(inout bit<32> dns_ip_rdata) {
             dns_ip_rdata = headers.dns_ip.rdata;
@@ -1132,7 +1132,7 @@ control SwitchIngress(inout Parsed_packet headers,
                 match_sip = 0;
             }
         }
-    };
+    };*/
 
 
     // PRECISION STYLE TABLES
