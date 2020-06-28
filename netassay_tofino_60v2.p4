@@ -1809,7 +1809,7 @@ control SwitchIngress(inout Parsed_packet headers,
                 }
 
                 // Increment total DNS queries for this domain name
-                dns_total_queried_reg_inc_action.execute(ig_md.domain_id);
+                //dns_total_queried_reg_inc_action.execute(ig_md.domain_id);
 
                 if (ig_md.already_matched == 0) {
                     // Increment total DNS queries missed for this domain name
