@@ -1668,23 +1668,11 @@ control SwitchIngress(inout Parsed_packet headers,
         default_action = NoAction();
     }
 
-    /*action match_banned_dns_dst() {
+    action match_banned_dns_dst() {
         ig_md.matched_domain = 0;
     }
 
-    table allowable_dns_dst {
-        key = {
-            headers.ipv4.dst: lpm;
-        }
-
-        actions = {
-            match_banned_dns_dst;
-            NoAction;
-        }
-        size = NUM_ALLOWABLE_DST_IP;
-        default_action = match_banned_dns_dst();
-    }
-
+    // Incorporate both banned and allowable dns in this single table
     table banned_dns_dst {
         key = {
             headers.ipv4.dst: lpm;
@@ -1696,7 +1684,7 @@ control SwitchIngress(inout Parsed_packet headers,
         }
         size = NUM_BANNED_DST_IP;
         default_action = NoAction();
-    }*/
+    }
 
     apply {
         if(ig_md.parsed_answer == 1) {
@@ -1705,7 +1693,7 @@ control SwitchIngress(inout Parsed_packet headers,
 
             known_domain_list.apply();
             //allowable_dns_dst.apply();
-            //banned_dns_dst.apply();
+            banned_dns_dst.apply();
 
             if (ig_md.matched_domain == 1) {
 
@@ -1790,7 +1778,7 @@ control SwitchIngress(inout Parsed_packet headers,
                 }
 
                 // access table 3
-                /*if (ig_md.already_matched == 0) {
+                if (ig_md.already_matched == 0) {
 
                     if (!is_resubmitted) {
                         bit<1> is_match_cip =  dns_cip_reg_3_check_action.execute(ig_md.index_3_dns);
@@ -1821,7 +1809,7 @@ control SwitchIngress(inout Parsed_packet headers,
                         ig_md.already_matched = 1;
                     }
                     
-                }*/
+                }
 
                 if (ig_md.already_matched == 0) {
                     // Increment total DNS queries missed for this domain name
