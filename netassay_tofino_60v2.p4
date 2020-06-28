@@ -981,7 +981,7 @@ control SwitchIngress(inout Parsed_packet headers,
         }
     };
 
-    Register<bit<32>,_>(TABLE_SIZE,0) ipv4_dst_cip_table_1;
+    /*Register<bit<32>,_>(TABLE_SIZE,0) ipv4_dst_cip_table_1;
     RegisterAction<bit<32>,_,void> (ipv4_dst_cip_table_1) ipv4_dst_cip_table_1_reg_write_action = {
         void apply(inout bit<32> ipv4_dst) {
             ipv4_dst = headers.ipv4.dst;
@@ -1030,7 +1030,7 @@ control SwitchIngress(inout Parsed_packet headers,
                 match_cip = 0;
             }
         }
-    };
+    };*/
  
 //    Register<bit<32>,_>(TABLE_SIZE,0) global_tstamp_table_1;
 //    RegisterAction<bit<32>,_,void> (global_tstamp_table_1) globaltstamp_table_1_reg_write_action = {
