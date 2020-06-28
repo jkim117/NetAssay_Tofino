@@ -1522,7 +1522,7 @@ control SwitchIngress(inout Parsed_packet headers,
         }
     };
  
-    Register<bit<32>,_>(TABLE_SIZE,0) dns_cip_table_3;
+    /*Register<bit<32>,_>(TABLE_SIZE,0) dns_cip_table_3;
     RegisterAction<bit<32>,_,bit<32>> (dns_cip_table_3) dns_cip_table_3_reg_read_action = {
         void apply(inout bit<32> value, out bit<32> read_value) {
             read_value = value;
@@ -1578,7 +1578,7 @@ control SwitchIngress(inout Parsed_packet headers,
         void apply(inout bit<32> value) {
             value = (bit<32>) ig_intr_prsr_md.global_tstamp;
         }
-    };
+    };*/
  
     // REGISTER ARRAY FOR COLLECTING COUNTS ON TRAFFIC WITH KNOWN DOMAINS
     //register<bit<32>>(NUM_KNOWN_DOMAINS) packet_counts_table;
@@ -1591,11 +1591,11 @@ control SwitchIngress(inout Parsed_packet headers,
     };
 
     Register<bit<64>,_>(NUM_KNOWN_DOMAINS) byte_counts_table;
-    RegisterAction<bit<32>,_,bit<32>> (byte_counts_table) byte_counts_table_reg_read_action = {
+    /*RegisterAction<bit<32>,_,bit<32>> (byte_counts_table) byte_counts_table_reg_read_action = {
         void apply(inout bit<32> value, out bit<32> read_value) {
             read_value = value;
         }
-    };
+    };*/
     RegisterAction<bit<32>,_,void> (byte_counts_table) byte_counts_table_reg_inc_action = {
         void apply(inout bit<32> value) {
             value = value + (bit<32>)headers.ipv4.len;
@@ -1702,7 +1702,7 @@ control SwitchIngress(inout Parsed_packet headers,
                 
                 ig_md.index_1_dns = (bit<32>) hash_1_dns.get(headers.dns_ip.rdata + headers.ipv4.dst + 32w134140211);
                 ig_md.index_2_dns = (bit<32>) hash_2_dns.get(headers.dns_ip.rdata + headers.ipv4.dst + 32w187182238);
-                ig_md.index_3_dns = (bit<32>) hash_3_dns.get(headers.dns_ip.rdata + headers.ipv4.dst + 32w232108253);
+                //ig_md.index_3_dns = (bit<32>) hash_3_dns.get(headers.dns_ip.rdata + headers.ipv4.dst + 32w232108253);
 
                 ig_md.already_matched = 0;
                 bool is_resubmitted=(bool) ig_intr_md.resubmit_flag;
@@ -1819,14 +1819,14 @@ control SwitchIngress(inout Parsed_packet headers,
             }
         }
         // HANDLE NORMAL, NON-DNS PACKETS
-        /*else if (ig_md.is_ip == 1 && ig_md.is_dns == 0) {
+        else if (ig_md.is_ip == 1 && ig_md.is_dns == 0) {
             //hash(ig_md.index_1, HashAlgorithm.crc16, HASH_TABLE_BASE, {headers.ipv4.src, 7w11, headers.ipv4.dst}, HASH_TABLE_MAX);
             //hash(ig_md.index_2, HashAlgorithm.crc16, HASH_TABLE_BASE, {3w5, headers.ipv4.src, 5w3, headers.ipv4.dst}, HASH_TABLE_MAX);
             //hash(ig_md.index_3, HashAlgorithm.crc16, HASH_TABLE_BASE, {2w0, headers.ipv4.src, 1w1, headers.ipv4.dst}, HASH_TABLE_MAX);
             
             ig_md.index_1 = (bit<32>) hash_1.get(headers.ipv4.src + headers.ipv4.dst + 32w134140211);
             ig_md.index_2 = (bit<32>) hash_2.get(headers.ipv4.src + headers.ipv4.dst + 32w187182238);
-            ig_md.index_3 = (bit<32>) hash_3.get(headers.ipv4.src + headers.ipv4.dst + 32w232108253);
+            //ig_md.index_3 = (bit<32>) hash_3.get(headers.ipv4.src + headers.ipv4.dst + 32w232108253);
 
             bit<1> sip_matched = 0;
             bit<1> cip_matched = 0;
@@ -1866,7 +1866,7 @@ control SwitchIngress(inout Parsed_packet headers,
             }
 
             // register_3
-            if (ig_md.already_matched == 0) {
+            /*if (ig_md.already_matched == 0) {
                 cip_matched = dns_cip_reg_3_check_bidir_action.execute(ig_md.index_3);
                 sip_matched = dns_sip_reg_3_check_bidir_action.execute(ig_md.index_3);
                 if (cip_matched == 1 && sip_matched == 1) {
@@ -1879,13 +1879,13 @@ control SwitchIngress(inout Parsed_packet headers,
                     index_for_update = ig_md.index_3;
                     ig_md.already_matched = 1;
                 }
-            }
+            }*/
 
             if (ig_md.already_matched == 1) {
                 packet_counts_table_reg_inc_action.execute(index_for_update);
                 byte_counts_table_reg_inc_action.execute(index_for_update);
             }
-        }*/
+        }
 	}
 }
 
