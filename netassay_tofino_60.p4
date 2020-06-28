@@ -1733,8 +1733,8 @@ control SwitchIngress(inout Parsed_packet headers,
             //hash(ig_md.index_1_dns, HashAlgorithm.crc16, HASH_TABLE_BASE, {headers.ipv4.src, 7w11, headers.ipv4.dst}, HASH_TABLE_MAX);
             //hash(ig_md.index_2_dns, HashAlgorithm.crc16, HASH_TABLE_BASE, {3w5, headers.ipv4.src, 5w3, headers.ipv4.dst}, HASH_TABLE_MAX);
             //hash(ig_md.index_3_dns, HashAlgorithm.crc16, HASH_TABLE_BASE, {2w0, headers.ipv4.src, 1w1, headers.ipv4.dst}, HASH_TABLE_MAX);
-            
-            ig_md.index_1 = (bit<32>) hash_1_dns.get(headers.ipv4.src + headers.ipv4.dst + 32w134140211);
+
+            ig_md.index_1 = (bit<32>) hash_1.get(headers.ipv4.src + headers.ipv4.dst + 32w134140211);
             
             //ig_md.index_3 = (bit<32>) hash_3.get(headers.ipv4.src + headers.ipv4.dst + 32w232108253);
 
