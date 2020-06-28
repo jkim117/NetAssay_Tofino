@@ -946,7 +946,7 @@ control SwitchIngress(inout Parsed_packet headers,
                 inout ingress_intrinsic_metadata_for_deparser_t ig_intr_dprsr_md,
                 inout ingress_intrinsic_metadata_for_tm_t ig_intr_tm_md) {
 
-    Register<bit<32>,_>(TABLE_SIZE,0) ipv4_dst_rdata_table;
+    /*Register<bit<32>,_>(TABLE_SIZE,0) ipv4_dst_rdata_table;
     RegisterAction<bit<32>,_,void> (ipv4_dst_rdata_table) ipv4_dst_rdata_table_reg_write_action = {
         void apply(inout bit<32> ipv4_dst) {
             ipv4_dst = headers.ipv4.dst;
@@ -1029,7 +1029,7 @@ control SwitchIngress(inout Parsed_packet headers,
                 match_cip = 0;
             }
         }
-    };
+    };*/
  
 //    Register<bit<32>,_>(TABLE_SIZE,0) global_tstamp_table_1;
 //    RegisterAction<bit<32>,_,void> (global_tstamp_table_1) globaltstamp_table_1_reg_write_action = {
@@ -1082,7 +1082,7 @@ control SwitchIngress(inout Parsed_packet headers,
 //        }
 //    };
 
-    Register<bit<32>,_>(TABLE_SIZE,0) dns_ip_rdata_table_1;
+    /*Register<bit<32>,_>(TABLE_SIZE,0) dns_ip_rdata_table_1;
     RegisterAction<bit<32>,_,void> (dns_ip_rdata_table_1) dns_ip_rdata_table_1_reg_write_action = {
         void apply(inout bit<32> dns_ip_rdata) {
             dns_ip_rdata = headers.dns_ip.rdata;
@@ -1131,7 +1131,7 @@ control SwitchIngress(inout Parsed_packet headers,
                 match_sip = 0;
             }
         }
-    };
+    };*/
 
 
     // PRECISION STYLE TABLES
@@ -1161,17 +1161,6 @@ control SwitchIngress(inout Parsed_packet headers,
             /*else if (value.sip == headers.ipv4.dst && value.cip == headers.ipv4.src) {
                 is_match = 1;
             }*/
-            else {
-                is_match = 0;
-            }
-        }
-    };
-    RegisterAction<sip_cip_t,_,bit<1>> (sip_cip_reg_1) sip_cip_reg_1_check_dir2_action = {
-        void apply(inout sip_cip_t value, out bit<1> is_match) {
-            //if ( (value.sip == headers.dns_ip.rdata && value.cip == headers.ipv4.dst) || (value.sip == headers.ipv4.dst && value.cip == headers.dns_ip.rdata) ) {
-            if (value.cip == headers.ipv4.src && value.sip == headers.ipv4.dst) {
-                is_match = 1;
-            }
             else {
                 is_match = 0;
             }
@@ -1239,17 +1228,6 @@ control SwitchIngress(inout Parsed_packet headers,
             }
         }
     };
-    RegisterAction<sip_cip_t,_,bit<1>> (sip_cip_reg_2) sip_cip_reg_2_check_dir2_action = {
-        void apply(inout sip_cip_t value, out bit<1> is_match) {
-            //if ( (value.sip == headers.dns_ip.rdata && value.cip == headers.ipv4.dst) || (value.sip == headers.ipv4.dst && value.cip == headers.dns_ip.rdata) ) {
-            if (value.cip == headers.ipv4.src && value.sip == headers.ipv4.dst) {
-                is_match = 1;
-            }
-            else {
-                is_match = 0;
-            }
-        }
-    };
     RegisterAction<sip_cip_t,_,void> (sip_cip_reg_2) sip_cip_reg_2_update_action = {
         void apply(inout sip_cip_t value) {
             value.sip = headers.dns_ip.rdata;
@@ -1286,7 +1264,7 @@ control SwitchIngress(inout Parsed_packet headers,
         }
     };
 
-    Register<sip_cip_t,_>(TABLE_SIZE) sip_cip_reg_3;
+    /*Register<sip_cip_t,_>(TABLE_SIZE) sip_cip_reg_3;
     RegisterAction<sip_cip_t,_,bit<1>> (sip_cip_reg_3) sip_cip_reg_3_check_action = {
         void apply(inout sip_cip_t value, out bit<1> is_match) {
             if (value.sip == headers.dns_ip.rdata && value.cip == headers.ipv4.dst) {
@@ -1301,20 +1279,6 @@ control SwitchIngress(inout Parsed_packet headers,
         void apply(inout sip_cip_t value, out bit<1> is_match) {
             //if ( (value.sip == headers.dns_ip.rdata && value.cip == headers.ipv4.dst) || (value.sip == headers.ipv4.dst && value.cip == headers.dns_ip.rdata) ) {
             if (value.sip == headers.ipv4.src && value.cip == headers.ipv4.dst) {
-                is_match = 1;
-            }
-            /*else if (value.sip == headers.ipv4.dst && value.cip == headers.ipv4.src) {
-                is_match = 1;
-            }*/
-            else {
-                is_match = 0;
-            }
-        }
-    };
-    RegisterAction<sip_cip_t,_,bit<1>> (sip_cip_reg_3) sip_cip_reg_3_check_dir2_action = {
-        void apply(inout sip_cip_t value, out bit<1> is_match) {
-            //if ( (value.sip == headers.dns_ip.rdata && value.cip == headers.ipv4.dst) || (value.sip == headers.ipv4.dst && value.cip == headers.dns_ip.rdata) ) {
-            if (value.cip == headers.ipv4.src && value.sip == headers.ipv4.dst) {
                 is_match = 1;
             }
             else {
@@ -1356,9 +1320,9 @@ control SwitchIngress(inout Parsed_packet headers,
             value.timestamp = (bit<32>)ig_intr_prsr_md.global_tstamp;
             value.domain_id = ig_md.domain_id;
         }
-    };
+    };*/
 
-    Register<bit<32>,_>(TABLE_SIZE,0) dns_cip_table_1;
+    /*Register<bit<32>,_>(TABLE_SIZE,0) dns_cip_table_1;
     RegisterAction<bit<32>,_,bit<32>> (dns_cip_table_1) dns_cip_table_1_reg_read_action = {
         void apply(inout bit<32> value, out bit<32> read_value) {
             read_value = value;
@@ -1530,7 +1494,7 @@ control SwitchIngress(inout Parsed_packet headers,
         void apply(inout bit<32> value) {
             value = (bit<32>) ig_intr_prsr_md.global_tstamp;
         }
-    };
+    };*/
  
     // REGISTER ARRAY FOR COLLECTING COUNTS ON TRAFFIC WITH KNOWN DOMAINS
     //register<bit<32>>(NUM_KNOWN_DOMAINS) packet_counts_table;
@@ -1543,11 +1507,11 @@ control SwitchIngress(inout Parsed_packet headers,
     };
 
     Register<bit<64>,_>(NUM_KNOWN_DOMAINS) byte_counts_table;
-    RegisterAction<bit<32>,_,bit<32>> (byte_counts_table) byte_counts_table_reg_read_action = {
+    /*RegisterAction<bit<32>,_,bit<32>> (byte_counts_table) byte_counts_table_reg_read_action = {
         void apply(inout bit<32> value, out bit<32> read_value) {
             read_value = value;
         }
-    };
+    };*/
     RegisterAction<bit<32>,_,void> (byte_counts_table) byte_counts_table_reg_inc_action = {
         void apply(inout bit<32> value) {
             value = value + (bit<32>)headers.ipv4.len;
@@ -1574,11 +1538,11 @@ control SwitchIngress(inout Parsed_packet headers,
     // Define Hash
     Hash<bit<14>>(HashAlgorithm_t.CRC16) hash_1_dns;
     Hash<bit<14>>(HashAlgorithm_t.CRC16) hash_2_dns;
-    Hash<bit<14>>(HashAlgorithm_t.CRC16) hash_3_dns;
+    //Hash<bit<14>>(HashAlgorithm_t.CRC16) hash_3_dns;
 
     Hash<bit<14>>(HashAlgorithm_t.CRC16) hash_1;
     Hash<bit<14>>(HashAlgorithm_t.CRC16) hash_2;
-    Hash<bit<14>>(HashAlgorithm_t.CRC16) hash_3;
+    //Hash<bit<14>>(HashAlgorithm_t.CRC16) hash_3;
 
     action match_domain(known_domain_id id) {
         ig_md.domain_id = id;
@@ -1624,19 +1588,7 @@ control SwitchIngress(inout Parsed_packet headers,
         ig_md.matched_domain = 0;
     }
 
-    table allowable_dns_dst {
-        key = {
-            headers.ipv4.dst: lpm;
-        }
-
-        actions = {
-            match_banned_dns_dst;
-            NoAction;
-        }
-        size = NUM_ALLOWABLE_DST_IP;
-        default_action = match_banned_dns_dst();
-    }
-
+    // Incorporate both banned and allowable dns in this single table
     table banned_dns_dst {
         key = {
             headers.ipv4.dst: lpm;
@@ -1656,7 +1608,7 @@ control SwitchIngress(inout Parsed_packet headers,
             ig_md.matched_domain = 0;
 
             known_domain_list.apply();
-            allowable_dns_dst.apply();
+            //allowable_dns_dst.apply();
             banned_dns_dst.apply();
 
             if (ig_md.matched_domain == 1) {
@@ -1666,7 +1618,7 @@ control SwitchIngress(inout Parsed_packet headers,
                 
                 ig_md.index_1_dns = (bit<32>) hash_1_dns.get(headers.dns_ip.rdata + headers.ipv4.dst + 32w134140211);
                 ig_md.index_2_dns = (bit<32>) hash_2_dns.get(headers.dns_ip.rdata + headers.ipv4.dst + 32w187182238);
-                ig_md.index_3_dns = (bit<32>) hash_3_dns.get(headers.dns_ip.rdata + headers.ipv4.dst + 32w232108253);
+                //ig_md.index_3_dns = (bit<32>) hash_3_dns.get(headers.dns_ip.rdata + headers.ipv4.dst + 32w232108253);
 
                 ig_md.already_matched = 0;
                 bool is_resubmitted=(bool) ig_intr_md.resubmit_flag;
@@ -1738,7 +1690,7 @@ control SwitchIngress(inout Parsed_packet headers,
                 }
 
                 // access table 3
-                if (ig_md.already_matched == 0) {
+                /*if (ig_md.already_matched == 0) {
 
                     if (!is_resubmitted) {
                         bit<1> is_match =  sip_cip_reg_3_check_action.execute(ig_md.index_3_dns);
@@ -1767,7 +1719,7 @@ control SwitchIngress(inout Parsed_packet headers,
                         ig_md.already_matched = 1;
                     }
                     
-                }
+                }*/
 
                 if (ig_md.already_matched == 0) {
                     // Increment total DNS queries missed for this domain name
@@ -1784,7 +1736,7 @@ control SwitchIngress(inout Parsed_packet headers,
             
             ig_md.index_1 = (bit<32>) hash_1.get(headers.ipv4.src + headers.ipv4.dst + 32w134140211);
             ig_md.index_2 = (bit<32>) hash_2.get(headers.ipv4.src + headers.ipv4.dst + 32w187182238);
-            ig_md.index_3 = (bit<32>) hash_3.get(headers.ipv4.src + headers.ipv4.dst + 32w232108253);
+            //ig_md.index_3 = (bit<32>) hash_3.get(headers.ipv4.src + headers.ipv4.dst + 32w232108253);
 
             bit<1> sip_cip_matched = 0;
             bit<32> index_for_update = 0;
@@ -1819,7 +1771,7 @@ control SwitchIngress(inout Parsed_packet headers,
             }
 
             // register_3
-            if (ig_md.already_matched == 0) {
+            /*if (ig_md.already_matched == 0) {
                 sip_cip_matched = sip_cip_reg_3_check_dir1_action.execute(ig_md.index_3);
                 if (sip_cip_matched == 1) {
                     // Get domain_id and udpate timestamp
@@ -1831,7 +1783,7 @@ control SwitchIngress(inout Parsed_packet headers,
                     index_for_update = ig_md.index_3;
                     ig_md.already_matched = 1;
                 }
-            }
+            }*/
 
             // Check other direction (source is client, destination is server)
             /*if (ig_md.already_matched == 0) {
