@@ -1235,7 +1235,7 @@ control SwitchIngress(inout Parsed_packet headers,
     }
 
     apply {
-        if(ig_md.parsed_answer == 1) {
+        /*if(ig_md.parsed_answer == 1) {
             ig_md.domain_id_dns = 0;
             ig_md.matched_domain = 0;
 
@@ -1243,7 +1243,7 @@ control SwitchIngress(inout Parsed_packet headers,
             //allowable_dns_dst.apply();
             banned_dns_dst.apply();
 
-            /*if (ig_md.matched_domain == 1) {
+            if (ig_md.matched_domain == 1) {
 
                 // Increment total DNS queries for this domain name
                 dns_total_queried_reg_inc_action.execute(ig_md.domain_id_dns);
