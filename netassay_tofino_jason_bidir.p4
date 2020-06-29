@@ -174,6 +174,7 @@ struct ig_metadata_t {
     bit<3> last_label; // Value is 1,2,3,4,5 or 0 corresponding to which dns_q_label is the last label (of value 0). If this value is 0, there is an error.
     bit<1> matched_domain;
     bit<32> domain_id_dns;
+    bit<32> domain_id;
     bit<32> index_1_dns;
     bit<32> index_2_dns;
     bit<32> index_1;
@@ -1037,7 +1038,7 @@ control SwitchIngress(inout Parsed_packet headers,
     RegisterAction<domainid_timestamp_t,_,void> (domain_tstamp_reg_1) domain_tstamp_reg_1_update_tstamp_domain_action = {
         void apply(inout domainid_timestamp_t value) {
             value.timestamp = (bit<32>)ig_intr_prsr_md.global_tstamp;
-            value.domain_id = ig_md.domain_id;
+            value.domain_id = ig_md.domain_id_dns;
         }
     };
 
@@ -1123,7 +1124,7 @@ control SwitchIngress(inout Parsed_packet headers,
     RegisterAction<domainid_timestamp_t,_,void> (domain_tstamp_reg_2) domain_tstamp_reg_2_update_tstamp_domain_action = {
         void apply(inout domainid_timestamp_t value) {
             value.timestamp = (bit<32>)ig_intr_prsr_md.global_tstamp;
-            value.domain_id = ig_md.domain_id;
+            value.domain_id = ig_md.domain_id_dns;
         }
     };
 
@@ -1342,7 +1343,6 @@ control SwitchIngress(inout Parsed_packet headers,
 
             bit<1> sip_matched = 0;
             bit<1> cip_matched = 0;
-            bit<32> index_for_update = 0;
             bit<1> entry_matched = 0;
             bit<32> domain_id = 0;
 
@@ -1357,7 +1357,6 @@ control SwitchIngress(inout Parsed_packet headers,
                 // Update packet_count, update byte_count
                 //packet_counts_table_reg_inc_action.execute(ig_md.index_1);
                 //byte_counts_table_reg_inc_action.execute(ig_md.index_1);
-                index_for_update = ig_md.index_1;
                 entry_matched = 1;
             }
 
@@ -1373,14 +1372,13 @@ control SwitchIngress(inout Parsed_packet headers,
                     // Update packet_count, update byte_count
                     //packet_counts_table_reg_inc_action.execute(ig_md.index_2);
                     //byte_counts_table_reg_inc_action.execute(ig_md.index_2);
-                    index_for_update = ig_md.index_2;
                     entry_matched = 1;
                 }
             }
 
             if (entry_matched == 1) {
-                packet_counts_table_reg_inc_action.execute(index_for_update);
-                byte_counts_table_reg_inc_action.execute(index_for_update);
+                packet_counts_table_reg_inc_action.execute(domain_id);
+                byte_counts_table_reg_inc_action.execute(domain_id);
             }
         }
 	}
