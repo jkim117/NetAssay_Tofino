@@ -1235,7 +1235,7 @@ control SwitchIngress(inout Parsed_packet headers,
     }
 
     apply {
-        /*if(ig_md.parsed_answer == 1) {
+        if(ig_md.parsed_answer == 1) {
             ig_md.domain_id_dns = 0;
             ig_md.matched_domain = 0;
 
@@ -1332,7 +1332,7 @@ control SwitchIngress(inout Parsed_packet headers,
                     dns_total_missed_reg_inc_action.execute(ig_md.domain_id_dns);
                 }
             }
-        }*/
+        }
         // HANDLE NORMAL, NON-DNS PACKETS
         if (ig_md.is_ip == 1 && ig_md.is_dns == 0) {
             //hash(ig_md.index_1, HashAlgorithm.crc16, HASH_TABLE_BASE, {headers.ipv4.src, 7w11, headers.ipv4.dst}, HASH_TABLE_MAX);
