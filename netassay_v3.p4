@@ -1274,7 +1274,7 @@ control SwitchIngress(inout Parsed_packet headers,
             }
         }
         // HANDLE NORMAL, NON-DNS PACKETS
-        /*else if (ig_md.is_ip == 1 && ig_md.is_dns == 0) {
+        else if (ig_md.is_ip == 1 && ig_md.is_dns == 0) {
             //hash(ig_md.index_1, HashAlgorithm.crc16, HASH_TABLE_BASE, {headers.ipv4.src, 7w11, headers.ipv4.dst}, HASH_TABLE_MAX);
             //hash(ig_md.index_2, HashAlgorithm.crc16, HASH_TABLE_BASE, {3w5, headers.ipv4.src, 5w3, headers.ipv4.dst}, HASH_TABLE_MAX);
             //hash(ig_md.index_3, HashAlgorithm.crc16, HASH_TABLE_BASE, {2w0, headers.ipv4.src, 1w1, headers.ipv4.dst}, HASH_TABLE_MAX);
@@ -1287,7 +1287,7 @@ control SwitchIngress(inout Parsed_packet headers,
             bit<32> domain_id = 0;
 
             // register_1
-            sip_cip_matched = sip_cip_reg_1_check_bidir_action.execute(ig_md.index_1);
+            /*sip_cip_matched = sip_cip_reg_1_check_bidir_action.execute(ig_md.index_1);
             
             if (sip_cip_matched == 1) {
                 // Get domain_id and udpate timestamp
@@ -1321,8 +1321,8 @@ control SwitchIngress(inout Parsed_packet headers,
                 // Stage 13
                 packet_counts_table_reg_inc_action.execute(domain_id);
                 byte_counts_table_reg_inc_action.execute(domain_id);
-            }
-        }*/
+            }*/
+        }
 	}
 }
 
