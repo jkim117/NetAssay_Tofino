@@ -1243,7 +1243,7 @@ control SwitchIngress(inout Parsed_packet headers,
             //allowable_dns_dst.apply();
             banned_dns_dst.apply();
 
-            if (ig_md.matched_domain == 1) {
+            /*if (ig_md.matched_domain == 1) {
 
                 // Increment total DNS queries for this domain name
                 dns_total_queried_reg_inc_action.execute(ig_md.domain_id_dns);
@@ -1332,9 +1332,9 @@ control SwitchIngress(inout Parsed_packet headers,
                     dns_total_missed_reg_inc_action.execute(ig_md.domain_id_dns);
                 }
             }
-        }
+        }*/
         // HANDLE NORMAL, NON-DNS PACKETS
-        /*else if (ig_md.is_ip == 1 && ig_md.is_dns == 0) {
+        if (ig_md.is_ip == 1 && ig_md.is_dns == 0) {
             //hash(ig_md.index_1, HashAlgorithm.crc16, HASH_TABLE_BASE, {headers.ipv4.src, 7w11, headers.ipv4.dst}, HASH_TABLE_MAX);
             //hash(ig_md.index_2, HashAlgorithm.crc16, HASH_TABLE_BASE, {3w5, headers.ipv4.src, 5w3, headers.ipv4.dst}, HASH_TABLE_MAX);
             //hash(ig_md.index_3, HashAlgorithm.crc16, HASH_TABLE_BASE, {2w0, headers.ipv4.src, 1w1, headers.ipv4.dst}, HASH_TABLE_MAX);
@@ -1381,7 +1381,7 @@ control SwitchIngress(inout Parsed_packet headers,
                 packet_counts_table_reg_inc_action.execute(ig_md.domain_id);
                 byte_counts_table_reg_inc_action.execute(ig_md.domain_id);
             }
-        }*/
+        }
 	}
 }
 
