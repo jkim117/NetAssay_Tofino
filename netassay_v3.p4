@@ -1289,7 +1289,7 @@ control SwitchIngress(inout Parsed_packet headers,
             // register_1
             sip_cip_matched = sip_cip_reg_1_check_bidir_action.execute(ig_md.index_1);
             
-            /*if (sip_cip_matched == 1) {
+            if (sip_cip_matched == 1) {
                 // Get domain_id and udpate timestamp
                 // Stage 9
                 domain_id = domain_tstamp_reg_1_get_domain_and_update_ts_action.execute(ig_md.index_1);
@@ -1321,7 +1321,7 @@ control SwitchIngress(inout Parsed_packet headers,
                 // Stage 13
                 packet_counts_table_reg_inc_action.execute(domain_id);
                 byte_counts_table_reg_inc_action.execute(domain_id);
-            }*/
+            }
         }
 	}
 }
