@@ -1287,7 +1287,7 @@ control SwitchIngress(inout Parsed_packet headers,
             bit<32> domain_id = 0;
 
             // register_1
-            sip_cip_matched = sip_cip_reg_1_check_bidir_action.execute(ig_md.index_1)
+            sip_cip_matched = sip_cip_reg_1_check_bidir_action.execute(ig_md.index_1);
             
             if (sip_cip_matched == 1) {
                 // Get domain_id and udpate timestamp
@@ -1303,7 +1303,7 @@ control SwitchIngress(inout Parsed_packet headers,
             // register_2
             if (entry_matched == 0) {
                 // Stage 10 and 11
-                sip_cip_matched = sip_cip_reg_2_check_bidir_action.execute(ig_md.index_2)
+                sip_cip_matched = sip_cip_reg_2_check_bidir_action.execute(ig_md.index_2);
                 
                 if (sip_cip_matched == 1) {
                     // Get domain_id and udpate timestamp
