@@ -182,6 +182,7 @@ struct ig_metadata_t {
     bit<48> temp_timestamp;
     bit<32> temp_cip;
     bit<32> temp_sip;
+    bit<1> already_matched_dns;
     bit<1> already_matched;
     bit<64> min_counter;
     bit<2> min_table;
@@ -1251,7 +1252,7 @@ control SwitchIngress(inout Parsed_packet headers,
                 ig_md.index_2_dns = (bit<32>) hash_2_dns.get(headers.dns_ip.rdata + headers.ipv4.dst + 32w187182238);
                 //ig_md.index_3_dns = (bit<32>) hash_3_dns.get(headers.dns_ip.rdata + headers.ipv4.dst + 32w232108253);
 
-                ig_md.already_matched = 0;
+                ig_md.already_matched_dns = 0;
                 bool is_resubmitted=(bool) ig_intr_md.resubmit_flag;
 
                 if (!is_resubmitted) {
@@ -1263,7 +1264,7 @@ control SwitchIngress(inout Parsed_packet headers,
                     // If sip and cip matches, just update timestamp
                     if (is_match_cip == 1 && is_match_sip == 1) {
                         domain_tstamp_reg_1_update_tstamp_action.execute(ig_md.index_1_dns);
-                        ig_md.already_matched = 1;
+                        ig_md.already_matched_dns = 1;
                     }
                     else { 
                         // Check timestamp
@@ -1284,12 +1285,12 @@ control SwitchIngress(inout Parsed_packet headers,
                     dns_cip_reg_1_update_action.execute(ig_md.index_1_dns);
                     dns_sip_reg_1_update_action.execute(ig_md.index_1_dns);
                     domain_tstamp_reg_1_update_tstamp_domain_action.execute(ig_md.index_1_dns);
-                    ig_md.already_matched = 1;
+                    ig_md.already_matched_dns = 1;
                 }
                 
 
                 // access table 2
-                if (ig_md.already_matched == 0) {
+                if (ig_md.already_matched_dns == 0) {
 
                     if (!is_resubmitted) {
                         // Read sip_cip table
@@ -1299,7 +1300,7 @@ control SwitchIngress(inout Parsed_packet headers,
                         // If sip and cip matches, just update timestamp
                         if (is_match_cip == 1 && is_match_sip == 1) {
                             domain_tstamp_reg_2_update_tstamp_action.execute(ig_md.index_2_dns);
-                            ig_md.already_matched = 1;
+                            ig_md.already_matched_dns = 1;
                         }
                         else { 
                             // Check timestamp
@@ -1319,13 +1320,13 @@ control SwitchIngress(inout Parsed_packet headers,
                         dns_cip_reg_2_update_action.execute(ig_md.index_2_dns);
                         dns_sip_reg_2_update_action.execute(ig_md.index_2_dns);
                         domain_tstamp_reg_2_update_tstamp_domain_action.execute(ig_md.index_2_dns);
-                        ig_md.already_matched = 1;
+                        ig_md.already_matched_dns = 1;
                     }
                     
                 }
 
 
-                if (ig_md.already_matched == 0) {
+                if (ig_md.already_matched_dns == 0) {
                     // Increment total DNS queries missed for this domain name
 
                     dns_total_missed_reg_inc_action.execute(ig_md.domain_id_dns);
