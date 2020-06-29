@@ -1361,7 +1361,7 @@ control SwitchIngress(inout Parsed_packet headers,
             }
 
             // register_2
-            /*if (ig_md.already_matched == 0) {
+            if (ig_md.already_matched == 0) {
                 cip_matched = dns_cip_reg_2_check_bidir_action.execute(ig_md.index_2);
                 sip_matched = dns_sip_reg_2_check_bidir_action.execute(ig_md.index_2);
                 
@@ -1374,7 +1374,7 @@ control SwitchIngress(inout Parsed_packet headers,
                     //byte_counts_table_reg_inc_action.execute(ig_md.index_2);
                     ig_md.already_matched = 1;
                 }
-            }*/
+            }
 
             if (ig_md.already_matched == 1) {
                 packet_counts_table_reg_inc_action.execute(ig_md.domain_id);
