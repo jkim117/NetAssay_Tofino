@@ -1334,14 +1334,13 @@ control SwitchIngress(inout Parsed_packet headers,
             }
         }
         // HANDLE NORMAL, NON-DNS PACKETS
-        else if (ig_md.is_ip == 1 && ig_md.is_dns == 0) {
+        /*else if (ig_md.is_ip == 1 && ig_md.is_dns == 0) {
             //hash(ig_md.index_1, HashAlgorithm.crc16, HASH_TABLE_BASE, {headers.ipv4.src, 7w11, headers.ipv4.dst}, HASH_TABLE_MAX);
             //hash(ig_md.index_2, HashAlgorithm.crc16, HASH_TABLE_BASE, {3w5, headers.ipv4.src, 5w3, headers.ipv4.dst}, HASH_TABLE_MAX);
             //hash(ig_md.index_3, HashAlgorithm.crc16, HASH_TABLE_BASE, {2w0, headers.ipv4.src, 1w1, headers.ipv4.dst}, HASH_TABLE_MAX);
             
             ig_md.index_1 = (bit<32>) hash_1.get(headers.ipv4.src + headers.ipv4.dst + 32w134140211);
-            ig_md.index_2 = (bit<32>) hash_2.get(headers.ipv4.src + headers.ipv4.dst + 32w187182238);
-
+            
             bit<1> sip_matched = 0;
             bit<1> cip_matched = 0;
             ig_md.already_matched = 0;
@@ -1359,6 +1358,8 @@ control SwitchIngress(inout Parsed_packet headers,
                 //byte_counts_table_reg_inc_action.execute(ig_md.index_1);
                 ig_md.already_matched = 1;
             }
+
+            ig_md.index_2 = (bit<32>) hash_2.get(headers.ipv4.src + headers.ipv4.dst + 32w187182238);
 
             // register_2
             if (ig_md.already_matched == 0) {
@@ -1380,7 +1381,7 @@ control SwitchIngress(inout Parsed_packet headers,
                 packet_counts_table_reg_inc_action.execute(ig_md.domain_id);
                 byte_counts_table_reg_inc_action.execute(ig_md.domain_id);
             }
-        }
+        }*/
 	}
 }
 
