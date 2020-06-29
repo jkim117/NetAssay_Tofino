@@ -1236,7 +1236,7 @@ control SwitchIngress(inout Parsed_packet headers,
 
                     if (!is_resubmitted) {
                         // Read sip_cip table
-                        bit<1> is_match = sip_cip_reg_2_check_action.execute(ig_md.index_2_dns)
+                        bit<1> is_match = sip_cip_reg_2_check_action.execute(ig_md.index_2_dns);
                         
                         // If sip and cip matches, just update timestamp
                         if (is_match == 1) {
