@@ -1304,7 +1304,7 @@ control SwitchIngress(inout Parsed_packet headers,
             }
 
             // register_2
-            if (entry_matched == 0) {
+            /*if (entry_matched == 0) {
                 // Stage 10 and 11
                 //sip_cip_matched = sip_cip_reg_2_check_bidir_action.execute(ig_md.index_2);
                 sip_cip_matched = sip_cip_reg_2_check_action.execute(index_2);
@@ -1319,7 +1319,7 @@ control SwitchIngress(inout Parsed_packet headers,
                     //byte_counts_table_reg_inc_action.execute(ig_md.index_2);
                     entry_matched = 1;
                 }
-            }
+            }*/
 
             if (entry_matched == 1) {
                 // Stage 13
