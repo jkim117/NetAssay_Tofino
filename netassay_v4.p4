@@ -166,7 +166,7 @@ struct Parsed_packet {
     dns_a dns_answer;
     dns_a_ip dns_ip;
 
-    aes_meta_h aes_meta
+    aes_meta_h aes_meta;
 }
 
 // user defined metadata: can be used to share information between
