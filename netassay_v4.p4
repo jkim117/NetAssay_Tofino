@@ -1192,33 +1192,6 @@ control SwitchIngress(inout Parsed_packet headers,
         default_action = NoAction();
     }
 
-    // Randomly select one of the two recirc ports
-    Random< bit<1> >() rng;
-    action get_rnd_bit(){
-        ig_md.rnd_bit=rng.get();
-    }
-
-    action route_to(bit<9> port){
-        ig_intr_tm_md.ucast_egress_port=port;
-    }
-
-    action do_recirculate(){
-        route_to(ig_md.rnd_port_for_recirc);
-    }
-
-    table tb_recirc_decision {
-        key = {
-            hdr.aes_meta.curr_round : exact;
-        }
-        actions = {
-            incr_and_recirc;
-            do_not_recirc;
-            do_not_recirc_final_xor;
-        }
-        size = 20;
-        default_action = do_not_recirc;
-    }
-
     apply {
         if(ig_md.parsed_answer == 1) {
             ig_md.domain_id_dns = 0;
@@ -1346,8 +1319,8 @@ control SwitchIngress(inout Parsed_packet headers,
                     ig_intr_tm_md.ucast_egress_port = 68;
                     headers.aes_meta.setValid();
                     headers.aes_meta.curr_round=1;
-                    hdr.aes_meta.ff=0xff;
-                    hdr.aes_meta.dest_port= (bit<16>)(ig_intr_md.ingress_port);
+                    headers.aes_meta.ff=0xff;
+                    headers.aes_meta.dest_port= (bit<16>)(ig_intr_md.ingress_port);
                 }
             }
             else {
@@ -1370,7 +1343,7 @@ control SwitchIngress(inout Parsed_packet headers,
                     packet_counts_table_reg_inc_action.execute(domain_id);
                     byte_counts_table_reg_inc_action.execute(domain_id);
                 }
-                ig_intr_tm_md.ucast_egress_port = (bit<9>)hdr.aes_meta.dest_port;
+                ig_intr_tm_md.ucast_egress_port = (bit<9>)headers.aes_meta.dest_port;
             }
         }
 	}
