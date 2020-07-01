@@ -118,6 +118,12 @@ header dns_a_ip {
     bit<32> rdata; //IPV4 is always 32 bit.
 }
 
+header aes_meta_h {
+    bit<16> dest_port;
+    bit<8> curr_round;
+    bit<8> ff;
+}
+
 // List of all recognized headers
 struct Parsed_packet { 
     ethernet_h ethernet;
@@ -159,6 +165,8 @@ struct Parsed_packet {
 
     dns_a dns_answer;
     dns_a_ip dns_ip;
+
+    aes_meta_h aes_meta
 }
 
 // user defined metadata: can be used to share information between
@@ -267,9 +275,14 @@ parser SwitchIngressParser(packet_in pkt,
         ig_md.is_dns = 0;
 		transition select(p.ipv4.proto) {
 			17: parse_udp;
-			default: accept;
+			default: parse_aes;
 		}
 	}
+
+    state parse_aes {
+        pkt.extract(p.aes_meta);
+        transition accept;
+    }
 
     state parse_udp {
         pkt.extract(p.udp);
@@ -905,6 +918,7 @@ control SwitchIngressDeparser(
  
         pkt.emit(hdr.ethernet);
         pkt.emit(hdr.ipv4);
+        pkt.emit(hdr.aes_meta);
         //pkt.emit(hdr.tcp);
         pkt.emit(hdr.udp);
     }
@@ -1178,6 +1192,33 @@ control SwitchIngress(inout Parsed_packet headers,
         default_action = NoAction();
     }
 
+    // Randomly select one of the two recirc ports
+    Random< bit<1> >() rng;
+    action get_rnd_bit(){
+        ig_md.rnd_bit=rng.get();
+    }
+
+    action route_to(bit<9> port){
+        ig_intr_tm_md.ucast_egress_port=port;
+    }
+
+    action do_recirculate(){
+        route_to(ig_md.rnd_port_for_recirc);
+    }
+
+    table tb_recirc_decision {
+        key = {
+            hdr.aes_meta.curr_round : exact;
+        }
+        actions = {
+            incr_and_recirc;
+            do_not_recirc;
+            do_not_recirc_final_xor;
+        }
+        size = 20;
+        default_action = do_not_recirc;
+    }
+
     apply {
         if(ig_md.parsed_answer == 1) {
             ig_md.domain_id_dns = 0;
@@ -1281,18 +1322,16 @@ control SwitchIngress(inout Parsed_packet headers,
             
             //ig_md.index_1 = (bit<32>) hash_1.get(headers.ipv4.src + headers.ipv4.dst + 32w134140211);
             //ig_md.index_2 = (bit<32>) hash_2.get(headers.ipv4.src + headers.ipv4.dst + 32w187182238);
-            bit<32> index_1 = (bit<32>) hash_1.get(headers.ipv4.src + headers.ipv4.dst + 32w134140211);
-            
+            if (!headers.aes_meta.isValid()) {
+                bit<32> index_1 = (bit<32>) hash_1.get(headers.ipv4.src + headers.ipv4.dst + 32w134140211);
 
-            bit<1> sip_cip_matched = 0;
-            bit<1> entry_matched = 0;
-            bit<32> domain_id = 0;
 
-            // register_1
-            //sip_cip_matched = sip_cip_reg_1_check_bidir_action.execute(ig_md.index_1);
-            sip_cip_matched = sip_cip_reg_1_check_action.execute(index_1);
-            
-            if (sip_cip_matched == 1) {
+                bit<1> sip_cip_matched = 0;
+                bit<32> domain_id = 0;
+
+                sip_cip_matched = sip_cip_reg_1_check_action.execute(index_1);
+
+                if (sip_cip_matched == 1) {
                 // Get domain_id and udpate timestamp
                 // Stage 9
                 domain_id = domain_tstamp_reg_1_get_domain_and_update_ts_action.execute(index_1);
@@ -1300,12 +1339,22 @@ control SwitchIngress(inout Parsed_packet headers,
                 // Update packet_count, update byte_count
                 //packet_counts_table_reg_inc_action.execute(ig_md.index_1);
                 //byte_counts_table_reg_inc_action.execute(ig_md.index_1);
-                entry_matched = 1;
+                packet_counts_table_reg_inc_action.execute(domain_id);
+                byte_counts_table_reg_inc_action.execute(domain_id);
+                }
+                else {
+                    ig_intr_tm_md.ucast_egress_port = 68;
+                    headers.aes_meta.setValid();
+                    headers.aes_meta.curr_round=1;
+                    hdr.aes_meta.ff=0xff;
+                    hdr.aes_meta.dest_port= (bit<16>)(ig_intr_md.ingress_port);
+                }
             }
-
-            bit<32> index_2 = (bit<32>) hash_2.get(headers.ipv4.src + headers.ipv4.dst + 32w187182238);
-            // register_2
-            if (entry_matched == 0) {
+            else {
+                bit<32> index_2 = (bit<32>) hash_2.get(headers.ipv4.src + headers.ipv4.dst + 32w187182238);
+                bit<1> sip_cip_matched = 0;
+                bit<32> domain_id = 0;
+                // register_2
                 // Stage 10 and 11
                 //sip_cip_matched = sip_cip_reg_2_check_bidir_action.execute(ig_md.index_2);
                 sip_cip_matched = sip_cip_reg_2_check_action.execute(index_2);
@@ -1318,14 +1367,10 @@ control SwitchIngress(inout Parsed_packet headers,
                     // Update packet_count, update byte_count
                     //packet_counts_table_reg_inc_action.execute(ig_md.index_2);
                     //byte_counts_table_reg_inc_action.execute(ig_md.index_2);
-                    entry_matched = 1;
+                    packet_counts_table_reg_inc_action.execute(domain_id);
+                    byte_counts_table_reg_inc_action.execute(domain_id);
                 }
-            }
-
-            if (entry_matched == 1) {
-                // Stage 13
-                packet_counts_table_reg_inc_action.execute(domain_id);
-                byte_counts_table_reg_inc_action.execute(domain_id);
+                ig_intr_tm_md.ucast_egress_port = (bit<9>)hdr.aes_meta.dest_port;
             }
         }
 	}
