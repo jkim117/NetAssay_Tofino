@@ -265,7 +265,6 @@ parser SwitchIngressParser(packet_in pkt,
 
 		ig_md.is_ip = 1;
         ig_md.is_dns = 0;
-        p.dns_ip.rdata = p.ipv4.src;
 		transition select(p.ipv4.proto) {
 			17: parse_udp;
 			default: accept;
@@ -958,7 +957,7 @@ control SwitchIngress(inout Parsed_packet headers,
     Register<sip_cip_t,_>(TABLE_SIZE) sip_cip_reg_1; 
     RegisterAction<sip_cip_t,_,bit<1>> (sip_cip_reg_1) sip_cip_reg_1_check_action = {
         void apply(inout sip_cip_t value, out bit<1> is_match) {
-            if (value.sip == headers.dns_ip.rdata && value.cip == headers.ipv4.dst) {
+            if ((value.sip == headers.dns_ip.rdata || value.sip == headers.ipv4.src) && value.cip == headers.ipv4.dst) {
                 is_match = 1;
             }
             else {
@@ -1008,7 +1007,7 @@ control SwitchIngress(inout Parsed_packet headers,
     Register<sip_cip_t,_>(TABLE_SIZE) sip_cip_reg_2; 
     RegisterAction<sip_cip_t,_,bit<1>> (sip_cip_reg_2) sip_cip_reg_2_check_action = {
         void apply(inout sip_cip_t value, out bit<1> is_match) {
-            if (value.sip == headers.dns_ip.rdata && value.cip == headers.ipv4.dst) {
+            if ((value.sip == headers.dns_ip.rdata || value.sip == headers.ipv4.src) && value.cip == headers.ipv4.dst) {
                 is_match = 1;
             }
             else {
