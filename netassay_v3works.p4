@@ -957,10 +957,13 @@ control SwitchIngress(inout Parsed_packet headers,
 
     //NOTE: not sure how to set initial value for paired elements. Same for reg_2 and reg_3.
     Register<sip_cip_t,_>(TABLE_SIZE) sip_cip_reg_1; 
-    RegisterAction<sip_cip_t,_,bit<1>> (sip_cip_reg_1) sip_cip_reg_1_check_action = {
-        void apply(inout sip_cip_t value, out bit<1> is_match) {
-            if (value.sip == ig_md.server_ip && value.cip == headers.ipv4.dst) {
+    RegisterAction<sip_cip_t,_,bit<2>> (sip_cip_reg_1) sip_cip_reg_1_check_action = {
+        void apply(inout sip_cip_t value, out bit<2> is_match) {
+            if (value.sip == headers.dns_ip.rdata && value.cip == headers.ipv4.dst) {
                 is_match = 1;
+            }
+            else if (value.sip == headers.ipv4.src && value.cip == headers.ipv4.dst) {
+                is_match = 2;
             }
             else {
                 is_match = 0;
@@ -1007,10 +1010,13 @@ control SwitchIngress(inout Parsed_packet headers,
 
     // Register 2
     Register<sip_cip_t,_>(TABLE_SIZE) sip_cip_reg_2; 
-    RegisterAction<sip_cip_t,_,bit<1>> (sip_cip_reg_2) sip_cip_reg_2_check_action = {
-        void apply(inout sip_cip_t value, out bit<1> is_match) {
-            if (value.sip == ig_md.server_ip && value.cip == headers.ipv4.dst) {
+    RegisterAction<sip_cip_t,_,bit<2>> (sip_cip_reg_2) sip_cip_reg_2_check_action = {
+        void apply(inout sip_cip_t value, out bit<2> is_match) {
+            if (value.sip == headers.dns_ip.rdata && value.cip == headers.ipv4.dst) {
                 is_match = 1;
+            }
+            else if (value.sip == headers.ipv4.src && value.cip == headers.ipv4.dst) {
+                is_match = 2;
             }
             else {
                 is_match = 0;
@@ -1184,7 +1190,7 @@ control SwitchIngress(inout Parsed_packet headers,
                 if (!is_resubmitted) {
                     // access table 1
                     // Read sip_cip table
-                    bit<1> is_match = sip_cip_reg_1_check_action.execute(ig_md.index_1_dns);
+                    bit<2> is_match = sip_cip_reg_1_check_action.execute(ig_md.index_1_dns);
                     
                     // If sip and cip matches, just update timestamp
                     if (is_match == 1) {
@@ -1218,7 +1224,7 @@ control SwitchIngress(inout Parsed_packet headers,
 
                     if (!is_resubmitted) {
                         // Read sip_cip table
-                        bit<1> is_match = sip_cip_reg_2_check_action.execute(ig_md.index_2_dns);
+                        bit<2> is_match = sip_cip_reg_2_check_action.execute(ig_md.index_2_dns);
                         
                         // If sip and cip matches, just update timestamp
                         if (is_match == 1) {
@@ -1268,14 +1274,14 @@ control SwitchIngress(inout Parsed_packet headers,
             bit<32> index_1 = (bit<32>) hash_1.get(headers.ipv4.src + headers.ipv4.dst + 32w134140211);
             
 
-            bit<1> sip_cip_matched = 0;
+            bit<2> sip_cip_matched = 0;
             bit<1> entry_matched = 0;
             bit<32> domain_id = 0;
 
             // register_1
             sip_cip_matched = sip_cip_reg_1_check_action.execute(index_1);
             
-            if (sip_cip_matched == 1) {
+            if (sip_cip_matched == 2) {
                 // Get domain_id and udpate timestamp
                 // Stage 9
                 domain_id = domain_tstamp_reg_1_get_domain_and_update_ts_action.execute(index_1);
@@ -1292,7 +1298,7 @@ control SwitchIngress(inout Parsed_packet headers,
                 // Stage 10 and 11
                 sip_cip_matched = sip_cip_reg_2_check_action.execute(index_2);
                 
-                if (sip_cip_matched == 1) {
+                if (sip_cip_matched == 2) {
                     // Get domain_id and udpate timestamp
                     // Stage 12
                     domain_id = domain_tstamp_reg_2_get_domain_and_update_ts_action.execute(index_2);
