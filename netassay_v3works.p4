@@ -964,7 +964,7 @@ control SwitchIngress(inout Parsed_packet headers,
     Register<sip_cip_t,_>(TABLE_SIZE) sip_cip_reg_1; 
     RegisterAction<sip_cip_t,_,bit<1>> (sip_cip_reg_1) sip_cip_reg_1_check_action = {
         void apply(inout sip_cip_t value, out bit<1> is_match) {
-            if ((value.sip == headers.dns_ip.rdata || value.sip == headers.ipv4.src) && value.cip == headers.ipv4.dst) {
+            if (value.sip == headers.sip.sourceip && value.cip == headers.cip.destip) {
                 is_match = 1;
             }
             else {
@@ -975,7 +975,7 @@ control SwitchIngress(inout Parsed_packet headers,
     RegisterAction<sip_cip_t,_,void> (sip_cip_reg_1) sip_cip_reg_1_update_action = {
         void apply(inout sip_cip_t value) {
             value.sip = headers.dns_ip.rdata;
-            value.cip = headers.ipv4.dst;
+            value.cip = headers.cip.destip;
         }
     };
 
@@ -1014,7 +1014,7 @@ control SwitchIngress(inout Parsed_packet headers,
     Register<sip_cip_t,_>(TABLE_SIZE) sip_cip_reg_2; 
     RegisterAction<sip_cip_t,_,bit<1>> (sip_cip_reg_2) sip_cip_reg_2_check_action = {
         void apply(inout sip_cip_t value, out bit<1> is_match) {
-            if ((value.sip == headers.dns_ip.rdata || value.sip == headers.ipv4.src) && value.cip == headers.ipv4.dst) {
+            if (value.sip == headers.sip.sourceip && value.cip == headers.cip.destip) {
                 is_match = 1;
             }
             else {
@@ -1025,7 +1025,7 @@ control SwitchIngress(inout Parsed_packet headers,
     RegisterAction<sip_cip_t,_,void> (sip_cip_reg_2) sip_cip_reg_2_update_action = {
         void apply(inout sip_cip_t value) {
             value.sip = headers.dns_ip.rdata;
-            value.cip = headers.ipv4.dst;
+            value.cip = headers.cip.destip;
         }
     };
 
@@ -1152,7 +1152,7 @@ control SwitchIngress(inout Parsed_packet headers,
     // Incorporate both banned and allowable dns in this single table
     table banned_dns_dst {
         key = {
-            headers.ipv4.dst: lpm;
+            headers.cip.destip: lpm;
         }
 
         actions = {
@@ -1177,9 +1177,9 @@ control SwitchIngress(inout Parsed_packet headers,
                 // Increment total DNS queries for this domain name
                 dns_total_queried_reg_inc_action.execute(ig_md.domain_id_dns);
                 
-                ig_md.index_1_dns = (bit<32>) hash_1_dns.get(headers.dns_ip.rdata + headers.ipv4.dst + 32w134140211);
-                ig_md.index_2_dns = (bit<32>) hash_2_dns.get(headers.dns_ip.rdata + headers.ipv4.dst + 32w187182238);
-                //ig_md.index_3_dns = (bit<32>) hash_3_dns.get(headers.dns_ip.rdata + headers.ipv4.dst + 32w232108253);
+                ig_md.index_1_dns = (bit<32>) hash_1_dns.get(headers.dns_ip.rdata + headers.cip.destip + 32w134140211);
+                ig_md.index_2_dns = (bit<32>) hash_2_dns.get(headers.dns_ip.rdata + headers.cip.destip + 32w187182238);
+                //ig_md.index_3_dns = (bit<32>) hash_3_dns.get(headers.dns_ip.rdata + headers.cip.destip + 32w232108253);
 
                 ig_md.already_matched = 0;
                 bool is_resubmitted=(bool) ig_intr_md.resubmit_flag;
@@ -1260,13 +1260,13 @@ control SwitchIngress(inout Parsed_packet headers,
         }
         // HANDLE NORMAL, NON-DNS PACKETS
         else if (ig_md.is_ip == 1 && ig_md.is_dns == 0) {
-            //hash(ig_md.index_1, HashAlgorithm.crc16, HASH_TABLE_BASE, {headers.ipv4.src, 7w11, headers.ipv4.dst}, HASH_TABLE_MAX);
-            //hash(ig_md.index_2, HashAlgorithm.crc16, HASH_TABLE_BASE, {3w5, headers.ipv4.src, 5w3, headers.ipv4.dst}, HASH_TABLE_MAX);
-            //hash(ig_md.index_3, HashAlgorithm.crc16, HASH_TABLE_BASE, {2w0, headers.ipv4.src, 1w1, headers.ipv4.dst}, HASH_TABLE_MAX);
+            //hash(ig_md.index_1, HashAlgorithm.crc16, HASH_TABLE_BASE, {headers.sip.sourceip, 7w11, headers.cip.destip}, HASH_TABLE_MAX);
+            //hash(ig_md.index_2, HashAlgorithm.crc16, HASH_TABLE_BASE, {3w5, headers.sip.sourceip, 5w3, headers.cip.destip}, HASH_TABLE_MAX);
+            //hash(ig_md.index_3, HashAlgorithm.crc16, HASH_TABLE_BASE, {2w0, headers.sip.sourceip, 1w1, headers.cip.destip}, HASH_TABLE_MAX);
             
-            //ig_md.index_1 = (bit<32>) hash_1.get(headers.ipv4.src + headers.ipv4.dst + 32w134140211);
-            //ig_md.index_2 = (bit<32>) hash_2.get(headers.ipv4.src + headers.ipv4.dst + 32w187182238);
-            bit<32> index_1 = (bit<32>) hash_1.get(headers.ipv4.src + headers.ipv4.dst + 32w134140211);
+            //ig_md.index_1 = (bit<32>) hash_1.get(headers.sip.sourceip + headers.cip.destip + 32w134140211);
+            //ig_md.index_2 = (bit<32>) hash_2.get(headers.sip.sourceip + headers.cip.destip + 32w187182238);
+            bit<32> index_1 = (bit<32>) hash_1.get(headers.sip.sourceip + headers.cip.destip + 32w134140211);
             
 
             bit<1> sip_cip_matched = 0;
@@ -1287,7 +1287,7 @@ control SwitchIngress(inout Parsed_packet headers,
                 entry_matched = 1;
             }
 
-            bit<32> index_2 = (bit<32>) hash_2.get(headers.ipv4.src + headers.ipv4.dst + 32w187182238);
+            bit<32> index_2 = (bit<32>) hash_2.get(headers.sip.sourceip + headers.cip.destip + 32w187182238);
             // register_2
             if (entry_matched == 0) {
                 // Stage 10 and 11
