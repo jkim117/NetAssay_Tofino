@@ -1322,11 +1322,11 @@ control SwitchIngress(inout Parsed_packet headers,
                 }
             }
 
-            if (entry_matched == 1) {
+            /*if (entry_matched == 1) {
                 // Stage 13
                 packet_counts_table_reg_inc_action.execute(domain_id);
                 byte_counts_table_reg_inc_action.execute(domain_id);
-            }
+            }*/
         }
 	}
 }
