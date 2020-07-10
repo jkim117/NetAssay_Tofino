@@ -974,7 +974,7 @@ control SwitchIngress(inout Parsed_packet headers,
     };
     RegisterAction<sip_cip_t,_,void> (sip_cip_reg_1) sip_cip_reg_1_update_action = {
         void apply(inout sip_cip_t value) {
-            value.sip = headers.dns_ip.rdata;
+            value.sip = headers.sip.sourceip;
             value.cip = headers.cip.destip;
         }
     };
@@ -1024,7 +1024,7 @@ control SwitchIngress(inout Parsed_packet headers,
     };
     RegisterAction<sip_cip_t,_,void> (sip_cip_reg_2) sip_cip_reg_2_update_action = {
         void apply(inout sip_cip_t value) {
-            value.sip = headers.dns_ip.rdata;
+            value.sip = headers.sip.sourceip;
             value.cip = headers.cip.destip;
         }
     };
@@ -1177,9 +1177,9 @@ control SwitchIngress(inout Parsed_packet headers,
                 // Increment total DNS queries for this domain name
                 dns_total_queried_reg_inc_action.execute(ig_md.domain_id_dns);
                 
-                ig_md.index_1_dns = (bit<32>) hash_1_dns.get(headers.dns_ip.rdata + headers.cip.destip + 32w134140211);
-                ig_md.index_2_dns = (bit<32>) hash_2_dns.get(headers.dns_ip.rdata + headers.cip.destip + 32w187182238);
-                //ig_md.index_3_dns = (bit<32>) hash_3_dns.get(headers.dns_ip.rdata + headers.cip.destip + 32w232108253);
+                ig_md.index_1_dns = (bit<32>) hash_1_dns.get(headers.sip.sourceip + headers.cip.destip + 32w134140211);
+                ig_md.index_2_dns = (bit<32>) hash_2_dns.get(headers.sip.sourceip + headers.cip.destip + 32w187182238);
+                //ig_md.index_3_dns = (bit<32>) hash_3_dns.get(headers.sip.sourceip + headers.cip.destip + 32w232108253);
 
                 ig_md.already_matched = 0;
                 bool is_resubmitted=(bool) ig_intr_md.resubmit_flag;
