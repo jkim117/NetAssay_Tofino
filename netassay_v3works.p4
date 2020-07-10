@@ -191,6 +191,9 @@ struct ig_metadata_t {
     bit<64> temp_total_dns;
     bit<64> temp_total_missed;
     bit<1> parsed_answer;
+
+    IPv4Address server_ip;
+    IPv4Address client_ip;
 }
 
 struct sip_cip_t { 
@@ -957,18 +960,7 @@ control SwitchIngress(inout Parsed_packet headers,
     Register<sip_cip_t,_>(TABLE_SIZE) sip_cip_reg_1; 
     RegisterAction<sip_cip_t,_,bit<1>> (sip_cip_reg_1) sip_cip_reg_1_check_action = {
         void apply(inout sip_cip_t value, out bit<1> is_match) {
-            if (value.sip == headers.dns_ip.rdata && value.cip == headers.ipv4.dst) {
-                is_match = 1;
-            }
-            else {
-                is_match = 0;
-            }
-        }
-    };
-    RegisterAction<sip_cip_t,_,bit<1>> (sip_cip_reg_1) sip_cip_reg_1_check_bidir_action = {
-        void apply(inout sip_cip_t value, out bit<1> is_match) {
-            //if ( (value.sip == hdr.dns_ip.rdata && value.cip == hdr.ipv4.dst) || (value.sip == hdr.ipv4.dst && value.cip == hdr.dns_ip.rdata) ) {
-            if (value.sip == headers.ipv4.src && value.cip == headers.ipv4.dst) {
+            if (value.sip == ig_md.server_ip && value.cip == ig_md.client_ip) {
                 is_match = 1;
             }
             else {
@@ -1018,18 +1010,7 @@ control SwitchIngress(inout Parsed_packet headers,
     Register<sip_cip_t,_>(TABLE_SIZE) sip_cip_reg_2; 
     RegisterAction<sip_cip_t,_,bit<1>> (sip_cip_reg_2) sip_cip_reg_2_check_action = {
         void apply(inout sip_cip_t value, out bit<1> is_match) {
-            if (value.sip == headers.dns_ip.rdata && value.cip == headers.ipv4.dst) {
-                is_match = 1;
-            }
-            else {
-                is_match = 0;
-            }
-        }
-    };
-    RegisterAction<sip_cip_t,_,bit<1>> (sip_cip_reg_2) sip_cip_reg_2_check_bidir_action = {
-        void apply(inout sip_cip_t value, out bit<1> is_match) {
-            //if ( (value.sip == hdr.dns_ip.rdata && value.cip == hdr.ipv4.dst) || (value.sip == hdr.ipv4.dst && value.cip == hdr.dns_ip.rdata) ) {
-            if (value.sip == headers.ipv4.src && value.cip == headers.ipv4.dst) {
+            if (value.sip == ig_md.server_ip && value.cip == ig_md.client_ip) {
                 is_match = 1;
             }
             else {
@@ -1183,6 +1164,9 @@ control SwitchIngress(inout Parsed_packet headers,
             ig_md.domain_id_dns = 0;
             ig_md.matched_domain = 0;
 
+            ig_md.server_ip = headers.dns_ip.rdata;
+            ig_md.client_ip = headers.ipv4.dst;
+
             known_domain_list.apply();
             //allowable_dns_dst.apply();
             banned_dns_dst.apply();
@@ -1281,6 +1265,9 @@ control SwitchIngress(inout Parsed_packet headers,
             
             //ig_md.index_1 = (bit<32>) hash_1.get(headers.ipv4.src + headers.ipv4.dst + 32w134140211);
             //ig_md.index_2 = (bit<32>) hash_2.get(headers.ipv4.src + headers.ipv4.dst + 32w187182238);
+            ig_md.server_ip = headers.ipv4.src;
+            ig_md.client_ip = headers.ipv4.dst;
+
             bit<32> index_1 = (bit<32>) hash_1.get(headers.ipv4.src + headers.ipv4.dst + 32w134140211);
             
 
@@ -1289,7 +1276,6 @@ control SwitchIngress(inout Parsed_packet headers,
             bit<32> domain_id = 0;
 
             // register_1
-            //sip_cip_matched = sip_cip_reg_1_check_bidir_action.execute(ig_md.index_1);
             sip_cip_matched = sip_cip_reg_1_check_action.execute(index_1);
             
             if (sip_cip_matched == 1) {
@@ -1307,7 +1293,6 @@ control SwitchIngress(inout Parsed_packet headers,
             // register_2
             if (entry_matched == 0) {
                 // Stage 10 and 11
-                //sip_cip_matched = sip_cip_reg_2_check_bidir_action.execute(ig_md.index_2);
                 sip_cip_matched = sip_cip_reg_2_check_action.execute(index_2);
                 
                 if (sip_cip_matched == 1) {
@@ -1322,11 +1307,11 @@ control SwitchIngress(inout Parsed_packet headers,
                 }
             }
 
-            /*if (entry_matched == 1) {
+            if (entry_matched == 1) {
                 // Stage 13
                 packet_counts_table_reg_inc_action.execute(domain_id);
                 byte_counts_table_reg_inc_action.execute(domain_id);
-            }*/
+            }
         }
 	}
 }
