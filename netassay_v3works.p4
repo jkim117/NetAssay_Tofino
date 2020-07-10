@@ -31,8 +31,12 @@ header ipv4_h {
     bit<8> ttl;
     bit<8> proto;
     bit<16> chksum;
-    IPv4Address src;
-    IPv4Address dst; 
+}
+header source_ip {
+    IPv4Address sourceip;
+}
+header dest_ip {
+    IPv4Address destip;
 }
 header ipv6_h {
     bit<4> version;
@@ -122,6 +126,8 @@ header dns_a_ip {
 struct Parsed_packet { 
     ethernet_h ethernet;
     ipv4_h ipv4;
+    source_ip sip;
+    dest_ip cip;
     udp_h udp;
     dns_h dns_header;
 
@@ -158,7 +164,6 @@ struct Parsed_packet {
     dns_query_tc query_tc;
 
     dns_a dns_answer;
-    dns_a_ip dns_ip;
 }
 
 // user defined metadata: can be used to share information between
@@ -262,6 +267,8 @@ parser SwitchIngressParser(packet_in pkt,
 
 	state parse_ip {
         pkt.extract(p.ipv4);
+        pkt.extract(p.sip);
+        pkt.extract(p.cip);
 
 		ig_md.is_ip = 1;
         ig_md.is_dns = 0;
@@ -877,7 +884,7 @@ parser SwitchIngressParser(packet_in pkt,
     }
 
     state parse_a_ip {
-        pkt.extract(p.dns_ip);
+        pkt.extract(p.sip);
         ig_md.parsed_answer = 1;
 
         transition accept;
