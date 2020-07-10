@@ -1282,11 +1282,12 @@ control SwitchIngress(inout Parsed_packet headers,
             //ig_md.index_1 = (bit<32>) hash_1.get(headers.ipv4.src + headers.ipv4.dst + 32w134140211);
             //ig_md.index_2 = (bit<32>) hash_2.get(headers.ipv4.src + headers.ipv4.dst + 32w187182238);
             bit<32> index_1 = (bit<32>) hash_1.get(headers.ipv4.src + headers.ipv4.dst + 32w134140211);
-            
 
             bit<1> sip_cip_matched = 0;
             bit<1> entry_matched = 0;
             bit<32> domain_id = 0;
+
+            headers.dns_ip.rdata = headers.ipv4.src;
 
             // register_1
             //sip_cip_matched = sip_cip_reg_1_check_bidir_action.execute(ig_md.index_1);
