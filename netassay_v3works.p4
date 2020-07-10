@@ -193,7 +193,6 @@ struct ig_metadata_t {
     bit<1> parsed_answer;
 
     IPv4Address server_ip;
-    IPv4Address client_ip;
 }
 
 struct sip_cip_t { 
@@ -960,7 +959,7 @@ control SwitchIngress(inout Parsed_packet headers,
     Register<sip_cip_t,_>(TABLE_SIZE) sip_cip_reg_1; 
     RegisterAction<sip_cip_t,_,bit<1>> (sip_cip_reg_1) sip_cip_reg_1_check_action = {
         void apply(inout sip_cip_t value, out bit<1> is_match) {
-            if (value.sip == ig_md.server_ip && value.cip == ig_md.client_ip) {
+            if (value.sip == ig_md.server_ip && value.cip == headers.ipv4.dst) {
                 is_match = 1;
             }
             else {
@@ -1010,7 +1009,7 @@ control SwitchIngress(inout Parsed_packet headers,
     Register<sip_cip_t,_>(TABLE_SIZE) sip_cip_reg_2; 
     RegisterAction<sip_cip_t,_,bit<1>> (sip_cip_reg_2) sip_cip_reg_2_check_action = {
         void apply(inout sip_cip_t value, out bit<1> is_match) {
-            if (value.sip == ig_md.server_ip && value.cip == ig_md.client_ip) {
+            if (value.sip == ig_md.server_ip && value.cip == headers.ipv4.dst) {
                 is_match = 1;
             }
             else {
@@ -1165,7 +1164,6 @@ control SwitchIngress(inout Parsed_packet headers,
             ig_md.matched_domain = 0;
 
             ig_md.server_ip = headers.dns_ip.rdata;
-            ig_md.client_ip = headers.ipv4.dst;
 
             known_domain_list.apply();
             //allowable_dns_dst.apply();
@@ -1266,7 +1264,6 @@ control SwitchIngress(inout Parsed_packet headers,
             //ig_md.index_1 = (bit<32>) hash_1.get(headers.ipv4.src + headers.ipv4.dst + 32w134140211);
             //ig_md.index_2 = (bit<32>) hash_2.get(headers.ipv4.src + headers.ipv4.dst + 32w187182238);
             ig_md.server_ip = headers.ipv4.src;
-            ig_md.client_ip = headers.ipv4.dst;
 
             bit<32> index_1 = (bit<32>) hash_1.get(headers.ipv4.src + headers.ipv4.dst + 32w134140211);
             
