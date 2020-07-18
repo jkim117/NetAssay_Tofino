@@ -44,12 +44,44 @@ struct eg_metadata_t {
 }
 
 // parsers
+
+parser TofinoIngressParser(
+        packet_in pkt,
+        inout ig_metadata_t ig_md,
+        out ingress_intrinsic_metadata_t ig_intr_md) {
+    state start {
+        pkt.extract(ig_intr_md);
+        transition select(ig_intr_md.resubmit_flag) {
+            1 : parse_resubmit;
+            0 : parse_port_metadata;
+        }
+    }
+
+    state parse_resubmit {
+        // Parse resubmitted packet here.
+        pkt.advance(64); 
+        transition accept;
+    }
+
+    state parse_port_metadata {
+        pkt.advance(64);  //tofino 1 port metadata size
+        transition accept;
+    }
+}
+
 parser SwitchIngressParser(packet_in pkt,
            out Parsed_packet p,
            out ig_metadata_t ig_md,
            out ingress_intrinsic_metadata_t ig_intr_md) {
 
+    TofinoIngressParser() tofino_parser;
+
     state start {
+        tofino_parser.apply(pkt, ig_md, ig_intr_md);
+        transition parse_ethernet;
+    }
+
+    state parse_ethernet {
         pkt.extract(p.ethernet);
         // These are set appropriately in the TopPipe.
 		ig_md.is_ip = 0;
