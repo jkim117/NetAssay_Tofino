@@ -72,33 +72,43 @@
 #        Just stop if there is any problem
 #
 set -e
+
 # Uncomment the line below for debug purposes
 #set -x
+
 #
 # The following parameters are controlled through the command line
 #
 jobs=0                          # Number of jobs to run in parallel (0 is auto)
+
 with_p4c=                       # Compiler to use: use default
 with_p4c_14="p4c-tofino"        #       Default for p4_14 programs
 with_p4c_16="p4c"               #       Default for p4_16 programs
+
                                 # P4 Target
 with_tofino="--with-tofino"     # Compile for Tofino/Tofino-model
+
 default_with_thrift="--enable-thrift"   # Build Thrift Client/Server Code
-                                        # (p4_14 only)                       
+                                        # (p4_14 only)
+                                    
 with_graphs="yes"               # Build graphs using p4-graphs (p4_14 only)
 p4graphs="p4-graphs"
+
 # Default compiler flags for p4c-tofino. 
 # Other useful but more dangerous/time-consuming flags:
 # --print-pa-constraints --parser-timing-report.
 # --create-graphs requires the presence of 'dot' in the path
-default_p4flags_tofino="-g --verbose 2"
+default_p4flags_tofino="-g --verbose 2"    
+
 # Default compiler flags for p4c.
 # We'll keep separate versions for P4_14 and P4_16
-default_p4flags_p4_14="-g --verbose 2"
+default_p4flags_p4_14="-g --verbose 2" 
 default_p4flags_p4_16="-g --verbose 2"
+
 # Normally the default flags above should be added to the user-specified
 # P4FLAGS, but in some cases user-provided flags can override ours
 p4flags_override=0
+
 #
 # Various parameters/constants
 #
@@ -107,8 +117,123 @@ pkgsrc=pkgsrc             # The SDE subdirectory, where tarbals are untarred
 build=build               # The SDE subdirectory, where the builds are done
 logs=logs                 # The SDE subdirectory, where build logs are stored
 install=install
+
 sde_min_gb=4              # We recommend at least 4GB RAM for the build
 log_lines=15              # How many lines from the log to show on error
+
+print_help() {
+    cat <<EOF | less
+
+Usage: p4_build.sh [options] <p4-program> [p4-build-vars] [-- <p4-build-flags>]"
+
+Supported options:
+  General:
+  ========
+    -h, --help    -- Print this help
+    -v, --version -- Print this script version
+    -j jobs       -- Specify maximum jobs for parallelization. Default is 0,
+                     meaning that the script will determine the optimal value
+                     automatically
+
+    -p, --p4flags-override
+                     If specified, the value of P4FLAGS will be passed to the
+                     compiler "as-is" thus overriding the default flags instead
+                     of simply being added to them.
+
+    --with-p4c[=<path-to-P4-compiler>]
+                     Specify the compiler:
+                        Default for P4_14 is p4c-tofino
+                        Default for P4_16 is p4c
+                     --with-p4c is the same as --with-p4c=p4c
+
+    --with-graphs[=<path-to-p4-graphs]
+                     Automatically invoke p4-graphs to build the parser, flow
+                     and dependency graphs (this is the default for P4_14)
+                     --with-p4-graphs is the same as --with-p4-graphs=p4-graphs
+                     Also use --create-graphs if the compiler supports that.
+
+    --without-graphs 
+                     Do not automatically invoke p4-graphs and do not create
+                     compiler graphs (p4c-graphs) either
+
+    --with-suffix=suffix 
+                     Append the suffix to the build and logs directory name.
+                     Usually starts with ".", e.g. ".p4c"
+                     Indeed, if you use --with-p4c flag, the suffix is by
+                     default set to basename of the compiler
+
+    --with-thrift    
+                     Automatically generate Thrift bindings and Thrift server
+                     for PD APIs (this is the default for P4_14)
+    --without-thrift 
+                     Do not automatically generate Thrift bindings and server
+                     (this is the default for P4_16)
+
+    --with-p4graphs=<path-to-P4-graph-generator>
+                     You can override the path to P4 graphs generator.
+                     
+ P4 Language Version / P4 Architecture support
+ =============================================
+    The tool automatically detects the language version and the architecture
+    of the program you are trying to compile. If it can't do it, most probably
+    something is not right. In that case they can be explictily specifies via
+    P4_VERSION and P4_ARCHITECTURE variables, e.g.
+
+         p4_build.sh weird.p4 P4_VERSION=p4_16 P4_ARCHITECTURE=tna
+            
+ Targets:
+ ========
+    For each supported target T, you can specify the following flags:
+      --with-T    -- do compile for the target T 
+      --without-T -- do not compile for the target T (--no-T is an alias)
+    Supported targets are:
+      tofino   -- Tofino(tm) ASIC and its register-accurate model (default)
+
+  Most important P4-Build Variables:
+  ==================================
+  P4_NAME         Name of the P4 program. By default that's the basename of the 
+                  file you pass to the script
+  P4_PREFIX       Prefix for the PD APIs. By default, that's the basename of the
+                  file you pass to the script
+  P4_VERSION      P4 language version (p4_14 or p4_16). Usually NOT NEEDED, 
+                  since the script is capable of determining the language 
+                  version automatically
+  P4_ARCHITECTURE P4 Architecture (tna, v1model, psa). Ignored for P4_14.
+                  Usually NOT NEEDED, since the script is capable of determining
+                  the language version automatically
+  P4PPFLAGS       Preprocessor flags for P4 program
+  P4FLAGS         Compiler flags for p4c-tofino compiler. Only specify the flags
+                  that you need and the tool will add some additional flags.
+                  If you want to verride the flags, use -p parameter.
+  P4JOBS          The number of p4c-tofino threads (see -j)
+  PDFLAGS         Compiler flags for tofino pd generation
+  P4_BUILD_ASSUME_PDFIXED
+                  Bypass check for pdfixed headers
+  CC              C compiler command
+  CFLAGS          C compiler flags
+  CPP             C preprocessor
+  CPPFLAGS        C preprocessor flags
+  CXX             C++ compiler command
+  CXXFLAGS        C++ compiler flags
+  PYTHON          the Python interpreter
+  
+
+  Most important P4-build flags:
+  ==============================
+  By "flags" we mean parameters that start with "-" or "--". Unlike P4-build
+  variables they need to be separated from the rest of the parameters via "--".
+
+  Run "$SDE/pkgsrc/p4-build/configure --help" for the full list 
+
+  Default compiler flags:
+  =======================
+  p4c-tofino: $default_p4flags_tofino
+  p4c(p4_14): $default_p4flags_p4_14
+  p4c(p4_16): $default_p4flags_p4_16
+
+EOF
+}
+
 #
 # Print version
 #
@@ -961,12 +1086,14 @@ opts=`getopt -o hvj:p                                               \
              -- "$@"`
 
 if [ $? != 0 ]; then
+  print_help
   exit 1
 fi
 eval set -- "$opts"
       
 while true; do
     case "$1" in
+        -h|--help)     print_help;    exit 0;;
         -v|--version)  print_version; exit 0;;
         -j|--jobs) if [[ $2 =~ ^[0-9]*$ ]]; then
                        jobs=$2;
