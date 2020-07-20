@@ -1,0 +1,50 @@
+############## simple_0.p4 ##############
+This program is a simple p4 program that contains one match action table (known_ip_list) and one register (packet_counts_table).
+You can add known ipv4 addresses to the known_ip_list match action table.
+Then, if a packet has a source address that matches exactly to a rule in the known_ip_list match action table, the index 1 in the register "packet_counts_table" is incremented.
+If a packet has a source address that does not match to any address in the match action table, then the index 0 in the register "packet_counts_table" is incremented.
+
+cd /shared/bf-sde-9.1.1/
+. ./set_sde.bash
+sudo bash ./install/bin/veth_teardown.sh
+sudo bash ./install/bin/veth_setup.sh
+
+cd ~/p4netassay
+bf-p4c -g simple_0.p4 --create-graphs
+
+Use "screen" command to create at least three separate windows
+
+Window 0:
+cd /shared/bf-sde-9.1.1/
+. ./set_sde.bash
+./run_tofino_model.sh -p simple_0
+
+Window 1:
+cd /shared/bf-sde-9.1.1/
+. ./set_sde.bash
+./run_switchd.sh -p simple_0
+
+Now, within the bfrt shell->
+>bfrt_python
+>bfrt
+>simple_0
+>pipe
+>SwitchIngress
+>known_ip_list
+>add_with_match_ip(headers_ipv4_src=0xC0A80104)
+Note, if that previous command didn't work, try:
+>add_with_match_ip(ipv4_src=0xC0A80104)
+
+>dump (this is to ensure that the match action rule was successfully added)
+>..
+>packet_counts_table
+
+Window 2:
+cd ~/p4netassay
+tcpreplay -i veth2 jason_news.pcap
+If you switch to Window 0, you should see the tofino model reacting the packets as they are processed.
+
+Window 1:
+After tcpreplay is complete:
+>dump
+Hopefully, we should see some nonzero values in both index 0 and 1 of this register
