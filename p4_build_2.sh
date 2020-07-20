@@ -72,43 +72,28 @@
 #        Just stop if there is any problem
 #
 set -e
-
-# Uncomment the line below for debug purposes
-#set -x
-
-#
-# The following parameters are controlled through the command line
-#
 jobs=0                          # Number of jobs to run in parallel (0 is auto)
-
 with_p4c=                       # Compiler to use: use default
 with_p4c_14="p4c-tofino"        #       Default for p4_14 programs
 with_p4c_16="p4c"               #       Default for p4_16 programs
-
                                 # P4 Target
 with_tofino="--with-tofino"     # Compile for Tofino/Tofino-model
-
 default_with_thrift="--enable-thrift"   # Build Thrift Client/Server Code
-                                        # (p4_14 only)
-                                    
+                                        # (p4_14 only)                         
 with_graphs="yes"               # Build graphs using p4-graphs (p4_14 only)
 p4graphs="p4-graphs"
-
 # Default compiler flags for p4c-tofino. 
 # Other useful but more dangerous/time-consuming flags:
 # --print-pa-constraints --parser-timing-report.
 # --create-graphs requires the presence of 'dot' in the path
 default_p4flags_tofino="-g --verbose 2"    
-
 # Default compiler flags for p4c.
 # We'll keep separate versions for P4_14 and P4_16
 default_p4flags_p4_14="-g --verbose 2" 
 default_p4flags_p4_16="-g --verbose 2"
-
 # Normally the default flags above should be added to the user-specified
 # P4FLAGS, but in some cases user-provided flags can override ours
 p4flags_override=0
-
 #
 # Various parameters/constants
 #
@@ -117,10 +102,8 @@ pkgsrc=pkgsrc             # The SDE subdirectory, where tarbals are untarred
 build=build               # The SDE subdirectory, where the builds are done
 logs=logs                 # The SDE subdirectory, where build logs are stored
 install=install
-
 sde_min_gb=4              # We recommend at least 4GB RAM for the build
 log_lines=15              # How many lines from the log to show on error
-
 print_help() {
     cat <<EOF | less
 
