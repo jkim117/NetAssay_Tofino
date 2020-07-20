@@ -82,7 +82,7 @@ default_with_thrift="--enable-thrift"   # Build Thrift Client/Server Code
                                         # (p4_14 only)                         
 with_graphs="yes"               # Build graphs using p4-graphs (p4_14 only)
 p4graphs="p4-graphs"
-default_p4flags_tofino="-g --verbose 2"    
+default_p4flags_tofino="-g --verbose 2"
 # Default compiler flags for p4c.
 # We'll keep separate versions for P4_14 and P4_16
 default_p4flags_p4_14="-g --verbose 2"
@@ -100,7 +100,8 @@ logs=logs                 # The SDE subdirectory, where build logs are stored
 install=install
 sde_min_gb=4              # We recommend at least 4GB RAM for the build
 log_lines=15              # How many lines from the log to show on error
-print_help() {cat <<EOF | less
+print_help() {
+    cat <<EOF | less
 
 Usage: p4_build.sh [options] <p4-program> [p4-build-vars] [-- <p4-build-flags>]"
 
