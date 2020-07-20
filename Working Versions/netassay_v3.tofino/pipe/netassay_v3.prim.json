@@ -1,0 +1,1080 @@
+{
+  "tables" : [
+    {
+      "name" : "tbl_netassay_v3l1148",
+      "actions" : [
+        {
+          "name" : "netassay_v3l1148",
+          "primitives" : [
+            {
+              "name" : "ModifyFieldPrimitive",
+              "operation" : "set",
+              "dst" : {
+                "type" : "phv",
+                "name" : "ig_md.domain_id_dns"
+              },
+              "dst_mask" : {
+                "type" : "immediate",
+                "name" : "0"
+              },
+              "src1" : {
+                "type" : "immediate",
+                "name" : "0"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "SwitchIngress.known_domain_list",
+      "actions" : [
+        {
+          "name" : "SwitchIngress.match_domain",
+          "primitives" : [
+            {
+              "name" : "ModifyFieldPrimitive",
+              "operation" : "set",
+              "dst" : {
+                "type" : "phv",
+                "name" : "ig_md.domain_id_dns"
+              },
+              "dst_mask" : {
+                "type" : "immediate",
+                "name" : "0"
+              },
+              "src1" : {
+                "type" : "action_param",
+                "name" : "id"
+              }
+            },
+            {
+              "name" : "ModifyFieldPrimitive",
+              "operation" : "set",
+              "dst" : {
+                "type" : "phv",
+                "name" : "ig_md.matched_domain"
+              },
+              "dst_mask" : {
+                "type" : "immediate",
+                "name" : "1"
+              },
+              "src1" : {
+                "type" : "immediate",
+                "name" : "1"
+              }
+            }
+          ]
+        },
+        {
+          "name" : "NoAction",
+          "primitives" : []
+        }
+      ]
+    },
+    {
+      "name" : "SwitchIngress.banned_dns_dst",
+      "actions" : [
+        {
+          "name" : "SwitchIngress.match_banned_dns_dst",
+          "primitives" : [
+            {
+              "name" : "ModifyFieldPrimitive",
+              "operation" : "set",
+              "dst" : {
+                "type" : "phv",
+                "name" : "ig_md.matched_domain"
+              },
+              "dst_mask" : {
+                "type" : "immediate",
+                "name" : "1"
+              },
+              "src1" : {
+                "type" : "immediate",
+                "name" : "0"
+              }
+            }
+          ]
+        },
+        {
+          "name" : "NoAction",
+          "primitives" : []
+        }
+      ]
+    },
+    {
+      "name" : "tbl_netassay_v3l1157",
+      "actions" : [
+        {
+          "name" : "netassay_v3l1157",
+          "primitives" : [
+            {
+              "name" : "ExecuteStatefulAluFromHashPrimitive",
+              "dst" : {
+                "type" : "stateful",
+                "name" : "SwitchIngress.dns_total_queried"
+              },
+              "idx" : {
+                "type" : "hash",
+                "name" : "hash_SwitchIngress.dns_total_queried",
+                "algorithm" : "identity"
+              },
+              "hash_inputs" : ["ig_md.domain_id_dns"],
+              "stateful_alu_details" : {
+                "single_bit_mode" : false,
+                "name" : "dns_total_queried_reg_inc_action_0",
+                "update_lo_1_value" : {
+                  "operation" : "+",
+                  "operand_1_type" : "memory",
+                  "operand_1_value" : "register_lo",
+                  "operand_2_type" : "immediate",
+                  "operand_2_value" : "1"
+                }
+              }
+            },
+            {
+              "name" : "SetFieldToHashIndexPrimitive",
+              "dst" : {
+                "type" : "phv",
+                "name" : "$concat_to_slice1"
+              },
+              "idx" : {
+                "type" : "hash",
+                "name" : "hash_$concat_to_slice1",
+                "algorithm" : "crc_16"
+              },
+              "hash_inputs" : ["p.dns_ip.rdata", "p.ipv4.dst", "134140211"]
+            },
+            {
+              "name" : "ModifyFieldPrimitive",
+              "operation" : "set",
+              "dst" : {
+                "type" : "phv",
+                "name" : "ig_md.index_1_dns"
+              },
+              "dst_mask" : {
+                "type" : "immediate",
+                "name" : "262143"
+              },
+              "src1" : {
+                "type" : "immediate",
+                "name" : "0"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "tbl_netassay_v3l1159",
+      "actions" : [
+        {
+          "name" : "netassay_v3l1159",
+          "primitives" : [
+            {
+              "name" : "ModifyFieldPrimitive",
+              "operation" : "set",
+              "dst" : {
+                "type" : "phv",
+                "name" : "ig_md.index_1_dns"
+              },
+              "dst_mask" : {
+                "type" : "immediate",
+                "name" : "16383"
+              },
+              "src1" : {
+                "type" : "phv",
+                "name" : "$concat_to_slice1"
+              }
+            },
+            {
+              "name" : "SetFieldToHashIndexPrimitive",
+              "dst" : {
+                "type" : "phv",
+                "name" : "$concat_to_slice3"
+              },
+              "idx" : {
+                "type" : "hash",
+                "name" : "hash_$concat_to_slice3",
+                "algorithm" : "crc_16"
+              },
+              "hash_inputs" : ["p.dns_ip.rdata", "p.ipv4.dst", "187182238"]
+            },
+            {
+              "name" : "ModifyFieldPrimitive",
+              "operation" : "set",
+              "dst" : {
+                "type" : "phv",
+                "name" : "ig_md.index_2_dns"
+              },
+              "dst_mask" : {
+                "type" : "immediate",
+                "name" : "262143"
+              },
+              "src1" : {
+                "type" : "immediate",
+                "name" : "0"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "tbl_netassay_v3l1160",
+      "actions" : [
+        {
+          "name" : "netassay_v3l1160",
+          "primitives" : [
+            {
+              "name" : "ModifyFieldPrimitive",
+              "operation" : "set",
+              "dst" : {
+                "type" : "phv",
+                "name" : "ig_md.index_2_dns"
+              },
+              "dst_mask" : {
+                "type" : "immediate",
+                "name" : "16383"
+              },
+              "src1" : {
+                "type" : "phv",
+                "name" : "$concat_to_slice3"
+              }
+            },
+            {
+              "name" : "ModifyFieldPrimitive",
+              "operation" : "set",
+              "dst" : {
+                "type" : "phv",
+                "name" : "ig_md.already_matched"
+              },
+              "dst_mask" : {
+                "type" : "immediate",
+                "name" : "1"
+              },
+              "src1" : {
+                "type" : "immediate",
+                "name" : "0"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "tbl_netassay_v3l1168",
+      "actions" : [
+        {
+          "name" : "netassay_v3l1168",
+          "primitives" : [
+            {
+              "name" : "ExecuteStatefulAluFromHashPrimitive",
+              "dst" : {
+                "type" : "stateful",
+                "name" : "SwitchIngress.sip_cip_reg_1"
+              },
+              "idx" : {
+                "type" : "hash",
+                "name" : "hash_SwitchIngress.sip_cip_reg_1",
+                "algorithm" : "identity"
+              },
+              "hash_inputs" : ["ig_md.index_1_dns"],
+              "stateful_alu_details" : {
+                "single_bit_mode" : false,
+                "name" : "sip_cip_reg_1_check_action_0",
+                "output_dst" : "is_match_0"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "tbl_netassay_v3l1172",
+      "actions" : [
+        {
+          "name" : "netassay_v3l1172",
+          "primitives" : [
+            {
+              "name" : "ExecuteStatefulAluFromHashPrimitive",
+              "dst" : {
+                "type" : "stateful",
+                "name" : "SwitchIngress.domain_tstamp_reg_1"
+              },
+              "idx" : {
+                "type" : "hash",
+                "name" : "hash_SwitchIngress.domain_tstamp_reg_1",
+                "algorithm" : "identity"
+              },
+              "hash_inputs" : ["ig_md.index_1_dns"],
+              "stateful_alu_details" : {
+                "single_bit_mode" : false,
+                "name" : "domain_tstamp_reg_1_update_tstamp_action_0",
+                "update_hi_1_value" : {
+                  "operand_1_type" : "phv",
+                  "operand_1_value" : "ingress::ig_intr_md_from_prsr.global_tstamp[31:0]"
+                }
+              }
+            },
+            {
+              "name" : "ModifyFieldPrimitive",
+              "operation" : "set",
+              "dst" : {
+                "type" : "phv",
+                "name" : "ig_md.already_matched"
+              },
+              "dst_mask" : {
+                "type" : "immediate",
+                "name" : "1"
+              },
+              "src1" : {
+                "type" : "immediate",
+                "name" : "1"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "tbl_netassay_v3l1177",
+      "actions" : [
+        {
+          "name" : "netassay_v3l1177",
+          "primitives" : [
+            {
+              "name" : "ExecuteStatefulAluFromHashPrimitive",
+              "dst" : {
+                "type" : "stateful",
+                "name" : "SwitchIngress.domain_tstamp_reg_1"
+              },
+              "idx" : {
+                "type" : "hash",
+                "name" : "hash_SwitchIngress.domain_tstamp_reg_1",
+                "algorithm" : "identity"
+              },
+              "hash_inputs" : ["ig_md.index_1_dns"],
+              "stateful_alu_details" : {
+                "single_bit_mode" : false,
+                "name" : "domain_tstamp_reg_1_update_tstamp_action_0",
+                "update_hi_1_value" : {
+                  "operand_1_type" : "phv",
+                  "operand_1_value" : "ingress::ig_intr_md_from_prsr.global_tstamp[31:0]"
+                },
+                "output_dst" : "timed_out_0"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "tbl_netassay_v3l1182",
+      "actions" : [
+        {
+          "name" : "netassay_v3l1182",
+          "primitives" : [
+            {
+              "name" : "ModifyFieldPrimitive",
+              "operation" : "set",
+              "dst" : {
+                "type" : "phv",
+                "name" : "ig_intr_md_for_dprsr.resubmit_type"
+              },
+              "dst_mask" : {
+                "type" : "immediate",
+                "name" : "7"
+              },
+              "src1" : {
+                "type" : "immediate",
+                "name" : "1"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "tbl_netassay_v3l1191",
+      "actions" : [
+        {
+          "name" : "netassay_v3l1191",
+          "primitives" : [
+            {
+              "name" : "ExecuteStatefulAluFromHashPrimitive",
+              "dst" : {
+                "type" : "stateful",
+                "name" : "SwitchIngress.sip_cip_reg_1"
+              },
+              "idx" : {
+                "type" : "hash",
+                "name" : "hash_SwitchIngress.sip_cip_reg_1",
+                "algorithm" : "identity"
+              },
+              "hash_inputs" : ["ig_md.index_1_dns"],
+              "stateful_alu_details" : {
+                "single_bit_mode" : false,
+                "name" : "sip_cip_reg_1_check_action_0"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "tbl_netassay_v3l1192",
+      "actions" : [
+        {
+          "name" : "netassay_v3l1192",
+          "primitives" : [
+            {
+              "name" : "ExecuteStatefulAluFromHashPrimitive",
+              "dst" : {
+                "type" : "stateful",
+                "name" : "SwitchIngress.domain_tstamp_reg_1"
+              },
+              "idx" : {
+                "type" : "hash",
+                "name" : "hash_SwitchIngress.domain_tstamp_reg_1",
+                "algorithm" : "identity"
+              },
+              "hash_inputs" : ["ig_md.index_1_dns"],
+              "stateful_alu_details" : {
+                "single_bit_mode" : false,
+                "name" : "domain_tstamp_reg_1_update_tstamp_action_0",
+                "update_hi_1_value" : {
+                  "operand_1_type" : "phv",
+                  "operand_1_value" : "ingress::ig_intr_md_from_prsr.global_tstamp[31:0]"
+                }
+              }
+            },
+            {
+              "name" : "ModifyFieldPrimitive",
+              "operation" : "set",
+              "dst" : {
+                "type" : "phv",
+                "name" : "ig_md.already_matched"
+              },
+              "dst_mask" : {
+                "type" : "immediate",
+                "name" : "1"
+              },
+              "src1" : {
+                "type" : "immediate",
+                "name" : "1"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "tbl_netassay_v3l1202",
+      "actions" : [
+        {
+          "name" : "netassay_v3l1202",
+          "primitives" : [
+            {
+              "name" : "ExecuteStatefulAluFromHashPrimitive",
+              "dst" : {
+                "type" : "stateful",
+                "name" : "SwitchIngress.sip_cip_reg_2"
+              },
+              "idx" : {
+                "type" : "hash",
+                "name" : "hash_SwitchIngress.sip_cip_reg_2",
+                "algorithm" : "identity"
+              },
+              "hash_inputs" : ["ig_md.index_2_dns"],
+              "stateful_alu_details" : {
+                "single_bit_mode" : false,
+                "name" : "sip_cip_reg_2_check_action_0",
+                "output_dst" : "is_match_1"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "tbl_netassay_v3l1206",
+      "actions" : [
+        {
+          "name" : "netassay_v3l1206",
+          "primitives" : [
+            {
+              "name" : "ExecuteStatefulAluFromHashPrimitive",
+              "dst" : {
+                "type" : "stateful",
+                "name" : "SwitchIngress.domain_tstamp_reg_2"
+              },
+              "idx" : {
+                "type" : "hash",
+                "name" : "hash_SwitchIngress.domain_tstamp_reg_2",
+                "algorithm" : "identity"
+              },
+              "hash_inputs" : ["ig_md.index_2_dns"],
+              "stateful_alu_details" : {
+                "single_bit_mode" : false,
+                "name" : "domain_tstamp_reg_2_update_tstamp_action_0",
+                "update_hi_1_value" : {
+                  "operand_1_type" : "phv",
+                  "operand_1_value" : "ingress::ig_intr_md_from_prsr.global_tstamp[31:0]"
+                }
+              }
+            },
+            {
+              "name" : "ModifyFieldPrimitive",
+              "operation" : "set",
+              "dst" : {
+                "type" : "phv",
+                "name" : "ig_md.already_matched"
+              },
+              "dst_mask" : {
+                "type" : "immediate",
+                "name" : "1"
+              },
+              "src1" : {
+                "type" : "immediate",
+                "name" : "1"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "tbl_netassay_v3l1211",
+      "actions" : [
+        {
+          "name" : "netassay_v3l1211",
+          "primitives" : [
+            {
+              "name" : "ExecuteStatefulAluFromHashPrimitive",
+              "dst" : {
+                "type" : "stateful",
+                "name" : "SwitchIngress.domain_tstamp_reg_2"
+              },
+              "idx" : {
+                "type" : "hash",
+                "name" : "hash_SwitchIngress.domain_tstamp_reg_2",
+                "algorithm" : "identity"
+              },
+              "hash_inputs" : ["ig_md.index_2_dns"],
+              "stateful_alu_details" : {
+                "single_bit_mode" : false,
+                "name" : "domain_tstamp_reg_2_update_tstamp_action_0",
+                "update_hi_1_value" : {
+                  "operand_1_type" : "phv",
+                  "operand_1_value" : "ingress::ig_intr_md_from_prsr.global_tstamp[31:0]"
+                },
+                "output_dst" : "timed_out_1"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "tbl_netassay_v3l1216",
+      "actions" : [
+        {
+          "name" : "netassay_v3l1216",
+          "primitives" : [
+            {
+              "name" : "ModifyFieldPrimitive",
+              "operation" : "set",
+              "dst" : {
+                "type" : "phv",
+                "name" : "ig_intr_md_for_dprsr.resubmit_type"
+              },
+              "dst_mask" : {
+                "type" : "immediate",
+                "name" : "7"
+              },
+              "src1" : {
+                "type" : "immediate",
+                "name" : "1"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "tbl_netassay_v3l1224",
+      "actions" : [
+        {
+          "name" : "netassay_v3l1224",
+          "primitives" : [
+            {
+              "name" : "ExecuteStatefulAluFromHashPrimitive",
+              "dst" : {
+                "type" : "stateful",
+                "name" : "SwitchIngress.sip_cip_reg_2"
+              },
+              "idx" : {
+                "type" : "hash",
+                "name" : "hash_SwitchIngress.sip_cip_reg_2",
+                "algorithm" : "identity"
+              },
+              "hash_inputs" : ["ig_md.index_2_dns"],
+              "stateful_alu_details" : {
+                "single_bit_mode" : false,
+                "name" : "sip_cip_reg_2_check_action_0"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "tbl_netassay_v3l1225",
+      "actions" : [
+        {
+          "name" : "netassay_v3l1225",
+          "primitives" : [
+            {
+              "name" : "ExecuteStatefulAluFromHashPrimitive",
+              "dst" : {
+                "type" : "stateful",
+                "name" : "SwitchIngress.domain_tstamp_reg_2"
+              },
+              "idx" : {
+                "type" : "hash",
+                "name" : "hash_SwitchIngress.domain_tstamp_reg_2",
+                "algorithm" : "identity"
+              },
+              "hash_inputs" : ["ig_md.index_2_dns"],
+              "stateful_alu_details" : {
+                "single_bit_mode" : false,
+                "name" : "domain_tstamp_reg_2_update_tstamp_action_0",
+                "update_hi_1_value" : {
+                  "operand_1_type" : "phv",
+                  "operand_1_value" : "ingress::ig_intr_md_from_prsr.global_tstamp[31:0]"
+                }
+              }
+            },
+            {
+              "name" : "ModifyFieldPrimitive",
+              "operation" : "set",
+              "dst" : {
+                "type" : "phv",
+                "name" : "ig_md.already_matched"
+              },
+              "dst_mask" : {
+                "type" : "immediate",
+                "name" : "1"
+              },
+              "src1" : {
+                "type" : "immediate",
+                "name" : "1"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "tbl_netassay_v3l1235",
+      "actions" : [
+        {
+          "name" : "netassay_v3l1235",
+          "primitives" : [
+            {
+              "name" : "ExecuteStatefulAluFromHashPrimitive",
+              "dst" : {
+                "type" : "stateful",
+                "name" : "SwitchIngress.dns_total_missed"
+              },
+              "idx" : {
+                "type" : "hash",
+                "name" : "hash_SwitchIngress.dns_total_missed",
+                "algorithm" : "identity"
+              },
+              "hash_inputs" : ["ig_md.domain_id_dns"],
+              "stateful_alu_details" : {
+                "single_bit_mode" : false,
+                "name" : "dns_total_missed_reg_inc_action_0",
+                "update_lo_1_value" : {
+                  "operation" : "+",
+                  "operand_1_type" : "memory",
+                  "operand_1_value" : "register_lo",
+                  "operand_2_type" : "immediate",
+                  "operand_2_value" : "1"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "tbl_netassay_v3l1241",
+      "actions" : [
+        {
+          "name" : "netassay_v3l1241",
+          "primitives" : [
+            {
+              "name" : "SetFieldToHashIndexPrimitive",
+              "dst" : {
+                "type" : "phv",
+                "name" : "$concat_to_slice5"
+              },
+              "idx" : {
+                "type" : "hash",
+                "name" : "hash_$concat_to_slice5",
+                "algorithm" : "crc_16"
+              },
+              "hash_inputs" : ["p.ipv4.src", "p.ipv4.dst", "134140211"]
+            },
+            {
+              "name" : "ModifyFieldPrimitive",
+              "operation" : "set",
+              "dst" : {
+                "type" : "phv",
+                "name" : "index_0"
+              },
+              "dst_mask" : {
+                "type" : "immediate",
+                "name" : "262143"
+              },
+              "src1" : {
+                "type" : "immediate",
+                "name" : "0"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "tbl_netassay_v3l1241_0",
+      "actions" : [
+        {
+          "name" : "netassay_v3l1241_0",
+          "primitives" : [
+            {
+              "name" : "ModifyFieldPrimitive",
+              "operation" : "set",
+              "dst" : {
+                "type" : "phv",
+                "name" : "index_0"
+              },
+              "dst_mask" : {
+                "type" : "immediate",
+                "name" : "16383"
+              },
+              "src1" : {
+                "type" : "phv",
+                "name" : "$concat_to_slice5"
+              }
+            },
+            {
+              "name" : "ModifyFieldPrimitive",
+              "operation" : "set",
+              "dst" : {
+                "type" : "phv",
+                "name" : "p.dns_ip.rdata"
+              },
+              "dst_mask" : {
+                "type" : "immediate",
+                "name" : "0"
+              },
+              "src1" : {
+                "type" : "phv",
+                "name" : "p.ipv4.src"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "tbl_netassay_v3l1250",
+      "actions" : [
+        {
+          "name" : "netassay_v3l1250",
+          "primitives" : [
+            {
+              "name" : "ExecuteStatefulAluFromHashPrimitive",
+              "dst" : {
+                "type" : "stateful",
+                "name" : "SwitchIngress.sip_cip_reg_1"
+              },
+              "idx" : {
+                "type" : "hash",
+                "name" : "hash_SwitchIngress.sip_cip_reg_1",
+                "algorithm" : "identity"
+              },
+              "hash_inputs" : ["index_0"],
+              "stateful_alu_details" : {
+                "single_bit_mode" : false,
+                "name" : "sip_cip_reg_1_check_action_0",
+                "output_dst" : "sip_cip_matched_0"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "tbl_netassay_v3l1254",
+      "actions" : [
+        {
+          "name" : "netassay_v3l1254",
+          "primitives" : [
+            {
+              "name" : "ExecuteStatefulAluFromHashPrimitive",
+              "dst" : {
+                "type" : "stateful",
+                "name" : "SwitchIngress.domain_tstamp_reg_1"
+              },
+              "idx" : {
+                "type" : "hash",
+                "name" : "hash_SwitchIngress.domain_tstamp_reg_1",
+                "algorithm" : "identity"
+              },
+              "hash_inputs" : ["index_0"],
+              "stateful_alu_details" : {
+                "single_bit_mode" : false,
+                "name" : "domain_tstamp_reg_1_update_tstamp_action_0",
+                "update_hi_1_value" : {
+                  "operand_1_type" : "phv",
+                  "operand_1_value" : "ingress::ig_intr_md_from_prsr.global_tstamp[31:0]"
+                },
+                "output_dst" : "domain_id_0"
+              }
+            },
+            {
+              "name" : "ModifyFieldPrimitive",
+              "operation" : "set",
+              "dst" : {
+                "type" : "phv",
+                "name" : "entry_matched_0"
+              },
+              "dst_mask" : {
+                "type" : "immediate",
+                "name" : "1"
+              },
+              "src1" : {
+                "type" : "immediate",
+                "name" : "1"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "tbl_netassay_v3l1260",
+      "actions" : [
+        {
+          "name" : "netassay_v3l1260",
+          "primitives" : [
+            {
+              "name" : "SetFieldToHashIndexPrimitive",
+              "dst" : {
+                "type" : "phv",
+                "name" : "$concat_to_slice7"
+              },
+              "idx" : {
+                "type" : "hash",
+                "name" : "hash_$concat_to_slice7",
+                "algorithm" : "crc_16"
+              },
+              "hash_inputs" : ["p.ipv4.src", "p.ipv4.dst", "187182238"]
+            },
+            {
+              "name" : "ModifyFieldPrimitive",
+              "operation" : "set",
+              "dst" : {
+                "type" : "phv",
+                "name" : "index_3"
+              },
+              "dst_mask" : {
+                "type" : "immediate",
+                "name" : "262143"
+              },
+              "src1" : {
+                "type" : "immediate",
+                "name" : "0"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "tbl_netassay_v3l1260_0",
+      "actions" : [
+        {
+          "name" : "netassay_v3l1260_0",
+          "primitives" : [
+            {
+              "name" : "ModifyFieldPrimitive",
+              "operation" : "set",
+              "dst" : {
+                "type" : "phv",
+                "name" : "index_3"
+              },
+              "dst_mask" : {
+                "type" : "immediate",
+                "name" : "16383"
+              },
+              "src1" : {
+                "type" : "phv",
+                "name" : "$concat_to_slice7"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "tbl_netassay_v3l1263",
+      "actions" : [
+        {
+          "name" : "netassay_v3l1263",
+          "primitives" : [
+            {
+              "name" : "ExecuteStatefulAluFromHashPrimitive",
+              "dst" : {
+                "type" : "stateful",
+                "name" : "SwitchIngress.sip_cip_reg_2"
+              },
+              "idx" : {
+                "type" : "hash",
+                "name" : "hash_SwitchIngress.sip_cip_reg_2",
+                "algorithm" : "identity"
+              },
+              "hash_inputs" : ["index_3"],
+              "stateful_alu_details" : {
+                "single_bit_mode" : false,
+                "name" : "sip_cip_reg_2_check_action_0",
+                "output_dst" : "sip_cip_matched_0"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "tbl_netassay_v3l1267",
+      "actions" : [
+        {
+          "name" : "netassay_v3l1267",
+          "primitives" : [
+            {
+              "name" : "ExecuteStatefulAluFromHashPrimitive",
+              "dst" : {
+                "type" : "stateful",
+                "name" : "SwitchIngress.domain_tstamp_reg_2"
+              },
+              "idx" : {
+                "type" : "hash",
+                "name" : "hash_SwitchIngress.domain_tstamp_reg_2",
+                "algorithm" : "identity"
+              },
+              "hash_inputs" : ["index_3"],
+              "stateful_alu_details" : {
+                "single_bit_mode" : false,
+                "name" : "domain_tstamp_reg_2_update_tstamp_action_0",
+                "update_hi_1_value" : {
+                  "operand_1_type" : "phv",
+                  "operand_1_value" : "ingress::ig_intr_md_from_prsr.global_tstamp[31:0]"
+                },
+                "output_dst" : "domain_id_0"
+              }
+            },
+            {
+              "name" : "ModifyFieldPrimitive",
+              "operation" : "set",
+              "dst" : {
+                "type" : "phv",
+                "name" : "entry_matched_0"
+              },
+              "dst_mask" : {
+                "type" : "immediate",
+                "name" : "1"
+              },
+              "src1" : {
+                "type" : "immediate",
+                "name" : "1"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "tbl_netassay_v3l1275",
+      "actions" : [
+        {
+          "name" : "netassay_v3l1275",
+          "primitives" : [
+            {
+              "name" : "ExecuteStatefulAluFromHashPrimitive",
+              "dst" : {
+                "type" : "stateful",
+                "name" : "SwitchIngress.packet_counts_table"
+              },
+              "idx" : {
+                "type" : "hash",
+                "name" : "hash_SwitchIngress.packet_counts_table",
+                "algorithm" : "identity"
+              },
+              "hash_inputs" : ["domain_id_0"],
+              "stateful_alu_details" : {
+                "single_bit_mode" : false,
+                "name" : "packet_counts_table_reg_inc_action_0",
+                "update_lo_1_value" : {
+                  "operation" : "+",
+                  "operand_1_type" : "memory",
+                  "operand_1_value" : "register_lo",
+                  "operand_2_type" : "immediate",
+                  "operand_2_value" : "1"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "tbl_netassay_v3l1276",
+      "actions" : [
+        {
+          "name" : "netassay_v3l1276",
+          "primitives" : [
+            {
+              "name" : "ExecuteStatefulAluFromHashPrimitive",
+              "dst" : {
+                "type" : "stateful",
+                "name" : "SwitchIngress.byte_counts_table"
+              },
+              "idx" : {
+                "type" : "hash",
+                "name" : "hash_SwitchIngress.byte_counts_table",
+                "algorithm" : "identity"
+              },
+              "hash_inputs" : ["domain_id_0"],
+              "stateful_alu_details" : {
+                "single_bit_mode" : false,
+                "name" : "byte_counts_table_reg_inc_action_0",
+                "update_lo_1_value" : {
+                  "operation" : "+",
+                  "operand_1_type" : "memory",
+                  "operand_1_value" : "register_lo",
+                  "operand_2_type" : "phv",
+                  "operand_2_value" : "p.ipv4.len"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

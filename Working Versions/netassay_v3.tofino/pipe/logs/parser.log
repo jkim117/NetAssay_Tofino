@@ -1,0 +1,22 @@
+ingress::parse_cname_byte is split into 2 states:
+  ingress::parse_cname_byte
+  ingress::parse_cname_byte.$split_0
+ingress::parse_cname is split into 2 states:
+  ingress::parse_cname
+  ingress::parse_cname.$split_0
+ingress::start_0 is split into 2 states:
+  ingress::start_0
+  ingress::start_0.$split_0
+allocated { $byte1 } to {  [ ingress::start : inbuf bit[0] ig_intr_md.resubmit_flag; ] }
+allocated { $half } to {  [ ingress::start_0.$split_0 : inbuf bit[-16..-1] p.ethernet/ethernet.etherType; ] }
+allocated { $byte1 } to {  [ ingress::parse_ip : inbuf bit[72..79] p.ipv4/ipv4.proto; ] }
+allocated { $half } to {  [ ingress::parse_udp : inbuf bit[16..31] p.udp/udp.dport; ] }
+allocated { $byte1 } to {  [ ingress::parse_dns_header : inbuf bit[16] p.dns_header/dns_header.is_response; ] }
+allocated { $byte1 } to {  [ ingress::parse_dns_query1 : inbuf bit[0..7] p.label1/label1.label; ] }
+allocated { $half } to {  [ ingress::parse_dns_answer : inbuf bit[16..31] p.dns_answer/dns_answer.tc_ans_type; ] }
+allocated { $byte1 } to {  [ ingress::parse_cname : inbuf bit[-8..-1] ] }
+allocated { $byte1 } to {  [ ingress::parse_dns_query2 : inbuf bit[0..7] p.label2/label2.label; ] }
+allocated { $byte1 } to {  [ ingress::parse_dns_query3 : inbuf bit[0..7] p.label3/label3.label; ] }
+allocated { $byte1 } to {  [ ingress::parse_dns_query4 : inbuf bit[0..7] p.label4/label4.label; ] }
+allocated { $byte1 } to {  [ ingress::parse_dns_query5 : inbuf bit[0..7] p.label5/label5.label; ] }
+allocated { $half } to {  [ ingress::parse_udp_2 : inbuf bit[-64..-49] p.udp/udp.sport; ] }

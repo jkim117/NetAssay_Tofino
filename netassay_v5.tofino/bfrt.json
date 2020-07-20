@@ -1,0 +1,6852 @@
+{
+  "schema_version" : "1.0.0",
+  "tables" : [
+    {
+      "name" : "pipe.SwitchIngress.known_domain_list",
+      "id" : 33586696,
+      "table_type" : "MatchAction_Direct",
+      "size" : 2048,
+      "annotations" : [],
+      "depends_on" : [],
+      "has_const_default_action" : false,
+      "key" : [
+        {
+          "id" : 1,
+          "name" : "headers.q1_part1.part",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 8
+          }
+        },
+        {
+          "id" : 2,
+          "name" : "headers.q1_part2.part",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 3,
+          "name" : "headers.q1_part4.part",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 32
+          }
+        },
+        {
+          "id" : 4,
+          "name" : "headers.q1_part8_1.part",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 32
+          }
+        },
+        {
+          "id" : 5,
+          "name" : "headers.q1_part8_2.part",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 32
+          }
+        },
+        {
+          "id" : 6,
+          "name" : "headers.q2_part1.part",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 8
+          }
+        },
+        {
+          "id" : 7,
+          "name" : "headers.q2_part2.part",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 8,
+          "name" : "headers.q2_part4.part",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 32
+          }
+        },
+        {
+          "id" : 9,
+          "name" : "headers.q2_part8_1.part",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 32
+          }
+        },
+        {
+          "id" : 10,
+          "name" : "headers.q2_part8_2.part",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 32
+          }
+        },
+        {
+          "id" : 11,
+          "name" : "headers.q3_part1.part",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 8
+          }
+        },
+        {
+          "id" : 12,
+          "name" : "headers.q3_part2.part",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 13,
+          "name" : "headers.q3_part4.part",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 32
+          }
+        },
+        {
+          "id" : 14,
+          "name" : "headers.q3_part8_1.part",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 32
+          }
+        },
+        {
+          "id" : 15,
+          "name" : "headers.q3_part8_2.part",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 32
+          }
+        },
+        {
+          "id" : 16,
+          "name" : "headers.q4_part1.part",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 8
+          }
+        },
+        {
+          "id" : 17,
+          "name" : "headers.q4_part2.part",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 18,
+          "name" : "headers.q4_part4.part",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 32
+          }
+        },
+        {
+          "id" : 19,
+          "name" : "headers.q4_part8_1.part",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 32
+          }
+        },
+        {
+          "id" : 20,
+          "name" : "headers.q4_part8_2.part",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 32
+          }
+        },
+        {
+          "id" : 65537,
+          "name" : "$MATCH_PRIORITY",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Exact",
+          "type" : {
+            "type" : "uint32"
+          }
+        }
+      ],
+      "action_specs" : [
+        {
+          "id" : 16825649,
+          "name" : "SwitchIngress.match_domain",
+          "action_scope" : "TableAndDefault",
+          "annotations" : [],
+          "data" : [
+            {
+              "id" : 1,
+              "name" : "id",
+              "repeated" : false,
+              "mandatory" : true,
+              "read_only" : false,
+              "annotations" : [],
+              "type" : {
+                "type" : "bytes",
+                "width" : 32
+              }
+            }
+          ]
+        },
+        {
+          "id" : 16800567,
+          "name" : "NoAction",
+          "action_scope" : "TableAndDefault",
+          "annotations" : [],
+          "data" : []
+        }
+      ],
+      "data" : [],
+      "supported_operations" : [],
+      "attributes" : ["EntryScope"]
+    },
+    {
+      "name" : "pipe.SwitchIngress.banned_dns_dst",
+      "id" : 33556937,
+      "table_type" : "MatchAction_Direct",
+      "size" : 100,
+      "annotations" : [],
+      "depends_on" : [],
+      "has_const_default_action" : false,
+      "key" : [
+        {
+          "id" : 1,
+          "name" : "headers.ipv4.dst",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "LPM",
+          "type" : {
+            "type" : "bytes",
+            "width" : 32
+          }
+        }
+      ],
+      "action_specs" : [
+        {
+          "id" : 16791254,
+          "name" : "SwitchIngress.match_banned_dns_dst",
+          "action_scope" : "TableAndDefault",
+          "annotations" : [],
+          "data" : []
+        },
+        {
+          "id" : 16800567,
+          "name" : "NoAction",
+          "action_scope" : "TableAndDefault",
+          "annotations" : [],
+          "data" : []
+        }
+      ],
+      "data" : [],
+      "supported_operations" : [],
+      "attributes" : ["EntryScope"]
+    },
+    {
+      "name" : "pipe.SwitchIngress.sip_cip_reg_1",
+      "id" : 2332097947,
+      "table_type" : "Register",
+      "size" : 16384,
+      "depends_on" : [],
+      "key" : [
+        {
+          "id" : 65566,
+          "name" : "$REGISTER_INDEX",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : true,
+          "match_type" : "Exact",
+          "type" : {
+            "type" : "uint32"
+          }
+        }
+      ],
+      "data" : [
+        {
+          "mandatory" : true,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 1,
+            "name" : "SwitchIngress.sip_cip_reg_1.sip",
+            "repeated" : false,
+            "annotations" : [
+              {
+                "name" : "$bfrt_field_class",
+                "value" : "register_data"
+              }
+            ],
+            "type" : {
+              "type" : "bytes",
+              "width" : 32
+            }
+          }
+        },
+        {
+          "mandatory" : true,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 2,
+            "name" : "SwitchIngress.sip_cip_reg_1.cip",
+            "repeated" : false,
+            "annotations" : [
+              {
+                "name" : "$bfrt_field_class",
+                "value" : "register_data"
+              }
+            ],
+            "type" : {
+              "type" : "bytes",
+              "width" : 32
+            }
+          }
+        }
+      ],
+      "supported_operations" : ["Sync"],
+      "attributes" : []
+    },
+    {
+      "name" : "pipe.SwitchIngress.domain_tstamp_reg_1",
+      "id" : 2332069230,
+      "table_type" : "Register",
+      "size" : 16384,
+      "depends_on" : [],
+      "key" : [
+        {
+          "id" : 65566,
+          "name" : "$REGISTER_INDEX",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : true,
+          "match_type" : "Exact",
+          "type" : {
+            "type" : "uint32"
+          }
+        }
+      ],
+      "data" : [
+        {
+          "mandatory" : true,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 1,
+            "name" : "SwitchIngress.domain_tstamp_reg_1.domain_id",
+            "repeated" : false,
+            "annotations" : [
+              {
+                "name" : "$bfrt_field_class",
+                "value" : "register_data"
+              }
+            ],
+            "type" : {
+              "type" : "bytes",
+              "width" : 32
+            }
+          }
+        },
+        {
+          "mandatory" : true,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 2,
+            "name" : "SwitchIngress.domain_tstamp_reg_1.timestamp",
+            "repeated" : false,
+            "annotations" : [
+              {
+                "name" : "$bfrt_field_class",
+                "value" : "register_data"
+              }
+            ],
+            "type" : {
+              "type" : "bytes",
+              "width" : 32
+            }
+          }
+        }
+      ],
+      "supported_operations" : ["Sync"],
+      "attributes" : []
+    },
+    {
+      "name" : "pipe.SwitchIngress.sip_cip_reg_2",
+      "id" : 2332055814,
+      "table_type" : "Register",
+      "size" : 16384,
+      "depends_on" : [],
+      "key" : [
+        {
+          "id" : 65566,
+          "name" : "$REGISTER_INDEX",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : true,
+          "match_type" : "Exact",
+          "type" : {
+            "type" : "uint32"
+          }
+        }
+      ],
+      "data" : [
+        {
+          "mandatory" : true,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 1,
+            "name" : "SwitchIngress.sip_cip_reg_2.sip",
+            "repeated" : false,
+            "annotations" : [
+              {
+                "name" : "$bfrt_field_class",
+                "value" : "register_data"
+              }
+            ],
+            "type" : {
+              "type" : "bytes",
+              "width" : 32
+            }
+          }
+        },
+        {
+          "mandatory" : true,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 2,
+            "name" : "SwitchIngress.sip_cip_reg_2.cip",
+            "repeated" : false,
+            "annotations" : [
+              {
+                "name" : "$bfrt_field_class",
+                "value" : "register_data"
+              }
+            ],
+            "type" : {
+              "type" : "bytes",
+              "width" : 32
+            }
+          }
+        }
+      ],
+      "supported_operations" : ["Sync"],
+      "attributes" : []
+    },
+    {
+      "name" : "pipe.SwitchIngress.domain_tstamp_reg_2",
+      "id" : 2332059885,
+      "table_type" : "Register",
+      "size" : 16384,
+      "depends_on" : [],
+      "key" : [
+        {
+          "id" : 65566,
+          "name" : "$REGISTER_INDEX",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : true,
+          "match_type" : "Exact",
+          "type" : {
+            "type" : "uint32"
+          }
+        }
+      ],
+      "data" : [
+        {
+          "mandatory" : true,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 1,
+            "name" : "SwitchIngress.domain_tstamp_reg_2.domain_id",
+            "repeated" : false,
+            "annotations" : [
+              {
+                "name" : "$bfrt_field_class",
+                "value" : "register_data"
+              }
+            ],
+            "type" : {
+              "type" : "bytes",
+              "width" : 32
+            }
+          }
+        },
+        {
+          "mandatory" : true,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 2,
+            "name" : "SwitchIngress.domain_tstamp_reg_2.timestamp",
+            "repeated" : false,
+            "annotations" : [
+              {
+                "name" : "$bfrt_field_class",
+                "value" : "register_data"
+              }
+            ],
+            "type" : {
+              "type" : "bytes",
+              "width" : 32
+            }
+          }
+        }
+      ],
+      "supported_operations" : ["Sync"],
+      "attributes" : []
+    },
+    {
+      "name" : "pipe.SwitchIngress.packet_counts_table",
+      "id" : 2332082419,
+      "table_type" : "Register",
+      "size" : 2048,
+      "depends_on" : [],
+      "key" : [
+        {
+          "id" : 65566,
+          "name" : "$REGISTER_INDEX",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : true,
+          "match_type" : "Exact",
+          "type" : {
+            "type" : "uint32"
+          }
+        }
+      ],
+      "data" : [
+        {
+          "mandatory" : true,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 1,
+            "name" : "SwitchIngress.packet_counts_table.f1",
+            "repeated" : false,
+            "annotations" : [
+              {
+                "name" : "$bfrt_field_class",
+                "value" : "register_data"
+              }
+            ],
+            "type" : {
+              "type" : "bytes",
+              "width" : 32
+            }
+          }
+        }
+      ],
+      "supported_operations" : ["Sync"],
+      "attributes" : []
+    },
+    {
+      "name" : "pipe.SwitchIngress.byte_counts_table",
+      "id" : 2332047118,
+      "table_type" : "Register",
+      "size" : 2048,
+      "depends_on" : [],
+      "key" : [
+        {
+          "id" : 65566,
+          "name" : "$REGISTER_INDEX",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : true,
+          "match_type" : "Exact",
+          "type" : {
+            "type" : "uint32"
+          }
+        }
+      ],
+      "data" : [
+        {
+          "mandatory" : true,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 1,
+            "name" : "SwitchIngress.byte_counts_table.f1",
+            "repeated" : false,
+            "annotations" : [
+              {
+                "name" : "$bfrt_field_class",
+                "value" : "register_data"
+              }
+            ],
+            "type" : {
+              "type" : "bytes",
+              "width" : 64
+            }
+          }
+        }
+      ],
+      "supported_operations" : ["Sync"],
+      "attributes" : []
+    },
+    {
+      "name" : "pipe.SwitchIngress.dns_total_queried",
+      "id" : 2332065333,
+      "table_type" : "Register",
+      "size" : 2048,
+      "depends_on" : [],
+      "key" : [
+        {
+          "id" : 65566,
+          "name" : "$REGISTER_INDEX",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : true,
+          "match_type" : "Exact",
+          "type" : {
+            "type" : "uint32"
+          }
+        }
+      ],
+      "data" : [
+        {
+          "mandatory" : true,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 1,
+            "name" : "SwitchIngress.dns_total_queried.f1",
+            "repeated" : false,
+            "annotations" : [
+              {
+                "name" : "$bfrt_field_class",
+                "value" : "register_data"
+              }
+            ],
+            "type" : {
+              "type" : "bytes",
+              "width" : 32
+            }
+          }
+        }
+      ],
+      "supported_operations" : ["Sync"],
+      "attributes" : []
+    },
+    {
+      "name" : "pipe.SwitchIngress.dns_total_missed",
+      "id" : 2332042531,
+      "table_type" : "Register",
+      "size" : 2048,
+      "depends_on" : [],
+      "key" : [
+        {
+          "id" : 65566,
+          "name" : "$REGISTER_INDEX",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : true,
+          "match_type" : "Exact",
+          "type" : {
+            "type" : "uint32"
+          }
+        }
+      ],
+      "data" : [
+        {
+          "mandatory" : true,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 1,
+            "name" : "SwitchIngress.dns_total_missed.f1",
+            "repeated" : false,
+            "annotations" : [
+              {
+                "name" : "$bfrt_field_class",
+                "value" : "register_data"
+              }
+            ],
+            "type" : {
+              "type" : "bytes",
+              "width" : 32
+            }
+          }
+        }
+      ],
+      "supported_operations" : ["Sync"],
+      "attributes" : []
+    },
+    {
+      "name" : "pipe.SwitchIngress.hash_1_dns.$CONFIGURE",
+      "id" : 2466265607,
+      "table_type" : "DynHashConfigure",
+      "size" : 1,
+      "annotations" : [],
+      "depends_on" : [],
+      "key" : [],
+      "data" : [
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 1,
+            "name" : "f1.$PRIORITY",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "uint32",
+              "default_value" : 0
+            }
+          }
+        }
+      ],
+      "supported_operations" : [],
+      "attributes" : ["DynamicHashing"]
+    },
+    {
+      "name" : "pipe.SwitchIngress.hash_2_dns.$CONFIGURE",
+      "id" : 2466281853,
+      "table_type" : "DynHashConfigure",
+      "size" : 1,
+      "annotations" : [],
+      "depends_on" : [],
+      "key" : [],
+      "data" : [
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 1,
+            "name" : "f1.$PRIORITY",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "uint32",
+              "default_value" : 0
+            }
+          }
+        }
+      ],
+      "supported_operations" : [],
+      "attributes" : ["DynamicHashing"]
+    },
+    {
+      "name" : "pipe.SwitchIngress.hash_1.$CONFIGURE",
+      "id" : 2466312657,
+      "table_type" : "DynHashConfigure",
+      "size" : 1,
+      "annotations" : [],
+      "depends_on" : [],
+      "key" : [],
+      "data" : [
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 1,
+            "name" : "f1.$PRIORITY",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "uint32",
+              "default_value" : 0
+            }
+          }
+        }
+      ],
+      "supported_operations" : [],
+      "attributes" : ["DynamicHashing"]
+    },
+    {
+      "name" : "pipe.SwitchIngress.hash_2.$CONFIGURE",
+      "id" : 2466256212,
+      "table_type" : "DynHashConfigure",
+      "size" : 1,
+      "annotations" : [],
+      "depends_on" : [],
+      "key" : [],
+      "data" : [
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 1,
+            "name" : "f1.$PRIORITY",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "uint32",
+              "default_value" : 0
+            }
+          }
+        }
+      ],
+      "supported_operations" : [],
+      "attributes" : ["DynamicHashing"]
+    },
+    {
+      "name" : "pipe.$SNAPSHOT_EGRESS",
+      "id" : 2432705822,
+      "table_type" : "Snapshot",
+      "size" : 12,
+      "depends_on" : [],
+      "key" : [
+        {
+          "id" : 65572,
+          "name" : "$SNAPSHOT_TRIGGER_STAGE",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Exact",
+          "type" : {
+            "type" : "uint32",
+            "default_value" : 0
+          }
+        },
+        {
+          "id" : 65573,
+          "name" : "$SNAPSHOT_END_STAGE",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Exact",
+          "type" : {
+            "type" : "uint32",
+            "default_value" : 11
+          }
+        },
+        {
+          "id" : 114,
+          "name" : "hdr.ethernet.$valid",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 115,
+          "name" : "hdr.ethernet.dst",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 48
+          }
+        },
+        {
+          "id" : 116,
+          "name" : "hdr.ethernet.src",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 48
+          }
+        },
+        {
+          "id" : 117,
+          "name" : "hdr.ethernet.etherType",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 118,
+          "name" : "hdr.ipv4.$valid",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 119,
+          "name" : "hdr.ipv4.version",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 4
+          }
+        },
+        {
+          "id" : 120,
+          "name" : "hdr.ipv4.ihl",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 4
+          }
+        },
+        {
+          "id" : 121,
+          "name" : "hdr.ipv4.tos",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 8
+          }
+        },
+        {
+          "id" : 122,
+          "name" : "hdr.ipv4.len",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 123,
+          "name" : "hdr.ipv4.id",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 124,
+          "name" : "hdr.ipv4.flags",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 3
+          }
+        },
+        {
+          "id" : 125,
+          "name" : "hdr.ipv4.frag",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 13
+          }
+        },
+        {
+          "id" : 126,
+          "name" : "hdr.ipv4.ttl",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 8
+          }
+        },
+        {
+          "id" : 127,
+          "name" : "hdr.ipv4.proto",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 8
+          }
+        },
+        {
+          "id" : 128,
+          "name" : "hdr.ipv4.chksum",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 129,
+          "name" : "hdr.ipv4.src",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 32
+          }
+        },
+        {
+          "id" : 130,
+          "name" : "hdr.ipv4.dst",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 32
+          }
+        },
+        {
+          "id" : 131,
+          "name" : "hdr.udp.$valid",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 132,
+          "name" : "hdr.udp.sport",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 133,
+          "name" : "hdr.udp.dport",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 134,
+          "name" : "hdr.udp.len",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 135,
+          "name" : "hdr.udp.chksum",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 136,
+          "name" : "hdr.dns_header.$valid",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 137,
+          "name" : "hdr.dns_header.id",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 138,
+          "name" : "hdr.dns_header.is_response",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 139,
+          "name" : "hdr.dns_header.opcode",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 4
+          }
+        },
+        {
+          "id" : 140,
+          "name" : "hdr.dns_header.auth_answer",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 141,
+          "name" : "hdr.dns_header.trunc",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 142,
+          "name" : "hdr.dns_header.recur_desired",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 143,
+          "name" : "hdr.dns_header.recur_avail",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 144,
+          "name" : "hdr.dns_header.reserved",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 145,
+          "name" : "hdr.dns_header.authentic_data",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 146,
+          "name" : "hdr.dns_header.checking_disabled",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 147,
+          "name" : "hdr.dns_header.resp_code",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 4
+          }
+        },
+        {
+          "id" : 148,
+          "name" : "hdr.dns_header.q_count",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 149,
+          "name" : "hdr.dns_header.answer_count",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 150,
+          "name" : "hdr.dns_header.auth_rec",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 151,
+          "name" : "hdr.dns_header.addn_rec",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 152,
+          "name" : "hdr.label1.$valid",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 153,
+          "name" : "hdr.label1.label",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 8
+          }
+        },
+        {
+          "id" : 154,
+          "name" : "hdr.q1_part1.$valid",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 155,
+          "name" : "hdr.q1_part1.part",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 8
+          }
+        },
+        {
+          "id" : 156,
+          "name" : "hdr.q1_part2.$valid",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 157,
+          "name" : "hdr.q1_part2.part",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 158,
+          "name" : "hdr.q1_part4.$valid",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 159,
+          "name" : "hdr.q1_part4.part",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 32
+          }
+        },
+        {
+          "id" : 160,
+          "name" : "hdr.query_tc.$valid",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 161,
+          "name" : "hdr.query_tc.tc_query.type",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 162,
+          "name" : "hdr.query_tc.tc_query.class",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 163,
+          "name" : "hdr.dns_answer.$valid",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 164,
+          "name" : "hdr.dns_answer.qname_pointer",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 165,
+          "name" : "hdr.dns_answer.tc_ans.type",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 166,
+          "name" : "hdr.dns_answer.tc_ans.class",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 167,
+          "name" : "hdr.dns_answer.ttl",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 32
+          }
+        },
+        {
+          "id" : 168,
+          "name" : "hdr.dns_answer.rd_length_1",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 8
+          }
+        },
+        {
+          "id" : 169,
+          "name" : "hdr.dns_answer.rd_length_2",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 8
+          }
+        },
+        {
+          "id" : 170,
+          "name" : "hdr.dns_ip.$valid",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 171,
+          "name" : "hdr.dns_ip.rdata",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 32
+          }
+        },
+        {
+          "id" : 172,
+          "name" : "eg_intr_md._pad0",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 7
+          }
+        },
+        {
+          "id" : 173,
+          "name" : "eg_intr_md.egress_port",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 9
+          }
+        },
+        {
+          "id" : 174,
+          "name" : "eg_intr_md._pad1",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 5
+          }
+        },
+        {
+          "id" : 175,
+          "name" : "eg_intr_md.enq_qdepth",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 19
+          }
+        },
+        {
+          "id" : 176,
+          "name" : "eg_intr_md._pad2",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 6
+          }
+        },
+        {
+          "id" : 177,
+          "name" : "eg_intr_md.enq_congest_stat",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 2
+          }
+        },
+        {
+          "id" : 178,
+          "name" : "eg_intr_md._pad3",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 14
+          }
+        },
+        {
+          "id" : 179,
+          "name" : "eg_intr_md.enq_tstamp",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 18
+          }
+        },
+        {
+          "id" : 180,
+          "name" : "eg_intr_md._pad4",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 5
+          }
+        },
+        {
+          "id" : 181,
+          "name" : "eg_intr_md.deq_qdepth",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 19
+          }
+        },
+        {
+          "id" : 182,
+          "name" : "eg_intr_md._pad5",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 6
+          }
+        },
+        {
+          "id" : 183,
+          "name" : "eg_intr_md.deq_congest_stat",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 2
+          }
+        },
+        {
+          "id" : 184,
+          "name" : "eg_intr_md.app_pool_congest_stat",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 8
+          }
+        },
+        {
+          "id" : 185,
+          "name" : "eg_intr_md._pad6",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 14
+          }
+        },
+        {
+          "id" : 186,
+          "name" : "eg_intr_md.deq_timedelta",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 18
+          }
+        },
+        {
+          "id" : 187,
+          "name" : "eg_intr_md.egress_rid",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 188,
+          "name" : "eg_intr_md._pad7",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 7
+          }
+        },
+        {
+          "id" : 189,
+          "name" : "eg_intr_md.egress_rid_first",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 190,
+          "name" : "eg_intr_md._pad8",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 3
+          }
+        },
+        {
+          "id" : 191,
+          "name" : "eg_intr_md.egress_qid",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 5
+          }
+        },
+        {
+          "id" : 192,
+          "name" : "eg_intr_md._pad9",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 5
+          }
+        },
+        {
+          "id" : 193,
+          "name" : "eg_intr_md.egress_cos",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 3
+          }
+        },
+        {
+          "id" : 194,
+          "name" : "eg_intr_md._pad10",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 7
+          }
+        },
+        {
+          "id" : 195,
+          "name" : "eg_intr_md.deflection_flag",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 196,
+          "name" : "eg_intr_md.pkt_length",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 197,
+          "name" : "eg_intr_md_from_prsr.global_tstamp",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 48
+          }
+        },
+        {
+          "id" : 198,
+          "name" : "eg_intr_md_from_prsr.global_ver",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 32
+          }
+        },
+        {
+          "id" : 199,
+          "name" : "eg_intr_md_from_prsr.parser_err",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 200,
+          "name" : "ig_intr_dprs_md.drop_ctl",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 3
+          }
+        },
+        {
+          "id" : 201,
+          "name" : "ig_intr_dprs_md.mirror_type",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 3
+          }
+        },
+        {
+          "id" : 202,
+          "name" : "ig_intr_dprs_md.coalesce_flush",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 203,
+          "name" : "ig_intr_dprs_md.coalesce_length",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 7
+          }
+        },
+        {
+          "id" : 204,
+          "name" : "eg_intr_oport_md.capture_tstamp_on_tx",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 205,
+          "name" : "eg_intr_oport_md.update_delay_on_tx",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 206,
+          "name" : "eg_intr_oport_md.force_tx_error",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        }
+      ],
+      "data" : [
+        {
+          "mandatory" : true,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 65574,
+            "name" : "$SNAPSHOT_ENABLE",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bool"
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 65575,
+            "name" : "$SNAPSHOT_TIMER_ENABLE",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bool",
+              "default_value" : false
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 65576,
+            "name" : "$SNAPSHOT_TIMER_VALUE_USECS",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "uint32"
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 65577,
+            "name" : "$SNAPSHOT_FIELD_INFO",
+            "repeated" : true,
+            "annotations" : [],
+            "container" : [
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 65581,
+                  "name" : "$SNAPSHOT_STAGE_ID",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "uint32"
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 114,
+                  "name" : "hdr.ethernet.$valid",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 115,
+                  "name" : "hdr.ethernet.dst",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 48
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 116,
+                  "name" : "hdr.ethernet.src",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 48
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 117,
+                  "name" : "hdr.ethernet.etherType",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 118,
+                  "name" : "hdr.ipv4.$valid",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 119,
+                  "name" : "hdr.ipv4.version",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 4
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 120,
+                  "name" : "hdr.ipv4.ihl",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 4
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 121,
+                  "name" : "hdr.ipv4.tos",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 8
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 122,
+                  "name" : "hdr.ipv4.len",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 123,
+                  "name" : "hdr.ipv4.id",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 124,
+                  "name" : "hdr.ipv4.flags",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 3
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 125,
+                  "name" : "hdr.ipv4.frag",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 13
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 126,
+                  "name" : "hdr.ipv4.ttl",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 8
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 127,
+                  "name" : "hdr.ipv4.proto",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 8
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 128,
+                  "name" : "hdr.ipv4.chksum",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 129,
+                  "name" : "hdr.ipv4.src",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 32
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 130,
+                  "name" : "hdr.ipv4.dst",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 32
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 131,
+                  "name" : "hdr.udp.$valid",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 132,
+                  "name" : "hdr.udp.sport",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 133,
+                  "name" : "hdr.udp.dport",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 134,
+                  "name" : "hdr.udp.len",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 135,
+                  "name" : "hdr.udp.chksum",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 136,
+                  "name" : "hdr.dns_header.$valid",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 137,
+                  "name" : "hdr.dns_header.id",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 138,
+                  "name" : "hdr.dns_header.is_response",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 139,
+                  "name" : "hdr.dns_header.opcode",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 4
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 140,
+                  "name" : "hdr.dns_header.auth_answer",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 141,
+                  "name" : "hdr.dns_header.trunc",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 142,
+                  "name" : "hdr.dns_header.recur_desired",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 143,
+                  "name" : "hdr.dns_header.recur_avail",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 144,
+                  "name" : "hdr.dns_header.reserved",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 145,
+                  "name" : "hdr.dns_header.authentic_data",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 146,
+                  "name" : "hdr.dns_header.checking_disabled",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 147,
+                  "name" : "hdr.dns_header.resp_code",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 4
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 148,
+                  "name" : "hdr.dns_header.q_count",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 149,
+                  "name" : "hdr.dns_header.answer_count",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 150,
+                  "name" : "hdr.dns_header.auth_rec",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 151,
+                  "name" : "hdr.dns_header.addn_rec",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 152,
+                  "name" : "hdr.label1.$valid",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 153,
+                  "name" : "hdr.label1.label",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 8
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 154,
+                  "name" : "hdr.q1_part1.$valid",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 155,
+                  "name" : "hdr.q1_part1.part",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 8
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 156,
+                  "name" : "hdr.q1_part2.$valid",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 157,
+                  "name" : "hdr.q1_part2.part",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 158,
+                  "name" : "hdr.q1_part4.$valid",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 159,
+                  "name" : "hdr.q1_part4.part",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 32
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 160,
+                  "name" : "hdr.query_tc.$valid",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 161,
+                  "name" : "hdr.query_tc.tc_query.type",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 162,
+                  "name" : "hdr.query_tc.tc_query.class",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 163,
+                  "name" : "hdr.dns_answer.$valid",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 164,
+                  "name" : "hdr.dns_answer.qname_pointer",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 165,
+                  "name" : "hdr.dns_answer.tc_ans.type",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 166,
+                  "name" : "hdr.dns_answer.tc_ans.class",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 167,
+                  "name" : "hdr.dns_answer.ttl",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 32
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 168,
+                  "name" : "hdr.dns_answer.rd_length_1",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 8
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 169,
+                  "name" : "hdr.dns_answer.rd_length_2",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 8
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 170,
+                  "name" : "hdr.dns_ip.$valid",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 171,
+                  "name" : "hdr.dns_ip.rdata",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 32
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 172,
+                  "name" : "eg_intr_md._pad0",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 7
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 173,
+                  "name" : "eg_intr_md.egress_port",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 9
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 174,
+                  "name" : "eg_intr_md._pad1",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 5
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 175,
+                  "name" : "eg_intr_md.enq_qdepth",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 19
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 176,
+                  "name" : "eg_intr_md._pad2",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 6
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 177,
+                  "name" : "eg_intr_md.enq_congest_stat",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 2
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 178,
+                  "name" : "eg_intr_md._pad3",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 14
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 179,
+                  "name" : "eg_intr_md.enq_tstamp",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 18
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 180,
+                  "name" : "eg_intr_md._pad4",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 5
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 181,
+                  "name" : "eg_intr_md.deq_qdepth",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 19
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 182,
+                  "name" : "eg_intr_md._pad5",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 6
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 183,
+                  "name" : "eg_intr_md.deq_congest_stat",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 2
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 184,
+                  "name" : "eg_intr_md.app_pool_congest_stat",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 8
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 185,
+                  "name" : "eg_intr_md._pad6",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 14
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 186,
+                  "name" : "eg_intr_md.deq_timedelta",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 18
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 187,
+                  "name" : "eg_intr_md.egress_rid",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 188,
+                  "name" : "eg_intr_md._pad7",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 7
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 189,
+                  "name" : "eg_intr_md.egress_rid_first",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 190,
+                  "name" : "eg_intr_md._pad8",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 3
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 191,
+                  "name" : "eg_intr_md.egress_qid",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 5
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 192,
+                  "name" : "eg_intr_md._pad9",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 5
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 193,
+                  "name" : "eg_intr_md.egress_cos",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 3
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 194,
+                  "name" : "eg_intr_md._pad10",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 7
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 195,
+                  "name" : "eg_intr_md.deflection_flag",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 196,
+                  "name" : "eg_intr_md.pkt_length",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 197,
+                  "name" : "eg_intr_md_from_prsr.global_tstamp",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 48
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 198,
+                  "name" : "eg_intr_md_from_prsr.global_ver",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 32
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 199,
+                  "name" : "eg_intr_md_from_prsr.parser_err",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 200,
+                  "name" : "ig_intr_dprs_md.drop_ctl",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 3
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 201,
+                  "name" : "ig_intr_dprs_md.mirror_type",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 3
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 202,
+                  "name" : "ig_intr_dprs_md.coalesce_flush",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 203,
+                  "name" : "ig_intr_dprs_md.coalesce_length",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 7
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 204,
+                  "name" : "eg_intr_oport_md.capture_tstamp_on_tx",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 205,
+                  "name" : "eg_intr_oport_md.update_delay_on_tx",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 206,
+                  "name" : "eg_intr_oport_md.force_tx_error",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 65578,
+            "name" : "$SNAPSHOT_CONTROL_INFO",
+            "repeated" : true,
+            "annotations" : [],
+            "container" : [
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 65581,
+                  "name" : "$SNAPSHOT_STAGE_ID",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "uint32"
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 65582,
+                  "name" : "$SNAPSHOT_PREV_STAGE_TRIGGER",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bool"
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 65583,
+                  "name" : "$SNAPSHOT_TIMER_TRIGGER",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bool"
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 65584,
+                  "name" : "$SNAPSHOT_LOCAL_STAGE_TRIGGER",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bool"
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 65586,
+                  "name" : "$SNAPSHOT_NEXT_TABLE_NAME",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 65579,
+                  "name" : "$SNAPSHOT_TABLE_INFO",
+                  "repeated" : true,
+                  "annotations" : [],
+                  "container" : [
+                    {
+                      "mandatory" : false,
+                      "read_only" : true,
+                      "singleton" : {
+                        "id" : 65590,
+                        "name" : "$SNAPSHOT_TABLE_NAME",
+                        "repeated" : false,
+                        "annotations" : [],
+                        "type" : {
+                          "type" : "string"
+                        }
+                      }
+                    },
+                    {
+                      "mandatory" : false,
+                      "read_only" : true,
+                      "singleton" : {
+                        "id" : 65592,
+                        "name" : "$SNAPSHOT_MATCH_HIT_ADDRESS",
+                        "repeated" : false,
+                        "annotations" : [],
+                        "type" : {
+                          "type" : "uint32"
+                        }
+                      }
+                    },
+                    {
+                      "mandatory" : false,
+                      "read_only" : true,
+                      "singleton" : {
+                        "id" : 65593,
+                        "name" : "$SNAPSHOT_TABLE_HIT",
+                        "repeated" : false,
+                        "annotations" : [],
+                        "type" : {
+                          "type" : "bool"
+                        }
+                      }
+                    },
+                    {
+                      "mandatory" : false,
+                      "read_only" : true,
+                      "singleton" : {
+                        "id" : 65594,
+                        "name" : "$SNAPSHOT_TABLE_INHIBITED",
+                        "repeated" : false,
+                        "annotations" : [],
+                        "type" : {
+                          "type" : "bool"
+                        }
+                      }
+                    },
+                    {
+                      "mandatory" : false,
+                      "read_only" : true,
+                      "singleton" : {
+                        "id" : 65595,
+                        "name" : "$SNAPSHOT_TABLE_EXECUTED",
+                        "repeated" : false,
+                        "annotations" : [],
+                        "type" : {
+                          "type" : "bool"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "supported_operations" : [],
+      "attributes" : []
+    },
+    {
+      "name" : "pipe.$SNAPSHOT_EGRESS_LIVENESS",
+      "id" : 2449483038,
+      "table_type" : "SnapshotLiveness",
+      "size" : 0,
+      "depends_on" : [],
+      "key" : [
+        {
+          "id" : 65596,
+          "name" : "$SNAPSHOT_LIVENESS_FIELD_NAME",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : true,
+          "match_type" : "Exact",
+          "type" : {
+            "type" : "string"
+          }
+        }
+      ],
+      "data" : [
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 65597,
+            "name" : "$SNAPSHOT_LIVENESS_VALID_STAGES",
+            "repeated" : true,
+            "annotations" : [],
+            "type" : {
+              "type" : "uint32"
+            }
+          }
+        }
+      ],
+      "supported_operations" : [],
+      "attributes" : []
+    },
+    {
+      "name" : "pipe.$SNAPSHOT_INGRESS",
+      "id" : 2432703071,
+      "table_type" : "Snapshot",
+      "size" : 12,
+      "depends_on" : [],
+      "key" : [
+        {
+          "id" : 65572,
+          "name" : "$SNAPSHOT_TRIGGER_STAGE",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Exact",
+          "type" : {
+            "type" : "uint32",
+            "default_value" : 0
+          }
+        },
+        {
+          "id" : 65573,
+          "name" : "$SNAPSHOT_END_STAGE",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Exact",
+          "type" : {
+            "type" : "uint32",
+            "default_value" : 11
+          }
+        },
+        {
+          "id" : 1,
+          "name" : "headers.ethernet.$valid",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 2,
+          "name" : "headers.ethernet.dst",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 48
+          }
+        },
+        {
+          "id" : 3,
+          "name" : "headers.ethernet.src",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 48
+          }
+        },
+        {
+          "id" : 4,
+          "name" : "headers.ethernet.etherType",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 5,
+          "name" : "headers.ipv4.$valid",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 6,
+          "name" : "headers.ipv4.version",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 4
+          }
+        },
+        {
+          "id" : 7,
+          "name" : "headers.ipv4.ihl",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 4
+          }
+        },
+        {
+          "id" : 8,
+          "name" : "headers.ipv4.tos",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 8
+          }
+        },
+        {
+          "id" : 9,
+          "name" : "headers.ipv4.len",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 10,
+          "name" : "headers.ipv4.id",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 11,
+          "name" : "headers.ipv4.flags",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 3
+          }
+        },
+        {
+          "id" : 12,
+          "name" : "headers.ipv4.frag",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 13
+          }
+        },
+        {
+          "id" : 13,
+          "name" : "headers.ipv4.ttl",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 8
+          }
+        },
+        {
+          "id" : 14,
+          "name" : "headers.ipv4.proto",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 8
+          }
+        },
+        {
+          "id" : 15,
+          "name" : "headers.ipv4.chksum",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 16,
+          "name" : "headers.ipv4.src",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 32
+          }
+        },
+        {
+          "id" : 17,
+          "name" : "headers.ipv4.dst",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 32
+          }
+        },
+        {
+          "id" : 18,
+          "name" : "headers.udp.$valid",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 19,
+          "name" : "headers.udp.sport",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 20,
+          "name" : "headers.udp.dport",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 21,
+          "name" : "headers.udp.len",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 22,
+          "name" : "headers.udp.chksum",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 23,
+          "name" : "headers.dns_header.$valid",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 24,
+          "name" : "headers.dns_header.id",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 25,
+          "name" : "headers.dns_header.is_response",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 26,
+          "name" : "headers.dns_header.opcode",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 4
+          }
+        },
+        {
+          "id" : 27,
+          "name" : "headers.dns_header.auth_answer",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 28,
+          "name" : "headers.dns_header.trunc",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 29,
+          "name" : "headers.dns_header.recur_desired",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 30,
+          "name" : "headers.dns_header.recur_avail",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 31,
+          "name" : "headers.dns_header.reserved",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 32,
+          "name" : "headers.dns_header.authentic_data",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 33,
+          "name" : "headers.dns_header.checking_disabled",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 34,
+          "name" : "headers.dns_header.resp_code",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 4
+          }
+        },
+        {
+          "id" : 35,
+          "name" : "headers.dns_header.q_count",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 36,
+          "name" : "headers.dns_header.answer_count",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 37,
+          "name" : "headers.dns_header.auth_rec",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 38,
+          "name" : "headers.dns_header.addn_rec",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 39,
+          "name" : "headers.label1.$valid",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 40,
+          "name" : "headers.label1.label",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 8
+          }
+        },
+        {
+          "id" : 41,
+          "name" : "headers.q1_part1.$valid",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 42,
+          "name" : "headers.q1_part1.part",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 8
+          }
+        },
+        {
+          "id" : 43,
+          "name" : "headers.q1_part2.$valid",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 44,
+          "name" : "headers.q1_part2.part",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 45,
+          "name" : "headers.q1_part4.$valid",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 46,
+          "name" : "headers.q1_part4.part",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 32
+          }
+        },
+        {
+          "id" : 47,
+          "name" : "headers.query_tc.$valid",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 48,
+          "name" : "headers.query_tc.tc_query.type",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 49,
+          "name" : "headers.query_tc.tc_query.class",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 50,
+          "name" : "headers.dns_answer.$valid",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 51,
+          "name" : "headers.dns_answer.qname_pointer",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 52,
+          "name" : "headers.dns_answer.tc_ans.type",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 53,
+          "name" : "headers.dns_answer.tc_ans.class",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 54,
+          "name" : "headers.dns_answer.ttl",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 32
+          }
+        },
+        {
+          "id" : 55,
+          "name" : "headers.dns_answer.rd_length_1",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 8
+          }
+        },
+        {
+          "id" : 56,
+          "name" : "headers.dns_answer.rd_length_2",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 8
+          }
+        },
+        {
+          "id" : 57,
+          "name" : "headers.dns_ip.$valid",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 58,
+          "name" : "headers.dns_ip.rdata",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 32
+          }
+        },
+        {
+          "id" : 59,
+          "name" : "ig_md.do_dns",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 60,
+          "name" : "ig_md.recur_desired",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 61,
+          "name" : "ig_md.response_set",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 62,
+          "name" : "ig_md.is_dns",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 63,
+          "name" : "ig_md.is_ip",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 64,
+          "name" : "ig_md.unused",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 3
+          }
+        },
+        {
+          "id" : 65,
+          "name" : "ig_md.last_label",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 3
+          }
+        },
+        {
+          "id" : 66,
+          "name" : "ig_md.matched_domain",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 67,
+          "name" : "ig_md.domain_id_dns",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 32
+          }
+        },
+        {
+          "id" : 68,
+          "name" : "ig_md.domain_id",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 32
+          }
+        },
+        {
+          "id" : 69,
+          "name" : "ig_md.index_1_dns",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 32
+          }
+        },
+        {
+          "id" : 70,
+          "name" : "ig_md.index_2_dns",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 32
+          }
+        },
+        {
+          "id" : 71,
+          "name" : "ig_md.index_1",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 32
+          }
+        },
+        {
+          "id" : 72,
+          "name" : "ig_md.index_2",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 32
+          }
+        },
+        {
+          "id" : 73,
+          "name" : "ig_md.temp_timestamp",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 48
+          }
+        },
+        {
+          "id" : 74,
+          "name" : "ig_md.temp_cip",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 32
+          }
+        },
+        {
+          "id" : 75,
+          "name" : "ig_md.temp_sip",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 32
+          }
+        },
+        {
+          "id" : 76,
+          "name" : "ig_md.already_matched",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 77,
+          "name" : "ig_md.min_counter",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 64
+          }
+        },
+        {
+          "id" : 78,
+          "name" : "ig_md.min_table",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 2
+          }
+        },
+        {
+          "id" : 79,
+          "name" : "ig_md.temp_packet_counter",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 64
+          }
+        },
+        {
+          "id" : 80,
+          "name" : "ig_md.temp_byte_counter",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 64
+          }
+        },
+        {
+          "id" : 81,
+          "name" : "ig_md.temp_total_dns",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 64
+          }
+        },
+        {
+          "id" : 82,
+          "name" : "ig_md.temp_total_missed",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 64
+          }
+        },
+        {
+          "id" : 83,
+          "name" : "ig_md.parsed_answer",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 84,
+          "name" : "ig_intr_md.resubmit_flag",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 85,
+          "name" : "ig_intr_md._pad1",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 86,
+          "name" : "ig_intr_md.packet_version",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 2
+          }
+        },
+        {
+          "id" : 87,
+          "name" : "ig_intr_md._pad2",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 3
+          }
+        },
+        {
+          "id" : 88,
+          "name" : "ig_intr_md.ingress_port",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 9
+          }
+        },
+        {
+          "id" : 89,
+          "name" : "ig_intr_md.ingress_mac_tstamp",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 48
+          }
+        },
+        {
+          "id" : 90,
+          "name" : "ig_intr_prsr_md.global_tstamp",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 48
+          }
+        },
+        {
+          "id" : 91,
+          "name" : "ig_intr_prsr_md.global_ver",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 32
+          }
+        },
+        {
+          "id" : 92,
+          "name" : "ig_intr_prsr_md.parser_err",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 93,
+          "name" : "ig_intr_dprsr_md.drop_ctl",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 3
+          }
+        },
+        {
+          "id" : 94,
+          "name" : "ig_intr_dprsr_md.digest_type",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 3
+          }
+        },
+        {
+          "id" : 95,
+          "name" : "ig_intr_dprsr_md.resubmit_type",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 3
+          }
+        },
+        {
+          "id" : 96,
+          "name" : "ig_intr_dprsr_md.mirror_type",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 3
+          }
+        },
+        {
+          "id" : 97,
+          "name" : "ig_intr_tm_md.ucast_egress_port",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 9
+          }
+        },
+        {
+          "id" : 98,
+          "name" : "ig_intr_tm_md.bypass_egress",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 99,
+          "name" : "ig_intr_tm_md.deflect_on_drop",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 100,
+          "name" : "ig_intr_tm_md.ingress_cos",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 3
+          }
+        },
+        {
+          "id" : 101,
+          "name" : "ig_intr_tm_md.qid",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 5
+          }
+        },
+        {
+          "id" : 102,
+          "name" : "ig_intr_tm_md.icos_for_copy_to_cpu",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 3
+          }
+        },
+        {
+          "id" : 103,
+          "name" : "ig_intr_tm_md.copy_to_cpu",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 104,
+          "name" : "ig_intr_tm_md.packet_color",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 2
+          }
+        },
+        {
+          "id" : 105,
+          "name" : "ig_intr_tm_md.disable_ucast_cutthru",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 106,
+          "name" : "ig_intr_tm_md.enable_mcast_cutthru",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 1
+          }
+        },
+        {
+          "id" : 107,
+          "name" : "ig_intr_tm_md.mcast_grp_a",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 108,
+          "name" : "ig_intr_tm_md.mcast_grp_b",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 109,
+          "name" : "ig_intr_tm_md.level1_mcast_hash",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 13
+          }
+        },
+        {
+          "id" : 110,
+          "name" : "ig_intr_tm_md.level2_mcast_hash",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 13
+          }
+        },
+        {
+          "id" : 111,
+          "name" : "ig_intr_tm_md.level1_exclusion_id",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        },
+        {
+          "id" : 112,
+          "name" : "ig_intr_tm_md.level2_exclusion_id",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 9
+          }
+        },
+        {
+          "id" : 113,
+          "name" : "ig_intr_tm_md.rid",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : false,
+          "match_type" : "Ternary",
+          "type" : {
+            "type" : "bytes",
+            "width" : 16
+          }
+        }
+      ],
+      "data" : [
+        {
+          "mandatory" : true,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 65574,
+            "name" : "$SNAPSHOT_ENABLE",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bool"
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 65575,
+            "name" : "$SNAPSHOT_TIMER_ENABLE",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bool",
+              "default_value" : false
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 65576,
+            "name" : "$SNAPSHOT_TIMER_VALUE_USECS",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "uint32"
+            }
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 65577,
+            "name" : "$SNAPSHOT_FIELD_INFO",
+            "repeated" : true,
+            "annotations" : [],
+            "container" : [
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 65581,
+                  "name" : "$SNAPSHOT_STAGE_ID",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "uint32"
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 1,
+                  "name" : "headers.ethernet.$valid",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 2,
+                  "name" : "headers.ethernet.dst",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 48
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 3,
+                  "name" : "headers.ethernet.src",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 48
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 4,
+                  "name" : "headers.ethernet.etherType",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 5,
+                  "name" : "headers.ipv4.$valid",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 6,
+                  "name" : "headers.ipv4.version",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 4
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 7,
+                  "name" : "headers.ipv4.ihl",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 4
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 8,
+                  "name" : "headers.ipv4.tos",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 8
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 9,
+                  "name" : "headers.ipv4.len",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 10,
+                  "name" : "headers.ipv4.id",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 11,
+                  "name" : "headers.ipv4.flags",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 3
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 12,
+                  "name" : "headers.ipv4.frag",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 13
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 13,
+                  "name" : "headers.ipv4.ttl",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 8
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 14,
+                  "name" : "headers.ipv4.proto",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 8
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 15,
+                  "name" : "headers.ipv4.chksum",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 16,
+                  "name" : "headers.ipv4.src",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 32
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 17,
+                  "name" : "headers.ipv4.dst",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 32
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 18,
+                  "name" : "headers.udp.$valid",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 19,
+                  "name" : "headers.udp.sport",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 20,
+                  "name" : "headers.udp.dport",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 21,
+                  "name" : "headers.udp.len",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 22,
+                  "name" : "headers.udp.chksum",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 23,
+                  "name" : "headers.dns_header.$valid",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 24,
+                  "name" : "headers.dns_header.id",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 25,
+                  "name" : "headers.dns_header.is_response",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 26,
+                  "name" : "headers.dns_header.opcode",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 4
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 27,
+                  "name" : "headers.dns_header.auth_answer",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 28,
+                  "name" : "headers.dns_header.trunc",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 29,
+                  "name" : "headers.dns_header.recur_desired",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 30,
+                  "name" : "headers.dns_header.recur_avail",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 31,
+                  "name" : "headers.dns_header.reserved",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 32,
+                  "name" : "headers.dns_header.authentic_data",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 33,
+                  "name" : "headers.dns_header.checking_disabled",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 34,
+                  "name" : "headers.dns_header.resp_code",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 4
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 35,
+                  "name" : "headers.dns_header.q_count",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 36,
+                  "name" : "headers.dns_header.answer_count",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 37,
+                  "name" : "headers.dns_header.auth_rec",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 38,
+                  "name" : "headers.dns_header.addn_rec",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 39,
+                  "name" : "headers.label1.$valid",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 40,
+                  "name" : "headers.label1.label",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 8
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 41,
+                  "name" : "headers.q1_part1.$valid",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 42,
+                  "name" : "headers.q1_part1.part",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 8
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 43,
+                  "name" : "headers.q1_part2.$valid",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 44,
+                  "name" : "headers.q1_part2.part",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 45,
+                  "name" : "headers.q1_part4.$valid",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 46,
+                  "name" : "headers.q1_part4.part",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 32
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 47,
+                  "name" : "headers.query_tc.$valid",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 48,
+                  "name" : "headers.query_tc.tc_query.type",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 49,
+                  "name" : "headers.query_tc.tc_query.class",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 50,
+                  "name" : "headers.dns_answer.$valid",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 51,
+                  "name" : "headers.dns_answer.qname_pointer",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 52,
+                  "name" : "headers.dns_answer.tc_ans.type",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 53,
+                  "name" : "headers.dns_answer.tc_ans.class",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 54,
+                  "name" : "headers.dns_answer.ttl",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 32
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 55,
+                  "name" : "headers.dns_answer.rd_length_1",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 8
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 56,
+                  "name" : "headers.dns_answer.rd_length_2",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 8
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 57,
+                  "name" : "headers.dns_ip.$valid",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 58,
+                  "name" : "headers.dns_ip.rdata",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 32
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 59,
+                  "name" : "ig_md.do_dns",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 60,
+                  "name" : "ig_md.recur_desired",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 61,
+                  "name" : "ig_md.response_set",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 62,
+                  "name" : "ig_md.is_dns",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 63,
+                  "name" : "ig_md.is_ip",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 64,
+                  "name" : "ig_md.unused",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 3
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 65,
+                  "name" : "ig_md.last_label",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 3
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 66,
+                  "name" : "ig_md.matched_domain",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 67,
+                  "name" : "ig_md.domain_id_dns",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 32
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 68,
+                  "name" : "ig_md.domain_id",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 32
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 69,
+                  "name" : "ig_md.index_1_dns",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 32
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 70,
+                  "name" : "ig_md.index_2_dns",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 32
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 71,
+                  "name" : "ig_md.index_1",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 32
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 72,
+                  "name" : "ig_md.index_2",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 32
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 73,
+                  "name" : "ig_md.temp_timestamp",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 48
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 74,
+                  "name" : "ig_md.temp_cip",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 32
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 75,
+                  "name" : "ig_md.temp_sip",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 32
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 76,
+                  "name" : "ig_md.already_matched",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 77,
+                  "name" : "ig_md.min_counter",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 64
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 78,
+                  "name" : "ig_md.min_table",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 2
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 79,
+                  "name" : "ig_md.temp_packet_counter",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 64
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 80,
+                  "name" : "ig_md.temp_byte_counter",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 64
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 81,
+                  "name" : "ig_md.temp_total_dns",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 64
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 82,
+                  "name" : "ig_md.temp_total_missed",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 64
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 83,
+                  "name" : "ig_md.parsed_answer",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 84,
+                  "name" : "ig_intr_md.resubmit_flag",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 85,
+                  "name" : "ig_intr_md._pad1",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 86,
+                  "name" : "ig_intr_md.packet_version",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 2
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 87,
+                  "name" : "ig_intr_md._pad2",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 3
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 88,
+                  "name" : "ig_intr_md.ingress_port",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 9
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 89,
+                  "name" : "ig_intr_md.ingress_mac_tstamp",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 48
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 90,
+                  "name" : "ig_intr_prsr_md.global_tstamp",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 48
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 91,
+                  "name" : "ig_intr_prsr_md.global_ver",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 32
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 92,
+                  "name" : "ig_intr_prsr_md.parser_err",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 93,
+                  "name" : "ig_intr_dprsr_md.drop_ctl",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 3
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 94,
+                  "name" : "ig_intr_dprsr_md.digest_type",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 3
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 95,
+                  "name" : "ig_intr_dprsr_md.resubmit_type",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 3
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 96,
+                  "name" : "ig_intr_dprsr_md.mirror_type",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 3
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 97,
+                  "name" : "ig_intr_tm_md.ucast_egress_port",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 9
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 98,
+                  "name" : "ig_intr_tm_md.bypass_egress",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 99,
+                  "name" : "ig_intr_tm_md.deflect_on_drop",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 100,
+                  "name" : "ig_intr_tm_md.ingress_cos",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 3
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 101,
+                  "name" : "ig_intr_tm_md.qid",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 5
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 102,
+                  "name" : "ig_intr_tm_md.icos_for_copy_to_cpu",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 3
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 103,
+                  "name" : "ig_intr_tm_md.copy_to_cpu",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 104,
+                  "name" : "ig_intr_tm_md.packet_color",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 2
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 105,
+                  "name" : "ig_intr_tm_md.disable_ucast_cutthru",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 106,
+                  "name" : "ig_intr_tm_md.enable_mcast_cutthru",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 1
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 107,
+                  "name" : "ig_intr_tm_md.mcast_grp_a",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 108,
+                  "name" : "ig_intr_tm_md.mcast_grp_b",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 109,
+                  "name" : "ig_intr_tm_md.level1_mcast_hash",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 13
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 110,
+                  "name" : "ig_intr_tm_md.level2_mcast_hash",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 13
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 111,
+                  "name" : "ig_intr_tm_md.level1_exclusion_id",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 112,
+                  "name" : "ig_intr_tm_md.level2_exclusion_id",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 9
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 113,
+                  "name" : "ig_intr_tm_md.rid",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bytes",
+                    "width" : 16
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 65578,
+            "name" : "$SNAPSHOT_CONTROL_INFO",
+            "repeated" : true,
+            "annotations" : [],
+            "container" : [
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 65581,
+                  "name" : "$SNAPSHOT_STAGE_ID",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "uint32"
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 65582,
+                  "name" : "$SNAPSHOT_PREV_STAGE_TRIGGER",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bool"
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 65583,
+                  "name" : "$SNAPSHOT_TIMER_TRIGGER",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bool"
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 65584,
+                  "name" : "$SNAPSHOT_LOCAL_STAGE_TRIGGER",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "bool"
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 65586,
+                  "name" : "$SNAPSHOT_NEXT_TABLE_NAME",
+                  "repeated" : false,
+                  "annotations" : [],
+                  "type" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              {
+                "mandatory" : false,
+                "read_only" : true,
+                "singleton" : {
+                  "id" : 65579,
+                  "name" : "$SNAPSHOT_TABLE_INFO",
+                  "repeated" : true,
+                  "annotations" : [],
+                  "container" : [
+                    {
+                      "mandatory" : false,
+                      "read_only" : true,
+                      "singleton" : {
+                        "id" : 65590,
+                        "name" : "$SNAPSHOT_TABLE_NAME",
+                        "repeated" : false,
+                        "annotations" : [],
+                        "type" : {
+                          "type" : "string"
+                        }
+                      }
+                    },
+                    {
+                      "mandatory" : false,
+                      "read_only" : true,
+                      "singleton" : {
+                        "id" : 65592,
+                        "name" : "$SNAPSHOT_MATCH_HIT_ADDRESS",
+                        "repeated" : false,
+                        "annotations" : [],
+                        "type" : {
+                          "type" : "uint32"
+                        }
+                      }
+                    },
+                    {
+                      "mandatory" : false,
+                      "read_only" : true,
+                      "singleton" : {
+                        "id" : 65593,
+                        "name" : "$SNAPSHOT_TABLE_HIT",
+                        "repeated" : false,
+                        "annotations" : [],
+                        "type" : {
+                          "type" : "bool"
+                        }
+                      }
+                    },
+                    {
+                      "mandatory" : false,
+                      "read_only" : true,
+                      "singleton" : {
+                        "id" : 65594,
+                        "name" : "$SNAPSHOT_TABLE_INHIBITED",
+                        "repeated" : false,
+                        "annotations" : [],
+                        "type" : {
+                          "type" : "bool"
+                        }
+                      }
+                    },
+                    {
+                      "mandatory" : false,
+                      "read_only" : true,
+                      "singleton" : {
+                        "id" : 65595,
+                        "name" : "$SNAPSHOT_TABLE_EXECUTED",
+                        "repeated" : false,
+                        "annotations" : [],
+                        "type" : {
+                          "type" : "bool"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "supported_operations" : [],
+      "attributes" : []
+    },
+    {
+      "name" : "pipe.$SNAPSHOT_INGRESS_LIVENESS",
+      "id" : 2449480287,
+      "table_type" : "SnapshotLiveness",
+      "size" : 0,
+      "depends_on" : [],
+      "key" : [
+        {
+          "id" : 65596,
+          "name" : "$SNAPSHOT_LIVENESS_FIELD_NAME",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : true,
+          "match_type" : "Exact",
+          "type" : {
+            "type" : "string"
+          }
+        }
+      ],
+      "data" : [
+        {
+          "mandatory" : false,
+          "read_only" : true,
+          "singleton" : {
+            "id" : 65597,
+            "name" : "$SNAPSHOT_LIVENESS_VALID_STAGES",
+            "repeated" : true,
+            "annotations" : [],
+            "type" : {
+              "type" : "uint32"
+            }
+          }
+        }
+      ],
+      "supported_operations" : [],
+      "attributes" : []
+    },
+    {
+      "name" : "pipe.SwitchIngressParser.$PORT_METADATA",
+      "id" : 2415950168,
+      "table_type" : "PortMetadata",
+      "size" : 288,
+      "annotations" : [],
+      "depends_on" : [],
+      "key" : [
+        {
+          "id" : 65569,
+          "name" : "ig_intr_md.ingress_port",
+          "repeated" : false,
+          "annotations" : [],
+          "mandatory" : true,
+          "match_type" : "Exact",
+          "type" : {
+            "type" : "bytes",
+            "width" : 9
+          }
+        }
+      ],
+      "data" : [
+        {
+          "mandatory" : false,
+          "read_only" : false,
+          "singleton" : {
+            "id" : 65570,
+            "name" : "$DEFAULT_FIELD",
+            "repeated" : false,
+            "annotations" : [],
+            "type" : {
+              "type" : "bytes",
+              "width" : 64
+            }
+          }
+        }
+      ],
+      "supported_operations" : [],
+      "attributes" : []
+    }
+  ],
+  "learn_filters" : []
+}

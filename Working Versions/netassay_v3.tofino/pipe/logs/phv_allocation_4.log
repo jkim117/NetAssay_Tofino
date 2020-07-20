@@ -1,0 +1,5 @@
+--- BEGIN PHV ALLOCATION ----------------------------------------------------
+
+@pa_atomic specifies that ingress::ig_intr_md_from_prsr.parser_err should be marked no_split
+
+PHV ALLOCATION SUCCESSFUL

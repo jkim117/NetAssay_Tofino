@@ -1,0 +1,292 @@
+version:
+  version: 1.0.1
+  run_id: "731c5ed83c519820"
+  target: Tofino
+phv ingress:
+  p.ethernet.dst.0-7: TB0
+  p.ethernet.dst.8-15: TB1
+  p.ethernet.dst.16-31: TH0
+  p.ethernet.dst.32-47: TH1
+  p.ethernet.src.0-15: TW3(16..31)
+  p.ethernet.src.16-31: TH2
+  p.ethernet.src.32-47: TH3
+  p.ethernet.etherType: TW3(0..15)
+  p.ipv4.version: TW0(28..31)
+  p.ipv4.ihl: TW0(24..27)
+  p.ipv4.tos: TW0(16..23)
+  p.ipv4.len: TW0(0..15)
+  p.ipv4.id: TW1(16..31)
+  p.ipv4.flags: TW1(13..15)
+  p.ipv4.frag: TW1(0..12)
+  p.ipv4.ttl: TW2(24..31)
+  p.ipv4.proto: TW2(16..23)
+  p.ipv4.chksum: TW2(0..15)
+  p.ipv4.src: W0
+  p.ipv4.dst.0-15: TH4
+  p.ipv4.dst.16-31: TH5
+  ig_md.is_ip: B1(0)
+  ig_md.matched_ip: B1(1)
+  p.ethernet.$valid: B0(0)
+  p.ipv4.$valid: B0(1)
+phv egress:
+  eg_intr_md.egress_port: H16(0..8)
+parser ingress:
+  start: $entry_point
+  init_zero: [ B1, B0 ]
+  bitwise_or: [ B0 ]
+  hdr_len_adj: 16
+  states:
+    $entry_point:
+      *:
+        load: { byte1 : 0 }
+        buf_req: 1
+        next: start
+    start:
+      match: [ byte1 ]
+      0b1*******:
+        load: { half : 28..29 }
+        shift: 16
+        buf_req: 30
+        next: start_0
+      0b0*******:
+        load: { half : 28..29 }
+        shift: 16
+        buf_req: 30
+        next: start_0
+    start_0:
+      match: [ half ]
+      0x0800:
+        0..1: TH1  # ingress::p.ethernet.dst[47:32].32-47
+        2..3: TH0  # ingress::p.ethernet.dst[31:16].16-31
+        4: TB1  # ingress::p.ethernet.dst[15:8].8-15
+        5: TB0  # ingress::p.ethernet.dst[7:0].0-7
+        6..7: TH3  # ingress::p.ethernet.src[47:32].32-47
+        8..9: TH2  # ingress::p.ethernet.src[31:16].16-31
+        10..13: TW3
+            # - bit[80..95] -> TW3 bit[31..16]: ingress::p.ethernet.src[15:0].0-15
+            # - bit[96..111] -> TW3 bit[15..0]: ingress::p.ethernet.etherType
+        B0: 1  # value 1 -> B0 bit[0]: ingress::p.ethernet.$valid
+        shift: 14
+        buf_req: 14
+        next: parse_ip
+      0x****:
+        0..1: TH1  # ingress::p.ethernet.dst[47:32].32-47
+        2..3: TH0  # ingress::p.ethernet.dst[31:16].16-31
+        4: TB1  # ingress::p.ethernet.dst[15:8].8-15
+        5: TB0  # ingress::p.ethernet.dst[7:0].0-7
+        6..7: TH3  # ingress::p.ethernet.src[47:32].32-47
+        8..9: TH2  # ingress::p.ethernet.src[31:16].16-31
+        10..13: TW3
+            # - bit[80..95] -> TW3 bit[31..16]: ingress::p.ethernet.src[15:0].0-15
+            # - bit[96..111] -> TW3 bit[15..0]: ingress::p.ethernet.etherType
+        B0: 1  # value 1 -> B0 bit[0]: ingress::p.ethernet.$valid
+        shift: 14
+        buf_req: 14
+        next: end
+    parse_ip:
+      *:
+        0..3: TW0
+            # - bit[0..3] -> TW0 bit[31..28]: ingress::p.ipv4.version
+            # - bit[4..7] -> TW0 bit[27..24]: ingress::p.ipv4.ihl
+            # - bit[8..15] -> TW0 bit[23..16]: ingress::p.ipv4.tos
+            # - bit[16..31] -> TW0 bit[15..0]: ingress::p.ipv4.len
+        4..7: TW1
+            # - bit[32..47] -> TW1 bit[31..16]: ingress::p.ipv4.id
+            # - bit[48..50] -> TW1 bit[15..13]: ingress::p.ipv4.flags
+            # - bit[51..63] -> TW1 bit[12..0]: ingress::p.ipv4.frag
+        8..11: TW2
+            # - bit[64..71] -> TW2 bit[31..24]: ingress::p.ipv4.ttl
+            # - bit[72..79] -> TW2 bit[23..16]: ingress::p.ipv4.proto
+            # - bit[80..95] -> TW2 bit[15..0]: ingress::p.ipv4.chksum
+        12..15: W0  # ingress::p.ipv4.src
+        16..17: TH5  # ingress::p.ipv4.dst[31:16].16-31
+        18..19: TH4  # ingress::p.ipv4.dst[15:0].0-15
+        B0: 2  # value 1 -> B0 bit[1]: ingress::p.ipv4.$valid
+        B1: 1  # value 1 -> B1 bit[0]: ingress::ig_md.is_ip
+        shift: 20
+        buf_req: 20
+        next: end
+deparser ingress:
+  dictionary:
+    TH1: B0(0)  # ingress::p.ethernet.dst.32-47 if ingress::p.ethernet.$valid
+    TH0: B0(0)  # ingress::p.ethernet.dst.16-31 if ingress::p.ethernet.$valid
+    TB1: B0(0)  # ingress::p.ethernet.dst.8-15 if ingress::p.ethernet.$valid
+    TB0: B0(0)  # ingress::p.ethernet.dst.0-7 if ingress::p.ethernet.$valid
+    TH3: B0(0)  # ingress::p.ethernet.src.32-47 if ingress::p.ethernet.$valid
+    TH2: B0(0)  # ingress::p.ethernet.src.16-31 if ingress::p.ethernet.$valid
+    TW3: B0(0)
+        # - bit[31..16]: ingress::p.ethernet.src.0-15 if ingress::p.ethernet.$valid
+        # - bit[15..0]: ingress::p.ethernet.etherType if ingress::p.ethernet.$valid
+    TW0: B0(1)
+        # - bit[31..28]: ingress::p.ipv4.version if ingress::p.ipv4.$valid
+        # - bit[27..24]: ingress::p.ipv4.ihl if ingress::p.ipv4.$valid
+        # - bit[23..16]: ingress::p.ipv4.tos if ingress::p.ipv4.$valid
+        # - bit[15..0]: ingress::p.ipv4.len if ingress::p.ipv4.$valid
+    TW1: B0(1)
+        # - bit[31..16]: ingress::p.ipv4.id if ingress::p.ipv4.$valid
+        # - bit[15..13]: ingress::p.ipv4.flags if ingress::p.ipv4.$valid
+        # - bit[12..0]: ingress::p.ipv4.frag if ingress::p.ipv4.$valid
+    TW2: B0(1)
+        # - bit[31..24]: ingress::p.ipv4.ttl if ingress::p.ipv4.$valid
+        # - bit[23..16]: ingress::p.ipv4.proto if ingress::p.ipv4.$valid
+        # - bit[15..0]: ingress::p.ipv4.chksum if ingress::p.ipv4.$valid
+    W0: B0(1)  # ingress::p.ipv4.src if ingress::p.ipv4.$valid
+    TH5: B0(1)  # ingress::p.ipv4.dst.16-31 if ingress::p.ipv4.$valid
+    TH4: B0(1)  # ingress::p.ipv4.dst.0-15 if ingress::p.ipv4.$valid
+parser egress:
+  start: $entry_point.start
+  hdr_len_adj: 27
+  meta_opt: 8191
+  states:
+    $entry_point.start:
+      *:
+        0..1: H16  # bit[7..15] -> H16 bit[8..0]: egress::eg_intr_md.egress_port
+        shift: 27
+        buf_req: 27
+        next: end
+deparser egress:
+  dictionary: {}
+  egress_unicast_port: H16(0..8)  # bit[8..0]: egress::eg_intr_md.egress_port
+stage 0 ingress:
+  phase0_match SwitchIngressParser.$PORT_METADATA:
+    p4:
+      name: SwitchIngressParser.$PORT_METADATA
+      size: 288
+      preferred_match_type: exact
+      match_type: exact
+    size: 288
+    p4_param_order:
+      ig_intr_md.ingress_port: { type: exact, size: 9 }
+    format: {ig_intr_md: 0..63}
+    constant_value: 0
+    actions:
+      set_port_metadata:
+      - handle: 0x20000000
+      - p4_param_order: { ig_intr_md: 64 } 
+  exact_match known_ip_list_0 0:
+    p4: { name: SwitchIngress.known_ip_list, size: 1000 }
+    p4_param_order: 
+      p.ipv4.src: { type: exact, size: 32, full_size: 32, key_name: "headers.ipv4.src" }
+    row: 7
+    bus: 0
+    column: [ 2, 3, 4 ]
+    stash: 
+      row: [ 7 ]
+      col: [ 2 ]
+      unit: [ 0 ]
+    ways:
+      - [0, 0, 0x0, [7, 2]]
+      - [0, 1, 0x0, [7, 3]]
+      - [0, 2, 0x0, [7, 4]]
+    input_xbar:
+      exact group 0: { 0: p.ipv4.src }
+      hash 0:
+        0..7: random(p.ipv4.src(10..31)) ^ p.ipv4.src(0..7)
+        8..9: random(p.ipv4.src(10..31)) ^ p.ipv4.src(8..9)
+        11..18: random(p.ipv4.src(10..31)) ^ p.ipv4.src(0..7)
+        19: random(p.ipv4.src(10..31)) ^ p.ipv4.src(8)
+        10: random(p.ipv4.src(10..31)) ^ p.ipv4.src(9)
+        22..29: random(p.ipv4.src(10..31)) ^ p.ipv4.src(0..7)
+        20..21: random(p.ipv4.src(10..31)) ^ p.ipv4.src(8..9)
+      hash group 0:
+        table: [0]
+        seed: 0x1442462a
+    format: { action(0): 0..1, version(0): 112..115, match(0): [50..55, 32..47 ], action(1): 2..3, version(1): 116..119, match(1): [74..79, 56..71 ], action(2): 4..5, version(2): 120..123, match(2): [98..103, 80..95 ] }
+    match: [ p.ipv4.src(10..15), p.ipv4.src(16..23), p.ipv4.src(24..31) ]
+    match_group_map: [ [ 0, 1, 2 ] ]
+    gateway:
+      name: cond-3
+      input_xbar:
+        exact group 0: { 32: ig_md.is_ip }
+      row: 7
+      bus: 0
+      unit: 0
+      match: { 0: ig_md.is_ip }
+      0b*******1: run_table
+      miss:  END
+      condition: 
+        expression: "(ig_md.is_ip == 1)"
+        true:  known_ip_list_0
+        false:  END
+    hit: [  tbl_simple191 ]
+    miss:  tbl_simple191
+    instruction: known_ip_list_0(action, $DEFAULT)
+    actions:
+      SwitchIngress.match_ip(1, 1):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true }
+      - handle: 0x20000001
+      - next_table: 0
+      - set ig_md.matched_ip, 1
+      NoAction(2, 0):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true }
+      - handle: 0x20000002
+      - next_table: 0
+    default_action: NoAction
+stage 1 ingress:
+  ternary_match tbl_simple191 0:
+    p4: { name: tbl_simple191 }
+    gateway:
+      name: cond-4
+      input_xbar:
+        exact group 0: { 1: ig_md.matched_ip }
+      row: 0
+      bus: 0
+      unit: 0
+      match: { 1: ig_md.matched_ip }
+      0b******1:  tbl_simple188
+      miss: run_table
+      condition: 
+        expression: "(ig_md.matched_ip == 1)"
+        true:  tbl_simple188
+        false:  tbl_simple191
+    hit: [  END ]
+    miss:  END
+    indirect: tbl_simple191$tind
+  stateful tbl_simple191$salu.SwitchIngress.packet_counts_table:
+    p4: { name: SwitchIngress.packet_counts_table, size: 2 }
+    row: 15
+    column: [ 0, 1 ]
+    maprams: [ 0, 1 ]
+    format: { lo: 32 }
+    actions:
+      packet_counts_table_reg_inc_action_0:
+      - add lo, lo, 1
+  ternary_indirect tbl_simple191$tind:
+    row: 0
+    bus: 0
+    format: { action: 0..0, meter_addr: 1..10, meter_pfe: 11..11, meter_type: 12..14 }
+    stateful: tbl_simple191$salu.SwitchIngress.packet_counts_table(meter_addr, meter_pfe, meter_type)
+    instruction: tbl_simple191$tind(action, $DEFAULT)
+    actions:
+      simple191(1, 0):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000004
+      - next_table: 0
+      - tbl_simple191$salu.SwitchIngress.packet_counts_table(packet_counts_table_reg_inc_action_0, 0)
+    default_action: simple191
+  ternary_match tbl_simple188 1:
+    p4: { name: tbl_simple188, hidden: true }
+    hit: [  END ]
+    miss:  END
+    indirect: tbl_simple188$tind
+  ternary_indirect tbl_simple188$tind:
+    row: 0
+    bus: 1
+    format: { action: 0..0, meter_addr: 1..10 }
+    stateful: tbl_simple191$salu.SwitchIngress.packet_counts_table(meter_addr, $DEFAULT, $DEFAULT)
+    instruction: tbl_simple188$tind(action, $DEFAULT)
+    actions:
+      simple188(0, 0):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000003
+      - next_table: 0
+      - tbl_simple191$salu.SwitchIngress.packet_counts_table(packet_counts_table_reg_inc_action_0, 1)
+    default_action: simple188
+
+
+primitives: "simple.tofino/pipe//simple.prim.json"
+dynhash: "simple.tofino/pipe//simple.dynhash.json"

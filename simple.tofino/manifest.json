@@ -1,0 +1,51 @@
+{
+  "schema_version": "2.0.3",
+  "target": "tofino",
+  "build_date": "Sat Jul 18 03:40:19 2020",
+  "compiler_version": "9.1.0",
+  "compilation_succeeded": true,
+  "compilation_time": "2.987694501876831",
+  "run_id": "731c5ed83c519820",
+  "architecture": "tna",
+  "programs": [
+    {
+      "program_name": "simple.p4",
+      "p4_version": "p4-16",
+      "source_files": {
+        "src_root": "/home/p4/NetAssay_Tofino",
+        "includes": [
+          "/shared/bf-sde-9.1.1/install/share/p4c/p4include"
+        ],
+        "defines": [
+          "__TARGET_TOFINO__=1",
+          "__p4c__=1",
+          "__p4c_major__=9",
+          "__p4c_minor__=1",
+          "__p4c_patchlevel__=0",
+          "__p4c_version__=\"9.1.0\""
+        ]
+      },
+      "pipes": [
+        {
+          "pipe_id": 0,
+          "pipe_name": "pipe",
+          "files": {
+            "context": {
+              "path": "pipe/context.json"
+            },
+            "resources": [],
+            "graphs": [],
+            "logs": [
+              {
+                "path": "pipe/logs/parser.characterize.log",
+                "log_type": "parser"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "compile_command": "/shared/bf-sde-9.1.1/install/bin/bf-p4c simple.p4",
+  "conf_file": "simple.conf"
+}

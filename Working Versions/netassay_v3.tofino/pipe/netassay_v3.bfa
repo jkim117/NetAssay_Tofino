@@ -1,0 +1,2869 @@
+version:
+  version: 1.0.1
+  run_id: "d9ff36a850879690"
+  target: Tofino
+phv ingress:
+  ig_intr_md_from_prsr.global_tstamp.0-15: H2
+  ig_intr_md_from_prsr.global_tstamp.16-31: H1
+  ig_intr_md_from_prsr.global_tstamp.32-47: TH3
+  ig_intr_md.resubmit_flag: H3(15)
+  p.ethernet.dst.0-15: TH6
+  p.ethernet.dst.16-31: TH4
+  p.ethernet.dst.32-47: TH5
+  p.ethernet.src.0-15: TW2(16..31)
+  p.ethernet.src.16-23: TB0
+  p.ethernet.src.24-31: TB1
+  p.ethernet.src.32-39: TB2
+  p.ethernet.src.40-47: TB3
+  p.ethernet.etherType: TW2(0..15)
+  p.ipv4.version: TH0(12..15)
+  p.ipv4.ihl: TH0(8..11)
+  p.ipv4.tos: TH0(0..7)
+  p.ipv4.len: H0
+  p.ipv4.id: TW0(16..31)
+  p.ipv4.flags: TW0(13..15)
+  p.ipv4.frag: TW0(0..12)
+  p.ipv4.ttl: TW1(24..31)
+  p.ipv4.proto: TW1(16..23)
+  p.ipv4.chksum: TW1(0..15)
+  p.ipv4.src: W0
+  p.ipv4.dst: W2
+  ig_md.is_dns: H9(14)
+  ig_md.is_ip: B6(0)
+  ig_md.matched_domain: B1(3)
+  ig_md.domain_id_dns: W3
+  ig_md.index_1_dns.0-13: H4(0..13)
+  ig_md.index_1_dns.14-31: W5(0..17)
+  ig_md.index_2_dns.0-13: H6(0..13)
+  ig_md.index_2_dns.14-31: W6(0..17)
+  ig_md.already_matched: B3(0)
+  ig_md.parsed_answer: B7(0)
+  p.udp.sport: TW3(16..31)
+  p.udp.dport: TW3(0..15)
+  p.udp.len: TH2
+  p.udp.chksum: TH1
+  p.dns_ip.rdata: W1
+  p.q1_part1.part: B2
+  p.q2_part1.part: B3
+  p.q3_part1.part: B4
+  p.q4_part1.part: B5
+  p.q4_part2.part: H4
+  p.q4_part4.part: W4
+  p.q4_part8_1.part: W5
+  p.q4_part8_2.part: W6
+  p.q3_part2.part: H5
+  p.q3_part4.part: W7
+  p.q3_part8_1.part: W8
+  p.q3_part8_2.part: W9
+  p.q2_part2.part: H6
+  p.q2_part4.part: W10
+  p.q2_part8_1.part: W11
+  p.q2_part8_2.part: W12
+  p.q1_part2.part: H7
+  p.q1_part4.part: W13
+  p.q1_part8_1.part: W14
+  p.q1_part8_2.part: W15
+  $concat_to_slice1: H3(0..13)
+  $concat_to_slice3: H5(0..13)
+  is_match_0: B4(0)
+  timed_out_0: B5(0)
+  ig_intr_md_for_dprsr.resubmit_type: B0(0..2)
+  is_match_1: B6(0)
+  timed_out_1: B7(0)
+  $concat_to_slice5: H3(0..13)
+  index_0.0-13: H8(0..13)
+  index_0.14-29: H11
+  index_0.30-31: B1(3..4)
+  sip_cip_matched_0: H9(14)
+  domain_id_0: W4
+  entry_matched_0: B2(0)
+  $concat_to_slice7: H9(0..13)
+  index_3.0-13: H10(0..13)
+  index_3.14-29: H12
+  index_3.30-31: B1(5..6)
+  p.ethernet.$valid: B1(0)
+  p.ipv4.$valid: B1(1)
+  p.udp.$valid: B1(2)
+  SwitchIngress.sip_cip_reg_1$index.0-7: B8
+  SwitchIngress.sip_cip_reg_1$index.8-13: B6(1..6)
+  SwitchIngress.domain_tstamp_reg_2$index: H3(0..13)
+  context_json:
+    TB0:
+      p.ethernet.src:
+          live_start: parser
+          live_end: deparser
+          mutually_exclusive_with: [  ]
+    TB1:
+      p.ethernet.src:
+          live_start: parser
+          live_end: deparser
+          mutually_exclusive_with: [  ]
+    TB2:
+      p.ethernet.src:
+          live_start: parser
+          live_end: deparser
+          mutually_exclusive_with: [  ]
+    TB3:
+      p.ethernet.src:
+          live_start: parser
+          live_end: deparser
+          mutually_exclusive_with: [  ]
+    TH0:
+      p.ipv4.tos:
+          live_start: parser
+          live_end: deparser
+          mutually_exclusive_with: [  ]
+      p.ipv4.ihl:
+          live_start: parser
+          live_end: deparser
+          mutually_exclusive_with: [  ]
+      p.ipv4.version:
+          live_start: parser
+          live_end: deparser
+          mutually_exclusive_with: [  ]
+    TH1:
+      p.udp.chksum:
+          live_start: parser
+          live_end: deparser
+          mutually_exclusive_with: [  ]
+    TH2:
+      p.udp.len:
+          live_start: parser
+          live_end: deparser
+          mutually_exclusive_with: [  ]
+    TH3:
+      ig_intr_md_from_prsr.global_tstamp:
+          live_start: parser
+          live_end: deparser
+          mutually_exclusive_with: [  ]
+    TH4:
+      p.ethernet.dst:
+          live_start: parser
+          live_end: deparser
+          mutually_exclusive_with: [  ]
+    TH5:
+      p.ethernet.dst:
+          live_start: parser
+          live_end: deparser
+          mutually_exclusive_with: [  ]
+    TH6:
+      p.ethernet.dst:
+          live_start: parser
+          live_end: deparser
+          mutually_exclusive_with: [  ]
+    TW0:
+      p.ipv4.frag:
+          live_start: parser
+          live_end: deparser
+          mutually_exclusive_with: [  ]
+      p.ipv4.flags:
+          live_start: parser
+          live_end: deparser
+          mutually_exclusive_with: [  ]
+      p.ipv4.id:
+          live_start: parser
+          live_end: deparser
+          mutually_exclusive_with: [  ]
+    TW1:
+      p.ipv4.chksum:
+          live_start: parser
+          live_end: deparser
+          mutually_exclusive_with: [  ]
+      p.ipv4.proto:
+          live_start: parser
+          live_end: deparser
+          mutually_exclusive_with: [  ]
+      p.ipv4.ttl:
+          live_start: parser
+          live_end: deparser
+          mutually_exclusive_with: [  ]
+    TW2:
+      p.ethernet.etherType:
+          live_start: parser
+          live_end: deparser
+          mutually_exclusive_with: [  ]
+      p.ethernet.src:
+          live_start: parser
+          live_end: deparser
+          mutually_exclusive_with: [  ]
+    TW3:
+      p.udp.dport:
+          live_start: parser
+          live_end: deparser
+          mutually_exclusive_with: [  ]
+      p.udp.sport:
+          live_start: parser
+          live_end: deparser
+          mutually_exclusive_with: [  ]
+    B0:
+      ig_intr_md_for_dprsr.resubmit_type:
+          live_start: parser
+          live_end: deparser
+          mutually_exclusive_with: [  ]
+    B1:
+      p.ethernet.$valid:
+          live_start: parser
+          live_end: deparser
+          mutually_exclusive_with: [  ]
+      p.ipv4.$valid:
+          live_start: parser
+          live_end: deparser
+          mutually_exclusive_with: [  ]
+      p.udp.$valid:
+          live_start: parser
+          live_end: deparser
+          mutually_exclusive_with: [  ]
+      index_0:
+          live_start: parser
+          live_end: 7
+          mutually_exclusive_with: [ ig_md.matched_domain ]
+      index_3:
+          live_start: parser
+          live_end: 9
+          mutually_exclusive_with: [ ig_md.matched_domain ]
+      ig_md.matched_domain:
+          live_start: parser
+          live_end: 4
+          mutually_exclusive_with: [ index_0, index_3 ]
+    B2:
+      p.q1_part1.part:
+          live_start: parser
+          live_end: 2
+          mutually_exclusive_with: [  ]
+      entry_matched_0:
+          live_start: parser
+          live_end: 11
+          mutually_exclusive_with: [  ]
+    B3:
+      p.q2_part1.part:
+          live_start: parser
+          live_end: 2
+          mutually_exclusive_with: [  ]
+      ig_md.already_matched:
+          live_start: 6
+          live_end: 11
+          mutually_exclusive_with: [  ]
+    B4:
+      p.q3_part1.part:
+          live_start: parser
+          live_end: 2
+          mutually_exclusive_with: [  ]
+      is_match_0:
+          live_start: 6
+          live_end: 7
+          mutually_exclusive_with: [  ]
+    B5:
+      p.q4_part1.part:
+          live_start: parser
+          live_end: 2
+          mutually_exclusive_with: [  ]
+      timed_out_0:
+          live_start: 7
+          live_end: 8
+          mutually_exclusive_with: [  ]
+    B6:
+      ig_md.is_ip:
+          live_start: parser
+          live_end: 0
+          mutually_exclusive_with: [  ]
+      SwitchIngress.sip_cip_reg_1$index:
+          live_start: 3
+          live_end: 6
+          mutually_exclusive_with: [ is_match_1 ]
+      is_match_1:
+          live_start: 8
+          live_end: 10
+          mutually_exclusive_with: [ SwitchIngress.sip_cip_reg_1$index ]
+    B7:
+      ig_md.parsed_answer:
+          live_start: parser
+          live_end: 0
+          mutually_exclusive_with: [  ]
+      timed_out_1:
+          live_start: 10
+          live_end: 11
+          mutually_exclusive_with: [  ]
+    B8:
+      SwitchIngress.sip_cip_reg_1$index:
+          live_start: 3
+          live_end: 6
+          mutually_exclusive_with: [  ]
+    H0:
+      p.ipv4.len:
+          live_start: parser
+          live_end: deparser
+          mutually_exclusive_with: [  ]
+    H1:
+      ig_intr_md_from_prsr.global_tstamp:
+          live_start: parser
+          live_end: 10
+          mutually_exclusive_with: [  ]
+    H2:
+      ig_intr_md_from_prsr.global_tstamp:
+          live_start: parser
+          live_end: 10
+          mutually_exclusive_with: [  ]
+    H3:
+      ig_intr_md.resubmit_flag:
+          live_start: parser
+          live_end: 8
+          mutually_exclusive_with: [  ]
+      $concat_to_slice1:
+          live_start: 4
+          live_end: 5
+          mutually_exclusive_with: [ $concat_to_slice5 ]
+      $concat_to_slice5:
+          live_start: 0
+          live_end: 1
+          mutually_exclusive_with: [ $concat_to_slice1, SwitchIngress.domain_tstamp_reg_2$index ]
+      SwitchIngress.domain_tstamp_reg_2$index:
+          live_start: parser
+          live_end: 10
+          mutually_exclusive_with: [ $concat_to_slice5 ]
+    H4:
+      p.q4_part2.part:
+          live_start: parser
+          live_end: 2
+          mutually_exclusive_with: [  ]
+      ig_md.index_1_dns:
+          live_start: parser
+          live_end: 7
+          mutually_exclusive_with: [  ]
+    H5:
+      p.q3_part2.part:
+          live_start: parser
+          live_end: 2
+          mutually_exclusive_with: [  ]
+      $concat_to_slice3:
+          live_start: 5
+          live_end: 6
+          mutually_exclusive_with: [  ]
+    H6:
+      p.q2_part2.part:
+          live_start: parser
+          live_end: 2
+          mutually_exclusive_with: [  ]
+      ig_md.index_2_dns:
+          live_start: parser
+          live_end: 10
+          mutually_exclusive_with: [  ]
+    H7:
+      p.q1_part2.part:
+          live_start: parser
+          live_end: 2
+          mutually_exclusive_with: [  ]
+    H8:
+      index_0:
+          live_start: parser
+          live_end: 7
+          mutually_exclusive_with: [  ]
+    H9:
+      $concat_to_slice7:
+          live_start: 2
+          live_end: 3
+          mutually_exclusive_with: [  ]
+      ig_md.is_dns:
+          live_start: parser
+          live_end: 0
+          mutually_exclusive_with: [  ]
+      sip_cip_matched_0:
+          live_start: 6
+          live_end: 9
+          mutually_exclusive_with: [  ]
+    H10:
+      index_3:
+          live_start: parser
+          live_end: 9
+          mutually_exclusive_with: [  ]
+    H11:
+      index_0:
+          live_start: parser
+          live_end: 7
+          mutually_exclusive_with: [  ]
+    H12:
+      index_3:
+          live_start: parser
+          live_end: 9
+          mutually_exclusive_with: [  ]
+    W0:
+      p.ipv4.src:
+          live_start: parser
+          live_end: deparser
+          mutually_exclusive_with: [  ]
+    W1:
+      p.dns_ip.rdata:
+          live_start: parser
+          live_end: 8
+          mutually_exclusive_with: [  ]
+    W2:
+      p.ipv4.dst:
+          live_start: parser
+          live_end: deparser
+          mutually_exclusive_with: [  ]
+    W3:
+      ig_md.domain_id_dns:
+          live_start: parser
+          live_end: 11
+          mutually_exclusive_with: [  ]
+    W4:
+      p.q4_part4.part:
+          live_start: parser
+          live_end: 2
+          mutually_exclusive_with: [  ]
+      domain_id_0:
+          live_start: parser
+          live_end: 11
+          mutually_exclusive_with: [  ]
+    W5:
+      p.q4_part8_1.part:
+          live_start: parser
+          live_end: 2
+          mutually_exclusive_with: [  ]
+      ig_md.index_1_dns:
+          live_start: parser
+          live_end: 7
+          mutually_exclusive_with: [  ]
+    W6:
+      p.q4_part8_2.part:
+          live_start: parser
+          live_end: 2
+          mutually_exclusive_with: [  ]
+      ig_md.index_2_dns:
+          live_start: parser
+          live_end: 10
+          mutually_exclusive_with: [  ]
+    W7:
+      p.q3_part4.part:
+          live_start: parser
+          live_end: 2
+          mutually_exclusive_with: [  ]
+    W8:
+      p.q3_part8_1.part:
+          live_start: parser
+          live_end: 2
+          mutually_exclusive_with: [  ]
+    W9:
+      p.q3_part8_2.part:
+          live_start: parser
+          live_end: 2
+          mutually_exclusive_with: [  ]
+    W10:
+      p.q2_part4.part:
+          live_start: parser
+          live_end: 2
+          mutually_exclusive_with: [  ]
+    W11:
+      p.q2_part8_1.part:
+          live_start: parser
+          live_end: 2
+          mutually_exclusive_with: [  ]
+    W12:
+      p.q2_part8_2.part:
+          live_start: parser
+          live_end: 2
+          mutually_exclusive_with: [  ]
+    W13:
+      p.q1_part4.part:
+          live_start: parser
+          live_end: 2
+          mutually_exclusive_with: [  ]
+    W14:
+      p.q1_part8_1.part:
+          live_start: parser
+          live_end: 2
+          mutually_exclusive_with: [  ]
+    W15:
+      p.q1_part8_2.part:
+          live_start: parser
+          live_end: 2
+          mutually_exclusive_with: [  ]
+phv egress:
+  eg_intr_md.egress_port: H16(0..8)
+  context_json:
+    H16:
+      eg_intr_md.egress_port:
+          live_start: parser
+          live_end: deparser
+          mutually_exclusive_with: [  ]
+parser ingress:
+  start: $entry_point
+  init_zero: [ H2, H1, TH3, H9, B6, B1, W3, B7, H8, H11, W4, B2, H10, H12, B8, H3 ]
+  bitwise_or: [ B1 ]
+  hdr_len_adj: 16
+  states:
+    $entry_point:
+      *:
+        58..59: H2  # buffer mapped I/O: bit[464..479] -> H2 bit[15..0]: ingress::ig_intr_md_from_prsr.global_tstamp[15:0].0-15
+        56..57: H1  # buffer mapped I/O: bit[448..463] -> H1 bit[15..0]: ingress::ig_intr_md_from_prsr.global_tstamp[31:16].16-31
+        54..55: TH3  # buffer mapped I/O: bit[432..447] -> TH3 bit[15..0]: ingress::ig_intr_md_from_prsr.global_tstamp[47:32].32-47
+        load: { byte1 : 0 }
+        buf_req: 1
+        next: start
+    start:
+      match: [ byte1 ]
+      0b1*******:
+        0..1: H3  # bit[0] -> H3 bit[15]: ingress::ig_intr_md.resubmit_flag
+        shift: 16
+        buf_req: 16
+        next: start_0
+      0b0*******:
+        0..1: H3  # bit[0] -> H3 bit[15]: ingress::ig_intr_md.resubmit_flag
+        shift: 16
+        buf_req: 16
+        next: start_0
+    start_0:
+      *:
+        0..1: TH5  # ingress::p.ethernet.dst[47:32].32-47
+        2..3: TH4  # ingress::p.ethernet.dst[31:16].16-31
+        4..5: TH6  # ingress::p.ethernet.dst[15:0].0-15
+        6: TB3  # ingress::p.ethernet.src[47:40].40-47
+        7: TB2  # ingress::p.ethernet.src[39:32].32-39
+        8: TB1  # ingress::p.ethernet.src[31:24].24-31
+        9: TB0  # ingress::p.ethernet.src[23:16].16-23
+        10..13: TW2
+            # - bit[80..95] -> TW2 bit[31..16]: ingress::p.ethernet.src[15:0].0-15
+            # - bit[96..111] -> TW2 bit[15..0]: ingress::p.ethernet.etherType
+        load: { half : 12..13 }
+        shift: 14
+        buf_req: 14
+        next: start_0.$split_0
+    start_0.$split_0:
+      match: [ half ]
+      0x0800:
+        B1: 1  # value 1 -> B1 bit[0]: ingress::p.ethernet.$valid
+        load: { byte1 : 9 }
+        buf_req: 10
+        next: parse_ip
+      0x****:
+        B1: 1  # value 1 -> B1 bit[0]: ingress::p.ethernet.$valid
+        buf_req: 0
+        next: end
+    parse_ip:
+      match: [ byte1 ]
+      0x11:
+        0..1: TH0
+            # - bit[0..3] -> TH0 bit[15..12]: ingress::p.ipv4.version
+            # - bit[4..7] -> TH0 bit[11..8]: ingress::p.ipv4.ihl
+            # - bit[8..15] -> TH0 bit[7..0]: ingress::p.ipv4.tos
+        2..3: H0  # ingress::p.ipv4.len
+        4..7: TW0
+            # - bit[32..47] -> TW0 bit[31..16]: ingress::p.ipv4.id
+            # - bit[48..50] -> TW0 bit[15..13]: ingress::p.ipv4.flags
+            # - bit[51..63] -> TW0 bit[12..0]: ingress::p.ipv4.frag
+        8..11: TW1
+            # - bit[64..71] -> TW1 bit[31..24]: ingress::p.ipv4.ttl
+            # - bit[72..79] -> TW1 bit[23..16]: ingress::p.ipv4.proto
+            # - bit[80..95] -> TW1 bit[15..0]: ingress::p.ipv4.chksum
+        12..15: W0  # ingress::p.ipv4.src
+        16..19: W2  # ingress::p.ipv4.dst
+        B1: 2  # value 1 -> B1 bit[1]: ingress::p.ipv4.$valid
+        B6: 1  # value 1 -> B6 bit[0]: ingress::ig_md.is_ip
+        load: { half : 22..23 }
+        shift: 20
+        buf_req: 24
+        next: parse_udp
+      0x**:
+        0..1: TH0
+            # - bit[0..3] -> TH0 bit[15..12]: ingress::p.ipv4.version
+            # - bit[4..7] -> TH0 bit[11..8]: ingress::p.ipv4.ihl
+            # - bit[8..15] -> TH0 bit[7..0]: ingress::p.ipv4.tos
+        2..3: H0  # ingress::p.ipv4.len
+        4..7: TW0
+            # - bit[32..47] -> TW0 bit[31..16]: ingress::p.ipv4.id
+            # - bit[48..50] -> TW0 bit[15..13]: ingress::p.ipv4.flags
+            # - bit[51..63] -> TW0 bit[12..0]: ingress::p.ipv4.frag
+        8..11: TW1
+            # - bit[64..71] -> TW1 bit[31..24]: ingress::p.ipv4.ttl
+            # - bit[72..79] -> TW1 bit[23..16]: ingress::p.ipv4.proto
+            # - bit[80..95] -> TW1 bit[15..0]: ingress::p.ipv4.chksum
+        12..15: W0  # ingress::p.ipv4.src
+        16..19: W2  # ingress::p.ipv4.dst
+        B1: 2  # value 1 -> B1 bit[1]: ingress::p.ipv4.$valid
+        B6: 1  # value 1 -> B6 bit[0]: ingress::ig_md.is_ip
+        shift: 20
+        buf_req: 20
+        next: end
+    parse_udp:
+      match: [ half ]
+      0x0035:
+        0..3: TW3
+            # - bit[0..15] -> TW3 bit[31..16]: ingress::p.udp.sport
+            # - bit[16..31] -> TW3 bit[15..0]: ingress::p.udp.dport
+        4..5: TH2  # ingress::p.udp.len
+        6..7: TH1  # ingress::p.udp.chksum
+        B1: 4  # value 1 -> B1 bit[2]: ingress::p.udp.$valid
+        load: { byte1 : 10 }
+        shift: 8
+        buf_req: 11
+        next: parse_dns_header
+      0x****:
+        0..3: TW3
+            # - bit[0..15] -> TW3 bit[31..16]: ingress::p.udp.sport
+            # - bit[16..31] -> TW3 bit[15..0]: ingress::p.udp.dport
+        4..5: TH2  # ingress::p.udp.len
+        6..7: TH1  # ingress::p.udp.chksum
+        B1: 4  # value 1 -> B1 bit[2]: ingress::p.udp.$valid
+        load: { half : 0..1 }
+        shift: 8
+        buf_req: 8
+        next: parse_udp_2
+    parse_dns_header:
+      match: [ byte1 ]
+      0b1*******:
+        H9: 16384  # value 1 -> H9 bit[14]: ingress::ig_md.is_dns
+        load: { byte1 : 12 }
+        shift: 12
+        buf_req: 13
+        next: parse_dns_query1
+      0x**:
+        H9: 16384  # value 1 -> H9 bit[14]: ingress::ig_md.is_dns
+        shift: 12
+        buf_req: 12
+        next: end
+    parse_dns_query1:
+      match: [ byte1 ]
+      0x00:
+        load: { half : 7..8 }
+        shift: 5
+        buf_req: 9
+        next: parse_dns_answer
+      0x01:
+        1: B2  # ingress::p.q1_part1.part
+        load: { byte1 : 2 }
+        shift: 2
+        buf_req: 3
+        next: parse_dns_query2
+      0x02:
+        1..2: H7  # ingress::p.q1_part2.part
+        load: { byte1 : 3 }
+        shift: 3
+        buf_req: 4
+        next: parse_dns_query2
+      0x03:
+        1: B2  # ingress::p.q1_part1.part
+        2..3: H7  # ingress::p.q1_part2.part
+        load: { byte1 : 4 }
+        shift: 4
+        buf_req: 5
+        next: parse_dns_query2
+      0x04:
+        1..4: W13  # ingress::p.q1_part4.part
+        load: { byte1 : 5 }
+        shift: 5
+        buf_req: 6
+        next: parse_dns_query2
+      0x05:
+        1: B2  # ingress::p.q1_part1.part
+        2..5: W13  # ingress::p.q1_part4.part
+        load: { byte1 : 6 }
+        shift: 6
+        buf_req: 7
+        next: parse_dns_query2
+      0x06:
+        1..2: H7  # ingress::p.q1_part2.part
+        3..6: W13  # ingress::p.q1_part4.part
+        load: { byte1 : 7 }
+        shift: 7
+        buf_req: 8
+        next: parse_dns_query2
+      0x07:
+        1: B2  # ingress::p.q1_part1.part
+        2..3: H7  # ingress::p.q1_part2.part
+        4..7: W13  # ingress::p.q1_part4.part
+        load: { byte1 : 8 }
+        shift: 8
+        buf_req: 9
+        next: parse_dns_query2
+      0x08:
+        1..4: W14  # ingress::p.q1_part8_1.part
+        5..8: W15  # ingress::p.q1_part8_2.part
+        load: { byte1 : 9 }
+        shift: 9
+        buf_req: 10
+        next: parse_dns_query2
+      0x09:
+        1: B2  # ingress::p.q1_part1.part
+        2..5: W14  # ingress::p.q1_part8_1.part
+        6..9: W15  # ingress::p.q1_part8_2.part
+        load: { byte1 : 10 }
+        shift: 10
+        buf_req: 11
+        next: parse_dns_query2
+      0x0a:
+        1..2: H7  # ingress::p.q1_part2.part
+        3..6: W14  # ingress::p.q1_part8_1.part
+        7..10: W15  # ingress::p.q1_part8_2.part
+        load: { byte1 : 11 }
+        shift: 11
+        buf_req: 12
+        next: parse_dns_query2
+      0x0b:
+        1: B2  # ingress::p.q1_part1.part
+        2..3: H7  # ingress::p.q1_part2.part
+        4..7: W14  # ingress::p.q1_part8_1.part
+        8..11: W15  # ingress::p.q1_part8_2.part
+        load: { byte1 : 12 }
+        shift: 12
+        buf_req: 13
+        next: parse_dns_query2
+      0x0c:
+        1..4: W13  # ingress::p.q1_part4.part
+        5..8: W14  # ingress::p.q1_part8_1.part
+        9..12: W15  # ingress::p.q1_part8_2.part
+        load: { byte1 : 13 }
+        shift: 13
+        buf_req: 14
+        next: parse_dns_query2
+      0x0d:
+        1: B2  # ingress::p.q1_part1.part
+        2..5: W13  # ingress::p.q1_part4.part
+        6..9: W14  # ingress::p.q1_part8_1.part
+        10..13: W15  # ingress::p.q1_part8_2.part
+        load: { byte1 : 14 }
+        shift: 14
+        buf_req: 15
+        next: parse_dns_query2
+      0x0e:
+        1..2: H7  # ingress::p.q1_part2.part
+        3..6: W13  # ingress::p.q1_part4.part
+        7..10: W14  # ingress::p.q1_part8_1.part
+        11..14: W15  # ingress::p.q1_part8_2.part
+        load: { byte1 : 15 }
+        shift: 15
+        buf_req: 16
+        next: parse_dns_query2
+      0x0f:
+        1: B2  # ingress::p.q1_part1.part
+        2..3: H7  # ingress::p.q1_part2.part
+        4..7: W13  # ingress::p.q1_part4.part
+        8..11: W14  # ingress::p.q1_part8_1.part
+        12..15: W15  # ingress::p.q1_part8_2.part
+        load: { byte1 : 16 }
+        shift: 16
+        buf_req: 17
+        next: parse_dns_query2
+      0x**:
+        shift: 1
+        buf_req: 1
+        next: end
+    parse_dns_answer:
+      match: [ half ]
+      0x0001:
+        12..15: W1  # ingress::p.dns_ip.rdata
+        B7: 1  # value 1 -> B7 bit[0]: ingress::ig_md.parsed_answer
+        shift: 16
+        buf_req: 16
+        next: end
+      0x0005:
+        load: { byte1 : 11 }
+        shift: 12
+        buf_req: 12
+        next: parse_cname
+      0x****:
+        shift: 12
+        buf_req: 12
+        next: end
+    parse_cname:
+      *:
+        counter:
+          src: byte1
+        buf_req: 0
+        next: parse_cname.$ctr_stall
+    parse_cname.$ctr_stall:
+      *:
+        buf_req: 0
+        next: parse_cname.$split_0
+    parse_cname.$split_0:
+      match: [ ctr_zero ]
+      0x1:
+        load: { half : 2..3 }
+        buf_req: 4
+        next: parse_dns_answer
+      0x0:
+        buf_req: 0
+        next: parse_cname_byte
+    parse_cname_byte:
+      *:
+        counter: dec 1
+        shift: 1
+        buf_req: 1
+        next: parse_cname_byte.$split_0
+    parse_cname_byte.$split_0:
+      match: [ ctr_zero ]
+      0x1:
+        load: { half : 2..3 }
+        buf_req: 4
+        next: parse_dns_answer
+      0x0:
+        buf_req: 0
+        next: parse_cname_byte
+    parse_dns_query2:
+      match: [ byte1 ]
+      0x00:
+        load: { half : 7..8 }
+        shift: 5
+        buf_req: 9
+        next: parse_dns_answer
+      0x01:
+        1: B3  # ingress::p.q2_part1.part
+        load: { byte1 : 2 }
+        shift: 2
+        buf_req: 3
+        next: parse_dns_query3
+      0x02:
+        1..2: H6  # ingress::p.q2_part2.part
+        load: { byte1 : 3 }
+        shift: 3
+        buf_req: 4
+        next: parse_dns_query3
+      0x03:
+        1: B3  # ingress::p.q2_part1.part
+        2..3: H6  # ingress::p.q2_part2.part
+        load: { byte1 : 4 }
+        shift: 4
+        buf_req: 5
+        next: parse_dns_query3
+      0x04:
+        1..4: W10  # ingress::p.q2_part4.part
+        load: { byte1 : 5 }
+        shift: 5
+        buf_req: 6
+        next: parse_dns_query3
+      0x05:
+        1: B3  # ingress::p.q2_part1.part
+        2..5: W10  # ingress::p.q2_part4.part
+        load: { byte1 : 6 }
+        shift: 6
+        buf_req: 7
+        next: parse_dns_query3
+      0x06:
+        1..2: H6  # ingress::p.q2_part2.part
+        3..6: W10  # ingress::p.q2_part4.part
+        load: { byte1 : 7 }
+        shift: 7
+        buf_req: 8
+        next: parse_dns_query3
+      0x07:
+        1: B3  # ingress::p.q2_part1.part
+        2..3: H6  # ingress::p.q2_part2.part
+        4..7: W10  # ingress::p.q2_part4.part
+        load: { byte1 : 8 }
+        shift: 8
+        buf_req: 9
+        next: parse_dns_query3
+      0x08:
+        1..4: W11  # ingress::p.q2_part8_1.part
+        5..8: W12  # ingress::p.q2_part8_2.part
+        load: { byte1 : 9 }
+        shift: 9
+        buf_req: 10
+        next: parse_dns_query3
+      0x09:
+        1: B3  # ingress::p.q2_part1.part
+        2..5: W11  # ingress::p.q2_part8_1.part
+        6..9: W12  # ingress::p.q2_part8_2.part
+        load: { byte1 : 10 }
+        shift: 10
+        buf_req: 11
+        next: parse_dns_query3
+      0x0a:
+        1..2: H6  # ingress::p.q2_part2.part
+        3..6: W11  # ingress::p.q2_part8_1.part
+        7..10: W12  # ingress::p.q2_part8_2.part
+        load: { byte1 : 11 }
+        shift: 11
+        buf_req: 12
+        next: parse_dns_query3
+      0x0b:
+        1: B3  # ingress::p.q2_part1.part
+        2..3: H6  # ingress::p.q2_part2.part
+        4..7: W11  # ingress::p.q2_part8_1.part
+        8..11: W12  # ingress::p.q2_part8_2.part
+        load: { byte1 : 12 }
+        shift: 12
+        buf_req: 13
+        next: parse_dns_query3
+      0x0c:
+        1..4: W10  # ingress::p.q2_part4.part
+        5..8: W11  # ingress::p.q2_part8_1.part
+        9..12: W12  # ingress::p.q2_part8_2.part
+        load: { byte1 : 13 }
+        shift: 13
+        buf_req: 14
+        next: parse_dns_query3
+      0x0d:
+        1: B3  # ingress::p.q2_part1.part
+        2..5: W10  # ingress::p.q2_part4.part
+        6..9: W11  # ingress::p.q2_part8_1.part
+        10..13: W12  # ingress::p.q2_part8_2.part
+        load: { byte1 : 14 }
+        shift: 14
+        buf_req: 15
+        next: parse_dns_query3
+      0x0e:
+        1..2: H6  # ingress::p.q2_part2.part
+        3..6: W10  # ingress::p.q2_part4.part
+        7..10: W11  # ingress::p.q2_part8_1.part
+        11..14: W12  # ingress::p.q2_part8_2.part
+        load: { byte1 : 15 }
+        shift: 15
+        buf_req: 16
+        next: parse_dns_query3
+      0x0f:
+        1: B3  # ingress::p.q2_part1.part
+        2..3: H6  # ingress::p.q2_part2.part
+        4..7: W10  # ingress::p.q2_part4.part
+        8..11: W11  # ingress::p.q2_part8_1.part
+        12..15: W12  # ingress::p.q2_part8_2.part
+        load: { byte1 : 16 }
+        shift: 16
+        buf_req: 17
+        next: parse_dns_query3
+      0x**:
+        shift: 1
+        buf_req: 1
+        next: end
+    parse_dns_query3:
+      match: [ byte1 ]
+      0x00:
+        load: { half : 7..8 }
+        shift: 5
+        buf_req: 9
+        next: parse_dns_answer
+      0x01:
+        1: B4  # ingress::p.q3_part1.part
+        load: { byte1 : 2 }
+        shift: 2
+        buf_req: 3
+        next: parse_dns_query4
+      0x02:
+        1..2: H5  # ingress::p.q3_part2.part
+        load: { byte1 : 3 }
+        shift: 3
+        buf_req: 4
+        next: parse_dns_query4
+      0x03:
+        1: B4  # ingress::p.q3_part1.part
+        2..3: H5  # ingress::p.q3_part2.part
+        load: { byte1 : 4 }
+        shift: 4
+        buf_req: 5
+        next: parse_dns_query4
+      0x04:
+        1..4: W7  # ingress::p.q3_part4.part
+        load: { byte1 : 5 }
+        shift: 5
+        buf_req: 6
+        next: parse_dns_query4
+      0x05:
+        1: B4  # ingress::p.q3_part1.part
+        2..5: W7  # ingress::p.q3_part4.part
+        load: { byte1 : 6 }
+        shift: 6
+        buf_req: 7
+        next: parse_dns_query4
+      0x06:
+        1..2: H5  # ingress::p.q3_part2.part
+        3..6: W7  # ingress::p.q3_part4.part
+        load: { byte1 : 7 }
+        shift: 7
+        buf_req: 8
+        next: parse_dns_query4
+      0x07:
+        1: B4  # ingress::p.q3_part1.part
+        2..3: H5  # ingress::p.q3_part2.part
+        4..7: W7  # ingress::p.q3_part4.part
+        load: { byte1 : 8 }
+        shift: 8
+        buf_req: 9
+        next: parse_dns_query4
+      0x08:
+        1..4: W8  # ingress::p.q3_part8_1.part
+        5..8: W9  # ingress::p.q3_part8_2.part
+        load: { byte1 : 9 }
+        shift: 9
+        buf_req: 10
+        next: parse_dns_query4
+      0x09:
+        1: B4  # ingress::p.q3_part1.part
+        2..5: W8  # ingress::p.q3_part8_1.part
+        6..9: W9  # ingress::p.q3_part8_2.part
+        load: { byte1 : 10 }
+        shift: 10
+        buf_req: 11
+        next: parse_dns_query4
+      0x0a:
+        1..2: H5  # ingress::p.q3_part2.part
+        3..6: W8  # ingress::p.q3_part8_1.part
+        7..10: W9  # ingress::p.q3_part8_2.part
+        load: { byte1 : 11 }
+        shift: 11
+        buf_req: 12
+        next: parse_dns_query4
+      0x0b:
+        1: B4  # ingress::p.q3_part1.part
+        2..3: H5  # ingress::p.q3_part2.part
+        4..7: W8  # ingress::p.q3_part8_1.part
+        8..11: W9  # ingress::p.q3_part8_2.part
+        load: { byte1 : 12 }
+        shift: 12
+        buf_req: 13
+        next: parse_dns_query4
+      0x0c:
+        1..4: W7  # ingress::p.q3_part4.part
+        5..8: W8  # ingress::p.q3_part8_1.part
+        9..12: W9  # ingress::p.q3_part8_2.part
+        load: { byte1 : 13 }
+        shift: 13
+        buf_req: 14
+        next: parse_dns_query4
+      0x0d:
+        1: B4  # ingress::p.q3_part1.part
+        2..5: W7  # ingress::p.q3_part4.part
+        6..9: W8  # ingress::p.q3_part8_1.part
+        10..13: W9  # ingress::p.q3_part8_2.part
+        load: { byte1 : 14 }
+        shift: 14
+        buf_req: 15
+        next: parse_dns_query4
+      0x0e:
+        1..2: H5  # ingress::p.q3_part2.part
+        3..6: W7  # ingress::p.q3_part4.part
+        7..10: W8  # ingress::p.q3_part8_1.part
+        11..14: W9  # ingress::p.q3_part8_2.part
+        load: { byte1 : 15 }
+        shift: 15
+        buf_req: 16
+        next: parse_dns_query4
+      0x0f:
+        1: B4  # ingress::p.q3_part1.part
+        2..3: H5  # ingress::p.q3_part2.part
+        4..7: W7  # ingress::p.q3_part4.part
+        8..11: W8  # ingress::p.q3_part8_1.part
+        12..15: W9  # ingress::p.q3_part8_2.part
+        load: { byte1 : 16 }
+        shift: 16
+        buf_req: 17
+        next: parse_dns_query4
+      0x**:
+        shift: 1
+        buf_req: 1
+        next: end
+    parse_dns_query4:
+      match: [ byte1 ]
+      0x00:
+        load: { half : 7..8 }
+        shift: 5
+        buf_req: 9
+        next: parse_dns_answer
+      0x01:
+        1: B5  # ingress::p.q4_part1.part
+        load: { byte1 : 2 }
+        shift: 2
+        buf_req: 3
+        next: parse_dns_query5
+      0x02:
+        1..2: H4  # ingress::p.q4_part2.part
+        load: { byte1 : 3 }
+        shift: 3
+        buf_req: 4
+        next: parse_dns_query5
+      0x03:
+        1: B5  # ingress::p.q4_part1.part
+        2..3: H4  # ingress::p.q4_part2.part
+        load: { byte1 : 4 }
+        shift: 4
+        buf_req: 5
+        next: parse_dns_query5
+      0x04:
+        1..4: W4  # ingress::p.q4_part4.part
+        load: { byte1 : 5 }
+        shift: 5
+        buf_req: 6
+        next: parse_dns_query5
+      0x05:
+        1: B5  # ingress::p.q4_part1.part
+        2..5: W4  # ingress::p.q4_part4.part
+        load: { byte1 : 6 }
+        shift: 6
+        buf_req: 7
+        next: parse_dns_query5
+      0x06:
+        1..2: H4  # ingress::p.q4_part2.part
+        3..6: W4  # ingress::p.q4_part4.part
+        load: { byte1 : 7 }
+        shift: 7
+        buf_req: 8
+        next: parse_dns_query5
+      0x07:
+        1: B5  # ingress::p.q4_part1.part
+        2..3: H4  # ingress::p.q4_part2.part
+        4..7: W4  # ingress::p.q4_part4.part
+        load: { byte1 : 8 }
+        shift: 8
+        buf_req: 9
+        next: parse_dns_query5
+      0x08:
+        1..4: W5  # ingress::p.q4_part8_1.part
+        5..8: W6  # ingress::p.q4_part8_2.part
+        load: { byte1 : 9 }
+        shift: 9
+        buf_req: 10
+        next: parse_dns_query5
+      0x09:
+        1: B5  # ingress::p.q4_part1.part
+        2..5: W5  # ingress::p.q4_part8_1.part
+        6..9: W6  # ingress::p.q4_part8_2.part
+        load: { byte1 : 10 }
+        shift: 10
+        buf_req: 11
+        next: parse_dns_query5
+      0x0a:
+        1..2: H4  # ingress::p.q4_part2.part
+        3..6: W5  # ingress::p.q4_part8_1.part
+        7..10: W6  # ingress::p.q4_part8_2.part
+        load: { byte1 : 11 }
+        shift: 11
+        buf_req: 12
+        next: parse_dns_query5
+      0x0b:
+        1: B5  # ingress::p.q4_part1.part
+        2..3: H4  # ingress::p.q4_part2.part
+        4..7: W5  # ingress::p.q4_part8_1.part
+        8..11: W6  # ingress::p.q4_part8_2.part
+        load: { byte1 : 12 }
+        shift: 12
+        buf_req: 13
+        next: parse_dns_query5
+      0x0c:
+        1..4: W4  # ingress::p.q4_part4.part
+        5..8: W5  # ingress::p.q4_part8_1.part
+        9..12: W6  # ingress::p.q4_part8_2.part
+        load: { byte1 : 13 }
+        shift: 13
+        buf_req: 14
+        next: parse_dns_query5
+      0x0d:
+        1: B5  # ingress::p.q4_part1.part
+        2..5: W4  # ingress::p.q4_part4.part
+        6..9: W5  # ingress::p.q4_part8_1.part
+        10..13: W6  # ingress::p.q4_part8_2.part
+        load: { byte1 : 14 }
+        shift: 14
+        buf_req: 15
+        next: parse_dns_query5
+      0x0e:
+        1..2: H4  # ingress::p.q4_part2.part
+        3..6: W4  # ingress::p.q4_part4.part
+        7..10: W5  # ingress::p.q4_part8_1.part
+        11..14: W6  # ingress::p.q4_part8_2.part
+        load: { byte1 : 15 }
+        shift: 15
+        buf_req: 16
+        next: parse_dns_query5
+      0x0f:
+        1: B5  # ingress::p.q4_part1.part
+        2..3: H4  # ingress::p.q4_part2.part
+        4..7: W4  # ingress::p.q4_part4.part
+        8..11: W5  # ingress::p.q4_part8_1.part
+        12..15: W6  # ingress::p.q4_part8_2.part
+        load: { byte1 : 16 }
+        shift: 16
+        buf_req: 17
+        next: parse_dns_query5
+      0x**:
+        shift: 1
+        buf_req: 1
+        next: end
+    parse_dns_query5:
+      match: [ byte1 ]
+      0x00:
+        load: { half : 7..8 }
+        shift: 5
+        buf_req: 9
+        next: parse_dns_answer
+      0x**:
+        shift: 1
+        buf_req: 1
+        next: end
+    parse_udp_2:
+      match: [ half ]
+      0x0035:
+        load: { byte1 : 2 }
+        buf_req: 3
+        next: parse_dns_header
+      0x****:
+        buf_req: 0
+        next: end
+deparser ingress:
+  dictionary:
+    TH5: B1(0)  # ingress::p.ethernet.dst.32-47 if ingress::p.ethernet.$valid
+    TH4: B1(0)  # ingress::p.ethernet.dst.16-31 if ingress::p.ethernet.$valid
+    TH6: B1(0)  # ingress::p.ethernet.dst.0-15 if ingress::p.ethernet.$valid
+    TB3: B1(0)  # ingress::p.ethernet.src.40-47 if ingress::p.ethernet.$valid
+    TB2: B1(0)  # ingress::p.ethernet.src.32-39 if ingress::p.ethernet.$valid
+    TB1: B1(0)  # ingress::p.ethernet.src.24-31 if ingress::p.ethernet.$valid
+    TB0: B1(0)  # ingress::p.ethernet.src.16-23 if ingress::p.ethernet.$valid
+    TW2: B1(0)
+        # - bit[31..16]: ingress::p.ethernet.src.0-15 if ingress::p.ethernet.$valid
+        # - bit[15..0]: ingress::p.ethernet.etherType if ingress::p.ethernet.$valid
+    TH0: B1(1)
+        # - bit[15..12]: ingress::p.ipv4.version if ingress::p.ipv4.$valid
+        # - bit[11..8]: ingress::p.ipv4.ihl if ingress::p.ipv4.$valid
+        # - bit[7..0]: ingress::p.ipv4.tos if ingress::p.ipv4.$valid
+    H0: B1(1)  # ingress::p.ipv4.len if ingress::p.ipv4.$valid
+    TW0: B1(1)
+        # - bit[31..16]: ingress::p.ipv4.id if ingress::p.ipv4.$valid
+        # - bit[15..13]: ingress::p.ipv4.flags if ingress::p.ipv4.$valid
+        # - bit[12..0]: ingress::p.ipv4.frag if ingress::p.ipv4.$valid
+    TW1: B1(1)
+        # - bit[31..24]: ingress::p.ipv4.ttl if ingress::p.ipv4.$valid
+        # - bit[23..16]: ingress::p.ipv4.proto if ingress::p.ipv4.$valid
+        # - bit[15..0]: ingress::p.ipv4.chksum if ingress::p.ipv4.$valid
+    W0: B1(1)  # ingress::p.ipv4.src if ingress::p.ipv4.$valid
+    W2: B1(1)  # ingress::p.ipv4.dst if ingress::p.ipv4.$valid
+    TW3: B1(2)
+        # - bit[31..16]: ingress::p.udp.sport if ingress::p.udp.$valid
+        # - bit[15..0]: ingress::p.udp.dport if ingress::p.udp.$valid
+    TH2: B1(2)  # ingress::p.udp.len if ingress::p.udp.$valid
+    TH1: B1(2)  # ingress::p.udp.chksum if ingress::p.udp.$valid
+  resubmit:
+    select: B0(0..2)  # bit[2..0]: ingress::ig_intr_md_for_dprsr.resubmit_type
+    1: []
+parser egress:
+  start: $entry_point.start
+  hdr_len_adj: 27
+  meta_opt: 8191
+  states:
+    $entry_point.start:
+      *:
+        0..1: H16  # bit[7..15] -> H16 bit[8..0]: egress::eg_intr_md.egress_port
+        shift: 27
+        buf_req: 27
+        next: end
+deparser egress:
+  dictionary: {}
+  egress_unicast_port: H16(0..8)  # bit[8..0]: egress::eg_intr_md.egress_port
+stage 0 ingress:
+  phase0_match SwitchIngressParser.$PORT_METADATA:
+    p4:
+      name: SwitchIngressParser.$PORT_METADATA
+      size: 288
+      preferred_match_type: exact
+      match_type: exact
+    size: 288
+    p4_param_order:
+      ig_intr_md.ingress_port: { type: exact, size: 9 }
+    format: {ig_intr_md: 0..63}
+    constant_value: 0
+    actions:
+      set_port_metadata:
+      - handle: 0x20000000
+      - p4_param_order: { ig_intr_md: 64 } 
+  ternary_match tbl_netassay_v3l1148 0:
+    p4: { name: tbl_netassay_v3l1148 }
+    gateway:
+      name: cond-16
+      input_xbar:
+        exact group 0: { 0: ig_md.parsed_answer }
+      row: 0
+      bus: 1
+      unit: 1
+      match: { 0: ig_md.parsed_answer }
+      0b*******1: run_table
+      miss:  tbl_netassay_v3l1241
+      condition: 
+        expression: "(ig_md.parsed_answer == 1)"
+        true:  tbl_netassay_v3l1148
+        false:  tbl_netassay_v3l1241
+    hit: [  known_domain_list_0$st0 ]
+    miss:  known_domain_list_0$st0
+    indirect: tbl_netassay_v3l1148$tind
+  ternary_indirect tbl_netassay_v3l1148$tind:
+    row: 0
+    bus: 1
+    format: { action: 0..0 }
+    instruction: tbl_netassay_v3l1148$tind(action, $DEFAULT)
+    actions:
+      netassay_v3l1148(1, 1):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000001
+      - next_table: 0
+      - set ig_md.domain_id_dns, 0
+    default_action: netassay_v3l1148
+  hash_action tbl_netassay_v3l1241 1:
+    p4: { name: tbl_netassay_v3l1241 }
+    row: 0
+    bus: 0
+    hash_dist:
+      0: { hash: 0, mask: 0x3fff, shift: 0 }
+    input_xbar:
+      exact group 0: { 8: p.ipv4.src(8..31), 32: p.ipv4.src(0..7), 40: p.ipv4.dst(8..31), 64: p.ipv4.dst(0..7) }
+      hash 0:
+        0..13: slice(stripe(crc_rev(0xc002, 0x0, 0x0, 96, { 40: p.ipv4.dst(8..31), 64: p.ipv4.src(0..7), 72: p.ipv4.src(8..31) }, { 0..31: 134140211 })), 0..13)
+      hash 1:
+        0..13: slice(stripe(crc_rev(0xc002, 0x0, 0x0, 96, { 32: p.ipv4.dst(0..7) }, { 0..31: 134140211 })), 0..13)
+      hash group 0:
+        table: [0, 1]
+        seed: 0x2cca
+    gateway:
+      name: cond-26
+      input_xbar:
+        exact group 1: { 0: ig_md.is_ip, 14: ig_md.is_dns }
+      row: 0
+      bus: 0
+      unit: 0
+      payload: 0x1
+      format: { action: 0..0 }
+      match: { 0: ig_md.is_ip, 14: ig_md.is_dns }
+      0b*0*************1:  tbl_netassay_v3l1241_0
+      miss: run_table
+      condition: 
+        expression: "(ig_md.is_ip == 1 && ig_md.is_dns == 0)"
+        true:  tbl_netassay_v3l1241_0
+        false:  END
+    next:  END
+    action_bus: { 32..33 : hash_dist(0, lo) }
+    instruction: tbl_netassay_v3l1241(action, $DEFAULT)
+    actions:
+      netassay_v3l1241(1, 2):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000016
+      - next_table: 0
+      - set index_0.14-29, 0
+      - set index_0.30-31, 0
+      - set H3(0..13), hash_dist(0, 0..13)
+    default_action: netassay_v3l1241
+stage 1 ingress:
+  ternary_match tbl_netassay_v3l1241_0 1:
+    p4: { name: tbl_netassay_v3l1241_0, hidden: true }
+    hit: [  tbl_netassay_v3l1260 ]
+    miss:  tbl_netassay_v3l1260
+    indirect: tbl_netassay_v3l1241_0$tind
+  ternary_indirect tbl_netassay_v3l1241_0$tind:
+    row: 0
+    bus: 1
+    format: { action: 0..0 }
+    instruction: tbl_netassay_v3l1241_0$tind(action, $DEFAULT)
+    actions:
+      netassay_v3l1241_0(0, 2):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000017
+      - next_table: 0
+      - set index_0.0-13, $concat_to_slice5
+      - set p.dns_ip.rdata, p.ipv4.src
+    default_action: netassay_v3l1241_0
+  ternary_match known_domain_list_0$st0 0:
+    p4: { name: SwitchIngress.known_domain_list, size: 2048 }
+    p4_param_order: 
+      p.q1_part1.part: { type: ternary, size: 8, full_size: 8, key_name: "headers.q1_part1.part" }
+      p.q1_part2.part: { type: ternary, size: 16, full_size: 16, key_name: "headers.q1_part2.part" }
+      p.q1_part4.part: { type: ternary, size: 32, full_size: 32, key_name: "headers.q1_part4.part" }
+      p.q1_part8_1.part: { type: ternary, size: 32, full_size: 32, key_name: "headers.q1_part8_1.part" }
+      p.q1_part8_2.part: { type: ternary, size: 32, full_size: 32, key_name: "headers.q1_part8_2.part" }
+      p.q2_part1.part: { type: ternary, size: 8, full_size: 8, key_name: "headers.q2_part1.part" }
+      p.q2_part2.part: { type: ternary, size: 16, full_size: 16, key_name: "headers.q2_part2.part" }
+      p.q2_part4.part: { type: ternary, size: 32, full_size: 32, key_name: "headers.q2_part4.part" }
+      p.q2_part8_1.part: { type: ternary, size: 32, full_size: 32, key_name: "headers.q2_part8_1.part" }
+      p.q2_part8_2.part: { type: ternary, size: 32, full_size: 32, key_name: "headers.q2_part8_2.part" }
+      p.q3_part1.part: { type: ternary, size: 8, full_size: 8, key_name: "headers.q3_part1.part" }
+      p.q3_part2.part: { type: ternary, size: 16, full_size: 16, key_name: "headers.q3_part2.part" }
+      p.q3_part4.part: { type: ternary, size: 32, full_size: 32, key_name: "headers.q3_part4.part" }
+      p.q3_part8_1.part: { type: ternary, size: 32, full_size: 32, key_name: "headers.q3_part8_1.part" }
+      p.q3_part8_2.part: { type: ternary, size: 32, full_size: 32, key_name: "headers.q3_part8_2.part" }
+      p.q4_part1.part: { type: ternary, size: 8, full_size: 8, key_name: "headers.q4_part1.part" }
+      p.q4_part2.part: { type: ternary, size: 16, full_size: 16, key_name: "headers.q4_part2.part" }
+      p.q4_part4.part: { type: ternary, size: 32, full_size: 32, key_name: "headers.q4_part4.part" }
+      p.q4_part8_1.part: { type: ternary, size: 32, full_size: 32, key_name: "headers.q4_part8_1.part" }
+      p.q4_part8_2.part: { type: ternary, size: 32, full_size: 32, key_name: "headers.q4_part8_2.part" }
+    row: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+    bus: [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ]
+    column:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    input_xbar:
+      ternary group 0: { 0: p.q2_part8_1.part(0..7), 8: p.q2_part8_2.part(8..15), 16: p.q2_part8_1.part(16..31), 32: p.q2_part8_2.part(0..7) }
+      ternary group 1: { 0: p.q2_part8_2.part(16..31), 16: p.q1_part4.part(0..23) }
+      ternary group 2: { 0: p.q1_part4.part(24..31), 8: p.q1_part8_1.part }
+      ternary group 3: { 0: p.q1_part8_2.part(8..31), 24: p.q1_part8_2.part(0..7), 32: p.q4_part4.part(8..15) }
+      ternary group 4: { 0: p.q4_part4.part(16..31), 16: p.q4_part4.part(0..7), 24: p.q4_part8_1.part(8..23) }
+      ternary group 5: { 0: p.q4_part8_1.part(0..7), 8: p.q4_part8_2.part(8..23), 24: p.q4_part8_1.part(24..31), 32: p.q4_part8_2.part(0..7) }
+      ternary group 6: { 0: p.q3_part8_1.part(8..31), 24: p.q3_part8_1.part(0..7), 32: p.q3_part8_2.part(8..15) }
+      ternary group 7: { 0: p.q4_part8_2.part(24..31), 8: p.q3_part4.part }
+      ternary group 8: { 0: p.q3_part8_2.part(0..7), 8: p.q4_part2.part(8..15), 16: p.q3_part8_2.part(16..31), 32: p.q4_part2.part(0..7) }
+      ternary group 9: { 0: p.q3_part2.part, 16: p.q2_part2.part, 32: p.q1_part2.part(0..7) }
+      ternary group 10: { 0: p.q1_part2.part(8..15), 8: p.q1_part1.part, 16: p.q2_part1.part, 24: p.q3_part1.part, 32: p.q4_part1.part }
+      byte group 0: { 0: p.q2_part4.part(8..15) }
+      byte group 1: { 0: p.q2_part4.part(0..7) }
+      byte group 2: { 0: p.q2_part4.part(24..31) }
+      byte group 3: { 0: p.q2_part4.part(16..23) }
+      byte group 4: { 0: p.q2_part8_1.part(8..15) }
+    match:
+    - { group: 0, byte_group: 0, byte_config: 0, dirtcam: 0x555 }
+    - { group: 1, byte_group: 0, byte_config: 1, dirtcam: 0x555 }
+    - { group: 2, byte_group: 1, byte_config: 0, dirtcam: 0x555 }
+    - { group: 3, byte_group: 1, byte_config: 1, dirtcam: 0x555 }
+    - { group: 4, byte_group: 2, byte_config: 0, dirtcam: 0x555 }
+    - { group: 5, byte_group: 2, byte_config: 1, dirtcam: 0x555 }
+    - { group: 6, byte_group: 3, byte_config: 0, dirtcam: 0x555 }
+    - { group: 7, byte_group: 3, byte_config: 1, dirtcam: 0x555 }
+    - { group: 8, byte_group: 4, byte_config: 0, dirtcam: 0x555 }
+    - { group: 9, byte_group: 4, byte_config: 1, dirtcam: 0x555 }
+    - { group: 10, byte_config: 3, dirtcam: 0x155 }
+    hit: [  banned_dns_dst_0 ]
+    miss:  known_domain_list_0$st1
+    indirect: known_domain_list_0$st0$tind
+  ternary_indirect known_domain_list_0$st0$tind:
+    row: 0
+    bus: 0
+    column: 2
+    input_xbar:
+      ternary group 0: { 0: p.q2_part8_1.part(0..7), 8: p.q2_part8_2.part(8..15), 16: p.q2_part8_1.part(16..31), 32: p.q2_part8_2.part(0..7) }
+      ternary group 1: { 0: p.q2_part8_2.part(16..31), 16: p.q1_part4.part(0..23) }
+      ternary group 2: { 0: p.q1_part4.part(24..31), 8: p.q1_part8_1.part }
+      ternary group 3: { 0: p.q1_part8_2.part(8..31), 24: p.q1_part8_2.part(0..7), 32: p.q4_part4.part(8..15) }
+      ternary group 4: { 0: p.q4_part4.part(16..31), 16: p.q4_part4.part(0..7), 24: p.q4_part8_1.part(8..23) }
+      ternary group 5: { 0: p.q4_part8_1.part(0..7), 8: p.q4_part8_2.part(8..23), 24: p.q4_part8_1.part(24..31), 32: p.q4_part8_2.part(0..7) }
+      ternary group 6: { 0: p.q3_part8_1.part(8..31), 24: p.q3_part8_1.part(0..7), 32: p.q3_part8_2.part(8..15) }
+      ternary group 7: { 0: p.q4_part8_2.part(24..31), 8: p.q3_part4.part }
+      ternary group 8: { 0: p.q3_part8_2.part(0..7), 8: p.q4_part2.part(8..15), 16: p.q3_part8_2.part(16..31), 32: p.q4_part2.part(0..7) }
+      ternary group 9: { 0: p.q3_part2.part, 16: p.q2_part2.part, 32: p.q1_part2.part(0..7) }
+      ternary group 10: { 0: p.q1_part2.part(8..15), 8: p.q1_part1.part, 16: p.q2_part1.part, 24: p.q3_part1.part, 32: p.q4_part1.part }
+      byte group 0: { 0: p.q2_part4.part(8..15) }
+      byte group 1: { 0: p.q2_part4.part(0..7) }
+      byte group 2: { 0: p.q2_part4.part(24..31) }
+      byte group 3: { 0: p.q2_part4.part(16..23) }
+      byte group 4: { 0: p.q2_part8_1.part(8..15) }
+    format: { action: 0..0, immediate: 1..32 }
+    action_bus: { 96..99 : immediate(0..31) }
+    instruction: known_domain_list_0$st0$tind(action, $DEFAULT)
+    actions:
+      SwitchIngress.match_domain(0, 1):
+      - p4_param_order: { id: 32 }
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true }
+      - handle: 0x20000002
+      - next_table: 0
+      - { id: immediate(0..31) }
+      - set ig_md.domain_id_dns, id
+      - set ig_md.matched_domain, 1
+      NoAction(1, 0):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true }
+      - handle: 0x20000003
+      - next_table: 0
+      - {  }
+    default_action: NoAction
+stage 2 ingress:
+  hash_action tbl_netassay_v3l1260 1:
+    p4: { name: tbl_netassay_v3l1260, hidden: true }
+    row: 0
+    bus: 0
+    hash_dist:
+      0: { hash: 0, mask: 0x3fff, shift: 0 }
+    input_xbar:
+      exact group 0: { 0: p.ipv4.src, 32: p.ipv4.dst }
+      hash 0:
+        0..13: slice(stripe(crc_rev(0xc002, 0x0, 0x0, 96, { 32: p.ipv4.dst, 64: p.ipv4.src }, { 0..31: 187182238 })), 0..13)
+      hash group 0:
+        table: [0]
+        seed: 0x3634
+    gateway:
+      name: tbl_netassay_v3l1260-gateway
+      row: 0
+      bus: 0
+      unit: 0
+      0x0:  tbl_netassay_v3l1250
+      miss:  tbl_netassay_v3l1250
+      condition: 
+        expression: "true(always hit)"
+        true:  tbl_netassay_v3l1250
+        false:  tbl_netassay_v3l1250
+    next: []
+    action_bus: { 32..33 : hash_dist(0, lo) }
+    instruction: tbl_netassay_v3l1260($DEFAULT, $DEFAULT)
+    actions:
+      netassay_v3l1260(0, 2):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x2000001a
+      - next_table: 0
+      - set index_3.14-29, 0
+      - set index_3.30-31, 0
+      - set H9(0..13), hash_dist(0, 0..13)
+    default_action: netassay_v3l1260
+  ternary_match known_domain_list_0$st1 0:
+    p4: { name: SwitchIngress.known_domain_list, size: 2048 }
+    p4_param_order: 
+      p.q1_part1.part: { type: ternary, size: 8, full_size: 8, key_name: "headers.q1_part1.part" }
+      p.q1_part2.part: { type: ternary, size: 16, full_size: 16, key_name: "headers.q1_part2.part" }
+      p.q1_part4.part: { type: ternary, size: 32, full_size: 32, key_name: "headers.q1_part4.part" }
+      p.q1_part8_1.part: { type: ternary, size: 32, full_size: 32, key_name: "headers.q1_part8_1.part" }
+      p.q1_part8_2.part: { type: ternary, size: 32, full_size: 32, key_name: "headers.q1_part8_2.part" }
+      p.q2_part1.part: { type: ternary, size: 8, full_size: 8, key_name: "headers.q2_part1.part" }
+      p.q2_part2.part: { type: ternary, size: 16, full_size: 16, key_name: "headers.q2_part2.part" }
+      p.q2_part4.part: { type: ternary, size: 32, full_size: 32, key_name: "headers.q2_part4.part" }
+      p.q2_part8_1.part: { type: ternary, size: 32, full_size: 32, key_name: "headers.q2_part8_1.part" }
+      p.q2_part8_2.part: { type: ternary, size: 32, full_size: 32, key_name: "headers.q2_part8_2.part" }
+      p.q3_part1.part: { type: ternary, size: 8, full_size: 8, key_name: "headers.q3_part1.part" }
+      p.q3_part2.part: { type: ternary, size: 16, full_size: 16, key_name: "headers.q3_part2.part" }
+      p.q3_part4.part: { type: ternary, size: 32, full_size: 32, key_name: "headers.q3_part4.part" }
+      p.q3_part8_1.part: { type: ternary, size: 32, full_size: 32, key_name: "headers.q3_part8_1.part" }
+      p.q3_part8_2.part: { type: ternary, size: 32, full_size: 32, key_name: "headers.q3_part8_2.part" }
+      p.q4_part1.part: { type: ternary, size: 8, full_size: 8, key_name: "headers.q4_part1.part" }
+      p.q4_part2.part: { type: ternary, size: 16, full_size: 16, key_name: "headers.q4_part2.part" }
+      p.q4_part4.part: { type: ternary, size: 32, full_size: 32, key_name: "headers.q4_part4.part" }
+      p.q4_part8_1.part: { type: ternary, size: 32, full_size: 32, key_name: "headers.q4_part8_1.part" }
+      p.q4_part8_2.part: { type: ternary, size: 32, full_size: 32, key_name: "headers.q4_part8_2.part" }
+    row: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+    bus: [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ]
+    column:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    input_xbar:
+      ternary group 0: { 0: p.q2_part8_1.part(0..7), 8: p.q2_part8_2.part(8..15), 16: p.q2_part8_1.part(16..31), 32: p.q2_part8_2.part(0..7) }
+      ternary group 1: { 0: p.q2_part8_2.part(16..31), 16: p.q1_part4.part(0..23) }
+      ternary group 2: { 0: p.q1_part4.part(24..31), 8: p.q1_part8_1.part }
+      ternary group 3: { 0: p.q1_part8_2.part(8..31), 24: p.q1_part8_2.part(0..7), 32: p.q4_part4.part(8..15) }
+      ternary group 4: { 0: p.q4_part4.part(16..31), 16: p.q4_part4.part(0..7), 24: p.q4_part8_1.part(8..23) }
+      ternary group 5: { 0: p.q4_part8_1.part(0..7), 8: p.q4_part8_2.part(8..23), 24: p.q4_part8_1.part(24..31), 32: p.q4_part8_2.part(0..7) }
+      ternary group 6: { 0: p.q3_part8_1.part(8..31), 24: p.q3_part8_1.part(0..7), 32: p.q3_part8_2.part(8..15) }
+      ternary group 7: { 0: p.q4_part8_2.part(24..31), 8: p.q3_part4.part }
+      ternary group 8: { 0: p.q3_part8_2.part(0..7), 8: p.q4_part2.part(8..15), 16: p.q3_part8_2.part(16..31), 32: p.q4_part2.part(0..7) }
+      ternary group 9: { 0: p.q3_part2.part, 16: p.q2_part2.part, 32: p.q1_part2.part(0..7) }
+      ternary group 10: { 0: p.q1_part2.part(8..15), 8: p.q1_part1.part, 16: p.q2_part1.part, 24: p.q3_part1.part, 32: p.q4_part1.part }
+      byte group 0: { 0: p.q2_part4.part(8..15) }
+      byte group 1: { 0: p.q2_part4.part(0..7) }
+      byte group 2: { 0: p.q2_part4.part(24..31) }
+      byte group 3: { 0: p.q2_part4.part(16..23) }
+      byte group 4: { 0: p.q2_part8_1.part(8..15) }
+    match:
+    - { group: 0, byte_group: 0, byte_config: 0, dirtcam: 0x555 }
+    - { group: 1, byte_group: 0, byte_config: 1, dirtcam: 0x555 }
+    - { group: 2, byte_group: 1, byte_config: 0, dirtcam: 0x555 }
+    - { group: 3, byte_group: 1, byte_config: 1, dirtcam: 0x555 }
+    - { group: 4, byte_group: 2, byte_config: 0, dirtcam: 0x555 }
+    - { group: 5, byte_group: 2, byte_config: 1, dirtcam: 0x555 }
+    - { group: 6, byte_group: 3, byte_config: 0, dirtcam: 0x555 }
+    - { group: 7, byte_group: 3, byte_config: 1, dirtcam: 0x555 }
+    - { group: 8, byte_group: 4, byte_config: 0, dirtcam: 0x555 }
+    - { group: 9, byte_group: 4, byte_config: 1, dirtcam: 0x555 }
+    - { group: 10, byte_config: 3, dirtcam: 0x155 }
+    hit: [  banned_dns_dst_0 ]
+    miss:  banned_dns_dst_0
+    indirect: known_domain_list_0$st1$tind
+  ternary_indirect known_domain_list_0$st1$tind:
+    row: 0
+    bus: 0
+    column: 2
+    input_xbar:
+      ternary group 0: { 0: p.q2_part8_1.part(0..7), 8: p.q2_part8_2.part(8..15), 16: p.q2_part8_1.part(16..31), 32: p.q2_part8_2.part(0..7) }
+      ternary group 1: { 0: p.q2_part8_2.part(16..31), 16: p.q1_part4.part(0..23) }
+      ternary group 2: { 0: p.q1_part4.part(24..31), 8: p.q1_part8_1.part }
+      ternary group 3: { 0: p.q1_part8_2.part(8..31), 24: p.q1_part8_2.part(0..7), 32: p.q4_part4.part(8..15) }
+      ternary group 4: { 0: p.q4_part4.part(16..31), 16: p.q4_part4.part(0..7), 24: p.q4_part8_1.part(8..23) }
+      ternary group 5: { 0: p.q4_part8_1.part(0..7), 8: p.q4_part8_2.part(8..23), 24: p.q4_part8_1.part(24..31), 32: p.q4_part8_2.part(0..7) }
+      ternary group 6: { 0: p.q3_part8_1.part(8..31), 24: p.q3_part8_1.part(0..7), 32: p.q3_part8_2.part(8..15) }
+      ternary group 7: { 0: p.q4_part8_2.part(24..31), 8: p.q3_part4.part }
+      ternary group 8: { 0: p.q3_part8_2.part(0..7), 8: p.q4_part2.part(8..15), 16: p.q3_part8_2.part(16..31), 32: p.q4_part2.part(0..7) }
+      ternary group 9: { 0: p.q3_part2.part, 16: p.q2_part2.part, 32: p.q1_part2.part(0..7) }
+      ternary group 10: { 0: p.q1_part2.part(8..15), 8: p.q1_part1.part, 16: p.q2_part1.part, 24: p.q3_part1.part, 32: p.q4_part1.part }
+      byte group 0: { 0: p.q2_part4.part(8..15) }
+      byte group 1: { 0: p.q2_part4.part(0..7) }
+      byte group 2: { 0: p.q2_part4.part(24..31) }
+      byte group 3: { 0: p.q2_part4.part(16..23) }
+      byte group 4: { 0: p.q2_part8_1.part(8..15) }
+    format: { action: 0..0, immediate: 1..32 }
+    action_bus: { 96..99 : immediate(0..31) }
+    instruction: known_domain_list_0$st1$tind(action, $DEFAULT)
+    actions:
+      SwitchIngress.match_domain(0, 1):
+      - p4_param_order: { id: 32 }
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true }
+      - handle: 0x20000002
+      - next_table: 0
+      - { id: immediate(0..31) }
+      - set ig_md.domain_id_dns, id
+      - set ig_md.matched_domain, 1
+      NoAction(1, 0):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true }
+      - handle: 0x20000003
+      - next_table: 0
+      - {  }
+    default_action: NoAction
+stage 3 ingress:
+  hash_action tbl_netassay_v3l1250 1:
+    p4: { name: tbl_netassay_v3l1250, hidden: true }
+    row: 0
+    bus: 0
+    hash_dist:
+      0: { hash: 0, mask: 0xff3f, shift: 0 }
+      1: { hash: 0, mask: 0x7fffff, shift: 6, expand: 7 }
+    input_xbar:
+      exact group 0: { 0: index_0.14-29, 16: index_0.0-13, 35: index_0.30-31 }
+      hash 0:
+        0..5: stripe(index_0.0-13(8..13))
+      hash group 0:
+        table: [0]
+        seed: 0x0
+      exact group 0: { 0: index_0.14-29, 16: index_0.0-13, 35: index_0.30-31 }
+      hash 0:
+        8..15: stripe(index_0.0-13(0..7))
+      hash group 0:
+        table: [0]
+        seed: 0x0
+      exact group 0: { 0: index_0.14-29, 16: index_0.0-13, 35: index_0.30-31 }
+      hash 0:
+        30..31: stripe(index_0.14-29(0..1))
+        39..45: stripe(index_0.14-29(2..8))
+        16..29: stripe(index_0.0-13)
+      hash group 0:
+        table: [0]
+        seed: 0x0
+    gateway:
+      name: tbl_netassay_v3l1250-gateway
+      row: 0
+      bus: 0
+      unit: 0
+      0x0:  tbl_netassay_v3l1260_0
+      miss:  tbl_netassay_v3l1260_0
+      condition: 
+        expression: "true(always hit)"
+        true:  tbl_netassay_v3l1260_0
+        false:  tbl_netassay_v3l1260_0
+    next: []
+    action_bus: { 16 : hash_dist(0, 0..7, lo), 17 : hash_dist(0, 8..15, lo) }
+    instruction: tbl_netassay_v3l1250($DEFAULT, $DEFAULT)
+    actions:
+      netassay_v3l1250(0, 2):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000018
+      - next_table: 0
+      - set B6(1..6), hash_dist(0, 0..5)
+      - set B8, hash_dist(0, 8..15)
+    default_action: netassay_v3l1250
+  ternary_match tbl_netassay_v3l1260_0 2:
+    p4: { name: tbl_netassay_v3l1260_0, hidden: true }
+    hit: [  tbl_netassay_v3l1250$st1 ]
+    miss:  tbl_netassay_v3l1250$st1
+    indirect: tbl_netassay_v3l1260_0$tind
+  ternary_indirect tbl_netassay_v3l1260_0$tind:
+    row: 0
+    bus: 1
+    format: { action: 0..0 }
+    instruction: tbl_netassay_v3l1260_0$tind(action, $DEFAULT)
+    actions:
+      netassay_v3l1260_0(0, 3):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x2000001b
+      - next_table: 0
+      - set index_3.0-13, $concat_to_slice7
+    default_action: netassay_v3l1260_0
+  ternary_match banned_dns_dst_0 0:
+    p4: { name: SwitchIngress.banned_dns_dst, size: 100 }
+    p4_param_order: 
+      p.ipv4.dst: { type: lpm, size: 32, full_size: 32, key_name: "headers.ipv4.dst" }
+    row: 0
+    bus: 0
+    column: 0
+    input_xbar:
+      ternary group 0: { 0: p.ipv4.dst }
+    match:
+    - { group: 0, byte_config: 3, dirtcam: 0x55 }
+    hit: [  tbl_netassay_v3l1157 ]
+    miss:  tbl_netassay_v3l1157
+    indirect: banned_dns_dst_0$tind
+  ternary_indirect banned_dns_dst_0$tind:
+    row: 0
+    bus: 0
+    column: 2
+    input_xbar:
+      ternary group 0: { 0: p.ipv4.dst }
+    format: { action: 0..0 }
+    instruction: banned_dns_dst_0$tind(action, $DEFAULT)
+    actions:
+      SwitchIngress.match_banned_dns_dst(0, 1):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true }
+      - handle: 0x20000004
+      - next_table: 0
+      - set ig_md.matched_domain, 0
+      NoAction(1, 0):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true }
+      - handle: 0x20000005
+      - next_table: 0
+    default_action: NoAction
+stage 4 ingress:
+  hash_action tbl_netassay_v3l1157 0:
+    p4: { name: tbl_netassay_v3l1157 }
+    row: 0
+    bus: 0
+    hash_dist:
+      0: { hash: 0, mask: 0x3fff, shift: 0 }
+      1: { hash: 0, mask: 0x7fffff, shift: 5, expand: 7 }
+    input_xbar:
+      exact group 0: { 0: p.dns_ip.rdata, 32: p.ipv4.dst }
+      hash 0:
+        0..13: slice(stripe(crc_rev(0xc002, 0x0, 0x0, 96, { 32: p.ipv4.dst, 64: p.dns_ip.rdata }, { 0..31: 134140211 })), 0..13)
+      hash group 0:
+        table: [0]
+        seed: 0x2cca
+      exact group 0: { 64: ig_md.domain_id_dns }
+      hash 1:
+        16..31: stripe(ig_md.domain_id_dns(0..15))
+        39..45: stripe(ig_md.domain_id_dns(16..22))
+      hash group 0:
+        table: [1]
+        seed: 0x0
+    gateway:
+      name: cond-17
+      input_xbar:
+        exact group 1: { 3: ig_md.matched_domain }
+      row: 0
+      bus: 0
+      unit: 0
+      payload: 0x3001
+      format: { action: 0..0, meter_addr: 1..11, meter_pfe: 12..12, meter_type: 13..15 }
+      match: { 3: ig_md.matched_domain }
+      0b****1:  tbl_netassay_v3l1159
+      miss: run_table
+      condition: 
+        expression: "(ig_md.matched_domain == 1)"
+        true:  tbl_netassay_v3l1159
+        false:  END
+    next:  END
+    action_bus: { 32..33 : hash_dist(0, lo) }
+    stateful: tbl_netassay_v3l1157$salu.SwitchIngress.dns_total_queried(hash_dist 1, $DEFAULT, $DEFAULT)
+    instruction: tbl_netassay_v3l1157(action, $DEFAULT)
+    actions:
+      netassay_v3l1157(1, 1):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000006
+      - next_table: 0
+      - set ig_md.index_1_dns.14-31, 0
+      - set H3(0..13), hash_dist(0, 0..13)
+      - tbl_netassay_v3l1157$salu.SwitchIngress.dns_total_queried(dns_total_queried_reg_inc_action_0, $hash_dist)
+    default_action: netassay_v3l1157
+  stateful tbl_netassay_v3l1157$salu.SwitchIngress.dns_total_queried:
+    p4: { name: SwitchIngress.dns_total_queried, size: 2048 }
+    row: 15
+    column: [ 0, 1 ]
+    maprams: [ 0, 1 ]
+    format: { lo: 32 }
+    actions:
+      dns_total_queried_reg_inc_action_0:
+      - add lo, lo, 1
+stage 5 ingress:
+  hash_action tbl_netassay_v3l1159 0:
+    p4: { name: tbl_netassay_v3l1159, hidden: true }
+    row: 0
+    bus: 0
+    hash_dist:
+      0: { hash: 0, mask: 0x3fff, shift: 0 }
+    input_xbar:
+      exact group 0: { 0: p.dns_ip.rdata, 32: p.ipv4.dst }
+      hash 0:
+        0..13: slice(stripe(crc_rev(0xc002, 0x0, 0x0, 96, { 32: p.ipv4.dst, 64: p.dns_ip.rdata }, { 0..31: 187182238 })), 0..13)
+      hash group 0:
+        table: [0]
+        seed: 0x3634
+    gateway:
+      name: tbl_netassay_v3l1159-gateway
+      row: 0
+      bus: 0
+      unit: 0
+      0x0:  tbl_netassay_v3l1160
+      miss:  tbl_netassay_v3l1160
+      condition: 
+        expression: "true(always hit)"
+        true:  tbl_netassay_v3l1160
+        false:  tbl_netassay_v3l1160
+    next: []
+    action_bus: { 32..33 : hash_dist(0, lo) }
+    instruction: tbl_netassay_v3l1159($DEFAULT, $DEFAULT)
+    actions:
+      netassay_v3l1159(0, 1):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000007
+      - next_table: 0
+      - set ig_md.index_1_dns.0-13, $concat_to_slice1
+      - set ig_md.index_2_dns.14-31, 0
+      - set H5(0..13), hash_dist(0, 0..13)
+    default_action: netassay_v3l1159
+stage 6 ingress:
+  hash_action tbl_netassay_v3l1250$st1 3:
+    row: 0
+    bus: 1
+    hash_dist:
+      3: { hash: 1, mask: 0x3fff, shift: 6 }
+    input_xbar:
+      exact group 1: { 1: SwitchIngress.sip_cip_reg_1$index.8-13, 16: SwitchIngress.sip_cip_reg_1$index.0-7 }
+      hash 2:
+        8..13: stripe(SwitchIngress.sip_cip_reg_1$index.8-13)
+        0..7: stripe(SwitchIngress.sip_cip_reg_1$index.0-7)
+      hash group 1:
+        table: [2]
+        seed: 0x0
+    gateway:
+      name: tbl_netassay_v3l1250-gateway
+      row: 0
+      bus: 0
+      unit: 1
+      0x0:  tbl_netassay_v3l1254
+      miss:  tbl_netassay_v3l1254
+      condition: 
+        expression: "true(always hit)"
+        true:  tbl_netassay_v3l1254
+        false:  tbl_netassay_v3l1254
+    next: []
+    action_bus: { 32..33 : tbl_netassay_v3l1191$salu.SwitchIngress.sip_cip_reg_1(0..15) }
+    stateful: tbl_netassay_v3l1191$salu.SwitchIngress.sip_cip_reg_1(hash_dist 3, $DEFAULT, $DEFAULT)
+    instruction: tbl_netassay_v3l1250$st1($DEFAULT, $DEFAULT)
+    actions:
+      netassay_v3l1250(0, 3):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, reason: uses_hash_dist, is_constant: true }
+      - handle: 0x20000018
+      - next_table: 0
+      - set sip_cip_matched_0, tbl_netassay_v3l1191$salu.SwitchIngress.sip_cip_reg_1
+      - tbl_netassay_v3l1191$salu.SwitchIngress.sip_cip_reg_1(sip_cip_reg_1_check_action_0, $hash_dist)
+    default_action: netassay_v3l1250
+  ternary_match tbl_netassay_v3l1160 0:
+    p4: { name: tbl_netassay_v3l1160, hidden: true }
+    hit: [  tbl_netassay_v3l1168 ]
+    miss:  tbl_netassay_v3l1168
+    indirect: tbl_netassay_v3l1160$tind
+  ternary_indirect tbl_netassay_v3l1160$tind:
+    row: 0
+    bus: 1
+    format: { action: 0..0 }
+    instruction: tbl_netassay_v3l1160$tind(action, $DEFAULT)
+    actions:
+      netassay_v3l1160(0, 1):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000008
+      - next_table: 0
+      - set ig_md.index_2_dns.0-13, $concat_to_slice3
+      - set ig_md.already_matched, 0
+    default_action: netassay_v3l1160
+  hash_action tbl_netassay_v3l1168 1:
+    p4: { name: tbl_netassay_v3l1168 }
+    row: 0
+    bus: 0
+    hash_dist:
+      0: { hash: 0, mask: 0x7fffff, shift: 6, expand: 0 }
+    input_xbar:
+      exact group 0: { 0: ig_md.index_1_dns.14-31, 24: ig_md.index_1_dns.0-13(8..13), 32: ig_md.index_1_dns.0-13(0..7) }
+      hash 0:
+        14..15: stripe(ig_md.index_1_dns.14-31(0..1))
+        32..38: stripe(ig_md.index_1_dns.14-31(2..8))
+        8..13: stripe(ig_md.index_1_dns.0-13(8..13))
+        0..7: stripe(ig_md.index_1_dns.0-13(0..7))
+      hash group 0:
+        table: [0]
+        seed: 0x0
+    gateway:
+      name: cond-18
+      input_xbar:
+        exact group 1: { 15: ig_intr_md.resubmit_flag }
+      row: 0
+      bus: 0
+      unit: 0
+      payload: 0x18001
+      format: { action: 0..0, meter_addr: 1..14, meter_pfe: 15..15, meter_type: 16..18 }
+      match: { 7: ig_intr_md.resubmit_flag }
+      0x0:  tbl_netassay_v3l1172
+      miss: run_table
+      condition: 
+        expression: "(!(bool)ig_intr_md.resubmit_flag)"
+        true:  tbl_netassay_v3l1172
+        false:  tbl_netassay_v3l1191
+    next:  tbl_netassay_v3l1191
+    action_bus: { 0 : tbl_netassay_v3l1191$salu.SwitchIngress.sip_cip_reg_1(0..7) }
+    stateful: tbl_netassay_v3l1191$salu.SwitchIngress.sip_cip_reg_1(hash_dist 0, $DEFAULT, $DEFAULT)
+    instruction: tbl_netassay_v3l1168(action, $DEFAULT)
+    actions:
+      netassay_v3l1168(1, 2):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000009
+      - next_table: 0
+      - set is_match_0, tbl_netassay_v3l1191$salu.SwitchIngress.sip_cip_reg_1
+      - tbl_netassay_v3l1191$salu.SwitchIngress.sip_cip_reg_1(sip_cip_reg_1_check_action_0, $hash_dist)
+    default_action: netassay_v3l1168
+  hash_action tbl_netassay_v3l1191 2:
+    p4: { name: tbl_netassay_v3l1191, hidden: true }
+    row: 1
+    bus: 0
+    hash_dist:
+      1: { hash: 0, mask: 0x7fffff, shift: 6, expand: 7 }
+    input_xbar:
+      exact group 0: { 0: ig_md.index_1_dns.14-31, 24: ig_md.index_1_dns.0-13(8..13), 32: ig_md.index_1_dns.0-13(0..7) }
+      hash 0:
+        30..31: stripe(ig_md.index_1_dns.14-31(0..1))
+        39..45: stripe(ig_md.index_1_dns.14-31(2..8))
+        24..29: stripe(ig_md.index_1_dns.0-13(8..13))
+        16..23: stripe(ig_md.index_1_dns.0-13(0..7))
+      hash group 0:
+        table: [0]
+        seed: 0x0
+    gateway:
+      name: tbl_netassay_v3l1191-gateway
+      row: 1
+      bus: 0
+      unit: 0
+      0x0:  tbl_netassay_v3l1192
+      miss:  tbl_netassay_v3l1192
+      condition: 
+        expression: "true(always hit)"
+        true:  tbl_netassay_v3l1192
+        false:  tbl_netassay_v3l1192
+    next: []
+    stateful: tbl_netassay_v3l1191$salu.SwitchIngress.sip_cip_reg_1(hash_dist 1, $DEFAULT, $DEFAULT)
+    instruction: tbl_netassay_v3l1191($DEFAULT, $DEFAULT)
+    actions:
+      netassay_v3l1191(0, 0):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x2000000d
+      - next_table: 0
+      - tbl_netassay_v3l1191$salu.SwitchIngress.sip_cip_reg_1(sip_cip_reg_1_update_action_0, $hash_dist)
+    default_action: netassay_v3l1191
+  stateful tbl_netassay_v3l1191$salu.SwitchIngress.sip_cip_reg_1:
+    p4: { name: SwitchIngress.sip_cip_reg_1, size: 16384 }
+    row: [ 15, 13 ]
+    column:
+    - [ 0, 1, 2, 3, 4, 5 ]
+    - [ 0, 1, 2 ]
+    maprams: 
+    - [ 0, 1, 2, 3, 4, 5 ]
+    - [ 0, 1, 2 ]
+    input_xbar:
+      exact group 0: { 64: p.dns_ip.rdata, 96: p.ipv4.dst }
+    format: { lo: 32, hi:32 }
+    actions:
+      sip_cip_reg_1_check_action_0:
+      - equ lo, lo, -phv_lo
+      - equ hi, hi, -phv_hi
+      - output cmplo & cmphi, predicate
+      sip_cip_reg_1_update_action_0:
+      - alu_a lo, phv_lo
+      - alu_a hi, phv_hi
+    pred_shift: 28
+    pred_comb_shift: 0
+stage 7 ingress:
+  hash_action tbl_netassay_v3l1254 1:
+    p4: { name: tbl_netassay_v3l1254 }
+    row: 0
+    bus: 1
+    hash_dist:
+      1: { hash: 0, mask: 0x7fffff, shift: 6, expand: 7 }
+    input_xbar:
+      exact group 1: { 0: index_0.14-29, 16: index_0.0-13, 35: index_0.30-31 }
+      hash 2:
+        30..31: stripe(index_0.14-29(0..1))
+        39..45: stripe(index_0.14-29(2..8))
+        16..29: stripe(index_0.0-13)
+      hash group 0:
+        table: [2]
+        seed: 0x0
+    gateway:
+      name: cond-27
+      input_xbar:
+        exact group 1: { 78: sip_cip_matched_0 }
+      row: 0
+      bus: 1
+      unit: 1
+      payload: 0x78001
+      format: { action: 0..0, meter_addr: 1..14, meter_pfe: 15..15, meter_type: 16..18 }
+      match: { 6: sip_cip_matched_0 }
+      0b*1:  tbl_netassay_v3l1263
+      miss: run_table
+      condition: 
+        expression: "(sip_cip_matched_0 == 1)"
+        true:  tbl_netassay_v3l1263
+        false:  tbl_netassay_v3l1263
+    next:  tbl_netassay_v3l1263
+    action_bus: { 96..99 : tbl_netassay_v3l1172$salu.SwitchIngress.domain_tstamp_reg_1(0..31) }
+    stateful: tbl_netassay_v3l1172$salu.SwitchIngress.domain_tstamp_reg_1(hash_dist 1, $DEFAULT, $DEFAULT)
+    instruction: tbl_netassay_v3l1254(action, $DEFAULT)
+    actions:
+      netassay_v3l1254(1, 2):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000019
+      - next_table: 0
+      - set domain_id_0, tbl_netassay_v3l1172$salu.SwitchIngress.domain_tstamp_reg_1
+      - set entry_matched_0, 1
+      - tbl_netassay_v3l1172$salu.SwitchIngress.domain_tstamp_reg_1(domain_tstamp_reg_1_get_domain_and_update_ts_action_0, $hash_dist)
+    default_action: netassay_v3l1254
+  hash_action tbl_netassay_v3l1192 0:
+    p4: { name: tbl_netassay_v3l1192, hidden: true }
+    row: 1
+    bus: 0
+    hash_dist:
+      0: { hash: 0, mask: 0x7fffff, shift: 6, expand: 0 }
+    input_xbar:
+      exact group 0: { 0: ig_md.index_1_dns.14-31, 24: ig_md.index_1_dns.0-13(8..13), 32: ig_md.index_1_dns.0-13(0..7) }
+      hash 0:
+        14..15: stripe(ig_md.index_1_dns.14-31(0..1))
+        32..38: stripe(ig_md.index_1_dns.14-31(2..8))
+        8..13: stripe(ig_md.index_1_dns.0-13(8..13))
+        0..7: stripe(ig_md.index_1_dns.0-13(0..7))
+      hash group 0:
+        table: [0]
+        seed: 0x0
+    gateway:
+      name: tbl_netassay_v3l1192-gateway
+      row: 1
+      bus: 0
+      unit: 0
+      0x0:  cond-21
+      miss:  cond-21
+      condition: 
+        expression: "true(always hit)"
+        true:  cond-21
+        false:  cond-21
+    next: []
+    stateful: tbl_netassay_v3l1172$salu.SwitchIngress.domain_tstamp_reg_1(hash_dist 0, $DEFAULT, $DEFAULT)
+    instruction: tbl_netassay_v3l1192($DEFAULT, $DEFAULT)
+    actions:
+      netassay_v3l1192(0, 1):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x2000000e
+      - next_table: 0
+      - set ig_md.already_matched, 1
+      - tbl_netassay_v3l1172$salu.SwitchIngress.domain_tstamp_reg_1(domain_tstamp_reg_1_update_tstamp_domain_action_0, $hash_dist)
+    default_action: netassay_v3l1192
+  hash_action tbl_netassay_v3l1172 2:
+    p4: { name: tbl_netassay_v3l1172 }
+    row: 0
+    bus: 0
+    hash_dist:
+      3: { hash: 1, mask: 0x7fffff, shift: 6, expand: 0 }
+    input_xbar:
+      exact group 1: { 64: ig_md.index_1_dns.14-31(0..7), 80: ig_md.index_1_dns.14-31(16..17), 88: ig_md.index_1_dns.0-13(8..13), 96: ig_md.index_1_dns.0-13(0..7), 104: ig_md.index_1_dns.14-31(8..15) }
+      hash 3:
+        14..15: stripe(ig_md.index_1_dns.14-31(0..1))
+        32..37: stripe(ig_md.index_1_dns.14-31(2..7))
+        8..13: stripe(ig_md.index_1_dns.0-13(8..13))
+        0..7: stripe(ig_md.index_1_dns.0-13(0..7))
+        38..38: stripe(ig_md.index_1_dns.14-31(8))
+      hash group 1:
+        table: [3]
+        seed: 0x0
+    gateway:
+      name: cond-19
+      input_xbar:
+        exact group 2: { 0: is_match_0 }
+      row: 0
+      bus: 0
+      unit: 0
+      payload: 0x18001
+      format: { action: 0..0, meter_addr: 1..14, meter_pfe: 15..15, meter_type: 16..18 }
+      match: { 0: is_match_0 }
+      0b*******1:  cond-21
+      miss: run_table
+      condition: 
+        expression: "(is_match_0 == 1)"
+        true:  cond-21
+        false:  tbl_netassay_v3l1177
+    next:  tbl_netassay_v3l1177
+    stateful: tbl_netassay_v3l1172$salu.SwitchIngress.domain_tstamp_reg_1(hash_dist 3, $DEFAULT, $DEFAULT)
+    instruction: tbl_netassay_v3l1172(action, $DEFAULT)
+    actions:
+      netassay_v3l1172(1, 3):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x2000000a
+      - next_table: 0
+      - set ig_md.already_matched, 1
+      - tbl_netassay_v3l1172$salu.SwitchIngress.domain_tstamp_reg_1(domain_tstamp_reg_1_update_tstamp_action_0, $hash_dist)
+    default_action: netassay_v3l1172
+  stateful tbl_netassay_v3l1172$salu.SwitchIngress.domain_tstamp_reg_1:
+    p4: { name: SwitchIngress.domain_tstamp_reg_1, size: 16384 }
+    row: [ 15, 13 ]
+    column:
+    - [ 0, 1, 2, 3, 4, 5 ]
+    - [ 0, 1, 2 ]
+    maprams: 
+    - [ 0, 1, 2, 3, 4, 5 ]
+    - [ 0, 1, 2 ]
+    input_xbar:
+      exact group 0: { 64: ig_intr_md_from_prsr.global_tstamp.0-15, 80: ig_intr_md_from_prsr.global_tstamp.16-31, 96: ig_md.domain_id_dns }
+    format: { lo: 32, hi:32 }
+    actions:
+      domain_tstamp_reg_1_update_tstamp_action_0:
+      - alu_a hi, phv_lo
+      domain_tstamp_reg_1_check_tstamp_action_0:
+      - lss.u lo, hi, 300000000, -phv_lo
+      - output cmplo, predicate
+      domain_tstamp_reg_1_update_tstamp_domain_action_0:
+      - alu_a hi, phv_lo
+      - alu_a lo, phv_hi
+      domain_tstamp_reg_1_get_domain_and_update_ts_action_0:
+      - alu_a hi, phv_lo
+      - output mem_lo
+    pred_shift: 28
+    pred_comb_shift: 0
+  hash_action tbl_netassay_v3l1177 3:
+    p4: { name: tbl_netassay_v3l1177, hidden: true }
+    row: 1
+    bus: 1
+    hash_dist:
+      4: { hash: 1, mask: 0x7fffff, shift: 6, expand: 7 }
+    input_xbar:
+      exact group 2: { 8: ig_md.index_1_dns.14-31(8..17), 24: ig_md.index_1_dns.0-13(8..13), 32: ig_md.index_1_dns.14-31(0..7), 48: ig_md.index_1_dns.0-13(0..7) }
+      hash 4:
+        45..45: stripe(ig_md.index_1_dns.14-31(8))
+        24..29: stripe(ig_md.index_1_dns.0-13(8..13))
+        30..31: stripe(ig_md.index_1_dns.14-31(0..1))
+        39..44: stripe(ig_md.index_1_dns.14-31(2..7))
+        16..23: stripe(ig_md.index_1_dns.0-13(0..7))
+      hash group 1:
+        table: [4]
+        seed: 0x0
+    gateway:
+      name: tbl_netassay_v3l1177-gateway
+      row: 1
+      bus: 0
+      unit: 1
+      0x0:  tbl_netassay_v3l1182
+      miss:  tbl_netassay_v3l1182
+      condition: 
+        expression: "true(always hit)"
+        true:  tbl_netassay_v3l1182
+        false:  tbl_netassay_v3l1182
+    next: []
+    action_bus: { 0 : tbl_netassay_v3l1172$salu.SwitchIngress.domain_tstamp_reg_1(0..7) }
+    stateful: tbl_netassay_v3l1172$salu.SwitchIngress.domain_tstamp_reg_1(hash_dist 4, $DEFAULT, $DEFAULT)
+    instruction: tbl_netassay_v3l1177($DEFAULT, $DEFAULT)
+    actions:
+      netassay_v3l1177(0, 4):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x2000000b
+      - next_table: 0
+      - set timed_out_0, tbl_netassay_v3l1172$salu.SwitchIngress.domain_tstamp_reg_1
+      - tbl_netassay_v3l1172$salu.SwitchIngress.domain_tstamp_reg_1(domain_tstamp_reg_1_check_tstamp_action_0, $hash_dist)
+    default_action: netassay_v3l1177
+stage 8 ingress:
+  hash_action tbl_netassay_v3l1263 3:
+    p4: { name: tbl_netassay_v3l1263 }
+    row: 0
+    bus: 0
+    hash_dist:
+      1: { hash: 0, mask: 0x7fffff, shift: 6, expand: 7 }
+    input_xbar:
+      exact group 1: { 0: index_3.0-13(0..7), 16: index_3.14-29(0..7), 24: index_3.0-13(8..13), 37: index_3.30-31, 40: index_3.14-29(8..15) }
+      hash 2:
+        16..23: stripe(index_3.0-13(0..7))
+        30..31: stripe(index_3.14-29(0..1))
+        39..44: stripe(index_3.14-29(2..7))
+        24..29: stripe(index_3.0-13(8..13))
+        45..45: stripe(index_3.14-29(8))
+      hash group 0:
+        table: [2]
+        seed: 0x0
+    gateway:
+      name: cond-28
+      input_xbar:
+        exact group 1: { 64: entry_matched_0 }
+      row: 0
+      bus: 0
+      unit: 0
+      payload: 0x18001
+      format: { action: 0..0, meter_addr: 1..14, meter_pfe: 15..15, meter_type: 16..18 }
+      match: { 0: entry_matched_0 }
+      0b*******0:  tbl_netassay_v3l1267
+      miss: run_table
+      condition: 
+        expression: "(entry_matched_0 == 0)"
+        true:  tbl_netassay_v3l1267
+        false:  tbl_netassay_v3l1276
+    next:  tbl_netassay_v3l1276
+    action_bus: { 32..33 : tbl_netassay_v3l1263$salu.SwitchIngress.sip_cip_reg_2(0..15) }
+    stateful: tbl_netassay_v3l1263$salu.SwitchIngress.sip_cip_reg_2(hash_dist 1, $DEFAULT, $DEFAULT)
+    instruction: tbl_netassay_v3l1263(action, $DEFAULT)
+    actions:
+      netassay_v3l1263(1, 3):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x2000001c
+      - next_table: 0
+      - set sip_cip_matched_0, tbl_netassay_v3l1263$salu.SwitchIngress.sip_cip_reg_2
+      - tbl_netassay_v3l1263$salu.SwitchIngress.sip_cip_reg_2(sip_cip_reg_2_check_action_0, $hash_dist)
+    default_action: netassay_v3l1263
+  stateful tbl_netassay_v3l1263$salu.SwitchIngress.sip_cip_reg_2:
+    p4: { name: SwitchIngress.sip_cip_reg_2, size: 16384 }
+    row: [ 15, 13 ]
+    column:
+    - [ 0, 1, 2, 3, 4, 5 ]
+    - [ 0, 1, 2 ]
+    maprams: 
+    - [ 0, 1, 2, 3, 4, 5 ]
+    - [ 0, 1, 2 ]
+    input_xbar:
+      exact group 0: { 64: p.dns_ip.rdata, 96: p.ipv4.dst }
+    format: { lo: 32, hi:32 }
+    actions:
+      sip_cip_reg_2_check_action_0:
+      - equ lo, lo, -phv_lo
+      - equ hi, hi, -phv_hi
+      - output cmplo & cmphi, predicate
+      sip_cip_reg_2_update_action_0:
+      - alu_a lo, phv_lo
+      - alu_a hi, phv_hi
+    pred_shift: 28
+    pred_comb_shift: 0
+  ternary_match tbl_netassay_v3l1182 0:
+    p4: { name: tbl_netassay_v3l1182 }
+    gateway:
+      name: cond-20
+      input_xbar:
+        exact group 0: { 0: timed_out_0 }
+      row: 1
+      bus: 1
+      unit: 1
+      match: { 0: timed_out_0 }
+      0b*******1: run_table
+      miss:  cond-21
+      condition: 
+        expression: "(timed_out_0 == 1)"
+        true:  tbl_netassay_v3l1182
+        false:  cond-21
+    hit: [  cond-21 ]
+    miss:  cond-21
+    indirect: tbl_netassay_v3l1182$tind
+  ternary_indirect tbl_netassay_v3l1182$tind:
+    row: 1
+    bus: 0
+    format: { action: 0..0 }
+    instruction: tbl_netassay_v3l1182$tind(action, $DEFAULT)
+    actions:
+      netassay_v3l1182(1, 1):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x2000000c
+      - next_table: 0
+      - set ig_intr_md_for_dprsr.resubmit_type, 1
+    default_action: netassay_v3l1182
+  gateway cond-21 1:
+    name: cond-21
+    input_xbar:
+      exact group 0: { 8: ig_md.already_matched }
+    row: 1
+    bus: 0
+    unit: 0
+    match: { 0: ig_md.already_matched }
+    0b*******0:  tbl_netassay_v3l1202
+    miss:  tbl_netassay_v3l1235
+    condition: 
+      expression: "(ig_md.already_matched == 0)"
+      true:  tbl_netassay_v3l1202
+      false:  tbl_netassay_v3l1235
+  hash_action tbl_netassay_v3l1202 2:
+    p4: { name: tbl_netassay_v3l1202 }
+    row: 0
+    bus: 1
+    hash_dist:
+      0: { hash: 0, mask: 0x7fffff, shift: 6, expand: 0 }
+    input_xbar:
+      exact group 0: { 16: ig_md.index_2_dns.14-31(16..17), 24: ig_md.index_2_dns.0-13(8..13), 32: ig_md.index_2_dns.14-31(0..15), 48: ig_md.index_2_dns.0-13(0..7) }
+      hash 0:
+        8..13: stripe(ig_md.index_2_dns.0-13(8..13))
+        14..15: stripe(ig_md.index_2_dns.14-31(0..1))
+        32..38: stripe(ig_md.index_2_dns.14-31(2..8))
+        0..7: stripe(ig_md.index_2_dns.0-13(0..7))
+      hash group 0:
+        table: [0]
+        seed: 0x0
+    gateway:
+      name: cond-22
+      input_xbar:
+        exact group 1: { 15: ig_intr_md.resubmit_flag }
+      row: 0
+      bus: 1
+      unit: 1
+      payload: 0x18001
+      format: { action: 0..0, meter_addr: 1..14, meter_pfe: 15..15, meter_type: 16..18 }
+      match: { 7: ig_intr_md.resubmit_flag }
+      0x0:  tbl_netassay_v3l1211
+      miss: run_table
+      condition: 
+        expression: "(!(bool)ig_intr_md.resubmit_flag)"
+        true:  tbl_netassay_v3l1211
+        false:  tbl_netassay_v3l1224
+    next:  tbl_netassay_v3l1224
+    action_bus: { 0 : tbl_netassay_v3l1263$salu.SwitchIngress.sip_cip_reg_2(0..7) }
+    stateful: tbl_netassay_v3l1263$salu.SwitchIngress.sip_cip_reg_2(hash_dist 0, $DEFAULT, $DEFAULT)
+    instruction: tbl_netassay_v3l1202(action, $DEFAULT)
+    actions:
+      netassay_v3l1202(1, 2):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x2000000f
+      - next_table: 0
+      - set is_match_1, tbl_netassay_v3l1263$salu.SwitchIngress.sip_cip_reg_2
+      - tbl_netassay_v3l1263$salu.SwitchIngress.sip_cip_reg_2(sip_cip_reg_2_check_action_0, $hash_dist)
+    default_action: netassay_v3l1202
+  hash_action tbl_netassay_v3l1224 4:
+    p4: { name: tbl_netassay_v3l1224, hidden: true }
+    row: 1
+    bus: 0
+    hash_dist:
+      3: { hash: 1, mask: 0x7fffff, shift: 6, expand: 0 }
+    input_xbar:
+      exact group 1: { 72: ig_md.index_2_dns.14-31(8..17), 88: ig_md.index_2_dns.0-13(8..13), 96: ig_md.index_2_dns.14-31(0..7), 112: ig_md.index_2_dns.0-13(0..7) }
+      hash 3:
+        38..38: stripe(ig_md.index_2_dns.14-31(8))
+        8..13: stripe(ig_md.index_2_dns.0-13(8..13))
+        14..15: stripe(ig_md.index_2_dns.14-31(0..1))
+        32..37: stripe(ig_md.index_2_dns.14-31(2..7))
+        0..7: stripe(ig_md.index_2_dns.0-13(0..7))
+      hash group 1:
+        table: [3]
+        seed: 0x0
+    gateway:
+      name: tbl_netassay_v3l1224-gateway
+      row: 2
+      bus: 0
+      unit: 0
+      0x0:  tbl_netassay_v3l1225
+      miss:  tbl_netassay_v3l1225
+      condition: 
+        expression: "true(always hit)"
+        true:  tbl_netassay_v3l1225
+        false:  tbl_netassay_v3l1225
+    next: []
+    stateful: tbl_netassay_v3l1263$salu.SwitchIngress.sip_cip_reg_2(hash_dist 3, $DEFAULT, $DEFAULT)
+    instruction: tbl_netassay_v3l1224($DEFAULT, $DEFAULT)
+    actions:
+      netassay_v3l1224(0, 0):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000013
+      - next_table: 0
+      - tbl_netassay_v3l1263$salu.SwitchIngress.sip_cip_reg_2(sip_cip_reg_2_update_action_0, $hash_dist)
+    default_action: netassay_v3l1224
+stage 9 ingress:
+  hash_action tbl_netassay_v3l1267 1:
+    p4: { name: tbl_netassay_v3l1267 }
+    row: 0
+    bus: 0
+    hash_dist:
+      3: { hash: 1, mask: 0x3fff, shift: 0 }
+      4: { hash: 1, mask: 0x7fffff, shift: 6, expand: 7 }
+    input_xbar:
+      exact group 1: { 0: index_3.0-13, 16: index_3.14-29, 37: index_3.30-31 }
+      hash 2:
+        0..13: stripe(index_3.0-13)
+      hash group 1:
+        table: [2]
+        seed: 0x0
+      exact group 1: { 0: index_3.0-13, 16: index_3.14-29, 37: index_3.30-31 }
+      hash 2:
+        16..29: stripe(index_3.0-13)
+        30..31: stripe(index_3.14-29(0..1))
+        39..45: stripe(index_3.14-29(2..8))
+      hash group 1:
+        table: [2]
+        seed: 0x0
+    gateway:
+      name: cond-29
+      input_xbar:
+        exact group 1: { 78: sip_cip_matched_0 }
+      row: 0
+      bus: 0
+      unit: 0
+      payload: 0x1
+      format: { action: 0..0 }
+      match: { 6: sip_cip_matched_0 }
+      0b*1:  tbl_netassay_v3l1267$st1
+      miss: run_table
+      condition: 
+        expression: "(sip_cip_matched_0 == 1)"
+        true:  tbl_netassay_v3l1267$st1
+        false:  tbl_netassay_v3l1267$st1
+    next:  tbl_netassay_v3l1267$st1
+    action_bus: { 36..37 : hash_dist(3, lo) }
+    instruction: tbl_netassay_v3l1267(action, $DEFAULT)
+    actions:
+      netassay_v3l1267(1, 2):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x2000001d
+      - next_table: 0
+      - set entry_matched_0, 1
+      - set H3(0..13), hash_dist(3, 0..13)
+    default_action: netassay_v3l1267
+  hash_action tbl_netassay_v3l1225 0:
+    p4: { name: tbl_netassay_v3l1225, hidden: true }
+    row: 0
+    bus: 1
+    hash_dist:
+      0: { hash: 0, mask: 0x3fff, shift: 0 }
+      1: { hash: 0, mask: 0x7fffff, shift: 6, expand: 7 }
+    input_xbar:
+      exact group 0: { 0: ig_md.index_2_dns.14-31, 24: ig_md.index_2_dns.0-13(8..13), 32: ig_md.index_2_dns.0-13(0..7) }
+      hash 0:
+        8..13: stripe(ig_md.index_2_dns.0-13(8..13))
+        0..7: stripe(ig_md.index_2_dns.0-13(0..7))
+      hash group 0:
+        table: [0]
+        seed: 0x0
+      exact group 0: { 0: ig_md.index_2_dns.14-31, 24: ig_md.index_2_dns.0-13(8..13), 32: ig_md.index_2_dns.0-13(0..7) }
+      hash 0:
+        30..31: stripe(ig_md.index_2_dns.14-31(0..1))
+        39..45: stripe(ig_md.index_2_dns.14-31(2..8))
+        24..29: stripe(ig_md.index_2_dns.0-13(8..13))
+        16..23: stripe(ig_md.index_2_dns.0-13(0..7))
+      hash group 0:
+        table: [0]
+        seed: 0x0
+    gateway:
+      name: tbl_netassay_v3l1225-gateway
+      row: 0
+      bus: 0
+      unit: 1
+      0x0:  tbl_netassay_v3l1225$st1
+      miss:  tbl_netassay_v3l1225$st1
+      condition: 
+        expression: "true(always hit)"
+        true:  tbl_netassay_v3l1225$st1
+        false:  tbl_netassay_v3l1225$st1
+    next: []
+    action_bus: { 32..33 : hash_dist(0, lo) }
+    instruction: tbl_netassay_v3l1225($DEFAULT, $DEFAULT)
+    actions:
+      netassay_v3l1225(0, 1):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000014
+      - next_table: 0
+      - set ig_md.already_matched, 1
+      - set H3(0..13), hash_dist(0, 0..13)
+    default_action: netassay_v3l1225
+stage 10 ingress:
+  hash_action tbl_netassay_v3l1267$st1 2:
+    row: 0
+    bus: 1
+    hash_dist:
+      3: { hash: 1, mask: 0x3fff, shift: 6 }
+    input_xbar:
+      exact group 1: { 8: SwitchIngress.domain_tstamp_reg_2$index(8..13), 16: SwitchIngress.domain_tstamp_reg_2$index(0..7) }
+      hash 2:
+        8..13: stripe(SwitchIngress.domain_tstamp_reg_2$index(8..13))
+        0..7: stripe(SwitchIngress.domain_tstamp_reg_2$index(0..7))
+      hash group 1:
+        table: [2]
+        seed: 0x0
+    gateway:
+      name: tbl_netassay_v3l1267-gateway
+      row: 0
+      bus: 0
+      unit: 1
+      0x0:  tbl_netassay_v3l1276
+      miss:  tbl_netassay_v3l1276
+      condition: 
+        expression: "true(always hit)"
+        true:  tbl_netassay_v3l1276
+        false:  tbl_netassay_v3l1276
+    next: []
+    action_bus: { 96..99 : tbl_netassay_v3l1267$st1$salu.SwitchIngress.domain_tstamp_reg_2(0..31) }
+    stateful: tbl_netassay_v3l1267$st1$salu.SwitchIngress.domain_tstamp_reg_2(hash_dist 3, $DEFAULT, $DEFAULT)
+    instruction: tbl_netassay_v3l1267$st1($DEFAULT, $DEFAULT)
+    actions:
+      netassay_v3l1267(0, 3):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, reason: uses_hash_dist, is_constant: true }
+      - handle: 0x2000001d
+      - next_table: 0
+      - set domain_id_0, tbl_netassay_v3l1267$st1$salu.SwitchIngress.domain_tstamp_reg_2
+      - tbl_netassay_v3l1267$st1$salu.SwitchIngress.domain_tstamp_reg_2(domain_tstamp_reg_2_get_domain_and_update_ts_action_0, $hash_dist)
+    default_action: netassay_v3l1267
+  stateful tbl_netassay_v3l1267$st1$salu.SwitchIngress.domain_tstamp_reg_2:
+    p4: { name: SwitchIngress.domain_tstamp_reg_2, size: 16384 }
+    row: [ 15, 13 ]
+    column:
+    - [ 0, 1, 2, 3, 4, 5 ]
+    - [ 0, 1, 2 ]
+    maprams: 
+    - [ 0, 1, 2, 3, 4, 5 ]
+    - [ 0, 1, 2 ]
+    input_xbar:
+      exact group 0: { 64: ig_intr_md_from_prsr.global_tstamp.0-15, 80: ig_intr_md_from_prsr.global_tstamp.16-31, 96: ig_md.domain_id_dns }
+    format: { lo: 32, hi:32 }
+    actions:
+      domain_tstamp_reg_2_update_tstamp_action_0:
+      - alu_a hi, phv_lo
+      domain_tstamp_reg_2_check_tstamp_action_0:
+      - lss.u lo, hi, 300000000, -phv_lo
+      - output cmplo, predicate
+      domain_tstamp_reg_2_update_tstamp_domain_action_0:
+      - alu_a hi, phv_lo
+      - alu_a lo, phv_hi
+      domain_tstamp_reg_2_get_domain_and_update_ts_action_0:
+      - alu_a hi, phv_lo
+      - output mem_lo
+    pred_shift: 28
+    pred_comb_shift: 0
+  hash_action tbl_netassay_v3l1225$st1 3:
+    row: 1
+    bus: 0
+    hash_dist:
+      4: { hash: 1, mask: 0x3fff, shift: 6 }
+    input_xbar:
+      exact group 1: { 8: SwitchIngress.domain_tstamp_reg_2$index(8..13), 16: SwitchIngress.domain_tstamp_reg_2$index(0..7) }
+      hash 2:
+        24..29: stripe(SwitchIngress.domain_tstamp_reg_2$index(8..13))
+        16..23: stripe(SwitchIngress.domain_tstamp_reg_2$index(0..7))
+      hash group 1:
+        table: [2]
+        seed: 0x0
+    gateway:
+      name: tbl_netassay_v3l1225-gateway
+      row: 1
+      bus: 0
+      unit: 0
+      0x0:  tbl_netassay_v3l1235
+      miss:  tbl_netassay_v3l1235
+      condition: 
+        expression: "true(always hit)"
+        true:  tbl_netassay_v3l1235
+        false:  tbl_netassay_v3l1235
+    next: []
+    stateful: tbl_netassay_v3l1267$st1$salu.SwitchIngress.domain_tstamp_reg_2(hash_dist 4, $DEFAULT, $DEFAULT)
+    instruction: tbl_netassay_v3l1225$st1($DEFAULT, $DEFAULT)
+    actions:
+      netassay_v3l1225(0, 4):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, reason: uses_hash_dist, is_constant: true }
+      - handle: 0x20000014
+      - next_table: 0
+      - tbl_netassay_v3l1267$st1$salu.SwitchIngress.domain_tstamp_reg_2(domain_tstamp_reg_2_update_tstamp_domain_action_0, $hash_dist)
+    default_action: netassay_v3l1225
+  hash_action tbl_netassay_v3l1211 0:
+    p4: { name: tbl_netassay_v3l1211 }
+    row: 0
+    bus: 0
+    hash_dist:
+      0: { hash: 0, mask: 0x7fffff, shift: 6, expand: 0 }
+    input_xbar:
+      exact group 0: { 0: ig_md.index_2_dns.14-31, 24: ig_md.index_2_dns.0-13(8..13), 32: ig_md.index_2_dns.0-13(0..7) }
+      hash 0:
+        14..15: stripe(ig_md.index_2_dns.14-31(0..1))
+        32..38: stripe(ig_md.index_2_dns.14-31(2..8))
+        8..13: stripe(ig_md.index_2_dns.0-13(8..13))
+        0..7: stripe(ig_md.index_2_dns.0-13(0..7))
+      hash group 0:
+        table: [0]
+        seed: 0x0
+    gateway:
+      name: cond-23
+      input_xbar:
+        exact group 1: { 0: is_match_1 }
+      row: 0
+      bus: 0
+      unit: 0
+      payload: 0x38001
+      format: { action: 0..0, meter_addr: 1..14, meter_pfe: 15..15, meter_type: 16..18 }
+      match: { 0: is_match_1 }
+      0b*******1: run_table
+      miss:  tbl_netassay_v3l1216
+      condition: 
+        expression: "(is_match_1 == 1)"
+        true:  tbl_netassay_v3l1206
+        false:  tbl_netassay_v3l1216
+    next:  tbl_netassay_v3l1206
+    action_bus: { 0 : tbl_netassay_v3l1267$st1$salu.SwitchIngress.domain_tstamp_reg_2(0..7) }
+    stateful: tbl_netassay_v3l1267$st1$salu.SwitchIngress.domain_tstamp_reg_2(hash_dist 0, $DEFAULT, $DEFAULT)
+    instruction: tbl_netassay_v3l1211(action, $DEFAULT)
+    actions:
+      netassay_v3l1211(1, 1):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000011
+      - next_table: 0
+      - set timed_out_1, tbl_netassay_v3l1267$st1$salu.SwitchIngress.domain_tstamp_reg_2
+      - tbl_netassay_v3l1267$st1$salu.SwitchIngress.domain_tstamp_reg_2(domain_tstamp_reg_2_check_tstamp_action_0, $hash_dist)
+    default_action: netassay_v3l1211
+  hash_action tbl_netassay_v3l1206 1:
+    p4: { name: tbl_netassay_v3l1206, hidden: true }
+    row: 1
+    bus: 1
+    hash_dist:
+      1: { hash: 0, mask: 0x7fffff, shift: 6, expand: 7 }
+    input_xbar:
+      exact group 0: { 0: ig_md.index_2_dns.14-31, 24: ig_md.index_2_dns.0-13(8..13), 32: ig_md.index_2_dns.0-13(0..7) }
+      hash 0:
+        30..31: stripe(ig_md.index_2_dns.14-31(0..1))
+        39..45: stripe(ig_md.index_2_dns.14-31(2..8))
+        24..29: stripe(ig_md.index_2_dns.0-13(8..13))
+        16..23: stripe(ig_md.index_2_dns.0-13(0..7))
+      hash group 0:
+        table: [0]
+        seed: 0x0
+    gateway:
+      name: tbl_netassay_v3l1206-gateway
+      row: 1
+      bus: 0
+      unit: 1
+      0x0:  tbl_netassay_v3l1235
+      miss:  tbl_netassay_v3l1235
+      condition: 
+        expression: "true(always hit)"
+        true:  tbl_netassay_v3l1235
+        false:  tbl_netassay_v3l1235
+    next: []
+    stateful: tbl_netassay_v3l1267$st1$salu.SwitchIngress.domain_tstamp_reg_2(hash_dist 1, $DEFAULT, $DEFAULT)
+    instruction: tbl_netassay_v3l1206($DEFAULT, $DEFAULT)
+    actions:
+      netassay_v3l1206(0, 2):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000010
+      - next_table: 0
+      - set ig_md.already_matched, 1
+      - tbl_netassay_v3l1267$st1$salu.SwitchIngress.domain_tstamp_reg_2(domain_tstamp_reg_2_update_tstamp_action_0, $hash_dist)
+    default_action: netassay_v3l1206
+stage 11 ingress:
+  hash_action tbl_netassay_v3l1276 2:
+    p4: { name: tbl_netassay_v3l1276 }
+    row: 0
+    bus: 0
+    hash_dist:
+      1: { hash: 0, mask: 0x7fffff, shift: 6, expand: 7 }
+    input_xbar:
+      exact group 0: { 40: domain_id_0(8..31), 96: domain_id_0(0..7) }
+      hash 0:
+        24..31: stripe(domain_id_0(8..15))
+        39..45: stripe(domain_id_0(16..22))
+      hash 1:
+        16..23: stripe(domain_id_0(0..7))
+      hash group 0:
+        table: [0, 1]
+        seed: 0x0
+    gateway:
+      name: cond-30
+      input_xbar:
+        exact group 1: { 0: entry_matched_0 }
+      row: 0
+      bus: 0
+      unit: 0
+      payload: 0x3001
+      format: { action: 0..0, meter_addr: 1..11, meter_pfe: 12..12, meter_type: 13..15 }
+      match: { 0: entry_matched_0 }
+      0b*******1:  tbl_netassay_v3l1275
+      miss: run_table
+      condition: 
+        expression: "(entry_matched_0 == 1)"
+        true:  tbl_netassay_v3l1275
+        false:  END
+    next:  END
+    stateful: tbl_netassay_v3l1276$salu.SwitchIngress.byte_counts_table(hash_dist 1, $DEFAULT, $DEFAULT)
+    instruction: tbl_netassay_v3l1276(action, $DEFAULT)
+    actions:
+      netassay_v3l1276(1, 0):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x2000001f
+      - next_table: 0
+      - tbl_netassay_v3l1276$salu.SwitchIngress.byte_counts_table(byte_counts_table_reg_inc_action_0, $hash_dist)
+    default_action: netassay_v3l1276
+  stateful tbl_netassay_v3l1276$salu.SwitchIngress.byte_counts_table:
+    p4: { name: SwitchIngress.byte_counts_table, size: 2048 }
+    row: 15
+    column: [ 0, 1 ]
+    maprams: [ 0, 1 ]
+    input_xbar:
+      exact group 1: { 64: p.ipv4.len }
+    format: { lo: 32, hi:32 }
+    actions:
+      byte_counts_table_reg_inc_action_0:
+      - add lo, lo, phv_lo(0..15)
+  hash_action tbl_netassay_v3l1275 3:
+    p4: { name: tbl_netassay_v3l1275, hidden: true }
+    row: 1
+    bus: 0
+    hash_dist:
+      3: { hash: 1, mask: 0x7fffff, shift: 5, expand: 0 }
+    input_xbar:
+      exact group 1: { 8: domain_id_0(8..31), 32: domain_id_0(0..7) }
+      hash 2:
+        8..15: stripe(domain_id_0(8..15))
+        32..38: stripe(domain_id_0(16..22))
+        0..7: stripe(domain_id_0(0..7))
+      hash group 1:
+        table: [2]
+        seed: 0x0
+    gateway:
+      name: tbl_netassay_v3l1275-gateway
+      row: 1
+      bus: 0
+      unit: 1
+      0x0:  END
+      miss:  END
+      condition: 
+        expression: "true(always hit)"
+        true:  END
+        false:  END
+    next: []
+    stateful: tbl_netassay_v3l1275$salu.SwitchIngress.packet_counts_table(hash_dist 3, $DEFAULT, $DEFAULT)
+    instruction: tbl_netassay_v3l1275($DEFAULT, $DEFAULT)
+    actions:
+      netassay_v3l1275(0, 0):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x2000001e
+      - next_table: 0
+      - tbl_netassay_v3l1275$salu.SwitchIngress.packet_counts_table(packet_counts_table_reg_inc_action_0, $hash_dist)
+    default_action: netassay_v3l1275
+  stateful tbl_netassay_v3l1275$salu.SwitchIngress.packet_counts_table:
+    p4: { name: SwitchIngress.packet_counts_table, size: 2048 }
+    row: 7
+    column: [ 0, 1 ]
+    maprams: [ 0, 1 ]
+    format: { lo: 32 }
+    actions:
+      packet_counts_table_reg_inc_action_0:
+      - add lo, lo, 1
+  ternary_match tbl_netassay_v3l1216 0:
+    p4: { name: tbl_netassay_v3l1216 }
+    gateway:
+      name: cond-24
+      input_xbar:
+        exact group 0: { 0: timed_out_1 }
+      row: 1
+      bus: 0
+      unit: 0
+      match: { 0: timed_out_1 }
+      0b*******1: run_table
+      miss:  tbl_netassay_v3l1235
+      condition: 
+        expression: "(timed_out_1 == 1)"
+        true:  tbl_netassay_v3l1216
+        false:  tbl_netassay_v3l1235
+    hit: [  tbl_netassay_v3l1235 ]
+    miss:  tbl_netassay_v3l1235
+    indirect: tbl_netassay_v3l1216$tind
+  ternary_indirect tbl_netassay_v3l1216$tind:
+    row: 1
+    bus: 0
+    format: { action: 0..0 }
+    instruction: tbl_netassay_v3l1216$tind(action, $DEFAULT)
+    actions:
+      netassay_v3l1216(1, 1):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000012
+      - next_table: 0
+      - set ig_intr_md_for_dprsr.resubmit_type, 1
+    default_action: netassay_v3l1216
+  hash_action tbl_netassay_v3l1235 1:
+    p4: { name: tbl_netassay_v3l1235 }
+    row: 0
+    bus: 1
+    hash_dist:
+      0: { hash: 0, mask: 0x7fffff, shift: 5, expand: 0 }
+    input_xbar:
+      exact group 0: { 8: ig_md.domain_id_dns(8..31), 32: ig_md.domain_id_dns(0..7) }
+      hash 0:
+        8..15: stripe(ig_md.domain_id_dns(8..15))
+        32..38: stripe(ig_md.domain_id_dns(16..22))
+        0..7: stripe(ig_md.domain_id_dns(0..7))
+      hash group 0:
+        table: [0]
+        seed: 0x0
+    gateway:
+      name: cond-25
+      input_xbar:
+        exact group 0: { 64: ig_md.already_matched }
+      row: 0
+      bus: 1
+      unit: 1
+      payload: 0x3001
+      format: { action: 0..0, meter_addr: 1..11, meter_pfe: 12..12, meter_type: 13..15 }
+      match: { 0: ig_md.already_matched }
+      0b*******0:  END
+      miss: run_table
+      condition: 
+        expression: "(ig_md.already_matched == 0)"
+        true:  END
+        false:  END
+    next:  END
+    stateful: tbl_netassay_v3l1235$salu.SwitchIngress.dns_total_missed(hash_dist 0, $DEFAULT, $DEFAULT)
+    instruction: tbl_netassay_v3l1235(action, $DEFAULT)
+    actions:
+      netassay_v3l1235(1, 0):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000015
+      - next_table: 0
+      - tbl_netassay_v3l1235$salu.SwitchIngress.dns_total_missed(dns_total_missed_reg_inc_action_0, $hash_dist)
+    default_action: netassay_v3l1235
+  stateful tbl_netassay_v3l1235$salu.SwitchIngress.dns_total_missed:
+    p4: { name: SwitchIngress.dns_total_missed, size: 2048 }
+    row: 11
+    column: [ 0, 1 ]
+    maprams: [ 0, 1 ]
+    format: { lo: 32 }
+    actions:
+      dns_total_missed_reg_inc_action_0:
+      - add lo, lo, 1
+
+
+primitives: "netassay_v3.tofino/pipe//netassay_v3.prim.json"
+dynhash: "netassay_v3.tofino/pipe//netassay_v3.dynhash.json"

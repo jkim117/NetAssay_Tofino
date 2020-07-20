@@ -1,0 +1,18 @@
+digraph SwitchIngressDeparser {
+subgraph cluster {
+graph [
+label="", labeljust=r, style=bold];
+0[label=__START__, margin="", shape=rectangle, style=solid];
+1[label=__EXIT__, margin="", shape=rectangle, style=solid];
+2[label="ig_intr_dprsr_md.resubmit_type == 1;", margin="", shape=rectangle, style=solid];
+3[label="resubmit_0/resubmit.emit();", margin="", shape=rectangle, style=solid];
+4[label="pkt.emit<ethernet_h>(hdr.ethernet);
+...
+pkt.emit<udp_h>(hdr.udp);", margin="", shape=rectangle, style=solid];
+0 -> 2[label=""];
+2 -> 3[label=TRUE];
+2 -> 4[label=FALSE];
+3 -> 4[label=""];
+4 -> 1[label=""];
+}
+}

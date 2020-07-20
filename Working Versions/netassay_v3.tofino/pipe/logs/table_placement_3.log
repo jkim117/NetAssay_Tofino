@@ -1,0 +1,1717 @@
+Generating dependency graph json
+Table Placement ignores container conflicts? 0
+table placement starting pipe
+ingress: [3721695]
+  cond-16(ingress::ig_md.parsed_answer == 1; => $true, 1 => $false)
+    $false: [3723055]
+      cond-26(ingress::ig_md.is_ip == 1 && ingress::ig_md.is_dns == 0; => $true, 1 => $false)
+        $true: [3723067] 1 11 111 0000 00001 111111 1111111
+          tbl_netassay_v3l1241
+          tbl_netassay_v3l1241_0
+          tbl_netassay_v3l1250
+            stateful SwitchIngress.sip_cip_reg_1  16K
+          cond-27(ingress::sip_cip_matched_0 == 1; => $true, 1 => $false)
+            $true: [3721475]
+              tbl_netassay_v3l1254
+                stateful SwitchIngress.domain_tstamp_reg_1  16K
+          tbl_netassay_v3l1260
+          tbl_netassay_v3l1260_0
+          cond-28(ingress::entry_matched_0 == 0; => $true, 1 => $false)
+            $true: [3723241] 1
+              tbl_netassay_v3l1263
+                stateful SwitchIngress.sip_cip_reg_2  16K
+              cond-29(ingress::sip_cip_matched_0 == 1; => $true, 1 => $false)
+                $true: [3721525]
+                  tbl_netassay_v3l1267
+                    stateful SwitchIngress.domain_tstamp_reg_2  16K
+          cond-30(ingress::entry_matched_0 == 1; => $true, 1 => $false)
+            $true: [3721542] 0
+              tbl_netassay_v3l1275
+                stateful SwitchIngress.packet_counts_table 2048
+              tbl_netassay_v3l1276
+                stateful SwitchIngress.byte_counts_table 2048
+    $true: [3721740] 1 11 111
+      tbl_netassay_v3l1148
+      known_domain_list_0{ T 480+1, 4 2K }
+      banned_dns_dst_0{ T 32+1, 0 0K }
+      cond-17(ingress::ig_md.matched_domain == 1; => $true, 1 => $false)
+        $true: [3722109] 1 11 111 1111 11111
+          tbl_netassay_v3l1157
+            stateful SwitchIngress.dns_total_queried 2048
+          tbl_netassay_v3l1159
+          tbl_netassay_v3l1160
+          cond-18(!(bool)ingress::ig_intr_md.resubmit_flag; => $true, 1 => $false)
+            $false: [3721088] 0
+              tbl_netassay_v3l1191
+                stateful SwitchIngress.sip_cip_reg_1  16K
+              tbl_netassay_v3l1192
+                stateful SwitchIngress.domain_tstamp_reg_1  16K
+            $true: [3722309] 1
+              tbl_netassay_v3l1168
+                stateful SwitchIngress.sip_cip_reg_1  16K
+              cond-19(ingress::is_match_0 == 1; => $true, 1 => $false)
+                $false: [3722558] 1
+                  tbl_netassay_v3l1177
+                    stateful SwitchIngress.domain_tstamp_reg_1  16K
+                  cond-20(ingress::timed_out_0 == 1; => $true, 1 => $false)
+                    $true: [3721079]
+                      tbl_netassay_v3l1182
+                $true: [3720919]
+                  tbl_netassay_v3l1172
+                    stateful SwitchIngress.domain_tstamp_reg_1  16K
+          cond-21(ingress::ig_md.already_matched == 0; => $true, 1 => $false)
+            $true: [3722675]
+              cond-22(!(bool)ingress::ig_intr_md.resubmit_flag; => $true, 1 => $false)
+                $false: [3721354] 0
+                  tbl_netassay_v3l1224
+                    stateful SwitchIngress.sip_cip_reg_2  16K
+                  tbl_netassay_v3l1225
+                    stateful SwitchIngress.domain_tstamp_reg_2  16K
+                $true: [3722683] 1
+                  tbl_netassay_v3l1202
+                    stateful SwitchIngress.sip_cip_reg_2  16K
+                  cond-23(ingress::is_match_1 == 1; => $true, 1 => $false)
+                    $false: [3722905] 1
+                      tbl_netassay_v3l1211
+                        stateful SwitchIngress.domain_tstamp_reg_2  16K
+                      cond-24(ingress::timed_out_1 == 1; => $true, 1 => $false)
+                        $true: [3721345]
+                          tbl_netassay_v3l1216
+                    $true: [3721208]
+                      tbl_netassay_v3l1206
+                        stateful SwitchIngress.domain_tstamp_reg_2  16K
+          cond-25(ingress::ig_md.already_matched == 0; => $true, 1 => $false)
+            $true: [3721384]
+              tbl_netassay_v3l1235
+                stateful SwitchIngress.dns_total_missed 2048
+egress: [3429251]
+
+stage 0, work: [ 3721695 ], partly placed 0, placed 0
+    { id=0 ram=0 tcam=0 mram=0 eixb=0 tixb=0 malu=0 salu=0 }
+  Group table: cond-16
+try_place_table(cond-16, stage=0)
+  Merging with match table tbl_netassay_v3l1148
+  Initial stage is 0, initial entries is 1
+  Selected stage: 0    Furthest stage: 0
+  try_place_table returning 1 of tbl_netassay_v3l1148 in stage 0
+    Pl vector: [ tbl_netassay_v3l1148 ]
+found 1 tables that could be placed: [ tbl_netassay_v3l1148 ]
+    Updating best to first table seen: tbl_netassay_v3l1148
+placing 1 entries of tbl_netassay_v3l1148 (with gw cond-16) in stage 0(0)
+stage 0, work: [ 3723055, 3721740 ], partly placed 0, placed 1
+    { id=0 ram=0 tcam=0 mram=0 eixb=0 tixb=0 malu=0 salu=0 }
+  Group table: cond-26
+try_place_table(cond-26, stage=0)
+  Merging with match table tbl_netassay_v3l1241
+  Initial stage is 0, initial entries is 1
+  Selected stage: 0    Furthest stage: 1
+  try_place_table returning 1 of tbl_netassay_v3l1241 in stage 0
+  Merging with match table tbl_netassay_v3l1260
+  Initial stage is 0, initial entries is 1
+  Selected stage: 0    Furthest stage: 1
+  try_place_table returning 1 of tbl_netassay_v3l1260 in stage 0
+    Pl vector: [ tbl_netassay_v3l1241, tbl_netassay_v3l1260 ]
+  Group table: tbl_netassay_v3l1148
+  Group table: known_domain_list_0
+  Group table: banned_dns_dst_0
+  Group table: cond-17
+    - skipping tbl_netassay_v3l1148 as its already done
+known_domain_list_0 is not a gateway! Aborting search for merge choices
+try_place_table(known_domain_list_0, stage=0)
+  - dependency between tbl_netassay_v3l1148 and table advances stage
+  Initial stage is 1, initial entries is 2048
+  - reducing to 1024 of known_domain_list_0 in stage 1
+  Selected stage: 1    Furthest stage: 1
+  try_place_table returning 1024 of known_domain_list_0 in stage 1 (need more match)
+    Pl vector: [ known_domain_list_0 ]
+  - skipping banned_dns_dst_0 due to in-sequence control dependence on known_domain_list_0
+  - skipping cond-17 due to in-sequence control dependence on known_domain_list_0
+found 3 tables that could be placed: [ tbl_netassay_v3l1241, tbl_netassay_v3l1260, known_domain_list_0 ]
+  Check point now tbl_netassay_v3l1148 1
+    Updating best to first table seen: tbl_netassay_v3l1241
+  Check point now tbl_netassay_v3l1148 1
+  Check point now tbl_netassay_v3l1148 1
+placing 1 entries of tbl_netassay_v3l1241 (with gw cond-26) in stage 0(1)
+stage 0, work: [ 3721740, 3723067 ], partly placed 0, placed 2
+    { id=0 ram=0 tcam=0 mram=0 eixb=0 tixb=0 malu=0 salu=0 }
+  Group table: tbl_netassay_v3l1148
+  Group table: known_domain_list_0
+  Group table: banned_dns_dst_0
+  Group table: cond-17
+    - skipping tbl_netassay_v3l1148 as its already done
+known_domain_list_0 is not a gateway! Aborting search for merge choices
+try_place_table(known_domain_list_0, stage=0)
+  - dependency between tbl_netassay_v3l1148 and table advances stage
+  Initial stage is 1, initial entries is 2048
+  - reducing to 1024 of known_domain_list_0 in stage 1
+  Selected stage: 1    Furthest stage: 1
+  try_place_table returning 1024 of known_domain_list_0 in stage 1 (need more match)
+    Pl vector: [ known_domain_list_0 ]
+  - skipping banned_dns_dst_0 due to in-sequence control dependence on known_domain_list_0
+  - skipping cond-17 due to in-sequence control dependence on known_domain_list_0
+  Group table: tbl_netassay_v3l1241
+  Group table: tbl_netassay_v3l1241_0
+  Group table: tbl_netassay_v3l1250
+  Group table: cond-27
+  Group table: tbl_netassay_v3l1260
+  Group table: tbl_netassay_v3l1260_0
+  Group table: cond-28
+  Group table: cond-30
+    - skipping tbl_netassay_v3l1241 as its already done
+tbl_netassay_v3l1241_0 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1241_0, stage=0)
+  - dependency between tbl_netassay_v3l1241 and table advances stage
+  Initial stage is 1, initial entries is 1
+  Selected stage: 1    Furthest stage: 1
+  try_place_table returning 1 of tbl_netassay_v3l1241_0 in stage 1
+    Pl vector: [ tbl_netassay_v3l1241_0 ]
+  - skipping tbl_netassay_v3l1250 due to in-sequence control dependence on tbl_netassay_v3l1241_0
+  - skipping cond-27 due to in-sequence control dependence on tbl_netassay_v3l1241_0
+tbl_netassay_v3l1260 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1260, stage=0)
+  - action dependency between tbl_netassay_v3l1241 and table tbl_netassay_v3l1260 due to PHV allocation advances stage to 1
+  Initial stage is 1, initial entries is 1
+  Selected stage: 1    Furthest stage: 1
+  try_place_table returning 1 of tbl_netassay_v3l1260 in stage 1
+    Pl vector: [ tbl_netassay_v3l1260 ]
+  - skipping tbl_netassay_v3l1260_0 due to in-sequence control dependence on tbl_netassay_v3l1260
+  - skipping cond-28 due to in-sequence control dependence on tbl_netassay_v3l1241_0
+  - skipping cond-30 due to in-sequence control dependence on tbl_netassay_v3l1241_0
+found 3 tables that could be placed: [ known_domain_list_0, tbl_netassay_v3l1241_0, tbl_netassay_v3l1260 ]
+  Check point now tbl_netassay_v3l1241 0
+    Updating best to first table seen: known_domain_list_0
+  Check point now tbl_netassay_v3l1241 0
+  Check point now tbl_netassay_v3l1241 0
+placing 1024 entries of known_domain_list_0 in stage 1(10) (need more match)
+stage 1, work: [ 3721740, 3723067 ], partly placed 1, placed 3
+    { id=1 ram=1 tcam=22 mram=0 eixb=60 tixb=0 malu=0 salu=0 }
+  Group table: tbl_netassay_v3l1148
+  Group table: known_domain_list_0
+  Group table: banned_dns_dst_0
+  Group table: cond-17
+    - skipping tbl_netassay_v3l1148 as its already done
+known_domain_list_0 is not a gateway! Aborting search for merge choices
+try_place_table(known_domain_list_0, stage=1)
+  Cannot place multiple sections of an individual table in the same stage
+  Initial stage is 2, initial entries is 1024
+  Selected stage: 2    Furthest stage: 2
+  try_place_table returning 1024 of known_domain_list_0 in stage 2
+    Pl vector: [ known_domain_list_0 ]
+  - skipping banned_dns_dst_0 due to in-sequence control dependence on known_domain_list_0
+  - skipping cond-17 due to in-sequence control dependence on known_domain_list_0
+  Group table: tbl_netassay_v3l1241
+  Group table: tbl_netassay_v3l1241_0
+  Group table: tbl_netassay_v3l1250
+  Group table: cond-27
+  Group table: tbl_netassay_v3l1260
+  Group table: tbl_netassay_v3l1260_0
+  Group table: cond-28
+  Group table: cond-30
+    - skipping tbl_netassay_v3l1241 as its already done
+tbl_netassay_v3l1241_0 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1241_0, stage=1)
+  Initial stage is 1, initial entries is 1
+  Selected stage: 1    Furthest stage: 2
+  try_place_table returning 1 of tbl_netassay_v3l1241_0 in stage 1
+    Pl vector: [ tbl_netassay_v3l1241_0 ]
+  - skipping tbl_netassay_v3l1250 due to in-sequence control dependence on tbl_netassay_v3l1241_0
+  - skipping cond-27 due to in-sequence control dependence on tbl_netassay_v3l1241_0
+tbl_netassay_v3l1260 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1260, stage=1)
+  Initial stage is 1, initial entries is 1
+  Selected stage: 1    Furthest stage: 2
+  try_place_table returning 1 of tbl_netassay_v3l1260 in stage 1
+    Pl vector: [ tbl_netassay_v3l1260 ]
+  - skipping tbl_netassay_v3l1260_0 due to in-sequence control dependence on tbl_netassay_v3l1260
+  - skipping cond-28 due to in-sequence control dependence on tbl_netassay_v3l1241_0
+  - skipping cond-30 due to in-sequence control dependence on tbl_netassay_v3l1241_0
+found 3 tables that could be placed: [ known_domain_list_0, tbl_netassay_v3l1241_0, tbl_netassay_v3l1260 ]
+  Check point now known_domain_list_0 0
+    Updating best to first table seen: known_domain_list_0
+  Check point now known_domain_list_0 0
+    Updating best to tbl_netassay_v3l1241_0 from known_domain_list_0 for reason: earlier stage calculated
+  Check point now known_domain_list_0 0
+placing 1 entries of tbl_netassay_v3l1241_0 in stage 1(11)
+stage 1, work: [ 3721740, 3723067 ], partly placed 1, placed 4
+    { id=1 ram=1 tcam=22 mram=0 eixb=60 tixb=0 malu=0 salu=0 }
+  Group table: tbl_netassay_v3l1148
+  Group table: known_domain_list_0
+  Group table: banned_dns_dst_0
+  Group table: cond-17
+    - skipping tbl_netassay_v3l1148 as its already done
+known_domain_list_0 is not a gateway! Aborting search for merge choices
+try_place_table(known_domain_list_0, stage=1)
+  Cannot place multiple sections of an individual table in the same stage
+  Initial stage is 2, initial entries is 1024
+  Selected stage: 2    Furthest stage: 2
+  try_place_table returning 1024 of known_domain_list_0 in stage 2
+    Pl vector: [ known_domain_list_0 ]
+  - skipping banned_dns_dst_0 due to in-sequence control dependence on known_domain_list_0
+  - skipping cond-17 due to in-sequence control dependence on known_domain_list_0
+  Group table: tbl_netassay_v3l1241
+  Group table: tbl_netassay_v3l1241_0
+  Group table: tbl_netassay_v3l1250
+  Group table: cond-27
+  Group table: tbl_netassay_v3l1260
+  Group table: tbl_netassay_v3l1260_0
+  Group table: cond-28
+  Group table: cond-30
+    - skipping tbl_netassay_v3l1241 as its already done
+    - skipping tbl_netassay_v3l1241_0 as its already done
+tbl_netassay_v3l1250 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1250, stage=1)
+  - dependency between tbl_netassay_v3l1241_0 and table advances stage
+  Initial stage is 2, initial entries is 1
+  Selected stage: 2    Furthest stage: 2
+  try_place_table returning 1 of tbl_netassay_v3l1250 in stage 2 (need more)
+    Pl vector: [ tbl_netassay_v3l1250 ]
+  - skipping cond-27 due to in-sequence control dependence on tbl_netassay_v3l1250
+tbl_netassay_v3l1260 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1260, stage=1)
+  - action dependency between tbl_netassay_v3l1241_0 and table tbl_netassay_v3l1260 due to PHV allocation advances stage to 2
+  Initial stage is 2, initial entries is 1
+  Selected stage: 2    Furthest stage: 2
+  try_place_table returning 1 of tbl_netassay_v3l1260 in stage 2
+    Pl vector: [ tbl_netassay_v3l1260 ]
+  - skipping tbl_netassay_v3l1260_0 due to in-sequence control dependence on tbl_netassay_v3l1260
+  - skipping cond-28 due to in-sequence control dependence on tbl_netassay_v3l1250
+  - skipping cond-30 due to in-sequence control dependence on tbl_netassay_v3l1250
+found 3 tables that could be placed: [ known_domain_list_0, tbl_netassay_v3l1250, tbl_netassay_v3l1260 ]
+  Check point now tbl_netassay_v3l1241_0 0
+    Updating best to first table seen: known_domain_list_0
+  Check point now tbl_netassay_v3l1241_0 0
+  Check point now tbl_netassay_v3l1241_0 0
+placing 1024 entries of known_domain_list_0 in stage 2(20)
+stage 2, work: [ 3721740, 3723067 ], partly placed 0, placed 5
+    { id=1 ram=1 tcam=22 mram=0 eixb=60 tixb=0 malu=0 salu=0 }
+  Group table: tbl_netassay_v3l1148
+  Group table: known_domain_list_0
+  Group table: banned_dns_dst_0
+  Group table: cond-17
+    - skipping tbl_netassay_v3l1148 as its already done
+    - skipping known_domain_list_0 as its already done
+banned_dns_dst_0 is not a gateway! Aborting search for merge choices
+try_place_table(banned_dns_dst_0, stage=2)
+  - dependency between known_domain_list_0 and table advances stage
+  Initial stage is 3, initial entries is 100
+  Selected stage: 3    Furthest stage: 3
+  try_place_table returning 512 of banned_dns_dst_0 in stage 3
+    Pl vector: [ banned_dns_dst_0 ]
+  - skipping cond-17 due to in-sequence control dependence on banned_dns_dst_0
+  Group table: tbl_netassay_v3l1241
+  Group table: tbl_netassay_v3l1241_0
+  Group table: tbl_netassay_v3l1250
+  Group table: cond-27
+  Group table: tbl_netassay_v3l1260
+  Group table: tbl_netassay_v3l1260_0
+  Group table: cond-28
+  Group table: cond-30
+    - skipping tbl_netassay_v3l1241 as its already done
+    - skipping tbl_netassay_v3l1241_0 as its already done
+tbl_netassay_v3l1250 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1250, stage=2)
+  - dependency between known_domain_list_0 and tbl_netassay_v3l1168 advances stage
+  Initial stage is 3, initial entries is 1
+  Selected stage: 3    Furthest stage: 3
+  try_place_table returning 1 of tbl_netassay_v3l1250 in stage 3 (need more)
+    Pl vector: [ tbl_netassay_v3l1250 ]
+  - skipping cond-27 due to in-sequence control dependence on tbl_netassay_v3l1250
+tbl_netassay_v3l1260 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1260, stage=2)
+  Initial stage is 2, initial entries is 1
+  Selected stage: 2    Furthest stage: 3
+  try_place_table returning 1 of tbl_netassay_v3l1260 in stage 2
+    Pl vector: [ tbl_netassay_v3l1260 ]
+  - skipping tbl_netassay_v3l1260_0 due to in-sequence control dependence on tbl_netassay_v3l1260
+  - skipping cond-28 due to in-sequence control dependence on tbl_netassay_v3l1250
+  - skipping cond-30 due to in-sequence control dependence on tbl_netassay_v3l1250
+found 3 tables that could be placed: [ banned_dns_dst_0, tbl_netassay_v3l1250, tbl_netassay_v3l1260 ]
+  Check point now known_domain_list_0 0
+    Updating best to first table seen: banned_dns_dst_0
+  Check point now known_domain_list_0 0
+  Check point now known_domain_list_0 0
+    Updating best to tbl_netassay_v3l1260 from banned_dns_dst_0 for reason: earlier stage calculated
+placing 1 entries of tbl_netassay_v3l1260 in stage 2(21)
+stage 2, work: [ 3721740, 3723067 ], partly placed 0, placed 6
+    { id=1 ram=1 tcam=22 mram=0 eixb=60 tixb=0 malu=0 salu=0 }
+  Group table: tbl_netassay_v3l1148
+  Group table: known_domain_list_0
+  Group table: banned_dns_dst_0
+  Group table: cond-17
+    - skipping tbl_netassay_v3l1148 as its already done
+    - skipping known_domain_list_0 as its already done
+banned_dns_dst_0 is not a gateway! Aborting search for merge choices
+try_place_table(banned_dns_dst_0, stage=2)
+  - dependency between known_domain_list_0 and table advances stage
+  Initial stage is 3, initial entries is 100
+  Selected stage: 3    Furthest stage: 3
+  try_place_table returning 512 of banned_dns_dst_0 in stage 3
+    Pl vector: [ banned_dns_dst_0 ]
+  - skipping cond-17 due to in-sequence control dependence on banned_dns_dst_0
+  Group table: tbl_netassay_v3l1241
+  Group table: tbl_netassay_v3l1241_0
+  Group table: tbl_netassay_v3l1250
+  Group table: cond-27
+  Group table: tbl_netassay_v3l1260
+  Group table: tbl_netassay_v3l1260_0
+  Group table: cond-28
+  Group table: cond-30
+    - skipping tbl_netassay_v3l1241 as its already done
+    - skipping tbl_netassay_v3l1241_0 as its already done
+tbl_netassay_v3l1250 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1250, stage=2)
+  - action dependency between tbl_netassay_v3l1260 and table tbl_netassay_v3l1250 due to PHV allocation advances stage to 3
+  Initial stage is 3, initial entries is 1
+  Selected stage: 3    Furthest stage: 3
+  try_place_table returning 1 of tbl_netassay_v3l1250 in stage 3 (need more)
+    Pl vector: [ tbl_netassay_v3l1250 ]
+  - skipping cond-27 due to in-sequence control dependence on tbl_netassay_v3l1250
+    - skipping tbl_netassay_v3l1260 as its already done
+tbl_netassay_v3l1260_0 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1260_0, stage=2)
+  - dependency between tbl_netassay_v3l1260 and table advances stage
+  Initial stage is 3, initial entries is 1
+  Selected stage: 3    Furthest stage: 3
+  try_place_table returning 1 of tbl_netassay_v3l1260_0 in stage 3
+    Pl vector: [ tbl_netassay_v3l1260_0 ]
+  - skipping cond-28 due to in-sequence control dependence on tbl_netassay_v3l1250
+  - skipping cond-30 due to in-sequence control dependence on tbl_netassay_v3l1250
+found 3 tables that could be placed: [ banned_dns_dst_0, tbl_netassay_v3l1250, tbl_netassay_v3l1260_0 ]
+  Check point now tbl_netassay_v3l1260 0
+    Updating best to first table seen: banned_dns_dst_0
+  Check point now tbl_netassay_v3l1260 0
+  Check point now tbl_netassay_v3l1260 0
+placing 512 entries of banned_dns_dst_0 in stage 3(30)
+stage 3, work: [ 3721740, 3723067 ], partly placed 0, placed 7
+    { id=1 ram=1 tcam=1 mram=0 eixb=4 tixb=0 malu=0 salu=0 }
+  Group table: tbl_netassay_v3l1148
+  Group table: known_domain_list_0
+  Group table: banned_dns_dst_0
+  Group table: cond-17
+    - skipping tbl_netassay_v3l1148 as its already done
+    - skipping known_domain_list_0 as its already done
+    - skipping banned_dns_dst_0 as its already done
+try_place_table(cond-17, stage=3)
+  Merging with match table tbl_netassay_v3l1157
+  - dependency between banned_dns_dst_0 and gateway advances stage
+  Initial stage is 4, initial entries is 1
+  Selected stage: 4    Furthest stage: 4
+  try_place_table returning 1 of tbl_netassay_v3l1157 in stage 4
+    Pl vector: [ tbl_netassay_v3l1157 ]
+  Group table: tbl_netassay_v3l1241
+  Group table: tbl_netassay_v3l1241_0
+  Group table: tbl_netassay_v3l1250
+  Group table: cond-27
+  Group table: tbl_netassay_v3l1260
+  Group table: tbl_netassay_v3l1260_0
+  Group table: cond-28
+  Group table: cond-30
+    - skipping tbl_netassay_v3l1241 as its already done
+    - skipping tbl_netassay_v3l1241_0 as its already done
+tbl_netassay_v3l1250 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1250, stage=3)
+  Initial stage is 3, initial entries is 1
+  Selected stage: 3    Furthest stage: 4
+  try_place_table returning 1 of tbl_netassay_v3l1250 in stage 3 (need more)
+    Pl vector: [ tbl_netassay_v3l1250 ]
+  - skipping cond-27 due to in-sequence control dependence on tbl_netassay_v3l1250
+    - skipping tbl_netassay_v3l1260 as its already done
+tbl_netassay_v3l1260_0 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1260_0, stage=3)
+  Initial stage is 3, initial entries is 1
+  Selected stage: 3    Furthest stage: 4
+  try_place_table returning 1 of tbl_netassay_v3l1260_0 in stage 3
+    Pl vector: [ tbl_netassay_v3l1260_0 ]
+  - skipping cond-28 due to in-sequence control dependence on tbl_netassay_v3l1250
+  - skipping cond-30 due to in-sequence control dependence on tbl_netassay_v3l1250
+found 3 tables that could be placed: [ tbl_netassay_v3l1157, tbl_netassay_v3l1250, tbl_netassay_v3l1260_0 ]
+  Check point now banned_dns_dst_0 0
+    Updating best to first table seen: tbl_netassay_v3l1157
+  Check point now banned_dns_dst_0 0
+    Updating best to tbl_netassay_v3l1250 from tbl_netassay_v3l1157 for reason: earlier stage calculated
+  Check point now banned_dns_dst_0 0
+placing 1 entries of tbl_netassay_v3l1250 in stage 3(31) (need more)
+stage 3, work: [ 3721740, 3723067 ], partly placed 1, placed 8
+    { id=1 ram=1 tcam=1 mram=0 eixb=4 tixb=0 malu=0 salu=0 }
+  Group table: tbl_netassay_v3l1148
+  Group table: known_domain_list_0
+  Group table: banned_dns_dst_0
+  Group table: cond-17
+    - skipping tbl_netassay_v3l1148 as its already done
+    - skipping known_domain_list_0 as its already done
+    - skipping banned_dns_dst_0 as its already done
+try_place_table(cond-17, stage=3)
+  Merging with match table tbl_netassay_v3l1157
+  - dependency between banned_dns_dst_0 and gateway advances stage
+  Initial stage is 4, initial entries is 1
+  Selected stage: 4    Furthest stage: 4
+  try_place_table returning 1 of tbl_netassay_v3l1157 in stage 4
+    Pl vector: [ tbl_netassay_v3l1157 ]
+  Group table: tbl_netassay_v3l1241
+  Group table: tbl_netassay_v3l1241_0
+  Group table: tbl_netassay_v3l1250
+  Group table: cond-27
+  Group table: tbl_netassay_v3l1260
+  Group table: tbl_netassay_v3l1260_0
+  Group table: cond-28
+  Group table: cond-30
+    - skipping tbl_netassay_v3l1241 as its already done
+    - skipping tbl_netassay_v3l1241_0 as its already done
+tbl_netassay_v3l1250 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1250, stage=3)
+  Cannot place multiple sections of an individual table in the same stage
+    Pl vector: []
+  - skipping cond-27 due to in-sequence control dependence on tbl_netassay_v3l1250
+    - skipping tbl_netassay_v3l1260 as its already done
+tbl_netassay_v3l1260_0 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1260_0, stage=3)
+  Initial stage is 3, initial entries is 1
+  Selected stage: 3    Furthest stage: 4
+  try_place_table returning 1 of tbl_netassay_v3l1260_0 in stage 3
+    Pl vector: [ tbl_netassay_v3l1260_0 ]
+  - skipping cond-28 due to in-sequence control dependence on tbl_netassay_v3l1250
+  - skipping cond-30 due to in-sequence control dependence on tbl_netassay_v3l1250
+found 2 tables that could be placed: [ tbl_netassay_v3l1157, tbl_netassay_v3l1260_0 ]
+  Check point now tbl_netassay_v3l1250 0
+    Updating best to first table seen: tbl_netassay_v3l1157
+  Check point now tbl_netassay_v3l1250 0
+    Updating best to tbl_netassay_v3l1260_0 from tbl_netassay_v3l1157 for reason: earlier stage calculated
+placing 1 entries of tbl_netassay_v3l1260_0 in stage 3(32)
+stage 3, work: [ 3721740, 3723067 ], partly placed 1, placed 9
+    { id=1 ram=1 tcam=1 mram=0 eixb=4 tixb=0 malu=0 salu=0 }
+  Group table: tbl_netassay_v3l1148
+  Group table: known_domain_list_0
+  Group table: banned_dns_dst_0
+  Group table: cond-17
+    - skipping tbl_netassay_v3l1148 as its already done
+    - skipping known_domain_list_0 as its already done
+    - skipping banned_dns_dst_0 as its already done
+try_place_table(cond-17, stage=3)
+  Merging with match table tbl_netassay_v3l1157
+  - dependency between banned_dns_dst_0 and gateway advances stage
+  Initial stage is 4, initial entries is 1
+  Selected stage: 4    Furthest stage: 4
+  try_place_table returning 1 of tbl_netassay_v3l1157 in stage 4
+    Pl vector: [ tbl_netassay_v3l1157 ]
+  Group table: tbl_netassay_v3l1241
+  Group table: tbl_netassay_v3l1241_0
+  Group table: tbl_netassay_v3l1250
+  Group table: cond-27
+  Group table: tbl_netassay_v3l1260
+  Group table: tbl_netassay_v3l1260_0
+  Group table: cond-28
+  Group table: cond-30
+    - skipping tbl_netassay_v3l1241 as its already done
+    - skipping tbl_netassay_v3l1241_0 as its already done
+tbl_netassay_v3l1250 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1250, stage=3)
+  Cannot place multiple sections of an individual table in the same stage
+    Pl vector: []
+  - skipping cond-27 due to in-sequence control dependence on tbl_netassay_v3l1250
+    - skipping tbl_netassay_v3l1260 as its already done
+    - skipping tbl_netassay_v3l1260_0 as its already done
+  - skipping cond-28 due to in-sequence control dependence on tbl_netassay_v3l1250
+  - skipping cond-30 due to in-sequence control dependence on tbl_netassay_v3l1250
+found 1 tables that could be placed: [ tbl_netassay_v3l1157 ]
+  Check point now tbl_netassay_v3l1260_0 0
+    Updating best to first table seen: tbl_netassay_v3l1157
+placing 1 entries of tbl_netassay_v3l1157 (with gw cond-17) in stage 4(40)
+stage 4, work: [ 3723067, 3722109 ], partly placed 1, placed 10
+    { id=0 ram=0 tcam=0 mram=0 eixb=0 tixb=0 malu=0 salu=0 }
+  Group table: tbl_netassay_v3l1241
+  Group table: tbl_netassay_v3l1241_0
+  Group table: tbl_netassay_v3l1250
+  Group table: cond-27
+  Group table: tbl_netassay_v3l1260
+  Group table: tbl_netassay_v3l1260_0
+  Group table: cond-28
+  Group table: cond-30
+    - skipping tbl_netassay_v3l1241 as its already done
+    - skipping tbl_netassay_v3l1241_0 as its already done
+tbl_netassay_v3l1250 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1250, stage=4)
+  - dependency between tbl_netassay_v3l1157 and tbl_netassay_v3l1168 advances stage
+    Pl vector: []
+  - skipping cond-27 due to in-sequence control dependence on tbl_netassay_v3l1250
+    - skipping tbl_netassay_v3l1260 as its already done
+    - skipping tbl_netassay_v3l1260_0 as its already done
+  - skipping cond-28 due to in-sequence control dependence on tbl_netassay_v3l1250
+  - skipping cond-30 due to in-sequence control dependence on tbl_netassay_v3l1250
+  Group table: tbl_netassay_v3l1157
+  Group table: tbl_netassay_v3l1159
+  Group table: tbl_netassay_v3l1160
+  Group table: cond-18
+  Group table: cond-21
+  Group table: cond-25
+    - skipping tbl_netassay_v3l1157 as its already done
+tbl_netassay_v3l1159 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1159, stage=4)
+  - dependency between tbl_netassay_v3l1157 and table advances stage
+  Initial stage is 5, initial entries is 1
+  Selected stage: 5    Furthest stage: 5
+  try_place_table returning 1 of tbl_netassay_v3l1159 in stage 5
+    Pl vector: [ tbl_netassay_v3l1159 ]
+  - skipping tbl_netassay_v3l1160 due to in-sequence control dependence on tbl_netassay_v3l1159
+  - skipping cond-18 because it depends on tbl_netassay_v3l1160
+    - removing tbl_netassay_v3l1168 from merge list because it depends on tbl_netassay_v3l1160
+    - removing tbl_netassay_v3l1191 from merge list because it depends on tbl_netassay_v3l1160
+    - removing tbl_netassay_v3l1192 from merge list because it depends on tbl_netassay_v3l1160
+    - skipping gateway cond-18 until mergeable tables are available
+  - skipping cond-21 due to in-sequence control dependence on tbl_netassay_v3l1159
+  - skipping cond-25 due to in-sequence control dependence on tbl_netassay_v3l1159
+found 1 tables that could be placed: [ tbl_netassay_v3l1159 ]
+  Check point now tbl_netassay_v3l1157 0
+    Updating best to first table seen: tbl_netassay_v3l1159
+placing 1 entries of tbl_netassay_v3l1159 in stage 5(50)
+stage 5, work: [ 3723067, 3722109 ], partly placed 1, placed 11
+    { id=0 ram=0 tcam=0 mram=0 eixb=0 tixb=0 malu=0 salu=0 }
+  Group table: tbl_netassay_v3l1241
+  Group table: tbl_netassay_v3l1241_0
+  Group table: tbl_netassay_v3l1250
+  Group table: cond-27
+  Group table: tbl_netassay_v3l1260
+  Group table: tbl_netassay_v3l1260_0
+  Group table: cond-28
+  Group table: cond-30
+    - skipping tbl_netassay_v3l1241 as its already done
+    - skipping tbl_netassay_v3l1241_0 as its already done
+tbl_netassay_v3l1250 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1250, stage=5)
+  - dependency between tbl_netassay_v3l1159 and tbl_netassay_v3l1168 advances stage
+    Pl vector: []
+  - skipping cond-27 due to in-sequence control dependence on tbl_netassay_v3l1250
+    - skipping tbl_netassay_v3l1260 as its already done
+    - skipping tbl_netassay_v3l1260_0 as its already done
+  - skipping cond-28 due to in-sequence control dependence on tbl_netassay_v3l1250
+  - skipping cond-30 due to in-sequence control dependence on tbl_netassay_v3l1250
+  Group table: tbl_netassay_v3l1157
+  Group table: tbl_netassay_v3l1159
+  Group table: tbl_netassay_v3l1160
+  Group table: cond-18
+  Group table: cond-21
+  Group table: cond-25
+    - skipping tbl_netassay_v3l1157 as its already done
+    - skipping tbl_netassay_v3l1159 as its already done
+tbl_netassay_v3l1160 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1160, stage=5)
+  - dependency between tbl_netassay_v3l1159 and table advances stage
+  Initial stage is 6, initial entries is 1
+  Selected stage: 6    Furthest stage: 6
+  try_place_table returning 1 of tbl_netassay_v3l1160 in stage 6
+    Pl vector: [ tbl_netassay_v3l1160 ]
+  - skipping cond-18 because it depends on tbl_netassay_v3l1160
+    - removing tbl_netassay_v3l1168 from merge list because it depends on tbl_netassay_v3l1160
+    - removing tbl_netassay_v3l1191 from merge list because it depends on tbl_netassay_v3l1160
+    - removing tbl_netassay_v3l1192 from merge list because it depends on tbl_netassay_v3l1160
+    - skipping gateway cond-18 until mergeable tables are available
+  - skipping cond-21 due to in-sequence control dependence on tbl_netassay_v3l1160
+  - skipping cond-25 due to in-sequence control dependence on tbl_netassay_v3l1160
+found 1 tables that could be placed: [ tbl_netassay_v3l1160 ]
+  Check point now tbl_netassay_v3l1159 0
+    Updating best to first table seen: tbl_netassay_v3l1160
+placing 1 entries of tbl_netassay_v3l1160 in stage 6(60)
+stage 6, work: [ 3723067, 3722109 ], partly placed 1, placed 12
+    { id=0 ram=0 tcam=0 mram=0 eixb=0 tixb=0 malu=0 salu=0 }
+  Group table: tbl_netassay_v3l1241
+  Group table: tbl_netassay_v3l1241_0
+  Group table: tbl_netassay_v3l1250
+  Group table: cond-27
+  Group table: tbl_netassay_v3l1260
+  Group table: tbl_netassay_v3l1260_0
+  Group table: cond-28
+  Group table: cond-30
+    - skipping tbl_netassay_v3l1241 as its already done
+    - skipping tbl_netassay_v3l1241_0 as its already done
+tbl_netassay_v3l1250 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1250, stage=6)
+    Pl vector: []
+  - skipping cond-27 due to in-sequence control dependence on tbl_netassay_v3l1250
+    - skipping tbl_netassay_v3l1260 as its already done
+    - skipping tbl_netassay_v3l1260_0 as its already done
+  - skipping cond-28 due to in-sequence control dependence on tbl_netassay_v3l1250
+  - skipping cond-30 due to in-sequence control dependence on tbl_netassay_v3l1250
+  Group table: tbl_netassay_v3l1157
+  Group table: tbl_netassay_v3l1159
+  Group table: tbl_netassay_v3l1160
+  Group table: cond-18
+  Group table: cond-21
+  Group table: cond-25
+    - skipping tbl_netassay_v3l1157 as its already done
+    - skipping tbl_netassay_v3l1159 as its already done
+    - skipping tbl_netassay_v3l1160 as its already done
+try_place_table(cond-18, stage=6)
+  Merging with match table tbl_netassay_v3l1168
+  Initial stage is 6, initial entries is 1
+  Selected stage: 6    Furthest stage: 7
+  try_place_table returning 1 of tbl_netassay_v3l1168 in stage 6 (need more)
+  Merging with match table tbl_netassay_v3l1191
+  Initial stage is 6, initial entries is 1
+  Selected stage: 6    Furthest stage: 7
+  try_place_table returning 1 of tbl_netassay_v3l1191 in stage 6 (need more)
+  Merging with match table tbl_netassay_v3l1192
+  - dependency between tbl_netassay_v3l1160 and table advances stage
+  Initial stage is 7, initial entries is 1
+  Selected stage: 7    Furthest stage: 7
+  try_place_table returning 1 of tbl_netassay_v3l1192 in stage 7 (need more)
+    Pl vector: [ tbl_netassay_v3l1168, tbl_netassay_v3l1191, tbl_netassay_v3l1192 ]
+  - skipping cond-21 due to in-sequence control dependence on cond-18
+  - skipping cond-25 due to in-sequence control dependence on cond-18
+found 3 tables that could be placed: [ tbl_netassay_v3l1168, tbl_netassay_v3l1191, tbl_netassay_v3l1192 ]
+  Check point now tbl_netassay_v3l1160 0
+    Updating best to first table seen: tbl_netassay_v3l1168
+  Check point now tbl_netassay_v3l1160 0
+  Check point now tbl_netassay_v3l1160 0
+placing 1 entries of tbl_netassay_v3l1168 (with gw cond-18) in stage 6(61) (need more)
+stage 6, work: [ 3723067, 3721088, 3722309 ], partly placed 2, placed 13
+    { id=0 ram=0 tcam=0 mram=0 eixb=0 tixb=0 malu=0 salu=0 }
+  Group table: tbl_netassay_v3l1241
+  Group table: tbl_netassay_v3l1241_0
+  Group table: tbl_netassay_v3l1250
+  Group table: cond-27
+  Group table: tbl_netassay_v3l1260
+  Group table: tbl_netassay_v3l1260_0
+  Group table: cond-28
+  Group table: cond-30
+    - skipping tbl_netassay_v3l1241 as its already done
+    - skipping tbl_netassay_v3l1241_0 as its already done
+tbl_netassay_v3l1250 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1250, stage=6)
+    Pl vector: []
+  - skipping cond-27 due to in-sequence control dependence on tbl_netassay_v3l1250
+    - skipping tbl_netassay_v3l1260 as its already done
+    - skipping tbl_netassay_v3l1260_0 as its already done
+  - skipping cond-28 due to in-sequence control dependence on tbl_netassay_v3l1250
+  - skipping cond-30 due to in-sequence control dependence on tbl_netassay_v3l1250
+  Group table: tbl_netassay_v3l1191
+  Group table: tbl_netassay_v3l1192
+tbl_netassay_v3l1191 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1191, stage=6)
+    tbl_netassay_v3l1168 is now also placed
+  Initial stage is 6, initial entries is 1
+  Selected stage: 6    Furthest stage: 7
+  try_place_table returning 1 of tbl_netassay_v3l1191 in stage 6
+    Pl vector: [ tbl_netassay_v3l1191 ]
+tbl_netassay_v3l1192 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1192, stage=6)
+  - dependency between tbl_netassay_v3l1160 and table advances stage
+  Initial stage is 7, initial entries is 1
+  Selected stage: 7    Furthest stage: 7
+  try_place_table returning 1 of tbl_netassay_v3l1192 in stage 7 (need more)
+    Pl vector: [ tbl_netassay_v3l1192 ]
+  Group table: tbl_netassay_v3l1168
+  Group table: cond-19
+tbl_netassay_v3l1168 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1168, stage=6)
+  Cannot place multiple sections of an individual table in the same stage
+    Pl vector: []
+  - skipping cond-19 due to in-sequence control dependence on tbl_netassay_v3l1168
+found 2 tables that could be placed: [ tbl_netassay_v3l1191, tbl_netassay_v3l1192 ]
+  Check point now tbl_netassay_v3l1168 0
+    Updating best to first table seen: tbl_netassay_v3l1191
+  Check point now tbl_netassay_v3l1168 0
+placing 1 entries of tbl_netassay_v3l1191 in stage 6(62)
+stage 6, work: [ 3723067, 3721088, 3722309 ], partly placed 1, placed 14
+    { id=0 ram=0 tcam=0 mram=0 eixb=0 tixb=0 malu=0 salu=0 }
+  Group table: tbl_netassay_v3l1241
+  Group table: tbl_netassay_v3l1241_0
+  Group table: tbl_netassay_v3l1250
+  Group table: cond-27
+  Group table: tbl_netassay_v3l1260
+  Group table: tbl_netassay_v3l1260_0
+  Group table: cond-28
+  Group table: cond-30
+    - skipping tbl_netassay_v3l1241 as its already done
+    - skipping tbl_netassay_v3l1241_0 as its already done
+tbl_netassay_v3l1250 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1250, stage=6)
+  Initial stage is 6, initial entries is 0
+  Selected stage: 6    Furthest stage: 7
+  try_place_table returning 0 of tbl_netassay_v3l1250 in stage 6
+    Pl vector: [ tbl_netassay_v3l1250 ]
+  - skipping cond-27 due to in-sequence control dependence on tbl_netassay_v3l1250
+    - skipping tbl_netassay_v3l1260 as its already done
+    - skipping tbl_netassay_v3l1260_0 as its already done
+  - skipping cond-28 due to in-sequence control dependence on tbl_netassay_v3l1250
+  - skipping cond-30 due to in-sequence control dependence on tbl_netassay_v3l1250
+  Group table: tbl_netassay_v3l1191
+  Group table: tbl_netassay_v3l1192
+    - skipping tbl_netassay_v3l1191 as its already done
+tbl_netassay_v3l1192 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1192, stage=6)
+  - dependency between tbl_netassay_v3l1160 and table advances stage
+  Initial stage is 7, initial entries is 1
+  Selected stage: 7    Furthest stage: 7
+  try_place_table returning 1 of tbl_netassay_v3l1192 in stage 7 (need more)
+    Pl vector: [ tbl_netassay_v3l1192 ]
+  Group table: tbl_netassay_v3l1168
+  Group table: cond-19
+    - skipping tbl_netassay_v3l1168 as its already done
+try_place_table(cond-19, stage=6)
+  Merging with match table tbl_netassay_v3l1172
+  - dependency between tbl_netassay_v3l1168 and gateway advances stage
+  Initial stage is 7, initial entries is 1
+  Selected stage: 7    Furthest stage: 7
+  try_place_table returning 1 of tbl_netassay_v3l1172 in stage 7 (need more)
+  Merging with match table tbl_netassay_v3l1177
+  - dependency between tbl_netassay_v3l1168 and gateway advances stage
+  Initial stage is 7, initial entries is 1
+  Selected stage: 7    Furthest stage: 7
+  try_place_table returning 1 of tbl_netassay_v3l1177 in stage 7 (need more)
+    Pl vector: [ tbl_netassay_v3l1172, tbl_netassay_v3l1177 ]
+found 4 tables that could be placed: [ tbl_netassay_v3l1250, tbl_netassay_v3l1192, tbl_netassay_v3l1172, tbl_netassay_v3l1177 ]
+  Check point now tbl_netassay_v3l1191 0
+    Updating best to first table seen: tbl_netassay_v3l1250
+  Check point now tbl_netassay_v3l1191 0
+  Check point now tbl_netassay_v3l1191 0
+  Check point now tbl_netassay_v3l1191 0
+placing 0 entries of tbl_netassay_v3l1250 in stage 6(63)
+stage 6, work: [ 3723067, 3721088, 3722309 ], partly placed 0, placed 15
+    { id=0 ram=0 tcam=0 mram=0 eixb=0 tixb=0 malu=0 salu=0 }
+  Group table: tbl_netassay_v3l1241
+  Group table: tbl_netassay_v3l1241_0
+  Group table: tbl_netassay_v3l1250
+  Group table: cond-27
+  Group table: tbl_netassay_v3l1260
+  Group table: tbl_netassay_v3l1260_0
+  Group table: cond-28
+  Group table: cond-30
+    - skipping tbl_netassay_v3l1241 as its already done
+    - skipping tbl_netassay_v3l1241_0 as its already done
+    - skipping tbl_netassay_v3l1250 as its already done
+try_place_table(cond-27, stage=6)
+  Merging with match table tbl_netassay_v3l1254
+  - dependency between tbl_netassay_v3l1250 and gateway advances stage
+  Initial stage is 7, initial entries is 1
+  Selected stage: 7    Furthest stage: 7
+  try_place_table returning 1 of tbl_netassay_v3l1254 in stage 7 (need more)
+    Pl vector: [ tbl_netassay_v3l1254 ]
+    - skipping tbl_netassay_v3l1260 as its already done
+    - skipping tbl_netassay_v3l1260_0 as its already done
+  - skipping cond-28 due to in-sequence control dependence on cond-27
+  - skipping cond-30 due to in-sequence control dependence on cond-27
+  Group table: tbl_netassay_v3l1191
+  Group table: tbl_netassay_v3l1192
+    - skipping tbl_netassay_v3l1191 as its already done
+tbl_netassay_v3l1192 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1192, stage=6)
+  - dependency between tbl_netassay_v3l1160 and table advances stage
+  Initial stage is 7, initial entries is 1
+  Selected stage: 7    Furthest stage: 7
+  try_place_table returning 1 of tbl_netassay_v3l1192 in stage 7 (need more)
+    Pl vector: [ tbl_netassay_v3l1192 ]
+  Group table: tbl_netassay_v3l1168
+  Group table: cond-19
+    - skipping tbl_netassay_v3l1168 as its already done
+try_place_table(cond-19, stage=6)
+  Merging with match table tbl_netassay_v3l1172
+  - dependency between tbl_netassay_v3l1168 and gateway advances stage
+  Initial stage is 7, initial entries is 1
+  Selected stage: 7    Furthest stage: 7
+  try_place_table returning 1 of tbl_netassay_v3l1172 in stage 7 (need more)
+  Merging with match table tbl_netassay_v3l1177
+  - dependency between tbl_netassay_v3l1168 and gateway advances stage
+  Initial stage is 7, initial entries is 1
+  Selected stage: 7    Furthest stage: 7
+  try_place_table returning 1 of tbl_netassay_v3l1177 in stage 7 (need more)
+    Pl vector: [ tbl_netassay_v3l1172, tbl_netassay_v3l1177 ]
+found 4 tables that could be placed: [ tbl_netassay_v3l1254, tbl_netassay_v3l1192, tbl_netassay_v3l1172, tbl_netassay_v3l1177 ]
+  Check point now tbl_netassay_v3l1250 0
+    Updating best to first table seen: tbl_netassay_v3l1254
+  Check point now tbl_netassay_v3l1250 0
+    Updating best to tbl_netassay_v3l1192 from tbl_netassay_v3l1254 for reason: longer control-excluded dependence tail chain
+  Check point now tbl_netassay_v3l1250 0
+  Check point now tbl_netassay_v3l1250 0
+placing 1 entries of tbl_netassay_v3l1192 in stage 7(70) (need more)
+stage 7, work: [ 3723067, 3721088, 3722309 ], partly placed 1, placed 16
+    { id=0 ram=0 tcam=0 mram=0 eixb=0 tixb=0 malu=0 salu=0 }
+  Group table: tbl_netassay_v3l1241
+  Group table: tbl_netassay_v3l1241_0
+  Group table: tbl_netassay_v3l1250
+  Group table: cond-27
+  Group table: tbl_netassay_v3l1260
+  Group table: tbl_netassay_v3l1260_0
+  Group table: cond-28
+  Group table: cond-30
+    - skipping tbl_netassay_v3l1241 as its already done
+    - skipping tbl_netassay_v3l1241_0 as its already done
+    - skipping tbl_netassay_v3l1250 as its already done
+try_place_table(cond-27, stage=7)
+  Merging with match table tbl_netassay_v3l1254
+  Initial stage is 7, initial entries is 1
+  Selected stage: 7    Furthest stage: 8
+  try_place_table returning 1 of tbl_netassay_v3l1254 in stage 7 (need more)
+    Pl vector: [ tbl_netassay_v3l1254 ]
+    - skipping tbl_netassay_v3l1260 as its already done
+    - skipping tbl_netassay_v3l1260_0 as its already done
+  - skipping cond-28 due to in-sequence control dependence on cond-27
+  - skipping cond-30 due to in-sequence control dependence on cond-27
+  Group table: tbl_netassay_v3l1191
+  Group table: tbl_netassay_v3l1192
+    - skipping tbl_netassay_v3l1191 as its already done
+tbl_netassay_v3l1192 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1192, stage=7)
+  Cannot place multiple sections of an individual table in the same stage
+    Pl vector: []
+  Group table: tbl_netassay_v3l1168
+  Group table: cond-19
+    - skipping tbl_netassay_v3l1168 as its already done
+try_place_table(cond-19, stage=7)
+  Merging with match table tbl_netassay_v3l1172
+  Initial stage is 7, initial entries is 1
+  Selected stage: 7    Furthest stage: 8
+  try_place_table returning 1 of tbl_netassay_v3l1172 in stage 7 (need more)
+  Merging with match table tbl_netassay_v3l1177
+  Initial stage is 7, initial entries is 1
+  Selected stage: 7    Furthest stage: 8
+  try_place_table returning 1 of tbl_netassay_v3l1177 in stage 7 (need more)
+    Pl vector: [ tbl_netassay_v3l1172, tbl_netassay_v3l1177 ]
+found 3 tables that could be placed: [ tbl_netassay_v3l1254, tbl_netassay_v3l1172, tbl_netassay_v3l1177 ]
+  Check point now tbl_netassay_v3l1192 0
+    Updating best to first table seen: tbl_netassay_v3l1254
+  Check point now tbl_netassay_v3l1192 0
+  Check point now tbl_netassay_v3l1192 0
+placing 1 entries of tbl_netassay_v3l1254 (with gw cond-27) in stage 7(71) (need more)
+stage 7, work: [ 3721088, 3722309, 3721475 ], partly placed 2, placed 17
+    { id=0 ram=0 tcam=0 mram=0 eixb=0 tixb=0 malu=0 salu=0 }
+  Group table: tbl_netassay_v3l1191
+  Group table: tbl_netassay_v3l1192
+    - skipping tbl_netassay_v3l1191 as its already done
+tbl_netassay_v3l1192 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1192, stage=7)
+  Cannot place multiple sections of an individual table in the same stage
+    Pl vector: []
+  Group table: tbl_netassay_v3l1168
+  Group table: cond-19
+    - skipping tbl_netassay_v3l1168 as its already done
+try_place_table(cond-19, stage=7)
+  Merging with match table tbl_netassay_v3l1172
+  Initial stage is 7, initial entries is 1
+  Selected stage: 7    Furthest stage: 8
+  try_place_table returning 1 of tbl_netassay_v3l1172 in stage 7 (need more)
+  Merging with match table tbl_netassay_v3l1177
+  Initial stage is 7, initial entries is 1
+  Selected stage: 7    Furthest stage: 8
+  try_place_table returning 1 of tbl_netassay_v3l1177 in stage 7 (need more)
+    Pl vector: [ tbl_netassay_v3l1172, tbl_netassay_v3l1177 ]
+  Group table: tbl_netassay_v3l1254
+tbl_netassay_v3l1254 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1254, stage=7)
+  Cannot place multiple sections of an individual table in the same stage
+    Pl vector: []
+found 2 tables that could be placed: [ tbl_netassay_v3l1172, tbl_netassay_v3l1177 ]
+  Check point now tbl_netassay_v3l1254 0
+    Updating best to first table seen: tbl_netassay_v3l1172
+  Check point now tbl_netassay_v3l1254 0
+placing 1 entries of tbl_netassay_v3l1172 (with gw cond-19) in stage 7(72) (need more)
+stage 7, work: [ 3721088, 3721475, 3722558, 3720919 ], partly placed 3, placed 18
+    { id=0 ram=0 tcam=0 mram=0 eixb=0 tixb=0 malu=0 salu=0 }
+  Group table: tbl_netassay_v3l1191
+  Group table: tbl_netassay_v3l1192
+    - skipping tbl_netassay_v3l1191 as its already done
+tbl_netassay_v3l1192 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1192, stage=7)
+  Cannot place multiple sections of an individual table in the same stage
+    Pl vector: []
+  Group table: tbl_netassay_v3l1254
+tbl_netassay_v3l1254 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1254, stage=7)
+  Cannot place multiple sections of an individual table in the same stage
+    Pl vector: []
+  Group table: tbl_netassay_v3l1177
+  Group table: cond-20
+tbl_netassay_v3l1177 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1177, stage=7)
+    tbl_netassay_v3l1192 is now also placed
+    tbl_netassay_v3l1254 is now also placed
+    tbl_netassay_v3l1172 is now also placed
+  Initial stage is 7, initial entries is 1
+  Selected stage: 7    Furthest stage: 8
+  try_place_table returning 1 of tbl_netassay_v3l1177 in stage 7
+    Pl vector: [ tbl_netassay_v3l1177 ]
+  - skipping cond-20 due to in-sequence control dependence on tbl_netassay_v3l1177
+  Group table: tbl_netassay_v3l1172
+tbl_netassay_v3l1172 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1172, stage=7)
+  Cannot place multiple sections of an individual table in the same stage
+    Pl vector: []
+found 1 tables that could be placed: [ tbl_netassay_v3l1177 ]
+  Check point now tbl_netassay_v3l1172 0
+    Updating best to first table seen: tbl_netassay_v3l1177
+placing 1 entries of tbl_netassay_v3l1177 in stage 7(73)
+stage 7, work: [ 3721088, 3721475, 3722558, 3720919 ], partly placed 0, placed 19
+    { id=0 ram=0 tcam=0 mram=0 eixb=0 tixb=0 malu=0 salu=0 }
+  Group table: tbl_netassay_v3l1177
+  Group table: cond-20
+    - skipping tbl_netassay_v3l1177 as its already done
+try_place_table(cond-20, stage=7)
+  Merging with match table tbl_netassay_v3l1182
+  - dependency between tbl_netassay_v3l1177 and gateway advances stage
+  Initial stage is 8, initial entries is 1
+  Selected stage: 8    Furthest stage: 8
+  try_place_table returning 1 of tbl_netassay_v3l1182 in stage 8
+    Pl vector: [ tbl_netassay_v3l1182 ]
+  Group table: tbl_netassay_v3l1241
+  Group table: tbl_netassay_v3l1241_0
+  Group table: tbl_netassay_v3l1250
+  Group table: cond-27
+  Group table: tbl_netassay_v3l1260
+  Group table: tbl_netassay_v3l1260_0
+  Group table: cond-28
+  Group table: cond-30
+    - skipping tbl_netassay_v3l1241 as its already done
+    - skipping tbl_netassay_v3l1241_0 as its already done
+    - skipping tbl_netassay_v3l1250 as its already done
+    - skipping cond-27 as its already done
+    - skipping tbl_netassay_v3l1260 as its already done
+    - skipping tbl_netassay_v3l1260_0 as its already done
+try_place_table(cond-28, stage=7)
+  Merging with match table tbl_netassay_v3l1263
+  - dependency between tbl_netassay_v3l1254 and gateway advances stage
+  Initial stage is 8, initial entries is 1
+  Selected stage: 8    Furthest stage: 8
+  try_place_table returning 1 of tbl_netassay_v3l1263 in stage 8 (need more)
+    Pl vector: [ tbl_netassay_v3l1263 ]
+  - skipping cond-30 due to in-sequence control dependence on cond-28
+found 2 tables that could be placed: [ tbl_netassay_v3l1182, tbl_netassay_v3l1263 ]
+  Check point now tbl_netassay_v3l1177 0
+    Updating best to first table seen: tbl_netassay_v3l1182
+  Check point now tbl_netassay_v3l1177 0
+placing 1 entries of tbl_netassay_v3l1182 (with gw cond-20) in stage 8(80)
+stage 8, work: [ 3723067, 3722109 ], partly placed 0, placed 20
+    { id=0 ram=0 tcam=0 mram=0 eixb=0 tixb=0 malu=0 salu=0 }
+  Group table: tbl_netassay_v3l1241
+  Group table: tbl_netassay_v3l1241_0
+  Group table: tbl_netassay_v3l1250
+  Group table: cond-27
+  Group table: tbl_netassay_v3l1260
+  Group table: tbl_netassay_v3l1260_0
+  Group table: cond-28
+  Group table: cond-30
+    - skipping tbl_netassay_v3l1241 as its already done
+    - skipping tbl_netassay_v3l1241_0 as its already done
+    - skipping tbl_netassay_v3l1250 as its already done
+    - skipping cond-27 as its already done
+    - skipping tbl_netassay_v3l1260 as its already done
+    - skipping tbl_netassay_v3l1260_0 as its already done
+try_place_table(cond-28, stage=8)
+  Merging with match table tbl_netassay_v3l1263
+  Initial stage is 8, initial entries is 1
+  Selected stage: 8    Furthest stage: 9
+  try_place_table returning 1 of tbl_netassay_v3l1263 in stage 8 (need more)
+    Pl vector: [ tbl_netassay_v3l1263 ]
+  - skipping cond-30 due to in-sequence control dependence on cond-28
+  Group table: tbl_netassay_v3l1157
+  Group table: tbl_netassay_v3l1159
+  Group table: tbl_netassay_v3l1160
+  Group table: cond-18
+  Group table: cond-21
+  Group table: cond-25
+    - skipping tbl_netassay_v3l1157 as its already done
+    - skipping tbl_netassay_v3l1159 as its already done
+    - skipping tbl_netassay_v3l1160 as its already done
+    - skipping cond-18 as its already done
+try_place_table(cond-21, stage=8)
+  Initial stage is 8, initial entries is 0
+  Selected stage: 8    Furthest stage: 9
+  try_place_table returning 0 of cond-21 in stage 8
+    Pl vector: [ cond-21 ]
+  - skipping cond-25 due to in-sequence control dependence on cond-21
+found 2 tables that could be placed: [ tbl_netassay_v3l1263, cond-21 ]
+  Check point now tbl_netassay_v3l1182 0
+    Updating best to first table seen: tbl_netassay_v3l1263
+  Check point now tbl_netassay_v3l1182 0
+    Updating best to cond-21 from tbl_netassay_v3l1263 for reason: control dom set has more placeable tables
+placing 0 entries of cond-21 in stage 8(81)
+stage 8, work: [ 3723067, 3722675 ], partly placed 0, placed 21
+    { id=0 ram=0 tcam=0 mram=0 eixb=1 tixb=0 malu=0 salu=0 }
+  Group table: tbl_netassay_v3l1241
+  Group table: tbl_netassay_v3l1241_0
+  Group table: tbl_netassay_v3l1250
+  Group table: cond-27
+  Group table: tbl_netassay_v3l1260
+  Group table: tbl_netassay_v3l1260_0
+  Group table: cond-28
+  Group table: cond-30
+    - skipping tbl_netassay_v3l1241 as its already done
+    - skipping tbl_netassay_v3l1241_0 as its already done
+    - skipping tbl_netassay_v3l1250 as its already done
+    - skipping cond-27 as its already done
+    - skipping tbl_netassay_v3l1260 as its already done
+    - skipping tbl_netassay_v3l1260_0 as its already done
+try_place_table(cond-28, stage=8)
+  Merging with match table tbl_netassay_v3l1263
+  Initial stage is 8, initial entries is 1
+  Selected stage: 8    Furthest stage: 9
+  try_place_table returning 1 of tbl_netassay_v3l1263 in stage 8 (need more)
+    Pl vector: [ tbl_netassay_v3l1263 ]
+  - skipping cond-30 due to in-sequence control dependence on cond-28
+  Group table: cond-22
+try_place_table(cond-22, stage=8)
+  Merging with match table tbl_netassay_v3l1202
+  Initial stage is 8, initial entries is 1
+  Selected stage: 8    Furthest stage: 9
+  try_place_table returning 1 of tbl_netassay_v3l1202 in stage 8 (need more)
+  Merging with match table tbl_netassay_v3l1224
+  Initial stage is 8, initial entries is 1
+  Selected stage: 8    Furthest stage: 9
+  try_place_table returning 1 of tbl_netassay_v3l1224 in stage 8 (need more)
+  Merging with match table tbl_netassay_v3l1225
+  Initial stage is 8, initial entries is 1
+  Selected stage: 8    Furthest stage: 9
+  try_place_table returning 1 of tbl_netassay_v3l1225 in stage 8 (need more)
+    Pl vector: [ tbl_netassay_v3l1202, tbl_netassay_v3l1224, tbl_netassay_v3l1225 ]
+found 4 tables that could be placed: [ tbl_netassay_v3l1263, tbl_netassay_v3l1202, tbl_netassay_v3l1224, tbl_netassay_v3l1225 ]
+  Check point now cond-21 0
+    Updating best to first table seen: tbl_netassay_v3l1263
+  Check point now cond-21 0
+    Updating best to tbl_netassay_v3l1202 from tbl_netassay_v3l1263 for reason: control dom set has more placeable tables
+  Check point now cond-21 0
+  Check point now cond-21 0
+placing 1 entries of tbl_netassay_v3l1202 (with gw cond-22) in stage 8(82) (need more)
+stage 8, work: [ 3723067, 3721354, 3722683 ], partly placed 1, placed 22
+    { id=0 ram=0 tcam=0 mram=0 eixb=1 tixb=0 malu=0 salu=0 }
+  Group table: tbl_netassay_v3l1241
+  Group table: tbl_netassay_v3l1241_0
+  Group table: tbl_netassay_v3l1250
+  Group table: cond-27
+  Group table: tbl_netassay_v3l1260
+  Group table: tbl_netassay_v3l1260_0
+  Group table: cond-28
+  Group table: cond-30
+    - skipping tbl_netassay_v3l1241 as its already done
+    - skipping tbl_netassay_v3l1241_0 as its already done
+    - skipping tbl_netassay_v3l1250 as its already done
+    - skipping cond-27 as its already done
+    - skipping tbl_netassay_v3l1260 as its already done
+    - skipping tbl_netassay_v3l1260_0 as its already done
+try_place_table(cond-28, stage=8)
+  Merging with match table tbl_netassay_v3l1263
+  Initial stage is 8, initial entries is 1
+  Selected stage: 8    Furthest stage: 9
+  try_place_table returning 1 of tbl_netassay_v3l1263 in stage 8 (need more)
+    Pl vector: [ tbl_netassay_v3l1263 ]
+  - skipping cond-30 due to in-sequence control dependence on cond-28
+  Group table: tbl_netassay_v3l1224
+  Group table: tbl_netassay_v3l1225
+tbl_netassay_v3l1224 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1224, stage=8)
+  Initial stage is 8, initial entries is 1
+  Selected stage: 8    Furthest stage: 9
+  try_place_table returning 1 of tbl_netassay_v3l1224 in stage 8 (need more)
+    Pl vector: [ tbl_netassay_v3l1224 ]
+tbl_netassay_v3l1225 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1225, stage=8)
+  Initial stage is 8, initial entries is 1
+  Selected stage: 8    Furthest stage: 9
+  try_place_table returning 1 of tbl_netassay_v3l1225 in stage 8 (need more)
+    Pl vector: [ tbl_netassay_v3l1225 ]
+  Group table: tbl_netassay_v3l1202
+  Group table: cond-23
+tbl_netassay_v3l1202 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1202, stage=8)
+  Cannot place multiple sections of an individual table in the same stage
+    Pl vector: []
+  - skipping cond-23 due to in-sequence control dependence on tbl_netassay_v3l1202
+found 3 tables that could be placed: [ tbl_netassay_v3l1263, tbl_netassay_v3l1224, tbl_netassay_v3l1225 ]
+  Check point now tbl_netassay_v3l1202 0
+    Updating best to first table seen: tbl_netassay_v3l1263
+  Check point now tbl_netassay_v3l1202 0
+  Check point now tbl_netassay_v3l1202 0
+placing 1 entries of tbl_netassay_v3l1263 (with gw cond-28) in stage 8(83) (need more)
+stage 8, work: [ 3721354, 3722683, 3723241 ], partly placed 2, placed 23
+    { id=0 ram=0 tcam=0 mram=0 eixb=1 tixb=0 malu=0 salu=0 }
+  Group table: tbl_netassay_v3l1224
+  Group table: tbl_netassay_v3l1225
+tbl_netassay_v3l1224 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1224, stage=8)
+    tbl_netassay_v3l1202 is now also placed
+    tbl_netassay_v3l1263 is now also placed
+  Initial stage is 8, initial entries is 1
+  Selected stage: 8    Furthest stage: 9
+  try_place_table returning 1 of tbl_netassay_v3l1224 in stage 8
+    Pl vector: [ tbl_netassay_v3l1224 ]
+tbl_netassay_v3l1225 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1225, stage=8)
+  Initial stage is 8, initial entries is 1
+  Selected stage: 8    Furthest stage: 9
+  try_place_table returning 1 of tbl_netassay_v3l1225 in stage 8 (need more)
+    Pl vector: [ tbl_netassay_v3l1225 ]
+  Group table: tbl_netassay_v3l1202
+  Group table: cond-23
+tbl_netassay_v3l1202 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1202, stage=8)
+  Cannot place multiple sections of an individual table in the same stage
+    Pl vector: []
+  - skipping cond-23 due to in-sequence control dependence on tbl_netassay_v3l1202
+  Group table: tbl_netassay_v3l1263
+  Group table: cond-29
+tbl_netassay_v3l1263 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1263, stage=8)
+  Cannot place multiple sections of an individual table in the same stage
+    Pl vector: []
+  - skipping cond-29 due to in-sequence control dependence on tbl_netassay_v3l1263
+found 2 tables that could be placed: [ tbl_netassay_v3l1224, tbl_netassay_v3l1225 ]
+  Check point now tbl_netassay_v3l1263 0
+    Updating best to first table seen: tbl_netassay_v3l1224
+  Check point now tbl_netassay_v3l1263 0
+placing 1 entries of tbl_netassay_v3l1224 in stage 8(84)
+stage 8, work: [ 3721354, 3722683, 3723241 ], partly placed 0, placed 24
+    { id=0 ram=0 tcam=0 mram=0 eixb=1 tixb=0 malu=0 salu=0 }
+  Group table: tbl_netassay_v3l1224
+  Group table: tbl_netassay_v3l1225
+    - skipping tbl_netassay_v3l1224 as its already done
+tbl_netassay_v3l1225 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1225, stage=8)
+  Initial stage is 8, initial entries is 1
+    The table tbl_netassay_v3l1225 could not fit within a single input crossbar in an MAU stage
+    Min use ixbar allocation did not fit
+  Selected stage: 9    Furthest stage: 9
+  try_place_table returning 1 of tbl_netassay_v3l1225 in stage 9 (need more)
+    Pl vector: [ tbl_netassay_v3l1225 ]
+  Group table: tbl_netassay_v3l1202
+  Group table: cond-23
+    - skipping tbl_netassay_v3l1202 as its already done
+try_place_table(cond-23, stage=8)
+  Merging with match table tbl_netassay_v3l1206
+  - dependency between tbl_netassay_v3l1202 and gateway advances stage
+  Initial stage is 9, initial entries is 1
+  Selected stage: 9    Furthest stage: 9
+  try_place_table returning 1 of tbl_netassay_v3l1206 in stage 9 (need more)
+  Merging with match table tbl_netassay_v3l1211
+  - dependency between tbl_netassay_v3l1202 and gateway advances stage
+  Initial stage is 9, initial entries is 1
+  Selected stage: 9    Furthest stage: 9
+  try_place_table returning 1 of tbl_netassay_v3l1211 in stage 9 (need more)
+    Pl vector: [ tbl_netassay_v3l1206, tbl_netassay_v3l1211 ]
+  Group table: tbl_netassay_v3l1263
+  Group table: cond-29
+    - skipping tbl_netassay_v3l1263 as its already done
+try_place_table(cond-29, stage=8)
+  Merging with match table tbl_netassay_v3l1267
+  - dependency between tbl_netassay_v3l1263 and gateway advances stage
+  Initial stage is 9, initial entries is 1
+  Selected stage: 9    Furthest stage: 9
+  try_place_table returning 1 of tbl_netassay_v3l1267 in stage 9 (need more)
+    Pl vector: [ tbl_netassay_v3l1267 ]
+found 4 tables that could be placed: [ tbl_netassay_v3l1225, tbl_netassay_v3l1206, tbl_netassay_v3l1211, tbl_netassay_v3l1267 ]
+  Check point now tbl_netassay_v3l1224 0
+    Updating best to first table seen: tbl_netassay_v3l1225
+  Check point now tbl_netassay_v3l1224 0
+  Check point now tbl_netassay_v3l1224 0
+  Check point now tbl_netassay_v3l1224 0
+placing 1 entries of tbl_netassay_v3l1225 in stage 9(90) (need more)
+stage 9, work: [ 3721354, 3722683, 3723241 ], partly placed 1, placed 25
+    { id=0 ram=0 tcam=0 mram=0 eixb=0 tixb=0 malu=0 salu=0 }
+  Group table: tbl_netassay_v3l1224
+  Group table: tbl_netassay_v3l1225
+    - skipping tbl_netassay_v3l1224 as its already done
+tbl_netassay_v3l1225 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1225, stage=9)
+  Cannot place multiple sections of an individual table in the same stage
+    Pl vector: []
+  Group table: tbl_netassay_v3l1202
+  Group table: cond-23
+    - skipping tbl_netassay_v3l1202 as its already done
+try_place_table(cond-23, stage=9)
+  Merging with match table tbl_netassay_v3l1206
+  Initial stage is 9, initial entries is 1
+  Selected stage: 9    Furthest stage: 10
+  try_place_table returning 1 of tbl_netassay_v3l1206 in stage 9 (need more)
+  Merging with match table tbl_netassay_v3l1211
+  Initial stage is 9, initial entries is 1
+  Selected stage: 9    Furthest stage: 10
+  try_place_table returning 1 of tbl_netassay_v3l1211 in stage 9 (need more)
+    Pl vector: [ tbl_netassay_v3l1206, tbl_netassay_v3l1211 ]
+  Group table: tbl_netassay_v3l1263
+  Group table: cond-29
+    - skipping tbl_netassay_v3l1263 as its already done
+try_place_table(cond-29, stage=9)
+  Merging with match table tbl_netassay_v3l1267
+  Initial stage is 9, initial entries is 1
+  Selected stage: 9    Furthest stage: 10
+  try_place_table returning 1 of tbl_netassay_v3l1267 in stage 9 (need more)
+    Pl vector: [ tbl_netassay_v3l1267 ]
+found 3 tables that could be placed: [ tbl_netassay_v3l1206, tbl_netassay_v3l1211, tbl_netassay_v3l1267 ]
+  Check point now tbl_netassay_v3l1225 0
+    Updating best to first table seen: tbl_netassay_v3l1206
+  Check point now tbl_netassay_v3l1225 0
+    Updating best to tbl_netassay_v3l1211 from tbl_netassay_v3l1206 for reason: default choice
+  Check point now tbl_netassay_v3l1225 0
+    Updating best to tbl_netassay_v3l1267 from tbl_netassay_v3l1211 for reason: longer downward dominance frontier dependence chain
+placing 1 entries of tbl_netassay_v3l1267 (with gw cond-29) in stage 9(91) (need more)
+stage 9, work: [ 3721354, 3722683, 3721525 ], partly placed 2, placed 26
+    { id=0 ram=0 tcam=0 mram=0 eixb=0 tixb=0 malu=0 salu=0 }
+  Group table: tbl_netassay_v3l1224
+  Group table: tbl_netassay_v3l1225
+    - skipping tbl_netassay_v3l1224 as its already done
+tbl_netassay_v3l1225 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1225, stage=9)
+  Cannot place multiple sections of an individual table in the same stage
+    Pl vector: []
+  Group table: tbl_netassay_v3l1202
+  Group table: cond-23
+    - skipping tbl_netassay_v3l1202 as its already done
+try_place_table(cond-23, stage=9)
+  Merging with match table tbl_netassay_v3l1206
+  Initial stage is 9, initial entries is 1
+    The table tbl_netassay_v3l1206 could not fit within a single input crossbar in an MAU stage
+    Min use ixbar allocation did not fit
+  Selected stage: 10    Furthest stage: 10
+  try_place_table returning 1 of tbl_netassay_v3l1206 in stage 10 (need more)
+  Merging with match table tbl_netassay_v3l1211
+  Initial stage is 9, initial entries is 1
+    The table tbl_netassay_v3l1211 could not fit within a single input crossbar in an MAU stage
+    Min use ixbar allocation did not fit
+  Selected stage: 10    Furthest stage: 10
+  try_place_table returning 1 of tbl_netassay_v3l1211 in stage 10 (need more)
+    Pl vector: [ tbl_netassay_v3l1206, tbl_netassay_v3l1211 ]
+  Group table: tbl_netassay_v3l1267
+tbl_netassay_v3l1267 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1267, stage=9)
+  Cannot place multiple sections of an individual table in the same stage
+    Pl vector: []
+found 2 tables that could be placed: [ tbl_netassay_v3l1206, tbl_netassay_v3l1211 ]
+  Check point now tbl_netassay_v3l1267 0
+    Updating best to first table seen: tbl_netassay_v3l1206
+  Check point now tbl_netassay_v3l1267 0
+    Updating best to tbl_netassay_v3l1211 from tbl_netassay_v3l1206 for reason: default choice
+placing 1 entries of tbl_netassay_v3l1211 (with gw cond-23) in stage 10(a0) (need more)
+stage 10, work: [ 3721354, 3721525, 3722905, 3721208 ], partly placed 3, placed 27
+    { id=0 ram=0 tcam=0 mram=0 eixb=0 tixb=0 malu=0 salu=0 }
+  Group table: tbl_netassay_v3l1224
+  Group table: tbl_netassay_v3l1225
+    - skipping tbl_netassay_v3l1224 as its already done
+tbl_netassay_v3l1225 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1225, stage=10)
+    Pl vector: []
+  Group table: tbl_netassay_v3l1267
+tbl_netassay_v3l1267 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1267, stage=10)
+    Pl vector: []
+  Group table: tbl_netassay_v3l1211
+  Group table: cond-24
+tbl_netassay_v3l1211 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1211, stage=10)
+  Cannot place multiple sections of an individual table in the same stage
+    Pl vector: []
+  - skipping cond-24 due to in-sequence control dependence on tbl_netassay_v3l1211
+  Group table: tbl_netassay_v3l1206
+tbl_netassay_v3l1206 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1206, stage=10)
+    tbl_netassay_v3l1211 is now also placed
+  Initial stage is 10, initial entries is 1
+  Selected stage: 10    Furthest stage: 11
+  try_place_table returning 1 of tbl_netassay_v3l1206 in stage 10
+    Pl vector: [ tbl_netassay_v3l1206 ]
+found 1 tables that could be placed: [ tbl_netassay_v3l1206 ]
+  Check point now tbl_netassay_v3l1211 0
+    Updating best to first table seen: tbl_netassay_v3l1206
+placing 1 entries of tbl_netassay_v3l1206 in stage 10(a1)
+stage 10, work: [ 3721354, 3721525, 3722905 ], partly placed 2, placed 28
+    { id=0 ram=0 tcam=0 mram=0 eixb=0 tixb=0 malu=0 salu=0 }
+  Group table: tbl_netassay_v3l1224
+  Group table: tbl_netassay_v3l1225
+    - skipping tbl_netassay_v3l1224 as its already done
+tbl_netassay_v3l1225 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1225, stage=10)
+  Initial stage is 10, initial entries is 0
+  Selected stage: 10    Furthest stage: 11
+  try_place_table returning 0 of tbl_netassay_v3l1225 in stage 10
+    Pl vector: [ tbl_netassay_v3l1225 ]
+  Group table: tbl_netassay_v3l1267
+tbl_netassay_v3l1267 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1267, stage=10)
+  Initial stage is 10, initial entries is 0
+  Selected stage: 10    Furthest stage: 11
+  try_place_table returning 0 of tbl_netassay_v3l1267 in stage 10
+    Pl vector: [ tbl_netassay_v3l1267 ]
+  Group table: tbl_netassay_v3l1211
+  Group table: cond-24
+    - skipping tbl_netassay_v3l1211 as its already done
+try_place_table(cond-24, stage=10)
+  Merging with match table tbl_netassay_v3l1216
+  - dependency between tbl_netassay_v3l1211 and gateway advances stage
+  Initial stage is 11, initial entries is 1
+  Selected stage: 11    Furthest stage: 11
+  try_place_table returning 1 of tbl_netassay_v3l1216 in stage 11
+    Pl vector: [ tbl_netassay_v3l1216 ]
+found 3 tables that could be placed: [ tbl_netassay_v3l1225, tbl_netassay_v3l1267, tbl_netassay_v3l1216 ]
+  Check point now tbl_netassay_v3l1206 0
+    Updating best to first table seen: tbl_netassay_v3l1225
+  Check point now tbl_netassay_v3l1206 0
+    Updating best to tbl_netassay_v3l1267 from tbl_netassay_v3l1225 for reason: fewer total dependencies in dominance frontier
+  Check point now tbl_netassay_v3l1206 0
+placing 0 entries of tbl_netassay_v3l1267 in stage 10(a2)
+stage 10, work: [ 3721354, 3722905, 3723067 ], partly placed 1, placed 29
+    { id=0 ram=0 tcam=0 mram=0 eixb=0 tixb=0 malu=0 salu=0 }
+  Group table: tbl_netassay_v3l1224
+  Group table: tbl_netassay_v3l1225
+    - skipping tbl_netassay_v3l1224 as its already done
+tbl_netassay_v3l1225 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1225, stage=10)
+  Initial stage is 10, initial entries is 0
+  Selected stage: 10    Furthest stage: 11
+  try_place_table returning 0 of tbl_netassay_v3l1225 in stage 10
+    Pl vector: [ tbl_netassay_v3l1225 ]
+  Group table: tbl_netassay_v3l1211
+  Group table: cond-24
+    - skipping tbl_netassay_v3l1211 as its already done
+try_place_table(cond-24, stage=10)
+  Merging with match table tbl_netassay_v3l1216
+  - dependency between tbl_netassay_v3l1211 and gateway advances stage
+  Initial stage is 11, initial entries is 1
+  Selected stage: 11    Furthest stage: 11
+  try_place_table returning 1 of tbl_netassay_v3l1216 in stage 11
+    Pl vector: [ tbl_netassay_v3l1216 ]
+  Group table: tbl_netassay_v3l1241
+  Group table: tbl_netassay_v3l1241_0
+  Group table: tbl_netassay_v3l1250
+  Group table: cond-27
+  Group table: tbl_netassay_v3l1260
+  Group table: tbl_netassay_v3l1260_0
+  Group table: cond-28
+  Group table: cond-30
+    - skipping tbl_netassay_v3l1241 as its already done
+    - skipping tbl_netassay_v3l1241_0 as its already done
+    - skipping tbl_netassay_v3l1250 as its already done
+    - skipping cond-27 as its already done
+    - skipping tbl_netassay_v3l1260 as its already done
+    - skipping tbl_netassay_v3l1260_0 as its already done
+    - skipping cond-28 as its already done
+try_place_table(cond-30, stage=10)
+  Merging with match table tbl_netassay_v3l1275
+  - dependency between tbl_netassay_v3l1267 and table advances stage
+  Initial stage is 11, initial entries is 1
+  Selected stage: 11    Furthest stage: 11
+  try_place_table returning 1 of tbl_netassay_v3l1275 in stage 11
+  Merging with match table tbl_netassay_v3l1276
+  - dependency between tbl_netassay_v3l1267 and table advances stage
+  Initial stage is 11, initial entries is 1
+  Selected stage: 11    Furthest stage: 11
+  try_place_table returning 1 of tbl_netassay_v3l1276 in stage 11
+    Pl vector: [ tbl_netassay_v3l1275, tbl_netassay_v3l1276 ]
+found 4 tables that could be placed: [ tbl_netassay_v3l1225, tbl_netassay_v3l1216, tbl_netassay_v3l1275, tbl_netassay_v3l1276 ]
+  Check point now tbl_netassay_v3l1267 0
+    Updating best to first table seen: tbl_netassay_v3l1225
+  Check point now tbl_netassay_v3l1267 0
+  Check point now tbl_netassay_v3l1267 0
+  Check point now tbl_netassay_v3l1267 0
+placing 0 entries of tbl_netassay_v3l1225 in stage 10(a3)
+stage 10, work: [ 3722905, 3723067 ], partly placed 0, placed 30
+    { id=0 ram=0 tcam=0 mram=0 eixb=0 tixb=0 malu=0 salu=0 }
+  Group table: tbl_netassay_v3l1211
+  Group table: cond-24
+    - skipping tbl_netassay_v3l1211 as its already done
+try_place_table(cond-24, stage=10)
+  Merging with match table tbl_netassay_v3l1216
+  - dependency between tbl_netassay_v3l1211 and gateway advances stage
+  Initial stage is 11, initial entries is 1
+  Selected stage: 11    Furthest stage: 11
+  try_place_table returning 1 of tbl_netassay_v3l1216 in stage 11
+    Pl vector: [ tbl_netassay_v3l1216 ]
+  Group table: tbl_netassay_v3l1241
+  Group table: tbl_netassay_v3l1241_0
+  Group table: tbl_netassay_v3l1250
+  Group table: cond-27
+  Group table: tbl_netassay_v3l1260
+  Group table: tbl_netassay_v3l1260_0
+  Group table: cond-28
+  Group table: cond-30
+    - skipping tbl_netassay_v3l1241 as its already done
+    - skipping tbl_netassay_v3l1241_0 as its already done
+    - skipping tbl_netassay_v3l1250 as its already done
+    - skipping cond-27 as its already done
+    - skipping tbl_netassay_v3l1260 as its already done
+    - skipping tbl_netassay_v3l1260_0 as its already done
+    - skipping cond-28 as its already done
+try_place_table(cond-30, stage=10)
+  Merging with match table tbl_netassay_v3l1275
+  - dependency between tbl_netassay_v3l1267 and table advances stage
+  Initial stage is 11, initial entries is 1
+  Selected stage: 11    Furthest stage: 11
+  try_place_table returning 1 of tbl_netassay_v3l1275 in stage 11
+  Merging with match table tbl_netassay_v3l1276
+  - dependency between tbl_netassay_v3l1267 and table advances stage
+  Initial stage is 11, initial entries is 1
+  Selected stage: 11    Furthest stage: 11
+  try_place_table returning 1 of tbl_netassay_v3l1276 in stage 11
+    Pl vector: [ tbl_netassay_v3l1275, tbl_netassay_v3l1276 ]
+found 3 tables that could be placed: [ tbl_netassay_v3l1216, tbl_netassay_v3l1275, tbl_netassay_v3l1276 ]
+  Check point now tbl_netassay_v3l1225 0
+    Updating best to first table seen: tbl_netassay_v3l1216
+  Check point now tbl_netassay_v3l1225 0
+  Check point now tbl_netassay_v3l1225 0
+placing 1 entries of tbl_netassay_v3l1216 (with gw cond-24) in stage 11(b0)
+stage 11, work: [ 3723067, 3722109 ], partly placed 0, placed 31
+    { id=0 ram=0 tcam=0 mram=0 eixb=0 tixb=0 malu=0 salu=0 }
+  Group table: tbl_netassay_v3l1241
+  Group table: tbl_netassay_v3l1241_0
+  Group table: tbl_netassay_v3l1250
+  Group table: cond-27
+  Group table: tbl_netassay_v3l1260
+  Group table: tbl_netassay_v3l1260_0
+  Group table: cond-28
+  Group table: cond-30
+    - skipping tbl_netassay_v3l1241 as its already done
+    - skipping tbl_netassay_v3l1241_0 as its already done
+    - skipping tbl_netassay_v3l1250 as its already done
+    - skipping cond-27 as its already done
+    - skipping tbl_netassay_v3l1260 as its already done
+    - skipping tbl_netassay_v3l1260_0 as its already done
+    - skipping cond-28 as its already done
+try_place_table(cond-30, stage=11)
+  Merging with match table tbl_netassay_v3l1275
+  Initial stage is 11, initial entries is 1
+  Selected stage: 11    Furthest stage: 12
+  try_place_table returning 1 of tbl_netassay_v3l1275 in stage 11
+  Merging with match table tbl_netassay_v3l1276
+  Initial stage is 11, initial entries is 1
+  Selected stage: 11    Furthest stage: 12
+  try_place_table returning 1 of tbl_netassay_v3l1276 in stage 11
+    Pl vector: [ tbl_netassay_v3l1275, tbl_netassay_v3l1276 ]
+  Group table: tbl_netassay_v3l1157
+  Group table: tbl_netassay_v3l1159
+  Group table: tbl_netassay_v3l1160
+  Group table: cond-18
+  Group table: cond-21
+  Group table: cond-25
+    - skipping tbl_netassay_v3l1157 as its already done
+    - skipping tbl_netassay_v3l1159 as its already done
+    - skipping tbl_netassay_v3l1160 as its already done
+    - skipping cond-18 as its already done
+    - skipping cond-21 as its already done
+try_place_table(cond-25, stage=11)
+  Merging with match table tbl_netassay_v3l1235
+  Initial stage is 11, initial entries is 1
+  Selected stage: 11    Furthest stage: 12
+  try_place_table returning 1 of tbl_netassay_v3l1235 in stage 11
+    Pl vector: [ tbl_netassay_v3l1235 ]
+found 3 tables that could be placed: [ tbl_netassay_v3l1275, tbl_netassay_v3l1276, tbl_netassay_v3l1235 ]
+  Check point now tbl_netassay_v3l1216 0
+    Updating best to first table seen: tbl_netassay_v3l1275
+  Check point now tbl_netassay_v3l1216 0
+    Updating best to tbl_netassay_v3l1276 from tbl_netassay_v3l1275 for reason: default choice
+  Check point now tbl_netassay_v3l1216 0
+    Updating best to tbl_netassay_v3l1235 from tbl_netassay_v3l1276 for reason: direct control dependency difference
+placing 1 entries of tbl_netassay_v3l1235 (with gw cond-25) in stage 11(b1)
+stage 11, work: [ 3723067 ], partly placed 0, placed 32
+    { id=0 ram=0 tcam=0 mram=0 eixb=0 tixb=0 malu=0 salu=0 }
+  Group table: tbl_netassay_v3l1241
+  Group table: tbl_netassay_v3l1241_0
+  Group table: tbl_netassay_v3l1250
+  Group table: cond-27
+  Group table: tbl_netassay_v3l1260
+  Group table: tbl_netassay_v3l1260_0
+  Group table: cond-28
+  Group table: cond-30
+    - skipping tbl_netassay_v3l1241 as its already done
+    - skipping tbl_netassay_v3l1241_0 as its already done
+    - skipping tbl_netassay_v3l1250 as its already done
+    - skipping cond-27 as its already done
+    - skipping tbl_netassay_v3l1260 as its already done
+    - skipping tbl_netassay_v3l1260_0 as its already done
+    - skipping cond-28 as its already done
+try_place_table(cond-30, stage=11)
+  Merging with match table tbl_netassay_v3l1275
+  Initial stage is 11, initial entries is 1
+  Selected stage: 11    Furthest stage: 12
+  try_place_table returning 1 of tbl_netassay_v3l1275 in stage 11
+  Merging with match table tbl_netassay_v3l1276
+  Initial stage is 11, initial entries is 1
+  Selected stage: 11    Furthest stage: 12
+  try_place_table returning 1 of tbl_netassay_v3l1276 in stage 11
+    Pl vector: [ tbl_netassay_v3l1275, tbl_netassay_v3l1276 ]
+found 2 tables that could be placed: [ tbl_netassay_v3l1275, tbl_netassay_v3l1276 ]
+  Check point now tbl_netassay_v3l1235 0
+    Updating best to first table seen: tbl_netassay_v3l1275
+  Check point now tbl_netassay_v3l1235 0
+    Updating best to tbl_netassay_v3l1276 from tbl_netassay_v3l1275 for reason: default choice
+placing 1 entries of tbl_netassay_v3l1276 (with gw cond-30) in stage 11(b2)
+stage 11, work: [ 3721542 ], partly placed 0, placed 33
+    { id=0 ram=0 tcam=0 mram=0 eixb=0 tixb=0 malu=0 salu=0 }
+  Group table: tbl_netassay_v3l1275
+  Group table: tbl_netassay_v3l1276
+tbl_netassay_v3l1275 is not a gateway! Aborting search for merge choices
+try_place_table(tbl_netassay_v3l1275, stage=11)
+  Initial stage is 11, initial entries is 1
+  Selected stage: 11    Furthest stage: 12
+  try_place_table returning 1 of tbl_netassay_v3l1275 in stage 11
+    Pl vector: [ tbl_netassay_v3l1275 ]
+    - skipping tbl_netassay_v3l1276 as its already done
+found 1 tables that could be placed: [ tbl_netassay_v3l1275 ]
+  Check point now tbl_netassay_v3l1276 0
+    Updating best to first table seen: tbl_netassay_v3l1275
+placing 1 entries of tbl_netassay_v3l1275 in stage 11(b3)
+Table placement placed 34 tables in 12 stages
+  Table tbl_netassay_v3l1275 logical id 0xb3 entries=1
+    attached table SwitchIngress.packet_counts_table entries=2048
+  Table tbl_netassay_v3l1276 logical id 0xb2 entries=1
+    attached table SwitchIngress.byte_counts_table entries=2048
+  Gateway cond-30 is also logical id 0xb2
+  Table tbl_netassay_v3l1235 logical id 0xb1 entries=1
+    attached table SwitchIngress.dns_total_missed entries=2048
+  Gateway cond-25 is also logical id 0xb1
+  Table tbl_netassay_v3l1216 logical id 0xb0 entries=1
+  Gateway cond-24 is also logical id 0xb0
+  Table tbl_netassay_v3l1225 logical id 0xa3 entries=0
+    attached table SwitchIngress.domain_tstamp_reg_2 entries=16384
+  Table tbl_netassay_v3l1267 logical id 0xa2 entries=0
+    attached table SwitchIngress.domain_tstamp_reg_2 entries=16384
+  Table tbl_netassay_v3l1206 logical id 0xa1 entries=1
+    attached table SwitchIngress.domain_tstamp_reg_2 entries=16384
+  Table tbl_netassay_v3l1211 logical id 0xa0 entries=1
+    attached table SwitchIngress.domain_tstamp_reg_2 entries=16384
+  Gateway cond-23 is also logical id 0xa0
+  Table tbl_netassay_v3l1267 logical id 0x91 entries=1
+    attached table SwitchIngress.domain_tstamp_reg_2 entries=0
+  Gateway cond-29 is also logical id 0x91
+  Table tbl_netassay_v3l1225 logical id 0x90 entries=1
+    attached table SwitchIngress.domain_tstamp_reg_2 entries=0
+  Table tbl_netassay_v3l1224 logical id 0x84 entries=1
+    attached table SwitchIngress.sip_cip_reg_2 entries=16384
+  Table tbl_netassay_v3l1263 logical id 0x83 entries=1
+    attached table SwitchIngress.sip_cip_reg_2 entries=16384
+  Gateway cond-28 is also logical id 0x83
+  Table tbl_netassay_v3l1202 logical id 0x82 entries=1
+    attached table SwitchIngress.sip_cip_reg_2 entries=16384
+  Gateway cond-22 is also logical id 0x82
+  Table cond-21 logical id 0x81 entries=0
+  Table tbl_netassay_v3l1182 logical id 0x80 entries=1
+  Gateway cond-20 is also logical id 0x80
+  Table tbl_netassay_v3l1177 logical id 0x73 entries=1
+    attached table SwitchIngress.domain_tstamp_reg_1 entries=16384
+  Table tbl_netassay_v3l1172 logical id 0x72 entries=1
+    attached table SwitchIngress.domain_tstamp_reg_1 entries=16384
+  Gateway cond-19 is also logical id 0x72
+  Table tbl_netassay_v3l1254 logical id 0x71 entries=1
+    attached table SwitchIngress.domain_tstamp_reg_1 entries=16384
+  Gateway cond-27 is also logical id 0x71
+  Table tbl_netassay_v3l1192 logical id 0x70 entries=1
+    attached table SwitchIngress.domain_tstamp_reg_1 entries=16384
+  Table tbl_netassay_v3l1250 logical id 0x63 entries=0
+    attached table SwitchIngress.sip_cip_reg_1 entries=16384
+  Table tbl_netassay_v3l1191 logical id 0x62 entries=1
+    attached table SwitchIngress.sip_cip_reg_1 entries=16384
+  Table tbl_netassay_v3l1168 logical id 0x61 entries=1
+    attached table SwitchIngress.sip_cip_reg_1 entries=16384
+  Gateway cond-18 is also logical id 0x61
+  Table tbl_netassay_v3l1160 logical id 0x60 entries=1
+  Table tbl_netassay_v3l1159 logical id 0x50 entries=1
+  Table tbl_netassay_v3l1157 logical id 0x40 entries=1
+    attached table SwitchIngress.dns_total_queried entries=2048
+  Gateway cond-17 is also logical id 0x40
+  Table tbl_netassay_v3l1260_0 logical id 0x32 entries=1
+  Table tbl_netassay_v3l1250 logical id 0x31 entries=1
+    attached table SwitchIngress.sip_cip_reg_1 entries=0
+  Table banned_dns_dst_0 logical id 0x30 entries=512
+  Table tbl_netassay_v3l1260 logical id 0x21 entries=1
+  Table known_domain_list_0 logical id 0x20 entries=1024
+  Table tbl_netassay_v3l1241_0 logical id 0x11 entries=1
+  Table known_domain_list_0 logical id 0x10 entries=1024
+  Table tbl_netassay_v3l1241 logical id 0x1 entries=1
+  Gateway cond-26 is also logical id 0x1
+  Table tbl_netassay_v3l1148 logical id 0x0 entries=1
+  Gateway cond-16 is also logical id 0x0
+Finished table placement decisions pipe
+folding gateway cond-16 onto tbl_netassay_v3l1148
+  Adding Ternary Indirect table to tbl_netassay_v3l1148
+folding gateway cond-26 onto tbl_netassay_v3l1241
+  Adding Ternary Indirect table to tbl_netassay_v3l1241_0
+splitting tbl_netassay_v3l1250 across 2 stages
+folding gateway cond-27 onto tbl_netassay_v3l1254
+  Adding Ternary Indirect table to tbl_netassay_v3l1260_0
+folding gateway cond-28 onto tbl_netassay_v3l1263
+folding gateway cond-29 onto tbl_netassay_v3l1267
+splitting tbl_netassay_v3l1267 across 2 stages
+folding gateway cond-30 onto tbl_netassay_v3l1276
+splitting known_domain_list_0 across 2 stages
+  Adding Ternary Indirect table to known_domain_list_0
+  Adding Ternary Indirect table to known_domain_list_0
+  Adding Ternary Indirect table to banned_dns_dst_0
+folding gateway cond-17 onto tbl_netassay_v3l1157
+  Adding Ternary Indirect table to tbl_netassay_v3l1160
+folding gateway cond-18 onto tbl_netassay_v3l1168
+folding gateway cond-19 onto tbl_netassay_v3l1172
+folding gateway cond-20 onto tbl_netassay_v3l1182
+  Adding Ternary Indirect table to tbl_netassay_v3l1182
+folding gateway cond-22 onto tbl_netassay_v3l1202
+splitting tbl_netassay_v3l1225 across 2 stages
+folding gateway cond-23 onto tbl_netassay_v3l1211
+folding gateway cond-24 onto tbl_netassay_v3l1216
+  Adding Ternary Indirect table to tbl_netassay_v3l1216
+folding gateway cond-25 onto tbl_netassay_v3l1235
+table placement completed pipe
+ingress: [3730005]
+  0: tbl_netassay_v3l1148(ingress::ig_md.parsed_answer == 1;, 1 => $false)
+    $default: [3730932] 0 00
+      10: known_domain_list_0{ T 480+33, 4 1K }
+        $try_next_stage: [3731219]
+          20: known_domain_list_0{ T 480+33, 4 1K }
+      30: banned_dns_dst_0{ T 32+1, 0 0K }
+      40: tbl_netassay_v3l1157(ingress::ig_md.matched_domain == 1;, 1 => $false){ GE 0+11, 0 0K }
+        stateful SwitchIngress.dns_total_queried 2048
+        $default: [3731343] 0 00 000 0000
+          50: tbl_netassay_v3l1159
+          60: tbl_netassay_v3l1160
+          61: tbl_netassay_v3l1168(!(bool)ingress::ig_intr_md.resubmit_flag;, 1 => $false){ GE 0+14, 0 0K }
+            stateful SwitchIngress.sip_cip_reg_1  16K
+            $default: [3731529]
+              72: tbl_netassay_v3l1172(ingress::is_match_0 == 1;, 1 => $false){ GE 0+14, 0 0K }
+                stateful SwitchIngress.domain_tstamp_reg_1  16K
+                $false: [3731539] 0
+                  73: tbl_netassay_v3l1177{ E 0+14, 0 0K }
+                    stateful SwitchIngress.domain_tstamp_reg_1  16K
+                  80: tbl_netassay_v3l1182(ingress::timed_out_0 == 1;, 1 => $false)
+            $false: [3731469] 0
+              62: tbl_netassay_v3l1191{ E 0+14, 0 0K }
+                stateful SwitchIngress.sip_cip_reg_1  16K
+              70: tbl_netassay_v3l1192{ E 0+14, 0 0K }
+                stateful SwitchIngress.domain_tstamp_reg_1  16K
+          81: cond-21(ingress::ig_md.already_matched == 0; => $true, 1 => $false)
+            $true: [3731635]
+              82: tbl_netassay_v3l1202(!(bool)ingress::ig_intr_md.resubmit_flag;, 1 => $false){ GE 0+14, 0 0K }
+                stateful SwitchIngress.sip_cip_reg_2  16K
+                $default: [3731750]
+                  a0: tbl_netassay_v3l1211(ingress::is_match_1 == 1; => $true, 1){ GE 0+14, 0 0K }
+                    stateful SwitchIngress.domain_tstamp_reg_2  16K
+                    $default: [3731802]
+                      b0: tbl_netassay_v3l1216(ingress::timed_out_1 == 1;, 1 => $false)
+                    $true: [3731760]
+                      a1: tbl_netassay_v3l1206{ E 0+14, 0 0K }
+                        stateful SwitchIngress.domain_tstamp_reg_2  16K
+                $false: [3731645] 0 00
+                  84: tbl_netassay_v3l1224{ E 0+14, 0 0K }
+                    stateful SwitchIngress.sip_cip_reg_2  16K
+                  90: tbl_netassay_v3l1225
+                  a3: tbl_netassay_v3l1225
+                    stateful SwitchIngress.domain_tstamp_reg_2  16K
+          b1: tbl_netassay_v3l1235(ingress::ig_md.already_matched == 0;, 1 => $false){ GE 0+11, 0 0K }
+            stateful SwitchIngress.dns_total_missed 2048
+        $false: [3731268]
+    $false: [3730054]
+      1: tbl_netassay_v3l1241(ingress::ig_md.is_ip == 1 && ingress::ig_md.is_dns == 0;, 1 => $false)
+        $default: [3730148] 0 00 000 0000 00000 000000 0000000
+          11: tbl_netassay_v3l1241_0
+          21: tbl_netassay_v3l1260
+          31: tbl_netassay_v3l1250
+          32: tbl_netassay_v3l1260_0
+          63: tbl_netassay_v3l1250
+            stateful SwitchIngress.sip_cip_reg_1  16K
+          71: tbl_netassay_v3l1254(ingress::sip_cip_matched_0 == 1;, 1 => $false){ GE 0+14, 0 0K }
+            stateful SwitchIngress.domain_tstamp_reg_1  16K
+          83: tbl_netassay_v3l1263(ingress::entry_matched_0 == 0;, 1 => $false){ GE 0+14, 0 0K }
+            stateful SwitchIngress.sip_cip_reg_2  16K
+            $default: [3730627] 0
+              91: tbl_netassay_v3l1267(ingress::sip_cip_matched_0 == 1;, 1 => $false)
+              a2: tbl_netassay_v3l1267
+                stateful SwitchIngress.domain_tstamp_reg_2  16K
+            $false: [3730541]
+          b2: tbl_netassay_v3l1276(ingress::entry_matched_0 == 1;, 1 => $false){ GE 0+11, 0 0K }
+            stateful SwitchIngress.byte_counts_table 2048
+            $default: [3730865]
+              b3: tbl_netassay_v3l1275{ E 0+11, 0 0K }
+                stateful SwitchIngress.packet_counts_table 2048
+            $false: [3730813]
+        $false: [3730061]
+egress: [3429251]
+

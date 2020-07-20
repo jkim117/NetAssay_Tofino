@@ -1,0 +1,1998 @@
+{
+    "build_date": "Tue Jul 14 18:08:54 2020", 
+    "program_name": "netassay_v3", 
+    "run_id": "d9ff36a850879690", 
+    "compiler_version": "9.1.0", 
+    "schema_version": "1.0.0", 
+    "tables": [
+        {
+            "name": "SwitchIngress.banned_dns_dst", 
+            "gress": "ingress", 
+            "lookup_types": [
+                "lpm"
+            ], 
+            "entries_requested": 100, 
+            "entries_allocated": 512, 
+            "match_fields": [
+                {
+                    "name": "headers.ipv4.dst", 
+                    "start_bit": 0, 
+                    "bit_width": 32, 
+                    "lookup_type": "lpm"
+                }
+            ], 
+            "action_parameters": [
+                {
+                    "action_name": "SwitchIngress.match_banned_dns_dst", 
+                    "parameters": []
+                }, 
+                {
+                    "action_name": "NoAction", 
+                    "parameters": []
+                }
+            ], 
+            "stage_allocation": [
+                {
+                    "stage_number": 3, 
+                    "memories": [
+                        {
+                            "memory_type": "tcam", 
+                            "table_word_width": 44, 
+                            "memory_word_width": 44, 
+                            "entries_per_table_word": 1, 
+                            "table_type": "match", 
+                            "num_memories": 1, 
+                            "entries_requested": 100, 
+                            "entries_allocated": 512, 
+                            "imm_bit_width_in_overhead_requested": 0, 
+                            "imm_bit_width_in_overhead_allocated": 0, 
+                            "entry_bit_width_requested": 36, 
+                            "entry_bit_width_allocated": 44, 
+                            "ideal_entries_per_table_word": 1, 
+                            "ideal_table_word_bit_width": 44
+                        }, 
+                        {
+                            "memory_type": "sram", 
+                            "table_word_width": 128, 
+                            "memory_word_width": 128, 
+                            "entries_per_table_word": 32, 
+                            "table_type": "tind", 
+                            "num_memories": 1, 
+                            "entry_bit_width_requested": 0, 
+                            "entry_bit_width_allocated": 4
+                        }
+                    ], 
+                    "overhead_fields": [], 
+                    "match_format": {
+                        "entries": [
+                            {
+                                "entry_number": 0, 
+                                "fields": [
+                                    {
+                                        "name": "--version--", 
+                                        "bit_width": 2, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 42
+                                    }, 
+                                    {
+                                        "name": "headers.ipv4.dst", 
+                                        "bit_width": 32, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 0
+                                    }
+                                ]
+                            }
+                        ]
+                    }, 
+                    "action_formats": []
+                }
+            ]
+        }, 
+        {
+            "name": "SwitchIngress.known_domain_list", 
+            "gress": "ingress", 
+            "lookup_types": [
+                "ternary"
+            ], 
+            "entries_requested": 2048, 
+            "entries_allocated": 2048, 
+            "match_fields": [
+                {
+                    "name": "headers.q1_part1.part", 
+                    "start_bit": 0, 
+                    "bit_width": 8, 
+                    "lookup_type": "ternary"
+                }, 
+                {
+                    "name": "headers.q1_part2.part", 
+                    "start_bit": 0, 
+                    "bit_width": 16, 
+                    "lookup_type": "ternary"
+                }, 
+                {
+                    "name": "headers.q1_part4.part", 
+                    "start_bit": 0, 
+                    "bit_width": 32, 
+                    "lookup_type": "ternary"
+                }, 
+                {
+                    "name": "headers.q1_part8_1.part", 
+                    "start_bit": 0, 
+                    "bit_width": 32, 
+                    "lookup_type": "ternary"
+                }, 
+                {
+                    "name": "headers.q1_part8_2.part", 
+                    "start_bit": 0, 
+                    "bit_width": 32, 
+                    "lookup_type": "ternary"
+                }, 
+                {
+                    "name": "headers.q2_part1.part", 
+                    "start_bit": 0, 
+                    "bit_width": 8, 
+                    "lookup_type": "ternary"
+                }, 
+                {
+                    "name": "headers.q2_part2.part", 
+                    "start_bit": 0, 
+                    "bit_width": 16, 
+                    "lookup_type": "ternary"
+                }, 
+                {
+                    "name": "headers.q2_part4.part", 
+                    "start_bit": 0, 
+                    "bit_width": 32, 
+                    "lookup_type": "ternary"
+                }, 
+                {
+                    "name": "headers.q2_part8_1.part", 
+                    "start_bit": 0, 
+                    "bit_width": 32, 
+                    "lookup_type": "ternary"
+                }, 
+                {
+                    "name": "headers.q2_part8_2.part", 
+                    "start_bit": 0, 
+                    "bit_width": 32, 
+                    "lookup_type": "ternary"
+                }, 
+                {
+                    "name": "headers.q3_part1.part", 
+                    "start_bit": 0, 
+                    "bit_width": 8, 
+                    "lookup_type": "ternary"
+                }, 
+                {
+                    "name": "headers.q3_part2.part", 
+                    "start_bit": 0, 
+                    "bit_width": 16, 
+                    "lookup_type": "ternary"
+                }, 
+                {
+                    "name": "headers.q3_part4.part", 
+                    "start_bit": 0, 
+                    "bit_width": 32, 
+                    "lookup_type": "ternary"
+                }, 
+                {
+                    "name": "headers.q3_part8_1.part", 
+                    "start_bit": 0, 
+                    "bit_width": 32, 
+                    "lookup_type": "ternary"
+                }, 
+                {
+                    "name": "headers.q3_part8_2.part", 
+                    "start_bit": 0, 
+                    "bit_width": 32, 
+                    "lookup_type": "ternary"
+                }, 
+                {
+                    "name": "headers.q4_part1.part", 
+                    "start_bit": 0, 
+                    "bit_width": 8, 
+                    "lookup_type": "ternary"
+                }, 
+                {
+                    "name": "headers.q4_part2.part", 
+                    "start_bit": 0, 
+                    "bit_width": 16, 
+                    "lookup_type": "ternary"
+                }, 
+                {
+                    "name": "headers.q4_part4.part", 
+                    "start_bit": 0, 
+                    "bit_width": 32, 
+                    "lookup_type": "ternary"
+                }, 
+                {
+                    "name": "headers.q4_part8_1.part", 
+                    "start_bit": 0, 
+                    "bit_width": 32, 
+                    "lookup_type": "ternary"
+                }, 
+                {
+                    "name": "headers.q4_part8_2.part", 
+                    "start_bit": 0, 
+                    "bit_width": 32, 
+                    "lookup_type": "ternary"
+                }
+            ], 
+            "action_parameters": [
+                {
+                    "action_name": "SwitchIngress.match_domain", 
+                    "parameters": [
+                        {
+                            "name": "id", 
+                            "bit_width": 32
+                        }
+                    ]
+                }, 
+                {
+                    "action_name": "NoAction", 
+                    "parameters": []
+                }
+            ], 
+            "stage_allocation": [
+                {
+                    "stage_number": 1, 
+                    "memories": [
+                        {
+                            "memory_type": "tcam", 
+                            "table_word_width": 484, 
+                            "memory_word_width": 44, 
+                            "entries_per_table_word": 1, 
+                            "table_type": "match", 
+                            "num_memories": 22, 
+                            "entries_requested": 1024, 
+                            "entries_allocated": 1024, 
+                            "imm_bit_width_in_overhead_requested": 32, 
+                            "imm_bit_width_in_overhead_allocated": 32, 
+                            "entry_bit_width_requested": 484, 
+                            "entry_bit_width_allocated": 484, 
+                            "ideal_entries_per_table_word": 1, 
+                            "ideal_table_word_bit_width": 484
+                        }, 
+                        {
+                            "memory_type": "sram", 
+                            "table_word_width": 128, 
+                            "memory_word_width": 128, 
+                            "entries_per_table_word": 2, 
+                            "table_type": "tind", 
+                            "num_memories": 1, 
+                            "entry_bit_width_requested": 32, 
+                            "entry_bit_width_allocated": 64
+                        }
+                    ], 
+                    "overhead_fields": [
+                        {
+                            "name": "immediate", 
+                            "bit_width": 32
+                        }
+                    ], 
+                    "match_format": {
+                        "entries": [
+                            {
+                                "entry_number": 0, 
+                                "fields": [
+                                    {
+                                        "name": "--version--", 
+                                        "bit_width": 2, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 42
+                                    }, 
+                                    {
+                                        "name": "headers.q2_part8_1.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 440
+                                    }, 
+                                    {
+                                        "name": "headers.q2_part8_2.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 8, 
+                                        "memory_start_bit": 448
+                                    }, 
+                                    {
+                                        "name": "headers.q2_part8_1.part", 
+                                        "bit_width": 16, 
+                                        "start_bit": 16, 
+                                        "memory_start_bit": 456
+                                    }, 
+                                    {
+                                        "name": "headers.q2_part8_2.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 472
+                                    }, 
+                                    {
+                                        "name": "headers.q2_part8_2.part", 
+                                        "bit_width": 16, 
+                                        "start_bit": 16, 
+                                        "memory_start_bit": 396
+                                    }, 
+                                    {
+                                        "name": "headers.q1_part4.part", 
+                                        "bit_width": 24, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 412
+                                    }, 
+                                    {
+                                        "name": "headers.q1_part4.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 24, 
+                                        "memory_start_bit": 352
+                                    }, 
+                                    {
+                                        "name": "headers.q1_part8_1.part", 
+                                        "bit_width": 32, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 360
+                                    }, 
+                                    {
+                                        "name": "headers.q1_part8_2.part", 
+                                        "bit_width": 24, 
+                                        "start_bit": 8, 
+                                        "memory_start_bit": 308
+                                    }, 
+                                    {
+                                        "name": "headers.q1_part8_2.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 332
+                                    }, 
+                                    {
+                                        "name": "headers.q4_part4.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 8, 
+                                        "memory_start_bit": 340
+                                    }, 
+                                    {
+                                        "name": "headers.q4_part4.part", 
+                                        "bit_width": 16, 
+                                        "start_bit": 16, 
+                                        "memory_start_bit": 264
+                                    }, 
+                                    {
+                                        "name": "headers.q4_part4.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 280
+                                    }, 
+                                    {
+                                        "name": "headers.q4_part8_1.part", 
+                                        "bit_width": 16, 
+                                        "start_bit": 8, 
+                                        "memory_start_bit": 288
+                                    }, 
+                                    {
+                                        "name": "headers.q4_part8_1.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 220
+                                    }, 
+                                    {
+                                        "name": "headers.q4_part8_2.part", 
+                                        "bit_width": 16, 
+                                        "start_bit": 8, 
+                                        "memory_start_bit": 228
+                                    }, 
+                                    {
+                                        "name": "headers.q4_part8_1.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 24, 
+                                        "memory_start_bit": 244
+                                    }, 
+                                    {
+                                        "name": "headers.q4_part8_2.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 252
+                                    }, 
+                                    {
+                                        "name": "headers.q3_part8_1.part", 
+                                        "bit_width": 24, 
+                                        "start_bit": 8, 
+                                        "memory_start_bit": 176
+                                    }, 
+                                    {
+                                        "name": "headers.q3_part8_1.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 200
+                                    }, 
+                                    {
+                                        "name": "headers.q3_part8_2.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 8, 
+                                        "memory_start_bit": 208
+                                    }, 
+                                    {
+                                        "name": "headers.q4_part8_2.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 24, 
+                                        "memory_start_bit": 132
+                                    }, 
+                                    {
+                                        "name": "headers.q3_part4.part", 
+                                        "bit_width": 32, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 140
+                                    }, 
+                                    {
+                                        "name": "headers.q3_part8_2.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 88
+                                    }, 
+                                    {
+                                        "name": "headers.q4_part2.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 8, 
+                                        "memory_start_bit": 96
+                                    }, 
+                                    {
+                                        "name": "headers.q3_part8_2.part", 
+                                        "bit_width": 16, 
+                                        "start_bit": 16, 
+                                        "memory_start_bit": 104
+                                    }, 
+                                    {
+                                        "name": "headers.q4_part2.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 120
+                                    }, 
+                                    {
+                                        "name": "headers.q3_part2.part", 
+                                        "bit_width": 16, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 44
+                                    }, 
+                                    {
+                                        "name": "headers.q2_part2.part", 
+                                        "bit_width": 16, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 60
+                                    }, 
+                                    {
+                                        "name": "headers.q1_part2.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 76
+                                    }, 
+                                    {
+                                        "name": "headers.q1_part2.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 8, 
+                                        "memory_start_bit": 0
+                                    }, 
+                                    {
+                                        "name": "headers.q1_part1.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 8
+                                    }, 
+                                    {
+                                        "name": "headers.q2_part1.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 16
+                                    }, 
+                                    {
+                                        "name": "headers.q3_part1.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 24
+                                    }, 
+                                    {
+                                        "name": "headers.q4_part1.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 32
+                                    }, 
+                                    {
+                                        "name": "headers.q2_part4.part", 
+                                        "bit_width": 4, 
+                                        "start_bit": 8, 
+                                        "memory_start_bit": 480
+                                    }, 
+                                    {
+                                        "name": "headers.q2_part4.part", 
+                                        "bit_width": 4, 
+                                        "start_bit": 12, 
+                                        "memory_start_bit": 436
+                                    }, 
+                                    {
+                                        "name": "headers.q2_part4.part", 
+                                        "bit_width": 4, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 392
+                                    }, 
+                                    {
+                                        "name": "headers.q2_part4.part", 
+                                        "bit_width": 4, 
+                                        "start_bit": 4, 
+                                        "memory_start_bit": 348
+                                    }, 
+                                    {
+                                        "name": "headers.q2_part4.part", 
+                                        "bit_width": 4, 
+                                        "start_bit": 24, 
+                                        "memory_start_bit": 304
+                                    }, 
+                                    {
+                                        "name": "headers.q2_part4.part", 
+                                        "bit_width": 4, 
+                                        "start_bit": 28, 
+                                        "memory_start_bit": 260
+                                    }, 
+                                    {
+                                        "name": "headers.q2_part4.part", 
+                                        "bit_width": 4, 
+                                        "start_bit": 16, 
+                                        "memory_start_bit": 216
+                                    }, 
+                                    {
+                                        "name": "headers.q2_part4.part", 
+                                        "bit_width": 4, 
+                                        "start_bit": 20, 
+                                        "memory_start_bit": 172
+                                    }, 
+                                    {
+                                        "name": "headers.q2_part8_1.part", 
+                                        "bit_width": 4, 
+                                        "start_bit": 8, 
+                                        "memory_start_bit": 128
+                                    }, 
+                                    {
+                                        "name": "headers.q2_part8_1.part", 
+                                        "bit_width": 4, 
+                                        "start_bit": 12, 
+                                        "memory_start_bit": 84
+                                    }
+                                ]
+                            }
+                        ]
+                    }, 
+                    "action_formats": []
+                }, 
+                {
+                    "stage_number": 2, 
+                    "memories": [
+                        {
+                            "memory_type": "tcam", 
+                            "table_word_width": 484, 
+                            "memory_word_width": 44, 
+                            "entries_per_table_word": 1, 
+                            "table_type": "match", 
+                            "num_memories": 22, 
+                            "entries_requested": 1024, 
+                            "entries_allocated": 1024, 
+                            "imm_bit_width_in_overhead_requested": 32, 
+                            "imm_bit_width_in_overhead_allocated": 32, 
+                            "entry_bit_width_requested": 484, 
+                            "entry_bit_width_allocated": 484, 
+                            "ideal_entries_per_table_word": 1, 
+                            "ideal_table_word_bit_width": 484
+                        }, 
+                        {
+                            "memory_type": "sram", 
+                            "table_word_width": 128, 
+                            "memory_word_width": 128, 
+                            "entries_per_table_word": 2, 
+                            "table_type": "tind", 
+                            "num_memories": 1, 
+                            "entry_bit_width_requested": 32, 
+                            "entry_bit_width_allocated": 64
+                        }
+                    ], 
+                    "overhead_fields": [
+                        {
+                            "name": "immediate", 
+                            "bit_width": 32
+                        }
+                    ], 
+                    "match_format": {
+                        "entries": [
+                            {
+                                "entry_number": 0, 
+                                "fields": [
+                                    {
+                                        "name": "--version--", 
+                                        "bit_width": 2, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 42
+                                    }, 
+                                    {
+                                        "name": "headers.q2_part8_1.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 440
+                                    }, 
+                                    {
+                                        "name": "headers.q2_part8_2.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 8, 
+                                        "memory_start_bit": 448
+                                    }, 
+                                    {
+                                        "name": "headers.q2_part8_1.part", 
+                                        "bit_width": 16, 
+                                        "start_bit": 16, 
+                                        "memory_start_bit": 456
+                                    }, 
+                                    {
+                                        "name": "headers.q2_part8_2.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 472
+                                    }, 
+                                    {
+                                        "name": "headers.q2_part8_2.part", 
+                                        "bit_width": 16, 
+                                        "start_bit": 16, 
+                                        "memory_start_bit": 396
+                                    }, 
+                                    {
+                                        "name": "headers.q1_part4.part", 
+                                        "bit_width": 24, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 412
+                                    }, 
+                                    {
+                                        "name": "headers.q1_part4.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 24, 
+                                        "memory_start_bit": 352
+                                    }, 
+                                    {
+                                        "name": "headers.q1_part8_1.part", 
+                                        "bit_width": 32, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 360
+                                    }, 
+                                    {
+                                        "name": "headers.q1_part8_2.part", 
+                                        "bit_width": 24, 
+                                        "start_bit": 8, 
+                                        "memory_start_bit": 308
+                                    }, 
+                                    {
+                                        "name": "headers.q1_part8_2.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 332
+                                    }, 
+                                    {
+                                        "name": "headers.q4_part4.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 8, 
+                                        "memory_start_bit": 340
+                                    }, 
+                                    {
+                                        "name": "headers.q4_part4.part", 
+                                        "bit_width": 16, 
+                                        "start_bit": 16, 
+                                        "memory_start_bit": 264
+                                    }, 
+                                    {
+                                        "name": "headers.q4_part4.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 280
+                                    }, 
+                                    {
+                                        "name": "headers.q4_part8_1.part", 
+                                        "bit_width": 16, 
+                                        "start_bit": 8, 
+                                        "memory_start_bit": 288
+                                    }, 
+                                    {
+                                        "name": "headers.q4_part8_1.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 220
+                                    }, 
+                                    {
+                                        "name": "headers.q4_part8_2.part", 
+                                        "bit_width": 16, 
+                                        "start_bit": 8, 
+                                        "memory_start_bit": 228
+                                    }, 
+                                    {
+                                        "name": "headers.q4_part8_1.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 24, 
+                                        "memory_start_bit": 244
+                                    }, 
+                                    {
+                                        "name": "headers.q4_part8_2.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 252
+                                    }, 
+                                    {
+                                        "name": "headers.q3_part8_1.part", 
+                                        "bit_width": 24, 
+                                        "start_bit": 8, 
+                                        "memory_start_bit": 176
+                                    }, 
+                                    {
+                                        "name": "headers.q3_part8_1.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 200
+                                    }, 
+                                    {
+                                        "name": "headers.q3_part8_2.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 8, 
+                                        "memory_start_bit": 208
+                                    }, 
+                                    {
+                                        "name": "headers.q4_part8_2.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 24, 
+                                        "memory_start_bit": 132
+                                    }, 
+                                    {
+                                        "name": "headers.q3_part4.part", 
+                                        "bit_width": 32, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 140
+                                    }, 
+                                    {
+                                        "name": "headers.q3_part8_2.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 88
+                                    }, 
+                                    {
+                                        "name": "headers.q4_part2.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 8, 
+                                        "memory_start_bit": 96
+                                    }, 
+                                    {
+                                        "name": "headers.q3_part8_2.part", 
+                                        "bit_width": 16, 
+                                        "start_bit": 16, 
+                                        "memory_start_bit": 104
+                                    }, 
+                                    {
+                                        "name": "headers.q4_part2.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 120
+                                    }, 
+                                    {
+                                        "name": "headers.q3_part2.part", 
+                                        "bit_width": 16, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 44
+                                    }, 
+                                    {
+                                        "name": "headers.q2_part2.part", 
+                                        "bit_width": 16, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 60
+                                    }, 
+                                    {
+                                        "name": "headers.q1_part2.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 76
+                                    }, 
+                                    {
+                                        "name": "headers.q1_part2.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 8, 
+                                        "memory_start_bit": 0
+                                    }, 
+                                    {
+                                        "name": "headers.q1_part1.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 8
+                                    }, 
+                                    {
+                                        "name": "headers.q2_part1.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 16
+                                    }, 
+                                    {
+                                        "name": "headers.q3_part1.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 24
+                                    }, 
+                                    {
+                                        "name": "headers.q4_part1.part", 
+                                        "bit_width": 8, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 32
+                                    }, 
+                                    {
+                                        "name": "headers.q2_part4.part", 
+                                        "bit_width": 4, 
+                                        "start_bit": 8, 
+                                        "memory_start_bit": 480
+                                    }, 
+                                    {
+                                        "name": "headers.q2_part4.part", 
+                                        "bit_width": 4, 
+                                        "start_bit": 12, 
+                                        "memory_start_bit": 436
+                                    }, 
+                                    {
+                                        "name": "headers.q2_part4.part", 
+                                        "bit_width": 4, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 392
+                                    }, 
+                                    {
+                                        "name": "headers.q2_part4.part", 
+                                        "bit_width": 4, 
+                                        "start_bit": 4, 
+                                        "memory_start_bit": 348
+                                    }, 
+                                    {
+                                        "name": "headers.q2_part4.part", 
+                                        "bit_width": 4, 
+                                        "start_bit": 24, 
+                                        "memory_start_bit": 304
+                                    }, 
+                                    {
+                                        "name": "headers.q2_part4.part", 
+                                        "bit_width": 4, 
+                                        "start_bit": 28, 
+                                        "memory_start_bit": 260
+                                    }, 
+                                    {
+                                        "name": "headers.q2_part4.part", 
+                                        "bit_width": 4, 
+                                        "start_bit": 16, 
+                                        "memory_start_bit": 216
+                                    }, 
+                                    {
+                                        "name": "headers.q2_part4.part", 
+                                        "bit_width": 4, 
+                                        "start_bit": 20, 
+                                        "memory_start_bit": 172
+                                    }, 
+                                    {
+                                        "name": "headers.q2_part8_1.part", 
+                                        "bit_width": 4, 
+                                        "start_bit": 8, 
+                                        "memory_start_bit": 128
+                                    }, 
+                                    {
+                                        "name": "headers.q2_part8_1.part", 
+                                        "bit_width": 4, 
+                                        "start_bit": 12, 
+                                        "memory_start_bit": 84
+                                    }
+                                ]
+                            }
+                        ]
+                    }, 
+                    "action_formats": []
+                }
+            ]
+        }, 
+        {
+            "name": "SwitchIngressParser.$PORT_METADATA", 
+            "gress": "ingress", 
+            "lookup_types": [
+                "exact"
+            ], 
+            "entries_requested": 288, 
+            "entries_allocated": 288, 
+            "match_fields": [
+                {
+                    "name": "ig_intr_md.ingress_port", 
+                    "start_bit": 0, 
+                    "bit_width": 9, 
+                    "lookup_type": "exact"
+                }
+            ], 
+            "action_parameters": [
+                {
+                    "action_name": "set_port_metadata", 
+                    "parameters": [
+                        {
+                            "name": "ig_intr_md", 
+                            "bit_width": 64
+                        }
+                    ]
+                }
+            ], 
+            "stage_allocation": [
+                {
+                    "stage_number": -1, 
+                    "memories": [
+                        {
+                            "memory_type": "buf", 
+                            "table_word_width": 64, 
+                            "memory_word_width": 64, 
+                            "entries_per_table_word": 1, 
+                            "table_type": "match", 
+                            "num_memories": 1, 
+                            "entries_requested": 288, 
+                            "entries_allocated": 288, 
+                            "imm_bit_width_in_overhead_requested": 64, 
+                            "imm_bit_width_in_overhead_allocated": 0, 
+                            "entry_bit_width_requested": 9, 
+                            "entry_bit_width_allocated": 64, 
+                            "ideal_entries_per_table_word": 1, 
+                            "ideal_table_word_bit_width": 128
+                        }
+                    ], 
+                    "overhead_fields": [], 
+                    "match_format": {
+                        "entries": [
+                            {
+                                "entry_number": 0, 
+                                "fields": [
+                                    {
+                                        "name": "ig_intr_md", 
+                                        "bit_width": 64, 
+                                        "start_bit": 0, 
+                                        "memory_start_bit": 0
+                                    }
+                                ]
+                            }
+                        ]
+                    }, 
+                    "action_formats": []
+                }
+            ]
+        }, 
+        {
+            "name": "tbl_netassay_v3l1148", 
+            "gress": "ingress", 
+            "lookup_types": [], 
+            "entries_requested": 0, 
+            "entries_allocated": 0, 
+            "match_fields": [], 
+            "action_parameters": [
+                {
+                    "action_name": "netassay_v3l1148", 
+                    "parameters": []
+                }
+            ], 
+            "stage_allocation": [
+                {
+                    "stage_number": 0, 
+                    "memories": [
+                        {
+                            "memory_type": "sram", 
+                            "table_word_width": 0, 
+                            "memory_word_width": 44, 
+                            "entries_per_table_word": 1, 
+                            "table_type": "match", 
+                            "num_memories": 0, 
+                            "entries_requested": 0, 
+                            "entries_allocated": 0, 
+                            "imm_bit_width_in_overhead_requested": 0, 
+                            "imm_bit_width_in_overhead_allocated": 0, 
+                            "entry_bit_width_requested": 0, 
+                            "entry_bit_width_allocated": 0, 
+                            "ideal_entries_per_table_word": 0, 
+                            "ideal_table_word_bit_width": 0
+                        }
+                    ], 
+                    "overhead_fields": [], 
+                    "match_format": {
+                        "entries": [
+                            {
+                                "entry_number": 0, 
+                                "fields": []
+                            }
+                        ]
+                    }, 
+                    "action_formats": []
+                }
+            ]
+        }, 
+        {
+            "name": "tbl_netassay_v3l1157", 
+            "gress": "ingress", 
+            "lookup_types": [], 
+            "entries_requested": 16384, 
+            "entries_allocated": 1, 
+            "match_fields": [], 
+            "action_parameters": [
+                {
+                    "action_name": "netassay_v3l1157", 
+                    "parameters": []
+                }
+            ], 
+            "stage_allocation": [
+                {
+                    "stage_number": 4, 
+                    "memories": [
+                        {
+                            "memory_type": "sram", 
+                            "table_word_width": 128, 
+                            "memory_word_width": 128, 
+                            "entries_per_table_word": 4, 
+                            "table_type": "stateful", 
+                            "num_memories": 2
+                        }
+                    ], 
+                    "overhead_fields": [], 
+                    "match_format": {
+                        "entries": []
+                    }, 
+                    "action_formats": []
+                }
+            ]
+        }, 
+        {
+            "name": "tbl_netassay_v3l1159", 
+            "gress": "ingress", 
+            "lookup_types": [], 
+            "entries_requested": 16384, 
+            "entries_allocated": 1, 
+            "match_fields": [], 
+            "action_parameters": [
+                {
+                    "action_name": "netassay_v3l1159", 
+                    "parameters": []
+                }
+            ], 
+            "stage_allocation": [
+                {
+                    "stage_number": 5, 
+                    "memories": [], 
+                    "overhead_fields": [], 
+                    "match_format": {
+                        "entries": []
+                    }, 
+                    "action_formats": []
+                }
+            ]
+        }, 
+        {
+            "name": "tbl_netassay_v3l1160", 
+            "gress": "ingress", 
+            "lookup_types": [], 
+            "entries_requested": 0, 
+            "entries_allocated": 0, 
+            "match_fields": [], 
+            "action_parameters": [
+                {
+                    "action_name": "netassay_v3l1160", 
+                    "parameters": []
+                }
+            ], 
+            "stage_allocation": [
+                {
+                    "stage_number": 6, 
+                    "memories": [
+                        {
+                            "memory_type": "sram", 
+                            "table_word_width": 0, 
+                            "memory_word_width": 44, 
+                            "entries_per_table_word": 1, 
+                            "table_type": "match", 
+                            "num_memories": 0, 
+                            "entries_requested": 0, 
+                            "entries_allocated": 0, 
+                            "imm_bit_width_in_overhead_requested": 0, 
+                            "imm_bit_width_in_overhead_allocated": 0, 
+                            "entry_bit_width_requested": 0, 
+                            "entry_bit_width_allocated": 0, 
+                            "ideal_entries_per_table_word": 0, 
+                            "ideal_table_word_bit_width": 0
+                        }
+                    ], 
+                    "overhead_fields": [], 
+                    "match_format": {
+                        "entries": [
+                            {
+                                "entry_number": 0, 
+                                "fields": []
+                            }
+                        ]
+                    }, 
+                    "action_formats": []
+                }
+            ]
+        }, 
+        {
+            "name": "tbl_netassay_v3l1168", 
+            "gress": "ingress", 
+            "lookup_types": [], 
+            "entries_requested": 8388608, 
+            "entries_allocated": 1, 
+            "match_fields": [], 
+            "action_parameters": [
+                {
+                    "action_name": "netassay_v3l1168", 
+                    "parameters": []
+                }
+            ], 
+            "stage_allocation": [
+                {
+                    "stage_number": 6, 
+                    "memories": [
+                        {
+                            "memory_type": "sram", 
+                            "table_word_width": 128, 
+                            "memory_word_width": 128, 
+                            "entries_per_table_word": 2, 
+                            "table_type": "stateful", 
+                            "num_memories": 9
+                        }
+                    ], 
+                    "overhead_fields": [], 
+                    "match_format": {
+                        "entries": []
+                    }, 
+                    "action_formats": []
+                }
+            ]
+        }, 
+        {
+            "name": "tbl_netassay_v3l1172", 
+            "gress": "ingress", 
+            "lookup_types": [], 
+            "entries_requested": 8388608, 
+            "entries_allocated": 1, 
+            "match_fields": [], 
+            "action_parameters": [
+                {
+                    "action_name": "netassay_v3l1172", 
+                    "parameters": []
+                }
+            ], 
+            "stage_allocation": [
+                {
+                    "stage_number": 7, 
+                    "memories": [
+                        {
+                            "memory_type": "sram", 
+                            "table_word_width": 128, 
+                            "memory_word_width": 128, 
+                            "entries_per_table_word": 2, 
+                            "table_type": "stateful", 
+                            "num_memories": 9
+                        }
+                    ], 
+                    "overhead_fields": [], 
+                    "match_format": {
+                        "entries": []
+                    }, 
+                    "action_formats": []
+                }
+            ]
+        }, 
+        {
+            "name": "tbl_netassay_v3l1177", 
+            "gress": "ingress", 
+            "lookup_types": [], 
+            "entries_requested": 8388608, 
+            "entries_allocated": 1, 
+            "match_fields": [], 
+            "action_parameters": [
+                {
+                    "action_name": "netassay_v3l1177", 
+                    "parameters": []
+                }
+            ], 
+            "stage_allocation": [
+                {
+                    "stage_number": 7, 
+                    "memories": [
+                        {
+                            "memory_type": "sram", 
+                            "table_word_width": 128, 
+                            "memory_word_width": 128, 
+                            "entries_per_table_word": 2, 
+                            "table_type": "stateful", 
+                            "num_memories": 9
+                        }
+                    ], 
+                    "overhead_fields": [], 
+                    "match_format": {
+                        "entries": []
+                    }, 
+                    "action_formats": []
+                }
+            ]
+        }, 
+        {
+            "name": "tbl_netassay_v3l1182", 
+            "gress": "ingress", 
+            "lookup_types": [], 
+            "entries_requested": 0, 
+            "entries_allocated": 0, 
+            "match_fields": [], 
+            "action_parameters": [
+                {
+                    "action_name": "netassay_v3l1182", 
+                    "parameters": []
+                }
+            ], 
+            "stage_allocation": [
+                {
+                    "stage_number": 8, 
+                    "memories": [
+                        {
+                            "memory_type": "sram", 
+                            "table_word_width": 0, 
+                            "memory_word_width": 44, 
+                            "entries_per_table_word": 1, 
+                            "table_type": "match", 
+                            "num_memories": 0, 
+                            "entries_requested": 0, 
+                            "entries_allocated": 0, 
+                            "imm_bit_width_in_overhead_requested": 0, 
+                            "imm_bit_width_in_overhead_allocated": 0, 
+                            "entry_bit_width_requested": 0, 
+                            "entry_bit_width_allocated": 0, 
+                            "ideal_entries_per_table_word": 0, 
+                            "ideal_table_word_bit_width": 0
+                        }
+                    ], 
+                    "overhead_fields": [], 
+                    "match_format": {
+                        "entries": [
+                            {
+                                "entry_number": 0, 
+                                "fields": []
+                            }
+                        ]
+                    }, 
+                    "action_formats": []
+                }
+            ]
+        }, 
+        {
+            "name": "tbl_netassay_v3l1191", 
+            "gress": "ingress", 
+            "lookup_types": [], 
+            "entries_requested": 8388608, 
+            "entries_allocated": 1, 
+            "match_fields": [], 
+            "action_parameters": [
+                {
+                    "action_name": "netassay_v3l1191", 
+                    "parameters": []
+                }
+            ], 
+            "stage_allocation": [
+                {
+                    "stage_number": 6, 
+                    "memories": [
+                        {
+                            "memory_type": "sram", 
+                            "table_word_width": 128, 
+                            "memory_word_width": 128, 
+                            "entries_per_table_word": 2, 
+                            "table_type": "stateful", 
+                            "num_memories": 9
+                        }
+                    ], 
+                    "overhead_fields": [], 
+                    "match_format": {
+                        "entries": []
+                    }, 
+                    "action_formats": []
+                }
+            ]
+        }, 
+        {
+            "name": "tbl_netassay_v3l1192", 
+            "gress": "ingress", 
+            "lookup_types": [], 
+            "entries_requested": 8388608, 
+            "entries_allocated": 1, 
+            "match_fields": [], 
+            "action_parameters": [
+                {
+                    "action_name": "netassay_v3l1192", 
+                    "parameters": []
+                }
+            ], 
+            "stage_allocation": [
+                {
+                    "stage_number": 7, 
+                    "memories": [
+                        {
+                            "memory_type": "sram", 
+                            "table_word_width": 128, 
+                            "memory_word_width": 128, 
+                            "entries_per_table_word": 2, 
+                            "table_type": "stateful", 
+                            "num_memories": 9
+                        }
+                    ], 
+                    "overhead_fields": [], 
+                    "match_format": {
+                        "entries": []
+                    }, 
+                    "action_formats": []
+                }
+            ]
+        }, 
+        {
+            "name": "tbl_netassay_v3l1202", 
+            "gress": "ingress", 
+            "lookup_types": [], 
+            "entries_requested": 8388608, 
+            "entries_allocated": 1, 
+            "match_fields": [], 
+            "action_parameters": [
+                {
+                    "action_name": "netassay_v3l1202", 
+                    "parameters": []
+                }
+            ], 
+            "stage_allocation": [
+                {
+                    "stage_number": 8, 
+                    "memories": [
+                        {
+                            "memory_type": "sram", 
+                            "table_word_width": 128, 
+                            "memory_word_width": 128, 
+                            "entries_per_table_word": 2, 
+                            "table_type": "stateful", 
+                            "num_memories": 9
+                        }
+                    ], 
+                    "overhead_fields": [], 
+                    "match_format": {
+                        "entries": []
+                    }, 
+                    "action_formats": []
+                }
+            ]
+        }, 
+        {
+            "name": "tbl_netassay_v3l1206", 
+            "gress": "ingress", 
+            "lookup_types": [], 
+            "entries_requested": 8388608, 
+            "entries_allocated": 1, 
+            "match_fields": [], 
+            "action_parameters": [
+                {
+                    "action_name": "netassay_v3l1206", 
+                    "parameters": []
+                }
+            ], 
+            "stage_allocation": [
+                {
+                    "stage_number": 10, 
+                    "memories": [
+                        {
+                            "memory_type": "sram", 
+                            "table_word_width": 128, 
+                            "memory_word_width": 128, 
+                            "entries_per_table_word": 2, 
+                            "table_type": "stateful", 
+                            "num_memories": 9
+                        }
+                    ], 
+                    "overhead_fields": [], 
+                    "match_format": {
+                        "entries": []
+                    }, 
+                    "action_formats": []
+                }
+            ]
+        }, 
+        {
+            "name": "tbl_netassay_v3l1211", 
+            "gress": "ingress", 
+            "lookup_types": [], 
+            "entries_requested": 8388608, 
+            "entries_allocated": 1, 
+            "match_fields": [], 
+            "action_parameters": [
+                {
+                    "action_name": "netassay_v3l1211", 
+                    "parameters": []
+                }
+            ], 
+            "stage_allocation": [
+                {
+                    "stage_number": 10, 
+                    "memories": [
+                        {
+                            "memory_type": "sram", 
+                            "table_word_width": 128, 
+                            "memory_word_width": 128, 
+                            "entries_per_table_word": 2, 
+                            "table_type": "stateful", 
+                            "num_memories": 9
+                        }
+                    ], 
+                    "overhead_fields": [], 
+                    "match_format": {
+                        "entries": []
+                    }, 
+                    "action_formats": []
+                }
+            ]
+        }, 
+        {
+            "name": "tbl_netassay_v3l1216", 
+            "gress": "ingress", 
+            "lookup_types": [], 
+            "entries_requested": 0, 
+            "entries_allocated": 0, 
+            "match_fields": [], 
+            "action_parameters": [
+                {
+                    "action_name": "netassay_v3l1216", 
+                    "parameters": []
+                }
+            ], 
+            "stage_allocation": [
+                {
+                    "stage_number": 11, 
+                    "memories": [
+                        {
+                            "memory_type": "sram", 
+                            "table_word_width": 0, 
+                            "memory_word_width": 44, 
+                            "entries_per_table_word": 1, 
+                            "table_type": "match", 
+                            "num_memories": 0, 
+                            "entries_requested": 0, 
+                            "entries_allocated": 0, 
+                            "imm_bit_width_in_overhead_requested": 0, 
+                            "imm_bit_width_in_overhead_allocated": 0, 
+                            "entry_bit_width_requested": 0, 
+                            "entry_bit_width_allocated": 0, 
+                            "ideal_entries_per_table_word": 0, 
+                            "ideal_table_word_bit_width": 0
+                        }
+                    ], 
+                    "overhead_fields": [], 
+                    "match_format": {
+                        "entries": [
+                            {
+                                "entry_number": 0, 
+                                "fields": []
+                            }
+                        ]
+                    }, 
+                    "action_formats": []
+                }
+            ]
+        }, 
+        {
+            "name": "tbl_netassay_v3l1224", 
+            "gress": "ingress", 
+            "lookup_types": [], 
+            "entries_requested": 8388608, 
+            "entries_allocated": 1, 
+            "match_fields": [], 
+            "action_parameters": [
+                {
+                    "action_name": "netassay_v3l1224", 
+                    "parameters": []
+                }
+            ], 
+            "stage_allocation": [
+                {
+                    "stage_number": 8, 
+                    "memories": [
+                        {
+                            "memory_type": "sram", 
+                            "table_word_width": 128, 
+                            "memory_word_width": 128, 
+                            "entries_per_table_word": 2, 
+                            "table_type": "stateful", 
+                            "num_memories": 9
+                        }
+                    ], 
+                    "overhead_fields": [], 
+                    "match_format": {
+                        "entries": []
+                    }, 
+                    "action_formats": []
+                }
+            ]
+        }, 
+        {
+            "name": "tbl_netassay_v3l1225", 
+            "gress": "ingress", 
+            "lookup_types": [], 
+            "entries_requested": 16384, 
+            "entries_allocated": 1, 
+            "match_fields": [], 
+            "action_parameters": [
+                {
+                    "action_name": "netassay_v3l1225", 
+                    "parameters": []
+                }
+            ], 
+            "stage_allocation": [
+                {
+                    "stage_number": 9, 
+                    "memories": [], 
+                    "overhead_fields": [], 
+                    "match_format": {
+                        "entries": []
+                    }, 
+                    "action_formats": []
+                }
+            ]
+        }, 
+        {
+            "name": "tbl_netassay_v3l1225$st1", 
+            "gress": "ingress", 
+            "lookup_types": [], 
+            "entries_requested": 16384, 
+            "entries_allocated": 1, 
+            "match_fields": [], 
+            "action_parameters": [
+                {
+                    "action_name": "netassay_v3l1225", 
+                    "parameters": []
+                }
+            ], 
+            "stage_allocation": [
+                {
+                    "stage_number": 10, 
+                    "memories": [
+                        {
+                            "memory_type": "sram", 
+                            "table_word_width": 128, 
+                            "memory_word_width": 128, 
+                            "entries_per_table_word": 2, 
+                            "table_type": "stateful", 
+                            "num_memories": 9
+                        }
+                    ], 
+                    "overhead_fields": [], 
+                    "match_format": {
+                        "entries": []
+                    }, 
+                    "action_formats": []
+                }
+            ]
+        }, 
+        {
+            "name": "tbl_netassay_v3l1235", 
+            "gress": "ingress", 
+            "lookup_types": [], 
+            "entries_requested": 8388608, 
+            "entries_allocated": 1, 
+            "match_fields": [], 
+            "action_parameters": [
+                {
+                    "action_name": "netassay_v3l1235", 
+                    "parameters": []
+                }
+            ], 
+            "stage_allocation": [
+                {
+                    "stage_number": 11, 
+                    "memories": [
+                        {
+                            "memory_type": "sram", 
+                            "table_word_width": 128, 
+                            "memory_word_width": 128, 
+                            "entries_per_table_word": 4, 
+                            "table_type": "stateful", 
+                            "num_memories": 2
+                        }
+                    ], 
+                    "overhead_fields": [], 
+                    "match_format": {
+                        "entries": []
+                    }, 
+                    "action_formats": []
+                }
+            ]
+        }, 
+        {
+            "name": "tbl_netassay_v3l1241", 
+            "gress": "ingress", 
+            "lookup_types": [], 
+            "entries_requested": 16384, 
+            "entries_allocated": 1, 
+            "match_fields": [], 
+            "action_parameters": [
+                {
+                    "action_name": "netassay_v3l1241", 
+                    "parameters": []
+                }
+            ], 
+            "stage_allocation": [
+                {
+                    "stage_number": 0, 
+                    "memories": [], 
+                    "overhead_fields": [], 
+                    "match_format": {
+                        "entries": []
+                    }, 
+                    "action_formats": []
+                }
+            ]
+        }, 
+        {
+            "name": "tbl_netassay_v3l1241_0", 
+            "gress": "ingress", 
+            "lookup_types": [], 
+            "entries_requested": 0, 
+            "entries_allocated": 0, 
+            "match_fields": [], 
+            "action_parameters": [
+                {
+                    "action_name": "netassay_v3l1241_0", 
+                    "parameters": []
+                }
+            ], 
+            "stage_allocation": [
+                {
+                    "stage_number": 1, 
+                    "memories": [
+                        {
+                            "memory_type": "sram", 
+                            "table_word_width": 0, 
+                            "memory_word_width": 44, 
+                            "entries_per_table_word": 1, 
+                            "table_type": "match", 
+                            "num_memories": 0, 
+                            "entries_requested": 0, 
+                            "entries_allocated": 0, 
+                            "imm_bit_width_in_overhead_requested": 0, 
+                            "imm_bit_width_in_overhead_allocated": 0, 
+                            "entry_bit_width_requested": 0, 
+                            "entry_bit_width_allocated": 0, 
+                            "ideal_entries_per_table_word": 0, 
+                            "ideal_table_word_bit_width": 0
+                        }
+                    ], 
+                    "overhead_fields": [], 
+                    "match_format": {
+                        "entries": [
+                            {
+                                "entry_number": 0, 
+                                "fields": []
+                            }
+                        ]
+                    }, 
+                    "action_formats": []
+                }
+            ]
+        }, 
+        {
+            "name": "tbl_netassay_v3l1250", 
+            "gress": "ingress", 
+            "lookup_types": [], 
+            "entries_requested": 65344, 
+            "entries_allocated": 1, 
+            "match_fields": [], 
+            "action_parameters": [
+                {
+                    "action_name": "netassay_v3l1250", 
+                    "parameters": []
+                }
+            ], 
+            "stage_allocation": [
+                {
+                    "stage_number": 3, 
+                    "memories": [], 
+                    "overhead_fields": [], 
+                    "match_format": {
+                        "entries": []
+                    }, 
+                    "action_formats": []
+                }
+            ]
+        }, 
+        {
+            "name": "tbl_netassay_v3l1250$st1", 
+            "gress": "ingress", 
+            "lookup_types": [], 
+            "entries_requested": 16384, 
+            "entries_allocated": 1, 
+            "match_fields": [], 
+            "action_parameters": [
+                {
+                    "action_name": "netassay_v3l1250", 
+                    "parameters": []
+                }
+            ], 
+            "stage_allocation": [
+                {
+                    "stage_number": 6, 
+                    "memories": [
+                        {
+                            "memory_type": "sram", 
+                            "table_word_width": 128, 
+                            "memory_word_width": 128, 
+                            "entries_per_table_word": 2, 
+                            "table_type": "stateful", 
+                            "num_memories": 9
+                        }
+                    ], 
+                    "overhead_fields": [], 
+                    "match_format": {
+                        "entries": []
+                    }, 
+                    "action_formats": []
+                }
+            ]
+        }, 
+        {
+            "name": "tbl_netassay_v3l1254", 
+            "gress": "ingress", 
+            "lookup_types": [], 
+            "entries_requested": 8388608, 
+            "entries_allocated": 1, 
+            "match_fields": [], 
+            "action_parameters": [
+                {
+                    "action_name": "netassay_v3l1254", 
+                    "parameters": []
+                }
+            ], 
+            "stage_allocation": [
+                {
+                    "stage_number": 7, 
+                    "memories": [
+                        {
+                            "memory_type": "sram", 
+                            "table_word_width": 128, 
+                            "memory_word_width": 128, 
+                            "entries_per_table_word": 2, 
+                            "table_type": "stateful", 
+                            "num_memories": 9
+                        }
+                    ], 
+                    "overhead_fields": [], 
+                    "match_format": {
+                        "entries": []
+                    }, 
+                    "action_formats": []
+                }
+            ]
+        }, 
+        {
+            "name": "tbl_netassay_v3l1260", 
+            "gress": "ingress", 
+            "lookup_types": [], 
+            "entries_requested": 16384, 
+            "entries_allocated": 1, 
+            "match_fields": [], 
+            "action_parameters": [
+                {
+                    "action_name": "netassay_v3l1260", 
+                    "parameters": []
+                }
+            ], 
+            "stage_allocation": [
+                {
+                    "stage_number": 2, 
+                    "memories": [], 
+                    "overhead_fields": [], 
+                    "match_format": {
+                        "entries": []
+                    }, 
+                    "action_formats": []
+                }
+            ]
+        }, 
+        {
+            "name": "tbl_netassay_v3l1260_0", 
+            "gress": "ingress", 
+            "lookup_types": [], 
+            "entries_requested": 0, 
+            "entries_allocated": 0, 
+            "match_fields": [], 
+            "action_parameters": [
+                {
+                    "action_name": "netassay_v3l1260_0", 
+                    "parameters": []
+                }
+            ], 
+            "stage_allocation": [
+                {
+                    "stage_number": 3, 
+                    "memories": [
+                        {
+                            "memory_type": "sram", 
+                            "table_word_width": 0, 
+                            "memory_word_width": 44, 
+                            "entries_per_table_word": 1, 
+                            "table_type": "match", 
+                            "num_memories": 0, 
+                            "entries_requested": 0, 
+                            "entries_allocated": 0, 
+                            "imm_bit_width_in_overhead_requested": 0, 
+                            "imm_bit_width_in_overhead_allocated": 0, 
+                            "entry_bit_width_requested": 0, 
+                            "entry_bit_width_allocated": 0, 
+                            "ideal_entries_per_table_word": 0, 
+                            "ideal_table_word_bit_width": 0
+                        }
+                    ], 
+                    "overhead_fields": [], 
+                    "match_format": {
+                        "entries": [
+                            {
+                                "entry_number": 0, 
+                                "fields": []
+                            }
+                        ]
+                    }, 
+                    "action_formats": []
+                }
+            ]
+        }, 
+        {
+            "name": "tbl_netassay_v3l1263", 
+            "gress": "ingress", 
+            "lookup_types": [], 
+            "entries_requested": 8388608, 
+            "entries_allocated": 1, 
+            "match_fields": [], 
+            "action_parameters": [
+                {
+                    "action_name": "netassay_v3l1263", 
+                    "parameters": []
+                }
+            ], 
+            "stage_allocation": [
+                {
+                    "stage_number": 8, 
+                    "memories": [
+                        {
+                            "memory_type": "sram", 
+                            "table_word_width": 128, 
+                            "memory_word_width": 128, 
+                            "entries_per_table_word": 2, 
+                            "table_type": "stateful", 
+                            "num_memories": 9
+                        }
+                    ], 
+                    "overhead_fields": [], 
+                    "match_format": {
+                        "entries": []
+                    }, 
+                    "action_formats": []
+                }
+            ]
+        }, 
+        {
+            "name": "tbl_netassay_v3l1267", 
+            "gress": "ingress", 
+            "lookup_types": [], 
+            "entries_requested": 16384, 
+            "entries_allocated": 1, 
+            "match_fields": [], 
+            "action_parameters": [
+                {
+                    "action_name": "netassay_v3l1267", 
+                    "parameters": []
+                }
+            ], 
+            "stage_allocation": [
+                {
+                    "stage_number": 9, 
+                    "memories": [], 
+                    "overhead_fields": [], 
+                    "match_format": {
+                        "entries": []
+                    }, 
+                    "action_formats": []
+                }
+            ]
+        }, 
+        {
+            "name": "tbl_netassay_v3l1267$st1", 
+            "gress": "ingress", 
+            "lookup_types": [], 
+            "entries_requested": 16384, 
+            "entries_allocated": 1, 
+            "match_fields": [], 
+            "action_parameters": [
+                {
+                    "action_name": "netassay_v3l1267", 
+                    "parameters": []
+                }
+            ], 
+            "stage_allocation": [
+                {
+                    "stage_number": 10, 
+                    "memories": [
+                        {
+                            "memory_type": "sram", 
+                            "table_word_width": 128, 
+                            "memory_word_width": 128, 
+                            "entries_per_table_word": 2, 
+                            "table_type": "stateful", 
+                            "num_memories": 9
+                        }
+                    ], 
+                    "overhead_fields": [], 
+                    "match_format": {
+                        "entries": []
+                    }, 
+                    "action_formats": []
+                }
+            ]
+        }, 
+        {
+            "name": "tbl_netassay_v3l1275", 
+            "gress": "ingress", 
+            "lookup_types": [], 
+            "entries_requested": 8388608, 
+            "entries_allocated": 1, 
+            "match_fields": [], 
+            "action_parameters": [
+                {
+                    "action_name": "netassay_v3l1275", 
+                    "parameters": []
+                }
+            ], 
+            "stage_allocation": [
+                {
+                    "stage_number": 11, 
+                    "memories": [
+                        {
+                            "memory_type": "sram", 
+                            "table_word_width": 128, 
+                            "memory_word_width": 128, 
+                            "entries_per_table_word": 4, 
+                            "table_type": "stateful", 
+                            "num_memories": 2
+                        }
+                    ], 
+                    "overhead_fields": [], 
+                    "match_format": {
+                        "entries": []
+                    }, 
+                    "action_formats": []
+                }
+            ]
+        }, 
+        {
+            "name": "tbl_netassay_v3l1276", 
+            "gress": "ingress", 
+            "lookup_types": [], 
+            "entries_requested": 8388608, 
+            "entries_allocated": 1, 
+            "match_fields": [], 
+            "action_parameters": [
+                {
+                    "action_name": "netassay_v3l1276", 
+                    "parameters": []
+                }
+            ], 
+            "stage_allocation": [
+                {
+                    "stage_number": 11, 
+                    "memories": [
+                        {
+                            "memory_type": "sram", 
+                            "table_word_width": 128, 
+                            "memory_word_width": 128, 
+                            "entries_per_table_word": 2, 
+                            "table_type": "stateful", 
+                            "num_memories": 2
+                        }
+                    ], 
+                    "overhead_fields": [], 
+                    "match_format": {
+                        "entries": []
+                    }, 
+                    "action_formats": []
+                }
+            ]
+        }
+    ]
+}

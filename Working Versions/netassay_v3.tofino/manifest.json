@@ -1,0 +1,162 @@
+{
+  "schema_version": "2.0.3",
+  "target": "tofino",
+  "build_date": "Tue Jul 14 18:08:54 2020",
+  "compiler_version": "9.1.0",
+  "compilation_succeeded": true,
+  "compilation_time": "36.623228788375854",
+  "run_id": "d9ff36a850879690",
+  "architecture": "tna",
+  "programs": [
+    {
+      "program_name": "netassay_v3.p4",
+      "p4_version": "p4-16",
+      "source_files": {
+        "src_root": "/home/p4/NetAssay_Tofino/Working Versions",
+        "includes": [
+          "/shared/bf-sde-9.1.1/install/share/p4c/p4include"
+        ],
+        "defines": [
+          "__TARGET_TOFINO__=1",
+          "__p4c__=1",
+          "__p4c_major__=9",
+          "__p4c_minor__=1",
+          "__p4c_patchlevel__=0",
+          "__p4c_version__=\"9.1.0\""
+        ]
+      },
+      "pipes": [
+        {
+          "pipe_id": 0,
+          "pipe_name": "pipe",
+          "files": {
+            "context": {
+              "path": "pipe/context.json"
+            },
+            "resources": [
+              {
+                "path": "pipe/logs/resources.json",
+                "type": "resources"
+              }
+            ],
+            "graphs": [
+              {
+                "path": "pipe/graphs/SwitchEgress.dot",
+                "gress": "egress",
+                "graph_type": "control",
+                "graph_format": ".dot"
+              },
+              {
+                "path": "pipe/graphs/SwitchIngress.dot",
+                "gress": "ingress",
+                "graph_type": "control",
+                "graph_format": ".dot"
+              },
+              {
+                "path": "pipe/graphs/SwitchEgressParser.dot",
+                "gress": "egress",
+                "graph_type": "parser",
+                "graph_format": ".dot"
+              },
+              {
+                "path": "pipe/graphs/SwitchIngressParser.dot",
+                "gress": "ingress",
+                "graph_type": "parser",
+                "graph_format": ".dot"
+              },
+              {
+                "path": "pipe/graphs/dep.json",
+                "gress": "ingress",
+                "graph_type": "table",
+                "graph_format": ".json"
+              },
+              {
+                "path": "pipe/graphs/program_graph.dot",
+                "gress": "ingress",
+                "graph_type": "table",
+                "graph_format": ".dot"
+              },
+              {
+                "path": "pipe/graphs/placement_graph.dot",
+                "gress": "ingress",
+                "graph_type": "table",
+                "graph_format": ".dot"
+              },
+              {
+                "path": "pipe/graphs/table_dep_graph_placement_0.dot",
+                "gress": "ingress",
+                "graph_type": "table",
+                "graph_format": ".dot"
+              },
+              {
+                "path": "pipe/graphs/table_dep_graph_placement_1.dot",
+                "gress": "ingress",
+                "graph_type": "table",
+                "graph_format": ".dot"
+              }
+            ],
+            "logs": [
+              {
+                "path": "pipe/logs/flexible_packing.log",
+                "log_type": "parser"
+              },
+              {
+                "path": "pipe/logs/parser.characterize.log",
+                "log_type": "parser"
+              },
+              {
+                "path": "pipe/logs/parser.log",
+                "log_type": "parser"
+              },
+              {
+                "path": "pipe/logs/phv.json",
+                "log_type": "phv"
+              },
+              {
+                "path": "pipe/logs/phv_allocation_0.log",
+                "log_type": "phv"
+              },
+              {
+                "path": "pipe/logs/phv_allocation_2.log",
+                "log_type": "phv"
+              },
+              {
+                "path": "pipe/logs/power.json",
+                "log_type": "power"
+              },
+              {
+                "path": "pipe/logs/pragmas.log",
+                "log_type": "phv"
+              },
+              {
+                "path": "pipe/logs/table_dependency_graph.log",
+                "log_type": "mau"
+              },
+              {
+                "path": "pipe/logs/table_placement_1.log",
+                "log_type": "mau"
+              },
+              {
+                "path": "pipe/logs/table_placement_3.log",
+                "log_type": "mau"
+              },
+              {
+                "path": "pipe/logs/table_summary.log",
+                "log_type": "mau"
+              },
+              {
+                "path": "pipe/logs/mau.json",
+                "log_type": "mau"
+              }
+            ],
+            "metrics": {
+              "path": "pipe/logs/metrics.json"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "compile_command": "/shared/bf-sde-9.1.1/install/bin/bf-p4c -g netassay_v3.p4 --create-graphs",
+  "conf_file": "netassay_v3.conf"
+}
